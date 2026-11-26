@@ -201,8 +201,19 @@ function blMasshtab(ek, ws) {
   ws.setScale(asos)
   const t = ws.getTopBlocks(false); if (!t.length) return
   blMahkam(ws)
-  const bb = ws.getBlocksBoundingBox(), h = bb.bottom - bb.top, joy = ws.getParentSvg().getBoundingClientRect().height
-  if (h * asos > joy - 2) { ws.setScale(Math.max(asos * 0.6, (joy - 2) / h)); blMahkam(ws) }
+  // 25.11 (Q04-A): ko'rinadigan joy — .jr-bl ning o'zi (maydon cho'zilib aylanganda ham o'zgarmaydi; svg bo'yi bilan o'lchansa «sig'di» deb tebranardi)
+  const box = ek.querySelector('.jr-bl'), wsd = box && box.querySelector('.jr-bl-ws')
+  const bb = ws.getBlocksBoundingBox(), h = bb.bottom - bb.top, joy = box && box.clientHeight ? box.clientHeight : ws.getParentSvg().getBoundingClientRect().height
+  // 25.11 (K7, Q04-A): bo'yi bo'yicha pastki chegara — darsning masshtabMin, bo'lmasa hamma darsda 0,5 (avval 0,6: sig'magan dasturni Blockly
+  // qo'zg'almas maydonda yuqoriga itarib, pastki dasturchani ustidagisiga mindirardi — 18–23-dars raketa dasturi, 4-darsda bola qo'shgan 7 dasturcha)
+  const mn = (typeof DARS !== 'undefined' && DARS.masshtabMin) || 0.5
+  if (h * asos > joy - 2) { ws.setScale(Math.max(asos * mn, (joy - 2) / h)); blMahkam(ws) }
+  // Q04-A: eng kichik masshtabda ham sig'masa — maydon dastur bo'yiga cho'ziladi, ustun ichida pastga aylanadi (Blockly hech narsani itarmaydi)
+  if (box && wsd) {
+    const kerak = Math.ceil(h * ws.scale + 24)
+    if (kerak > joy - 2) { if (!box.classList.contains('aylan') || wsd.style.height !== kerak + 'px') { box.classList.add('aylan'); wsd.style.height = kerak + 'px'; Blockly.svgResize(ws) } }
+    else if (box.classList.contains('aylan')) { box.classList.remove('aylan'); wsd.style.height = ''; box.scrollTop = 0; Blockly.svgResize(ws) }
+  }
   // 3-dars: keng blok (go to x: y:) dastur ustunidan chiqmasin — kengligi bo'yicha ham kichrayadi. Faqat maydonli darslarda (DARS.maydon):
   // chegara qutisiga tishcha va soya ham kiradi — 1-darsning P11 ekranida sig'ib turgan say bloki ham «keng» chiqib, dastur kichrayib qolardi (oltin ushladi)
   const en = bb.right - bb.left, jEn = ws.getParentSvg().getBoundingClientRect().width
@@ -358,7 +369,7 @@ function blTanlovOl(ek) {
 function blXJoy(ek) {
   const b = blTanlov(ek), x = ek.querySelector('.jr-bl .bl-x'), joy = ek.querySelector('.jr-bl'); if (!b || !x || !joy) return
   const r = b.getSvgRoot().querySelector(':scope > .blocklyPath').getBoundingClientRect(), j = joy.getBoundingClientRect()
-  x.style.left = (r.right - j.left) + 'px'; x.style.top = (r.top - j.top + r.height / 2) + 'px'
+  x.style.left = (r.right - j.left + joy.scrollLeft) + 'px'; x.style.top = (r.top - j.top + joy.scrollTop + r.height / 2) + 'px' // scroll — Q04-A (aylanadigan ustun)
 }
 function blTanla(ek, b) {
   blTanlovOl(ek); BL_TANLOV.set(ek, b.id)
@@ -373,11 +384,11 @@ function blTanlaBos(ek, ws, b) {
   if (Blockly.DropDownDiv && Blockly.DropDownDiv.isVisible && Blockly.DropDownDiv.isVisible()) return
   const t = blTanlov(ek)
   if (typeof chal === 'function') chal('bos')
-  if (!t) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return }
+  if (!t) { blTanla(ek, b); ishora(ek, 'Tanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi'); return }
   blTanlovOl(ek)
   if (t === b) { ishora(ek, ''); return }
-  if (t.outputConnection || b.outputConnection) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return } // 13-dars: random (son bloki) joy almashtirmaydi
-  if (!blAlmashtir(ws, t, b)) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return } // almashmasa — «almashdi» demaymiz (21.11)
+  if (t.outputConnection || b.outputConnection) { blTanla(ek, b); ishora(ek, 'Tanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi'); return } // 13-dars: random (son bloki) joy almashtirmaydi
+  if (!blAlmashtir(ws, t, b)) { blTanla(ek, b); ishora(ek, 'Tanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi'); return } // almashmasa — «almashdi» demaymiz (21.11)
   sanoq(ek); ishora(ek, 'Bloklar joyi almashdi')
 }
 // ikki blokning dasturdagi joyini almashtirish: zanjir bo'laklarga ajratiladi va yangi tartibda qayta ulanadi
@@ -498,8 +509,8 @@ function blSanoq(el, i) {
   // son kapsulasining o'ng tomonida (sarlavha qatorida); kapsula topilmasa — blok sarlavhasining chap tepasida
   const b = blBlok(el), fn = b && (b.getField('N') || b.getField('YON')), fs = fn && fn.getSvgRoot(), j = joy.getBoundingClientRect()
   const r = (fs || el).getBoundingClientRect()
-  s.style.left = (fs ? r.right - j.left + 6 : r.left - j.left) + 'px'
-  s.style.top = (r.top - j.top + (fs ? 0 : 4)) + 'px'
+  s.style.left = (fs ? r.right - j.left + 6 : r.left - j.left) + joy.scrollLeft + 'px'
+  s.style.top = (r.top - j.top + joy.scrollTop + (fs ? 0 : 4)) + 'px'
   s.textContent = i; if (s.animate) s.animate([{ transform: 'scale(1.35)' }, { transform: 'scale(1)' }], { duration: 220 })
 }
 function blSanoqOl(ek) { ek.querySelectorAll('.jr-bl .bl-son').forEach((x) => x.remove()) }

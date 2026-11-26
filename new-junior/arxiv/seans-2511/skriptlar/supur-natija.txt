@@ -1,0 +1,24 @@
+001: solo 31 ekran (o‘yin tugmasi bosildi 10), ustoz 25 qadam — toza
+002: solo 25 ekran (o‘yin tugmasi bosildi 14), ustoz 18 qadam — toza
+003: solo 26 ekran (o‘yin tugmasi bosildi 10), ustoz 18 qadam — toza
+004: solo 25 ekran (o‘yin tugmasi bosildi 14), ustoz 18 qadam — toza
+005: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+006: solo 26 ekran (o‘yin tugmasi bosildi 14), ustoz 18 qadam — toza
+007: solo 25 ekran (o‘yin tugmasi bosildi 14), ustoz 18 qadam — toza
+008: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+009: solo 25 ekran (o‘yin tugmasi bosildi 16), ustoz 18 qadam — toza
+010: solo 24 ekran (o‘yin tugmasi bosildi 13), ustoz 18 qadam — toza
+011: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+012: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+013: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+014: solo 26 ekran (o‘yin tugmasi bosildi 14), ustoz 18 qadam — toza
+015: solo 16 ekran (o‘yin tugmasi bosildi 3), ustoz 18 qadam — toza
+016: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+017: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+018: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+019: solo 26 ekran (o‘yin tugmasi bosildi 15), ustoz 18 qadam — toza
+020: solo 21 ekran (o‘yin tugmasi bosildi 12), ustoz 15 qadam — toza
+021: solo 17 ekran (o‘yin tugmasi bosildi 6), ustoz 15 qadam — toza
+022: solo 14 ekran (o‘yin tugmasi bosildi 6), ustoz 13 qadam — toza
+023: solo 13 ekran (o‘yin tugmasi bosildi 4), ustoz 12 qadam — toza
+JAMI TOPILMA: 0

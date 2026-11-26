@@ -299,6 +299,8 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorida «xato», «noto‘g‘ri�
 
 ## Savollar (tavsiya — A)
 
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.**
+
 1. **Dars shakli — A: 21-dars o'yinini tugatish** (karta bo'yicha). **B** — yangi o'yin: **−** loyiha juftligi buziladi.
 2. **Yangi so'z — A: yo'q.**
 3. **Sinash — A: ikki marta o'ynash** (ikkinchisida ball 0 dan) va yutuqni oshirish. **B** — «xatoni topish» (14-dars): **−** o'z o'yinida qo'lda xato yasash — yangi mexanika.

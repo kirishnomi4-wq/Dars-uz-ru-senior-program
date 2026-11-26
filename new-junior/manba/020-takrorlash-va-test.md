@@ -177,7 +177,7 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorida «xato», «noto‘g‘ri�
 - **Ustoz satri:** Yordam so‘radi: 1 ta noutbuk
 - **Parta:** Blok studiya; uch personaj kartasi; topshiriqning o'z dasturi bilan (jadvalga qarang).
   - 1 «Beshta dushman» — «▶ bosilganda beshta dushman tushsin».
-  - 2 «Ball» — «O‘q urganda ball oshsin».
+  - 2 «Ball» — «O‘q tegsa — ball +1 oshsin».
   - 3 «O‘yin tugaydi» — «Jon 0 bo‘lsa — o‘yin tugasin».
   - 4 «Qaysi qator?» — «Belgilangan blokning qatorini bosing».
 - **Bola qiladi:** topshiriqlarni yechadi.
@@ -332,6 +332,8 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorida «xato», «noto‘g‘ri�
 4. **Natija** — «ta topshiriq yechdi» (pog'ona ekranlari: 8 ta test va takrorlash topshirig'i) · «ta o‘yin yutdi».
 
 ## Savollar (tavsiya — A)
+
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.** Test shakli — amaliy topshiriq (K3).
 
 1. **Test shakli — A: amaliy topshiriqlar** (kosmik o'yin ustida, 2-bekatda maslahatsiz va noldan). **B** — savol-javob testi (rasm va 3 variant): **−** 59-qarorga zid (dars ichida test savoli yo'q); yangi mexanika kerak.
 2. **Yangi so'z — A: yo'q.** **B** — «test» ta'rifi bilan: **−** bola biladi, ortiqcha.

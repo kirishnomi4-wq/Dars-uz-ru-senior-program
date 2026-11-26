@@ -11,7 +11,7 @@ const bol = (tag, h, iz, id, hint) => {
   const b = DARS.studiya[id], P = b.bosh.personaj
   return { body: () => st({ tag, h, iz, javon: JV, dst: dstP(b.chegara, { cur: P.tanla }), sahna: sahna(qahK()) }), foot: () => fO(hint) }
 }
-const H1 = 'Dushman dasturini tuzing', H2 = 'O‘q urganda ball oshsin', H3 = 'Jonni qo‘shing — keyin yuting'
+const H1 = 'Dushman dasturini tuzing', H2 = 'O‘q tegsa — ball +1 oshsin', H3 = 'Jonni qo‘shing — keyin yuting'
 const E = {
   P1: { rol: 'p', b: 0, t: 't1', nom: 'Kirish', izoh: '1-qadam. Kosmos maydoni: pastda raketa (ichida Coddy), tepada binafsha dushman; pastda «O‘tgan darsda» — personaj.',
     body: () => `<div class="chap">${matn('', 'Dushmanlar <em>keldi</em>!', 'Salom! Bugun o‘yinimiz to‘liq bo‘ladi.')}${otganDars()}</div><div class="oyna">${maydon({}, coddyK(), { asl: [3, 4] })}</div>`,
@@ -47,7 +47,7 @@ const E = {
     body: () => st({ tag: 'Ko‘ramiz', h: '<em>Ball</em>', javon: JV, dst: dstP(10, { cur: 'oq' }), sahna: sahna(coddyK()) }),
     foot: () => fU('', 'Keyingi ›') },
   P5G: { rol: 'p', b: 2, t: 't1', nom: 'Sinf doskasi: ball', izoh: '11-qadam.',
-    body: () => doska('Ball <em>yig‘ing</em>!', 'O‘q urganda ball oshsin.', 5, POG.ball, 'Uch pog‘onani tugatdi', 'Har belgi — uch pog‘onani tugatgan bitta bola'),
+    body: () => doska('Ball <em>yig‘ing</em>!', 'O‘q tegsa — ball +1 oshsin.', 5, POG.ball, 'Uch pog‘onani tugatdi', 'Har belgi — uch pog‘onani tugatgan bitta bola'),
     foot: () => fU('Yordam so‘radi: 1 ta noutbuk', 'Keyingi ›') },
   P9: { rol: 'p', b: 2, t: 't1', nom: 'Xulosa: uch personaj', izoh: '12-qadam. Uch karta: raketa, o‘q, dushman.',
     body: () => `<div class="chap">${matn('Xulosa', 'Uch personaj — <em>uch ish</em>', 'Har personaj o‘z ishini qiladi.')}<div class="tf-l"><div class="tf"><div class="tf-r">${RAK()}</div><div class="tf-t"><b>Raketa</b><span>yuradi</span></div></div><div class="tf"><div class="tf-r">${OQ('oq-k')}</div><div class="tf-t"><b>O‘q</b><span>uradi va ball beradi</span></div></div><div class="tf"><div class="tf-r">${DUSH()}</div><div class="tf-t"><b>Dushman</b><span>tushadi</span></div></div></div></div><div class="oyna">${maydon({}, coddyK(), { asl: [3, 4], dush: [[1, 2]], oq: [[1, 1]] })}${ozgQ({ ball: 4 })}</div>`,
@@ -85,7 +85,7 @@ const E = {
   B1B: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 2-pog‘ona', izoh: '8-qadam. Dushman: tayyor ▶[C] · K[…] — bola ▶[R5[C]].', ...bol('Mashq · 2-pog‘ona', '<em>Beshta</em>', 'Beshta dushman tushsin', 'B1B', H1) },
   B1C: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · 3-pog‘ona', izoh: '8-qadam. Dushman: tayyor ▶[R5[C]] · K[R4[↓] D] — bola K boshiga go to x: (random 0 to 6) y: 4.', ...bol('Mashq · 3-pog‘ona', 'Har xil <em>ustun</em>', 'Dushmanlar har xil ustundan tushsin', 'B1C', H1) },
   B1Y: { rol: 'b', b: 1, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '8-qadam. Uch dastur tayyor — bola o‘ynab uchta dushmanni uradi.', ...bol('Mashq · ★ qo‘shimcha', 'O‘q <em>uradi</em>', 'Uchta dushmanni o‘q bilan uring', 'B1Y', H1) },
-  B2A: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 1-pog‘ona', izoh: '11-qadam. O‘q: bo‘sh T (when touching enemy) — bola change ball by 1.', ...bol('Mashq · 1-pog‘ona', '<em>Ball</em>', 'O‘q urganda ball oshsin', 'B2A', H2) },
+  B2A: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 1-pog‘ona', izoh: '11-qadam. O‘q: bo‘sh T (when touching enemy) — bola change ball by 1.', ...bol('Mashq · 1-pog‘ona', '<em>Ball</em>', 'O‘q tegsa — ball +1 oshsin', 'B2A', H2) },
   B2B: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 2-pog‘ona', izoh: '11-qadam. O‘q: T[+1]; raketada ▶ yo‘q — bola ▶[set ball to 0]; ikki marta o‘ynaydi.', ...bol('Mashq · 2-pog‘ona', 'Boshidan <em>0</em>', 'Har o‘yin ball 0 dan boshlansin. Ikki marta o‘ynang', 'B2B', H2) },
   B2C: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · 3-pog‘ona', izoh: '11-qadam. O‘q: T[+1] — bola +2.', ...bol('Mashq · 3-pog‘ona', 'Har dushman — <em>2 ball</em>', 'Har urilgan dushman 2 ball bersin', 'B2C', H2) },
   B2Y: { rol: 'b', b: 2, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '11-qadam. Bitta o‘yinda ball ≥ 8 (dushmanlar soni — bolaning dasturidan).', ...bol('Mashq · ★ qo‘shimcha', '<em>Rekord</em>', 'Bitta o‘yinda 8 ball yig‘ing', 'B2Y', H2) },
@@ -95,5 +95,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · ★ qo‘shimcha', izoh: '15-qadam. Kamida 8 dushman (dushman dasturidagi repeat), yutadi.', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>o‘yiningiz</em>', 'Kamida 8 ta dushman — yuting', 'B3Y', H3) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'O‘yin <em>tayyor</em>!', '')}${qg('O‘yinimda dushman, ball va jon bor!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK(), { asl: [3, 4], dush: [[5, 2]], oq: [[1, 2]] })}${ozgQ({ ball: 9, jon: 2 })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda o‘yiningizning kodini ko‘ramiz!</b><span class="saqlandi" data-z="saqlandi" hidden>O‘yiningiz saqlandi.</span></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

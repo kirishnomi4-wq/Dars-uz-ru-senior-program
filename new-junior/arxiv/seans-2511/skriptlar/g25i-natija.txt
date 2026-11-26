@@ -1,0 +1,111 @@
+== BOSHLANDI 05:24
+demo ok demo.html 4231KB 42 ekran, 25 qadam
+demo ok demo-002.html 3085KB 34 ekran, 18 qadam
+demo ok demo-003.html 3194KB 35 ekran, 18 qadam
+demo ok demo-004.html 3089KB 34 ekran, 18 qadam
+demo ok demo-005.html 3227KB 35 ekran, 18 qadam
+demo ok demo-006.html 3313KB 35 ekran, 18 qadam
+demo ok demo-007.html 5238KB 34 ekran, 18 qadam
+demo ok demo-008.html 4993KB 35 ekran, 18 qadam
+demo ok demo-009.html 3891KB 34 ekran, 18 qadam
+demo ok demo-010.html 3672KB 33 ekran, 18 qadam
+demo ok demo-011.html 3487KB 35 ekran, 18 qadam
+demo ok demo-012.html 4055KB 35 ekran, 18 qadam
+demo ok demo-013.html 3189KB 35 ekran, 18 qadam
+demo ok demo-014.html 3702KB 35 ekran, 18 qadam
+demo ok demo-015.html 3266KB 33 ekran, 18 qadam
+demo ok demo-016.html 3145KB 35 ekran, 18 qadam
+demo ok demo-017.html 3285KB 35 ekran, 18 qadam
+demo ok demo-018.html 3537KB 35 ekran, 18 qadam
+demo ok demo-019.html 3478KB 35 ekran, 18 qadam
+demo ok demo-020.html 3141KB 30 ekran, 15 qadam
+demo ok demo-021.html 2342KB 25 ekran, 15 qadam
+demo ok demo-022.html 2217KB 22 ekran, 13 qadam
+demo ok demo-023.html 2005KB 20 ekran, 12 qadam
+✔ chizuvchi: 42 ekran, 25 qadam, 173 SVG ichki nomi takrorsiz
+✔ /home/kali/Desktop/internetLesson/new-junior/lms/chiqish/junior-001-tanishuv.jsx — 1538 KB, react importi: 1, server: prod
+== SETKA (C-blokli darslar) 05:24
+-- setka 008-shart
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 56 element — qahramon ochiq, hech narsa oshmadi
+-- setka 009-labirint-oyini-1
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 32 element — qahramon ochiq, hech narsa oshmadi
+-- setka 010-labirint-oyini-2
+ekran: 33 — toza
+[WebKit] labirintli ekran: 21; ichidan oshish tekshirildi: 10 element — qahramon ochiq, hech narsa oshmadi
+-- setka 014-xatoni-topish
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 72 element — qahramon ochiq, hech narsa oshmadi
+== OLTIN SOL 1–23 (hammasi) 05:25
+-- oltin sol 001-tanishuv 05:25
+BIR XIL: 264 / 264
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 002-ketma-ketlik 05:31
+BIR XIL: 143 / 143
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 003-koordinata 05:35
+BIR XIL: 131 / 131
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 004-hodisalar 05:38
+BIR XIL: 122 / 122
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 005-takrorlash 05:41
+BIR XIL: 128 / 128
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 006-amaliyot 05:44
+BIR XIL: 131 / 132
+✗ bx-B3Y-kamoila — matn; html (28143 → 28224 belgi)
+-- oltin sol 007-kostyum-tovush 05:47
+BIR XIL: 123 / 124
+✗ bx-B2A-yetdi — matn; html (42313 → 42393 belgi)
+-- oltin sol 008-shart 05:51
+BIR XIL: 125 / 125
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 009-labirint-oyini-1 05:56
+BIR XIL: 133 / 133
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 010-labirint-oyini-2 06:00
+BIR XIL: 123 / 123
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 011-ozgaruvchi-ball 06:04
+BIR XIL: 134 / 134
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 012-ozgaruvchi-jon-vaqt 06:08
+BIR XIL: 125 / 126
+✗ u-03-P2S — matn; html (39498 → 39532 belgi); surat: 238 piksel (eng katta farq 188/255), joyi (608, 96, 621, 119)
+-- oltin sol 013-tasodifiy-son 06:11
+BIR XIL: 128 / 128
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 014-xatoni-topish 06:14
+BIR XIL: 138 / 138
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 015-xakaton-1 06:18
+BIR XIL: 114 / 116
+✗ u-03-P2S — matn; html (41541 → 41507 belgi); surat: 238 piksel (eng katta farq 188/255), joyi (608, 96, 621, 119)
+✗ y-03 — matn; html (94291 → 94257 belgi); surat: 292 piksel (eng katta farq 188/255), joyi (347, 255, 360, 280)
+-- oltin sol 016-klonlar 06:22
+BIR XIL: 126 / 126
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 017-kosmik-oyin-1 06:26
+BIR XIL: 126 / 126
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 018-kosmik-oyin-2 06:29
+BIR XIL: 118 / 118
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 019-bloklar-ortidagi-kod 06:31
+BIR XIL: 113 / 113
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 020-takrorlash-va-test 06:34
+BIR XIL: 89 / 89
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 021-shaxsiy-oyin-1 06:35
+BIR XIL: 84 / 84
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 022-shaxsiy-oyin-2 06:37
+BIR XIL: 95 / 95
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin sol 023-demo-day-1 06:38
+BIR XIL: 89 / 89
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+TAMOM 06:40

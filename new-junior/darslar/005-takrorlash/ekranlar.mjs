@@ -113,5 +113,5 @@ const E = {
     foot: () => fB({ hint: 'Uzun dasturda takrorlanadigan bo‘lakni toping' }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son; maydonda ★ rasmi (bo‘lsa) oltin iz bilan.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz rasm <em>chizdingiz</em>!', '')}${qg('Bir blokni ko‘p marta bajardingiz va rasm chizdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK())}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda amaliyotda ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

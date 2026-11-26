@@ -142,7 +142,7 @@ Dasturda eng ko'pi 12 ta blok (hodisa bloklari bilan).
 - **Qadamlar:**
   1. Ustoz «Sinab ko‘ramiz ›»ni bosadi — A kartasi kattalashadi; yulduz (4, 2) da. Coddy tayyor dastur bilan yuradi; uchinchi qadamdan keyin yulduz (2, 3) ga sakrab qochadi; Coddy baribir (4, 2) ga boradi — yulduz yo'q. Kartada: «✕ yulduz boshqa joyda» (**KOD**: huk kartasi `data-qoch` — N-qadamdan keyin yulduz sakraydi).
   2. «Keyingi» — B: yulduz yana (4, 2) da; o'sha dastur qayta yuradi, yulduz endi (5, 1) ga qochadi; Coddy yana (4, 2) ga. Kartada: «✕ yana o‘sha yo‘l».
-  3. «Keyingi» — C: yulduz (4, 2) da; sahnada «O‘yin: strelkalarni bosing». Ustoz → → bosadi — yulduz (1, 4) ga qochadi; ustoz ← ↑ ↑ ↑ ↑ bosadi — Coddy har bosishda bitta katak yuradi, yulduzga yetadi, konfeti. Kartada: «✓ yetib bordi». Tayyor dastur qochgan yulduzga moslasha olmaydi, strelka — moslashadi.
+  3. «Keyingi» — C: yulduz (4, 2) da; sahnada «O‘yin: strelkalarni bosing», pastda ishora «Strelkani bosing — klaviaturada yoki kartada» (25.11, F-1125-03: kartadagi strelkalar ham bosiladi). Ustoz → → bosadi — yulduz (1, 4) ga qochadi; ustoz ← ↑ ↑ ↑ ↑ bosadi — Coddy har bosishda bitta katak yuradi, yulduzga yetadi, konfeti. Kartada: «✓ yetib bordi». Tayyor dastur qochgan yulduzga moslasha olmaydi, strelka — moslashadi.
 - **Tayanch gaplar:**
   1. «Tayyor dastur har safar bir xil yo‘ldan yuradi — yulduz esa qochadi.»
   2. «Strelka bosilganda yursa — qahramonni o‘zimiz boshqaramiz.»

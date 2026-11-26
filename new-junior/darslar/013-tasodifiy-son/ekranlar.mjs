@@ -91,5 +91,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · ★ qo‘shimcha', izoh: '15-qadam. Savatsiz: random bor, maydondan chiqmaydi, daraxt va gulga tushmaydi, kamida 2 joy.', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>o‘yiningiz</em>', 'Olmalar qayerga tushishini o‘zingiz tanlang.', 'B3Y', H3, { oyin: true }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'O‘yiningiz har safar <em>boshqacha</em>!', '')}${qg('Olmalarni dastur o‘zi tanlagan joylarga tushirdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${olmaliMaydon(M13.B3A, qahK(), [[3, 1], [5, 2, 1], [4, 0, 1]])}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda xatolarni topamiz — ko‘rishguncha!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

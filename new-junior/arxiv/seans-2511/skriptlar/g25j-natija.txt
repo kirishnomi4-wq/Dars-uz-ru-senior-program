@@ -1,0 +1,39 @@
+== BOSHLANDI 06:40
+-- sim katak 06:40
+24 / 24 — HAMMASI TO‘G‘RI
+-- sim maydon 06:40
+47 / 47 — HAMMASI TO‘G‘RI
+-- sim hodisa 06:41
+35 / 35 — HAMMASI TO‘G‘RI
+-- sim takror 06:43
+34 / 34 — HAMMASI TO‘G‘RI
+-- sim amaliyot 06:44
+38 / 38 — HAMMASI TO‘G‘RI
+-- sim kostyum 06:45
+35 / 35 — HAMMASI TO‘G‘RI
+-- sim shart 06:46
+38 / 38 — HAMMASI TO‘G‘RI
+-- oltin sol 006-amaliyot (1) 06:47
+BIR XIL: 131 / 132
+✗ bx-B3Y-kamoila — matn; html (28143 → 28224 belgi)
+-- oltin sol 007-kostyum-tovush (1) 06:51
+BIR XIL: 123 / 124
+✗ bx-B2A-yetdi — matn; html (42313 → 42393 belgi)
+-- oltin sol 006-amaliyot (2) 06:54
+BIR XIL: 131 / 132
+✗ bx-B3Y-kamoila — matn; html (28143 → 28224 belgi)
+-- oltin sol 007-kostyum-tovush (2) 06:57
+BIR XIL: 123 / 124
+✗ bx-B2A-yetdi — matn; html (42313 → 42393 belgi)
+-- oltin sol 009-labirint-oyini-1 (oyin-bos) 07:01
+BIR XIL: 131 / 133
+✗ u-03-P2S — matn; html (73400 → 73366 belgi); surat: 2567 piksel (eng katta farq 188/255), joyi (1339, 112, 1389, 166)
+✗ y-03 — matn; html (126154 → 126120 belgi); surat: 761 piksel (eng katta farq 188/255), joyi (741, 265, 768, 294)
+-- oltin sol 011-ozgaruvchi-ball (oyin-bos) 07:05
+BIR XIL: 132 / 134
+✗ u-03-P2S — matn; html (39850 → 39816 belgi); surat: 238 piksel (eng katta farq 188/255), joyi (608, 96, 621, 119)
+✗ y-03 — matn; html (92607 → 92573 belgi); surat: 292 piksel (eng katta farq 188/255), joyi (347, 255, 360, 280)
+-- oltin sol 012-ozgaruvchi-jon-vaqt (oyin-bos) 07:09
+BIR XIL: 125 / 126
+✗ y-03 — matn; html (92284 → 92250 belgi); surat: 292 piksel (eng katta farq 188/255), joyi (347, 255, 360, 280)
+TAMOM 07:12

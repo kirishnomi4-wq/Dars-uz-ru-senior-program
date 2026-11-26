@@ -1,0 +1,759 @@
+<title>Junior 9–15-dars ko'rigi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@500;700;800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@600;800&display=swap">
+<style>
+/* Layout: bitta ustun, har qaror — haqiqiy dars suratlari + variantlar; pastda qotib turgan «Javobni nusxalash» paneli */
+:root {
+  --bg: #F6F4EF; --surface: #FFFFFF; --ink: #0D2137; --muted: #5B6476; --line: #E3DED3;
+  --coral: #E5482A; --coral-soft: #FFE9E2; --ok: #1E8E5A; --ok-soft: #E3F4EA; --gold: #C98A0E; --gold-soft: #FFF4D6;
+  --bar-bg: #0D2137; --bar-fg: #F6F4EF;
+  --f-sar: "Geologica", system-ui, sans-serif; --f-matn: "Onest", system-ui, sans-serif; --f-kod: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121820; --surface: #1B2330; --ink: #ECEFF4; --muted: #A3ADBD; --line: #2C3646;
+  --coral: #FF7A5C; --coral-soft: #3A2320; --ok: #4CC38A; --ok-soft: #173326; --gold: #F0B43C; --gold-soft: #33290F;
+  --bar-bg: #ECEFF4; --bar-fg: #121820; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121820; --surface: #1B2330; --ink: #ECEFF4; --muted: #A3ADBD; --line: #2C3646;
+  --coral: #FF7A5C; --coral-soft: #3A2320; --ok: #4CC38A; --ok-soft: #173326; --gold: #F0B43C; --gold-soft: #33290F;
+  --bar-bg: #ECEFF4; --bar-fg: #121820; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--f-matn); margin: 0 }
+.w { max-width: 1040px; margin: 0 auto; padding-block: 28px 150px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 28px }
+h1, h2, h3 { font-family: var(--f-sar); margin: 0; text-wrap: balance; line-height: 1.15 }
+h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800 }
+h1 em, h2 em { font-style: normal; color: var(--coral) }
+h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 800 }
+h3 { font-size: 18px; font-weight: 700 }
+h3 .son { font: 600 13px/1 var(--f-kod); color: var(--muted); margin-left: 6px }
+.yorliq { font: 800 12px/1 var(--f-kod); letter-spacing: .08em; text-transform: uppercase; color: var(--coral); background: var(--coral-soft); padding: 6px 9px; border-radius: 6px; width: max-content; max-width: 100% }
+.lid { color: var(--muted); max-width: 72ch; margin: 0 }
+.lid b { color: var(--ink) }
+.holat { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px }
+.h-k { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+.h-k b { font: 700 15px/1.3 var(--f-sar) }
+.h-k span { color: var(--muted); font-size: 14px }
+.pill { display: inline-block; font: 700 12px/1 var(--f-kod); padding: 5px 8px; border-radius: 999px; width: max-content }
+.pill.ok { color: var(--ok); background: var(--ok-soft) } .pill.kut { color: var(--gold); background: var(--gold-soft) }
+section.dars { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 18px; min-width: 0 }
+.darvoza { display: flex; flex-wrap: wrap; gap: 8px }
+.darvoza span { font: 600 13px/1 var(--f-kod); padding: 7px 10px; border-radius: 8px; background: var(--ok-soft); color: var(--ok) }
+.suratlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+figure img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block }
+figure.kichik img { width: auto; max-width: min(100%, 560px) }
+figcaption { font-size: 14px; color: var(--muted) }
+figcaption b { color: var(--ink) }
+.savol { border-top: 1px solid var(--line); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+.savol p { margin: 0; max-width: 72ch }
+.tanlov { display: flex; flex-direction: column; gap: 8px }
+.tanlov.yon { flex-direction: row; flex-wrap: wrap }
+.tanlov.yon label { flex: 1 1 260px }
+.tanlov label { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; background: var(--bg) }
+.tanlov input { margin-top: 4px; accent-color: var(--coral) }
+.tanlov label:has(input:checked) { border-color: var(--coral); box-shadow: 0 0 0 1px var(--coral) }
+.tanlov .t { font-weight: 600 }
+.tanlov small { display: block; color: var(--muted); font-size: 14px }
+.tav { font: 700 11px/1 var(--f-kod); color: var(--ok); background: var(--ok-soft); padding: 3px 6px; border-radius: 5px; margin-left: 6px; vertical-align: 2px }
+code { font: 600 .92em var(--f-kod); background: var(--bg); padding: 1px 5px; border-radius: 4px }
+ul.qisqa, ol.qisqa { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; max-width: 76ch }
+ol.qisqa { list-style: none; padding-left: 0 }
+details.royxat summary { cursor: pointer; color: var(--coral); font-weight: 600; font-size: 15px }
+details.royxat[open] summary { margin-bottom: 8px }
+details.eski { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 22px; display: flex; flex-direction: column; gap: 20px }
+details.eski summary { cursor: pointer; font: 700 16px/1.3 var(--f-sar) }
+details.eski[open] > summary { margin-bottom: 16px }
+details.eski > section + section { margin-top: 20px }
+.javob { position: fixed; left: 0; right: 0; bottom: 0; background: var(--bar-bg); color: var(--bar-fg); padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); z-index: 5 }
+.javob .ic { max-width: 1040px; margin: 0 auto; display: flex; gap: 12px; align-items: center; flex-wrap: wrap }
+#javobMatn { flex: 1; min-width: 0; font: 600 14px/1.4 var(--f-kod); overflow-wrap: anywhere }
+button { font: 700 15px/1 var(--f-matn); padding: 12px 18px; border-radius: 10px; border: 0; background: var(--coral); color: #fff; cursor: pointer }
+button:focus-visible, .tanlov label:focus-within, summary:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px }
+textarea { width: 100%; min-height: 70px; border: 1px solid var(--line); border-radius: 10px; padding: 10px; font: 400 15px/1.4 var(--f-matn); background: var(--bg); color: var(--ink) }
+.jad{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}.jad th,.jad td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}.jad th{font:700 13px/1.2 var(--f-kod);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.jad td:first-child{font:700 14px/1.4 var(--f-kod);color:var(--coral);white-space:nowrap}
+</style>
+
+<div class="w">
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <span class="yorliq">Junior · 1-modul · 26.11 tong</span>
+    <h1>QA fidbeki bajarildi — <em>yakuniy tekshiruv</em> o‘tdi</h1>
+    <p class="lid"><b>12-versiya.</b> 11-versiyadagi 9 javob (hammasi A) kodda. Tunda 23 darsning hamma sinovi yurdi, oltin namunalar yozildi. Tekshiruvda yana 3 ta kamchilik topildi — tuzatildi (pastda suratlari bilan). <span id="qa-sayt-lid"><b>QA sayti yangilandi</b> (06:48) — 24 ta fayl lokal yig‘ma bilan bayt-bayt bir xil.</span></p>
+    <p class="lid" style="opacity:.8">QA’ga «yangilandi» xabarini siz yozasiz. Pastda 4 savol: tungi uch tuzatishga rozimisiz va commit. Rozi bo‘lsangiz — hech narsa bosmasdan «Javobni nusxalash» va chatga tashlang.</p>
+  </header>
+
+  <div class="holat">
+    <div class="h-k"><span class="pill ok">✓ 20 ta</span><b>QA ro‘yxati bajarildi</b><span>13 xato va 7 qaror (11-versiya javoblari). Tafsiloti — pastdagi «11-versiya» bo‘limida.</span></div>
+    <div class="h-k"><span class="pill ok">✓ 3 ta</span><b>Tunda topildi, tuzatildi</b><span>Ustoz varag‘i telefonda · 19-dars «Kod nima?» · <code>if</code> C-bloki rangi.</span></div>
+    <div class="h-k"><span class="pill ok">✓ 23 dars</span><b>Sinov va oltin namuna</b><span>To‘liq dars, solo, tovush, simulyatorlar, setka (Chrome + Safari), oltin namuna — hammasi yashil.</span></div>
+    <div class="h-k" id="qa-sayt-karta"><span class="pill ok">✓ 24 / 24</span><b>QA sayti yangilandi</b><span><a href="https://coddycamp-junior-dars1.vercel.app/qa.html">coddycamp-junior-dars1.vercel.app/qa.html</a> — qa.html va 23 dars demosi lokal bilan bayt-bayt bir xil (06:48).</span></div>
+  </div>
+
+  <section class="dars" id="tekshiruv">
+    <span class="yorliq">Yakuniy tekshiruv · 26.11 tun</span>
+    <h2>Nima <em>tekshirildi</em></h2>
+    <p class="lid">Hammasi lokal demoda, bittadan (kompyuter qizib ketmasligi uchun). Oxirgi o‘zgarishdan keyin hamma demo qayta yig‘ildi va 23 darsning oltin namunasi yana bir bor solishtirildi: 19 dars — farq 0; 6, 7, 12, 15-darsda ko‘rinmas vaqtinchalik elementlar chiqdi (pastda, «Sinov vositalari») — tuzatildi, <span id="oltin-yakun">yangilangan 6 dars namunasi qayta solishtirildi — hammasi farq 0 (07:34)</span>. Endi 23 darsning hammasi namuna bilan mos.</p>
+    <div class="darvoza">
+      <span>javondagi bloklar: 23 dars, har oila — 0 qirqilgan</span>
+      <span>QA tuzatishlari (qa25): 13 / 13</span>
+      <span>to‘liq dars + solo + tovush: 1–23 hammasi</span>
+      <span>simulyatorlar: 19 / 19</span>
+      <span>kartadan chiqish (5 enda): 0</span>
+      <span>setka Chrome + Safari: 23 dars toza</span>
+      <span id="oltin-chip">oltin namuna: 23 / 23 dars, 2 907 holat, farq 0</span>
+    </div>
+    <p class="lid"><b>Oltin namuna</b> — darsning har bir holati (ustoz har qadam, bola har ekran, solo, yonma-yon, varaq): surat, matn va HTML. Bundan keyin dvigatelga tegilsa, 23 dars bir buyruq bilan solishtiriladi. 1–14-darsda eski namuna bilan har bir farq ko‘z bilan ko‘rildi — hammasi QA tuzatishlari va sizning javoblaringizdan (▶ belgisi, C-blok, javon, ishoralar, «Dars tugadi» yozuvi, kartadagi labirint, ro‘yxat ✓). Kutilmagan farq yo‘q. 15–23 uchun namuna birinchi marta yozildi va darhol ikkinchi yurish bilan solishtirildi.</p>
+  </section>
+
+  <section class="dars" id="tun-topilma">
+    <span class="yorliq">Tunda topildi · tuzatildi</span>
+    <h2>Yana uch <em>kamchilik</em></h2>
+    <p class="lid">Siz «tuzatish kerak bo‘lsa, halol avtopilotda tuzat» degansiz — tuzatdim. E’tirozingiz bo‘lsa, B ni tanlang — qaytaraman.</p>
+
+    <div class="savol" data-s="T1"><h3>1. Ustoz varag‘i telefonda yopilib qolardi</h3>
+      <p>Kechagi «Telefonni yotqizing» yozuvi (Q02) dars sahifasining hammasiga qo‘yilgan edi — ustoz varag‘iga ham. Varaq esa telefonda tik holda o‘qish uchun yasalgan: ustoz uni telefonda ochsa, faqat «Telefonni yotqizing» ko‘rinardi. Endi yozuv faqat dars ekranlarida. Bu oltin namuna vositasi yiqilganda topildi — varaqning to‘liq surati olinayotganda Chrome shu qoida uchun shrift so‘ragan.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/k26-varaq.jpg" alt="Ustoz varag‘i telefonda: chapda oldin — butun ekran «Telefonni yotqizing»; o‘ngda keyin — varaq o‘qiladi"><figcaption><b>Telefon, 390 × 844.</b> Chapda — oldin, o‘ngda — hozir. Dars ekranlarida yozuv o‘z joyida (QA tekshiruvi 13 / 13).</figcaption></figure></div>
+      <div class="tanlov yon">
+        <label><input type="radio" name="T1" value="A" checked><span><span class="t">A — shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="T1" value="B"><span><span class="t">B — varaqda ham yozuv chiqsin</span></span></label></div></div>
+
+    <div class="savol" data-s="T2"><h3>2. 19-dars «Kod nima?»: blok o‘z joyidan chiqardi</h3>
+      <p>QA fidbekidagi 16-band uchun uchinchi kartani kengaytirgan edim (kod sig‘sin deb). Natijada birinchi kartadagi <code>move right</code> bloki (93 px) o‘z joyidan (88 px) chiqib qoldi — setka tekshiruvi tutdi. Uchinchi kartada kodga 13 px ortiqcha joy bor edi: birinchi karta biroz kengroq, uchinchisi biroz torroq. Ko‘zga deyarli bilinmaydi, lekin qoida — blok o‘z qutisidan chiqmaydi.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/k26-p3.jpg" alt="19-dars, Kod nima? uch karta: tepada oldin, pastda keyin"><figcaption><b>19-dars, «Kod nima?», uch karta.</b> Tepada — oldin, pastda — hozir. Kod ham sig‘adi (5 ta enda tekshirildi).</figcaption></figure></div>
+      <div class="tanlov yon">
+        <label><input type="radio" name="T2" value="A" checked><span><span class="t">A — shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="T2" value="B"><span><span class="t">B — boshqacha</span><small>Izohga yozing.</small></span></label></div></div>
+
+    <div class="savol" data-s="T3"><h3>3. <code>if</code> C-bloki: yoni va tubi boshqa rangda edi</h3>
+      <p>Kartalardagi (yangi so‘z, «O‘tgan darsda», huk) <code>if path → then</code> blokining sarlavhasi kulrang-ko‘k, yoni va tubi esa <code>repeat</code> yashilida edi. Studiyada (Blockly) bola bu blokni boshdan-oyoq bitta rangda ko‘radi. 12- va 15-darsdagi <code>if =</code> bloki allaqachon to‘g‘ri edi — <code>if path</code> qolib ketgan. Ta’sir: 8, 9, 10-darslar (14-darsda ham bor, lekin ko‘rinadigan ekranda emas). Oltin namunada shundan boshqa farq chiqmadi.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/k26-cblok.jpg" alt="8-dars yangi so‘z kartasi: chapda if bloki yashil yon bilan, o‘ngda butun blok bir rangda"><figcaption><b>8-dars, «if — agar … unda».</b> Chapda — oldin, o‘ngda — hozir.</figcaption></figure></div>
+      <div class="tanlov yon">
+        <label><input type="radio" name="T3" value="A" checked><span><span class="t">A — shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="T3" value="B"><span><span class="t">B — qaytaring</span></span></label></div></div>
+  </section>
+
+  <section class="dars" id="sinov-tuzatish">
+    <span class="yorliq">Sinovlarning o‘zi · darsga tegilmadi</span>
+    <h2>Sinov vositalaridagi <em>olti tuzatish</em></h2>
+    <ul class="qisqa">
+      <li><b>21-dars sinovi qizil chiqdi</b> — xato sinovning o‘zida edi (kechagi 21-dars kartasi qatorida bitta belgi). Dars to‘g‘ri ishlardi: tuzatilgan sinov 30 / 30 va 33 / 33. Qolgan 95 sinov faylida shunday xato yo‘q.</li>
+      <li><b>Oltin vositasi</b> yuqoridagi shrift so‘rovida butun yurishni to‘xtatardi — yopilgan sahifadagi so‘rov endi e’tiborsiz qoladi.</li>
+      <li><b>16-dars namunasi:</b> huk sinovida dushman joyi tasodifiy — ikki yurishda 3 holat boshqacha chiqdi. Tasodif namuna uchun qotirildi (18–23-darsdagidek), endi 126 / 126.</li>
+      <li><b>17-dars namunasi:</b> «o‘q uchyapti» surati qaysi blok yonib turganiga qarab o‘zgarardi — o‘rniga «o‘q uchdi» (yakuniy holat) olinadi, endi 126 / 126.</li>
+      <li><b>6, 7-dars namunasi:</b> takrorlash sanog‘i («3») dastur tugagach 0,9 soniyada o‘chadi. Tunda kompyuter band paytda namuna kech olinib, belgisiz yozilgan edi — suratda farq yo‘q, faqat sahifa matnida. Namuna odatiy holat (belgi bor) bilan yangilandi.</li>
+      <li><b>Tugma aks-sadosi</b> (o‘yinda strelka bosilganda 0,4 soniya chiqadigan «→») suratga goh tushar, goh tushmasdi (12-dars) — namuna olishda olib tashlanadi; belgining o‘zini QA tekshiruvi (13 / 13) alohida tekshiradi.</li>
+    </ul>
+    <p class="lid">Sinf aloqasi internet orqali hali ishlamaydi — Vercel loyihasiga Upstash Redis qo‘shilmagan (16.11 dan ochiq, sizda). QA bitta brauzerda yoki solo’da ko‘radi; bu o‘zgarmadi.</p>
+  </section>
+
+  <section class="dars" id="commit">
+    <span class="yorliq">Buyruq kerak</span>
+    <h2>Commit</h2>
+    <div class="savol" data-s="C1"><h3>4. Junior o‘zgarishlarini commit qilaymi?</h3>
+      <p>Oxirgi Junior commit — 22.11 13:28. Undan beri <code>new-junior/</code> da 149 fayl: QA tuzatishlari, 11-versiya javoblari, tungi tuzatishlar, oltin namunalar (suratlarsiz — ular git’ga kirmaydi), yangi sinovlar, QA fidbeki ro‘yxati, seans skriptlari va shu sahifa manbasi (12 MB). Faqat <code>new-junior/</code>, push yo‘q.</p>
+      <div class="tanlov yon">
+        <label><input type="radio" name="C1" value="A" checked><span><span class="t">A — commit qil (push yo‘q)</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="C1" value="B"><span><span class="t">B — hozir kerak emas</span></span></label></div></div>
+  </section>
+
+  <section class="dars">
+    <label for="izoh" style="font-weight:600">Izoh (ixtiyoriy)</label>
+    <textarea id="izoh" placeholder="Masalan: T2 — B, chunki …"></textarea>
+  </section>
+
+  <details class="eski"><summary>11-versiya — javob berilgan (hammasi A, bajarildi)</summary>
+  <section class="dars" id="qa-holat">
+    <span class="yorliq">QA ro‘yxati · holat</span>
+    <h2>Nima <em>tuzatildi</em></h2>
+    <p class="lid" id="tekshiruv-holat"><b>Tekshiruv:</b> demolar 17:29 da qayta yig‘ildi. Yakuniy tekshiruvlar yurmoqda — javon (har oila, 23 dars), kartadan chiqish (yangi tekshiruv), setka Chrome + Safari, tegilgan darslarning to‘liq dars / solo sinovlari. Natija shu yerga qo‘shiladi.</p>
+    <div style="overflow-x:auto"><table class="jad">
+      <thead><tr><th>ID</th><th>Dars</th><th>QA nima dedi</th><th>Nima qilindi</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>13</td><td>Safari’da bloklar kartadan chiqadi</td><td>21.11 da tuzatilgan; Safari setkasi bugun ham toza</td></tr>
+        <tr><td>03</td><td>4</td><td>«Uch sinov»da hech narsa bosilmaydi</td><td>C kartadagi strelkalar bosiladi; ishora «Strelkani bosing — klaviaturada yoki kartada»</td></tr>
+        <tr><td>05</td><td>hamma</td><td>«O‘tgan darsda» kartasida repeat yarashmagan</td><td>Statik C-blok bir butun — sarlavha va tub ichki blokcha</td></tr>
+        <tr><td>06</td><td>10</td><td>C kartada labirintlar kartadan chiqadi</td><td>Hamma enda 7 px chiqardi — ixchamlandi; yangi tekshiruv har ekranni 5 ta enda o‘lchaydi</td></tr>
+        <tr><td>08, 18</td><td>15, 23</td><td>Dasturchalar ustma-ust</td><td>10-versiya 7-savoli (masshtab; 15-darsda dastur ustuni kengroq)</td></tr>
+        <tr><td>09</td><td>4, 18 …</td><td>Javondagi blok matni qirqilgan</td><td>Sig‘masa — ikkinchi qatorga o‘tadi (matn qirqilmaydi); 4-darsdagi «go to x: y:» ham shunday edi</td></tr>
+        <tr><td>11</td><td>17, 18</td><td>«ta dushman urdi»</td><td>«ta dushman urildi», «ta nishon urildi»</td></tr>
+        <tr><td>13</td><td>18</td><td>(suratda) «11 / 10 ta blok»</td><td>3-bekat chegarasi 12. <b>Muhim:</b> B3B pog‘onasini bola umuman yecha olmas edi — yechim 11 blok</td></tr>
+        <tr><td>15</td><td>19</td><td>«O‘tgan darsda» mantiqan xato</td><td>Izoh: «Raketa, o‘q va dushman — har birining o‘z dasturi» (sarlavha takrori edi)</td></tr>
+        <tr><td>16</td><td>19, 20</td><td>«Kod nima?»: kod kartadan chiqqan</td><td>Uchinchi karta kengroq, kod qutisi ixcham</td></tr>
+        <tr><td>17</td><td>21, 15</td><td>Sarlavhada rang so‘zni bo‘lgan</td><td>«<b>Kartani</b> to‘ldiramiz», «<b>Juftlikdasiz</b>»</td></tr>
+        <tr><td>19</td><td>11</td><td>(o‘zimiz topdik)</td><td>«▶ Tekshirish» tugmasi qatordan tushib, chetda qirqilardi — umumiy .xira klassi bilan to‘qnashuv; jonli darsda ham</td></tr>
+        <tr><td>—</td><td>18</td><td>(o‘zimiz topdik)</td><td>17-dars yakunida labirint ro‘yxati chiqardi — tuzatildi; kosmik o‘yin sinovi tasodif ketma-ketligiga bog‘liq edi — mustahkamlandi</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section class="dars" id="qa-qaror">
+    <span class="yorliq">QA fidbeki · qaror kerak</span>
+    <h2>QA so‘ragan <em>7 ta savol</em></h2>
+    <p class="lid">Har savolda QA suratidan ko‘rinish va tavsiya. Raqamlar — fidbek ro‘yxatidagi ID (<code>fidbek/F-1125-qa/ROYXAT.md</code>).</p>
+
+    <div class="savol" data-eski="Q02"><h3>1. Telefonda ochish (F-1125-02)</h3>
+      <p>QA telefonda (412 × 924) ochganda ekran kichrayib, o‘ngga siqilgan — «Keyingi» qirqilgan. Telefonni yotqizish taklifiga siz «Qabul» degansiz. Hozir qa.html «Faqat kompyuterda ochiladi» deydi.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/qa-04.jpg" alt="QA surati 04"><figcaption><b>QA surati.</b> Telefon, 412 × 924 — dars kichrayib o‘ngga siqilgan.</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="Q02" value="A" checked><span><span class="t">A — tik turganda «Telefonni yotqizing» ekrani; yotganda dars butun ekranga sig‘adi</span><span class="tav">tavsiya</span><small>Dars 16:9 — yotiq telefonga to‘liq sig‘adi; tik holatda o‘qib bo‘lmaydigan darajada kichrayadi.</small></span></label>
+        <label><input type="radio" name="Q02" value="B"><span><span class="t">B — telefonda ochilmaydi: «Kompyuterda oching» xabari</span><small>Sodda, lekin uyda telefondan ko‘radigan bola qoladi.</small></span></label></div></div>
+
+    <div class="savol" data-eski="Q04"><h3>2. Bola ko‘p dasturcha qo‘shsa (F-1125-04)</h3>
+      <p>QA 4-darsda 7 ta dasturcha qo‘shgan — dastur ustuniga sig‘madi, pastkilari ustma-ust tushdi. Bugungi 7-savol tuzatishi faqat tayyor dasturlar uchun (masshtab 0,45 gacha). Bola o‘zi qo‘shganda ham chegara kerak.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/qa-09.jpg" alt="QA surati 09"><figcaption><b>QA surati.</b> 4-dars, yonma-yon: 7 ta dasturcha — pastkilari ustma-ust.</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="Q04" value="A" checked><span><span class="t">A — o‘qiladigan darajagacha kichrayadi (hamma darsda 0,45), undan keyin ustun ichida pastga aylantirish</span><span class="tav">tavsiya</span><small>Ko‘p hollarda aylantirish kerak bo‘lmaydi; juda uzun dasturda ham hech narsa ustma-ust tushmaydi.</small></span></label>
+        <label><input type="radio" name="Q04" value="B"><span><span class="t">B — faqat aylantirish, bloklar kichraymaydi</span><small>Yozuv doim katta, lekin pastdagi dasturcha ko‘rinmay qolishi mumkin — bola uni unutadi.</small></span></label>
+        <label><input type="radio" name="Q04" value="C"><span><span class="t">C — dasturchalar soniga chegara («Joy qolmadi!»)</span><small>Sodda, lekin o‘z o‘yinini yasayotgan bolani to‘xtatadi.</small></span></label></div></div>
+
+    <div class="savol" data-eski="Q07"><h3>3. Blokni sudrab ajratish (F-1125-07)</h3>
+      <p>QA 14-darsda <code>move right</code> ni <code>repeat</code> tepasiga qo‘ygach, uni yolg‘iz sudrab ola olmagan: sudrasa, pastidagi bloklar ham birga keladi, qo‘yib yuborsa — dvigatel dasturga qaytarib ulaydi. Bitta blokni olib tashlash hozir: bosib tanlash → ✕. Scratch’da ham blok pastidagilar bilan birga sudraladi (23-darsda Scratch’ga o‘tiladi).</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/qa-13.jpg" alt="QA surati 13"><figcaption><b>QA surati.</b> 14-dars: move right repeat tepasida — yolg‘iz sudralmaydi.</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="Q07" value="A" checked><span><span class="t">A — Scratch’dagidek qoladi; blok tanlanganda ishora aniqroq: «Blokni olib tashlash — ✕. Pastidagilar o‘z joyida qoladi»</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="Q07" value="B"><span><span class="t">B — bitta blok yolg‘iz sudraladi (pastidagilar o‘rnida qoladi)</span><small>Scratch’dan farq qiladi; dvigatelda katta o‘zgarish.</small></span></label>
+        <label><input type="radio" name="Q07" value="C"><span><span class="t">C — blokni javonga sudrab tashlasa — o‘chadi</span><small>A ga qo‘shimcha bo‘lishi mumkin — izohda yozing.</small></span></label></div></div>
+
+    <div class="savol" data-eski="Q10"><h3>4. «O‘yiningizda:» ro‘yxati matni (F-1125-10)</h3>
+      <p>QA: ba’zi bandlar aniqroq, to‘g‘ridan-to‘g‘ri bo‘lsin. Ro‘yxat 18, 20–23-darsda bir xil:</p>
+      <ul class="qisqa"><li>Dushmanlar tushadi · <b>O‘q urganda ball</b> · <b>Tekkanda jon</b> · Jon tugasa — o‘yin tugaydi · O‘yin yutildi</li></ul>
+      <div class="suratlar"><figure class="kichik"><img src="img/qa-16.jpg" alt="QA surati 16"><figcaption><b>QA surati.</b> 18-dars: QA belgilagan bandlar.</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="Q10" value="A" checked><span><span class="t">A — «O‘q tegsa — ball +1» · «Dushman tegsa — jon −1»</span><span class="tav">tavsiya</span><small>Kim tegadi va nima bo‘ladi — ikkalasi ham aytiladi.</small></span></label>
+        <label><input type="radio" name="Q10" value="B"><span><span class="t">B — «Dushmanni ursangiz — ball» · «Dushman tegsa — jon kamayadi»</span></span></label>
+        <label><input type="radio" name="Q10" value="C"><span><span class="t">C — boshqa matn</span><small>Izohga yozing.</small></span></label></div></div>
+
+    <div class="savol" data-eski="Q12"><h3>5. Raketa tezligi (F-1125-12)</h3>
+      <p>QA: qiyin o‘yinlarda raketa sekin — dushmandan qochib ulgurmaydi. O‘lchov (bugun): bitta strelka — raketa bir katak yuradi, keyingi bosish ~330 ms dan keyin qabul qilinadi; dushman har 0,6 s da bir katak tushadi.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/qa-18.jpg" alt="QA surati 18"><figcaption><b>QA surati.</b> 18-dars, «Jon»: «raketa sekin, ulgurib bo‘lmayapti».</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="Q12" value="A" checked><span><span class="t">A — raketa ikki baravar tez (~170 ms); bosib tursa uzluksiz yuradi</span><span class="tav">tavsiya</span><small>O‘yin qiyinligi dushmanlar sonida qoladi, boshqaruv esa «qo‘lga yopishadi».</small></span></label>
+        <label><input type="radio" name="Q12" value="B"><span><span class="t">B — raketa o‘sha, qiyin pog‘onalarda dushman sekinroq</span></span></label>
+        <label><input type="radio" name="Q12" value="C"><span><span class="t">C — hozirgidek</span></span></label></div></div>
+
+    <div class="savol" data-eski="Q14"><h3>6. Solo yakuni: keyin nima bosiladi? (F-1125-14)</h3>
+      <p>Bola darsni o‘zi o‘tganda yakun ekranida tugma yo‘q — pastda faqat «Dars tugadi». QA: «keyin nimani bosib chiqiladi?». Hamma darsda shunday. LMS’da dars shu yerda «tugadi» deb belgilanadi.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/qa-19.jpg" alt="QA surati 19"><figcaption><b>QA surati.</b> 18-dars solo yakuni: «keyin nimani bosib chiqiladi?»</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="Q14" value="A" checked><span><span class="t">A — pastda aniq yozuv: «✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin»</span><span class="tav">tavsiya</span><small>Tugma bosilsa nima bo‘lishi LMS’ga bog‘liq; yozuv har joyda to‘g‘ri.</small></span></label>
+        <label><input type="radio" name="Q14" value="B"><span><span class="t">B — «Boshidan ko‘rish» tugmasi qo‘shiladi</span><small>Bola darsni qayta o‘tishi mumkin — natijalar qayta yozilmaydi.</small></span></label></div></div>
+
+    <div class="savol" data-eski="Q17"><h3>7. 21-dars: ustoz kartasi tayyormi yoki tanlanadimi? (F-1125-17)</h3>
+      <p>Ustoz ekranidagi «Kartani to‘ldiramiz» — namuna (do‘stim · 5 · 2 · 3), bosilmaydi. Coddy esa «Har qatorda bitta tanlov» deydi — QA tanlash kerak deb o‘ylagan. Manbada: ustoz kartani sinf oldida to‘ldiradi, bola o‘zinikini keyingi qadamda.</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/qa-23.jpg" alt="QA surati 23"><figcaption><b>QA surati.</b> 21-dars ustoz ekrani: «bu fixedmi yo user tanlasa bo‘lishi kerakmi?»</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="Q17" value="A" checked><span><span class="t">A — ustoz bosib to‘ldiradi (bo‘sh karta, sinf bilan birga tanlanadi); «Yutish uchun» o‘zi hisoblanadi</span><span class="tav">tavsiya</span><small>Manbaga mos; ustoz «qanday tanlanadi»ni jonli ko‘rsatadi.</small></span></label>
+        <label><input type="radio" name="Q17" value="B"><span><span class="t">B — namuna qoladi, Coddy: «Mana namuna karta — keyin o‘zingiznikini to‘ldirasiz»</span></span></label></div></div>
+  </section>
+
+  <section class="dars" id="ruxsat">
+    <span class="yorliq">Ruxsat</span>
+    <h2>Oxirgi ikki <em>qadam</em></h2>
+    <div class="savol" data-eski="R1"><h3>8. Oltin namunalar</h3>
+      <p>1–14-dars namunalarida kutilgan farqlar: solo ▶ belgisi (hamma dars), 12-dars yakuni (kapsulalar), 5/13/14 (21.11 dan ma’lum). 15–23 uchun namuna hali yo‘q (18–23 — stsenariy ham). QA tuzatishlari va sizning javoblaringizdan keyin yoziladi.</p>
+      <div class="tanlov">
+        <label><input type="radio" name="R1" value="A" checked><span><span class="t">A — hammasi tugagach: 1–14 yangilash, 15–23 yozish (18–23 ga stsenariy)</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="R1" value="B"><span><span class="t">B — avval o‘zim QA saytida ko‘raman</span></span></label></div></div>
+    <div class="savol" data-eski="R2"><h3>9. QA saytiga qayta chiqarish</h3>
+      <div class="tanlov">
+        <label><input type="radio" name="R2" value="A" checked><span><span class="t">A — tuzatishlar va sinovlar yashil bo‘lgach chiqaraman (bayt-bayt tekshiruv bilan), QA’ga «yangilandi» deb yozasiz</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="R2" value="B"><span><span class="t">B — buyrug‘imni kut</span></span></label></div></div>
+  </section>
+  </details>
+
+  <details class="eski"><summary>10-versiya — javob berilgan (hammasi A)</summary>
+  <section class="dars" id="tugma">
+    <span class="yorliq">Hamma dars · tuzatildi</span>
+    <h2>Solo’da ▶ belgisi <em>oq fonda oq</em> edi</h2>
+    <p class="lid">Bola darsni ustozsiz o‘tganda topshiriq ekranida «Keyingi ›» qo‘shiladi, asosiy tugma («Boshlash», «Ishga tushir», «Tekshirish», «Sinab ko‘rish») oq tugmaga aylanadi. Ichidagi ▶ esa oq qolib, ko‘rinmay qolardi — tugmaning chap tomoni bo‘sh. Endi belgi tugma matni rangida. O‘yin to‘xtaganda tugma eski nusxasidan tiklanadi, shuning uchun tuzatish uslubda (kodda almashtirilsa, to‘xtagach yana oq bo‘lardi).</p>
+    <div class="suratlar"><figure class="kichik"><img src="img/k25-tugma.jpg" alt="9-dars solo: oldin — Boshlash tugmasida belgi yo‘q; keyin — ▶ Boshlash"><figcaption><b>9-dars, solo, 1-pog‘ona.</b> Tepada — oldin, pastda — keyin.</figcaption></figure></div>
+    <div class="darvoza"><span>23 dars × (solo, o‘yin paytida, to‘xtagach, ustoz) — 0 topilma</span><span>tekshiruv eski nusxada 33 ta topdi</span><span>9-dars oltin: faqat 11 solo surat</span></div>
+  </section>
+
+  <section class="dars" id="qarorlar">
+    <span class="yorliq">Qaror kerak</span>
+    <h2>Manbalardagi <em>ochiq savollar</em></h2>
+
+    <div class="savol" data-eski="K1"><h3>1. 17-dars yakuni: «O‘yiningizda:» ro‘yxati</h3>
+      <p>Manbada bola yakun ekranida ro‘yxat bor («Raketa yuradi · O‘q otiladi · O‘q o‘chadi · Hamma nishon urildi»), darsda yo‘q. 9- va 10-darsda shu ro‘yxat yakunda turadi.</p>
+      <div class="suratlar">
+        <figure><img src="img/k25-d17-b5.jpg" alt="17-dars bola yakuni: ro‘yxat yo‘q"><figcaption><b>17-dars, hozir.</b> Natija kartalari bor, ro‘yxat yo‘q.</figcaption></figure>
+        <figure><img src="img/k25-d9-b5.jpg" alt="9-dars bola yakuni: O‘yiningizda ro‘yxati"><figcaption><b>9-dars — A shunday bo‘ladi.</b> Sahna tepasida chapda ro‘yxat, bajarilgan band ✓.</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K1" value="A" checked><span><span class="t">A — ro‘yxatni qo‘shaman (9-darsdagidek)</span><span class="tav">tavsiya</span><small>Manba bilan bir xil bo‘ladi; o‘yin darslari yakuni bir qolipda.</small></span></label>
+        <label><input type="radio" name="K1" value="B"><span><span class="t">B — manbadan olib tashlayman</span><small>Ekran hozirgidek qoladi.</small></span></label></div></div>
+
+    <div class="savol" data-eski="K2"><h3>2. 18-dars, «Har xil ustun» pog‘onasi: maslahat matni</h3>
+      <p>Dushmanlar bitta ustundan tushsa, «Son o‘rniga random qo‘ying» chiqadi. Lekin bu pog‘onada tayyor dasturda <code>go to</code> yo‘q — almashtiradigan son ham yo‘q, bola nima qilishni bilmaydi. Javondagi <code>go to</code> bloki «x: 3, y: 4» bilan turadi, ya’ni y ni o‘zgartirish shart emas.</p>
+      <div class="suratlar">
+        <figure><img src="img/k25-d18-hozir.jpg" alt="18-dars: hozirgi maslahat"><figcaption><b>Hozir:</b> «Hammasi bir ustundan tushdi. Son o‘rniga random qo‘ying».</figcaption></figure>
+        <figure><img src="img/k25-d18-taklif.jpg" alt="18-dars: taklif qilingan maslahat"><figcaption><b>A:</b> «Hammasi bir ustundan tushdi. Nusxa boshiga go to qo‘ying, x — random».</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K2" value="A" checked><span><span class="t">A — yangi matn</span><span class="tav">tavsiya</span><small>Bola qaysi blokni, qayerga qo‘yishni va qaysi sonni o‘zgartirishni biladi.</small></span></label>
+        <label><input type="radio" name="K2" value="B"><span><span class="t">B — boshqa matn</span><small>Izohga yozing.</small></span></label></div></div>
+
+    <div class="savol" data-eski="K3"><h3>3. 20-dars: test qanday bo‘ladi?</h3>
+      <p>Hozir test — amaliy topshiriq: o‘sha kosmik o‘yinda bola dasturni noldan tuzadi, maslahat yopiq («Test: o‘zingiz yeching»). Savol-javob testi (rasm va 3 variant) 59-qarorga zid — dars ichida test savoli yo‘q — va yangi mexanika talab qiladi.</p>
+      <div class="suratlar">
+        <figure><img src="img/k25-d20-b2a.jpg" alt="20-dars test: dushman dasturi noldan"><figcaption><b>Hozir (A): Test · 1.</b> Dushman dasturi bo‘sh, maslahat qulfda.</figcaption></figure>
+        <figure><img src="img/k25-d20-p2n.jpg" alt="20-dars savol ekrani — uch karta"><figcaption><b>B shunga o‘xshaydi:</b> darsdagi savol ekrani (uch karta) — testda har savol shunday bo‘lardi.</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K3" value="A" checked><span><span class="t">A — amaliy topshiriq (hozirgidek)</span><span class="tav">tavsiya</span><small>Bola bilishini emas, qila olishini ko‘rsatadi; sinf doskasida eng kam yechilgan topshiriq — ustoz qayta tushuntiradi.</small></span></label>
+        <label><input type="radio" name="K3" value="B"><span><span class="t">B — savol-javob testi</span><small>Yangi ekran turi va qoidadan istisno; dars 1–2 kun kechikadi.</small></span></label></div></div>
+
+    <div class="savol" data-eski="K4"><h3>4. 21-dars: loyiha kartasidagi qiymatlar</h3>
+      <p>Bola to‘rt qatorni tanlaydi: kim o‘ynaydi · dushmanlar 3 / 5 / 8 · har dushman 1 / 2 / 3 ball · jon 3 / 4 / 5. Yutish uchun ball o‘zi hisoblanadi (ball × dushmanlarning yarmi, yuqoriga yaxlitlab: 5 dushman × 2 ball → 6). <b>Halol aytaman:</b> 27 kombinatsiyaning hammasi yutiladigan ekani bot bilan hali o‘lchanmagan.</p>
+      <div class="suratlar"><figure><img src="img/k25-d21-k1.jpg" alt="21-dars loyiha kartasi"><figcaption><b>21-dars, «Kartangizni to‘ldiring».</b></figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="K4" value="A" checked><span><span class="t">A — qiymatlar shunday; 27 kombinatsiyani bot bilan o‘ynatib tekshiraman</span><span class="tav">tavsiya</span><small>Yutib bo‘lmaydigani chiqsa — o‘sha qiymatni o‘zgartirishni taklif qilaman.</small></span></label>
+        <label><input type="radio" name="K4" value="B"><span><span class="t">B — boshqa qiymatlar</span><small>Izohga yozing.</small></span></label></div></div>
+
+    <div class="savol" data-eski="K5"><h3>5. 23-dars: «ta mehmon yutdi» soni</h3>
+      <p>«Mehmon yutdi» ekranida o‘yinni mehmon (ota-ona) o‘ynaydi, bola aytib beradi. Dvigatel kim o‘ynayotganini bilmaydi: bola o‘zi o‘ynab yutsa ham son «mehmon yutdi» bo‘lib sanaladi.</p>
+      <div class="suratlar"><figure><img src="img/k25-d23-b5.jpg" alt="23-dars bola yakuni"><figcaption><b>23-dars yakuni.</b> «ta o‘yin tugadi · ta mehmon yutdi · pog‘ona bajardi».</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="K5" value="A" checked><span><span class="t">A — qoldiraman; ustoz varag‘iga «bu ekranda faqat mehmon o‘ynaydi» qatori</span><span class="tav">tavsiya</span><small>Ekran nomi va maslahat allaqachon «Mehmon o‘ynasin» deydi; yangi tugma kerak emas.</small></span></label>
+        <label><input type="radio" name="K5" value="B"><span><span class="t">B — nomini «ta o‘yin yutildi» ga almashtiraman</span><small>Son halol, lekin «mehmon» ma’nosi yo‘qoladi.</small></span></label></div></div>
+
+    <div class="savol" data-eski="K6"><h3>6. 23-dars: Scratch’ga o‘tish yo‘riqnomasi</h3>
+      <p>Bola noutbukida uch qadam («Scratch saytiga kiring — ota-onangizdan ruxsat so‘rang» · «Yangi loyiha oching» · «O‘yiningizni o‘zingiz yasang»), ustoz ekranida jadval «Blok studiya → Scratch» (hodisa, klon, o‘zgaruvchi). Dars ichida Scratch ochilmaydi: sinfda internet kafolatlanmagan, 13 yoshdan kichiklarga ota-ona ruxsati kerak.</p>
+      <div class="suratlar"><figure><img src="img/k25-d23-y1.jpg" alt="23-dars Uyda davom eting"><figcaption><b>23-dars, «Uyda davom eting».</b></figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="K6" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="K6" value="B"><span><span class="t">B — boshqacha</span><small>Izohga yozing.</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="topilma">
+    <span class="yorliq">Tekshiruvda topildi · tuzatishga ruxsat</span>
+    <h2>Yana ikki <em>kamchilik</em></h2>
+    <p class="lid">Qaror suratlarini olayotganda ko‘rindi. Ikkalasini ham avtomatik tekshiruv bilan 23 darsda qidirdim.</p>
+
+    <div class="savol" data-eski="K7"><h3>7. Dasturchalar bir-birining ustiga tushadi</h3>
+      <p>Dastur ustuniga sig‘maydigan uzun dasturda Blockly pastki bo‘lakni ko‘rinadigan joyga itaradi va u yuqoridagi bo‘lak ustiga tushadi. Sabab: dvigatel dasturni bo‘yi bo‘yicha 0,54 masshtabdan kichraytirmaydi (eniga esa shu darslarda 0,45 gacha ruxsat bor); 23-dars raketa dasturiga 0,49 kerak. <b>Topildi:</b> 23-dars — raketa dasturi 4 solo ekranda va ustozning 6-qadamida. <span id="ustma-qamrov"><b>Tekshiruv tugadi (23 dars):</b> 18-dars — 5 holat, 19 — 12, 20 — 11, 21 — 5, 22 — 8, 23 — 5; hammasida o‘sha raketa dasturi (jon bloklari bilan), solo’da ham, ustoz ekranida ham. 1–14, 16, 17-dars toza. <b>15-dars — boshqa holat</b> (2 ta: 13-qadam, solo va ustoz): dasturchalar ikki ustunda, lekin ikkinchi ustun birinchisining ustiga tushgan (pastdagi surat). Sababini tuzatish paytida aniqlayman — A tanlansa shu ham tuzatiladi.</span></p>
+      <div class="suratlar">
+        <figure class="kichik"><img src="img/k25-ustma-ok.jpg" alt="23-dars raketa dasturi: chapda hozir — bo‘laklar ustma-ust; o‘ngda A — hammasi ko‘rinadi"><figcaption><b>23-dars, «Mehmon yutdi», raketa dasturi.</b> Chapda — hozir: <code>set jon to 3</code> «when touching enemy» tagida. O‘ngda — A (sahifaning o‘zida sinab olingan).</figcaption></figure>
+        <figure class="kichik"><img src="img/k25-ustma-15.jpg" alt="15-dars, Hammasini sinaymiz: ikki ustundagi dasturchalar bir-birini yopgan"><figcaption><b>15-dars, 13-qadam «Hammasini sinaymiz».</b> Ikkinchi ustun birinchisining ustida — «move right» va «set» bloklari yopilgan.</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K7" value="A" checked><span><span class="t">A — bo‘yi uchun ham darsning o‘z chegarasi (0,45); faqat sig‘magan dastur kichrayadi</span><span class="tav">tavsiya</span><small>23-darsda bloklar ~10% kichrayadi (suratda o‘ngda), sig‘adigan dasturlar o‘zgarmaydi. Bolaning dasturi 12 blok bilan chegaralangan — undan uzun bo‘lmaydi.</small></span></label>
+        <label><input type="radio" name="K7" value="B"><span><span class="t">B — dastur ustuni ichida pastga aylantirish</span><small>Bloklar kichraymaydi, lekin bola pastdagi dasturchani ko‘rmay qolishi mumkin; dvigatelda kattaroq o‘zgarish.</small></span></label></div></div>
+
+    <div class="savol" data-eski="K8"><h3>8. Yakun ekranida o‘zgaruvchilar karta ortida</h3>
+      <p>O‘zgaruvchi bor darslarning bola yakunida sahna tepasida «ball», «jon», «qadam» kapsulalari turadi, xabar kartasi esa ularni yopib qo‘yadi. <b>Topildi:</b> 12-dars (tasdiqlangan — oltin namunasi ham shu holda yozilgan) va 23-dars. <span id="kaps-qamrov"><b>Tekshiruv tugadi:</b> yana 18-dars (to‘liq yopilgan) va 20-dars (qisman). 11, 21, 22-darsda matn qisqa — kapsula ko‘rinadi.</span></p>
+      <div class="suratlar">
+        <figure><img src="img/k25-k8-012-oldin.jpg" alt="12-dars yakuni, hozir: ball va jon karta ortida"><figcaption><b>12-dars, hozir (oltin namunadan).</b> «ball» va «jon» karta ortida, faqat «qadam» ko‘rinadi.</figcaption></figure>
+        <figure><img src="img/k25-k8-012.jpg" alt="12-dars yakuni, A: uch kapsula ko‘rinadi"><figcaption><b>12-dars, A.</b></figcaption></figure>
+        <figure><img src="img/k25-k8-023.jpg" alt="23-dars yakuni, A: ikki kapsula ko‘rinadi"><figcaption><b>23-dars, A.</b></figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K8" value="A" checked><span><span class="t">A — xabar kartasi kapsulalar ustunidan o‘ngda boshlanadi</span><span class="tav">tavsiya</span><small>Bitta umumiy uslub qoidasi; uzun matn ikki qatorga o‘tadi. 12-dars oltin namunasidan 1–2 surat qayta yoziladi.</small></span></label>
+        <label><input type="radio" name="K8" value="B"><span><span class="t">B — yakun ekranida kapsulalar ko‘rsatilmaydi</span><small>Sodda, lekin yakunda o‘yin sonlari (ball, jon) ko‘rinmaydi.</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="qolgan">
+    <span class="yorliq">16–23-dars · qurilgan javoblar</span>
+    <h2>Qolgan <em>71 savol</em> — tavsiya bo‘yicha qurilgan</h2>
+    <p class="lid">Har dars manbasidagi savollar. Hammasi A (tavsiya) bo‘yicha qurilgan va sinovdan o‘tgan, siz hali tasdiqlamagansiz. Ro‘yxatni ochib ko‘ring; e’tirozingiz bo‘lsa, B ni tanlab raqamini izohga yozing. Yuqoridagi 3–6-qaror shu ro‘yxatdagi 20·1, 21·3–5, 23·2–3 ning batafsilidir.</p>
+    <div class="savol" data-eski="16"><h3>16-dars · Klonlar <small class="son">10 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Sahna — A: «Kosmos» maydoni (3-darsdagi maydon, kosmos rangida), qahramon pastda, dushmanlar tepadan; 17–18-darsda o‘sha sahna</li><li><b>2.</b> Dastur kimniki — A: dushmanniki («Dushman dasturi»), qahramon 1–2-bekatda kuzatadi</li><li><b>3.</b> «Klon» oilasining rangi — A: to‘q sariq (Scratch’dagi «Control» rangiga yaqin), Hodisa sariq va Takrorlash yashildan farqli</li><li><b>4.</b> Vaqt — A: <code>wait</code> bloki yo‘q; nusxalar orasidagi vaqtni dvigatel beradi (har blok — bir urish)</li><li><b>5.</b> <code>delete this clone</code> — A: 3-bekatda, zarurat bilan (yerda qolgan nusxa yo‘lni to‘sadi)</li><li><b>6.</b> 3-bekatda qahramon tegishi — A: tayyor (dvigatel): nusxa qahramonga tushsa — jon −1 va nusxa o‘chadi</li><li><b>7.</b> 3-bekatda strelkalar — A: faqat ← → (qahramon pastki qatorda)</li><li><b>8.</b> Huk — A: uch usul (bittasini besh marta · beshta chizish · nusxa); natija kartada</li><li><b>9.</b> Asl ko‘rinadimi — A: ha, tepada turadi (nusxalar undan chiqadi)</li><li><b>10.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="16" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="16" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «16·4 — B».</small></span></label></div></div>
+    <div class="savol" data-eski="17"><h3>17-dars · Kosmik o‘yin 1 <small class="son">9 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Ikki personaj — A: «Raketa» va «O‘q», har biri o‘z dasturi bilan (personaj kartalari)</li><li><b>2.</b> Yangi so‘z — A: «personaj»</li><li><b>3.</b> O‘qning asli — A: raketa ichida, ko‘rinmaydi; nusxa raketa turgan joyda paydo bo‘ladi</li><li><b>4.</b> Nishonlar — A: qimirlamaydigan toshlar (17-dars), tushadigan dushmanlar — 18-darsda</li><li><b>5.</b> Tegish — A: dvigatel (o‘q nishonga kirsa — ikkalasi o‘chadi)</li><li><b>6.</b> Raketa — A: faqat ← →, pastki qatorda</li><li><b>7.</b> Chek-list — A: to‘rt band</li><li><b>8.</b> Saqlash — A: ikkala dastur 18-darsga</li><li><b>9.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="17" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="17" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «17·4 — B».</small></span></label></div></div>
+    <div class="savol" data-eski="18"><h3>18-dars · Kosmik o‘yin 2 <small class="son">10 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Dushman — A: uchinchi personaj (o‘z kartasi va dasturi), 16-darsdagi dastur</li><li><b>2.</b> Yangi so‘z — A: yo‘q; 5-qadam — «Eslaymiz» (klon, o‘zgaruvchi, shart)</li><li><b>3.</b> Tegish — A: dvigatel (o‘q va dushman bir katakda — ikkalasi o‘chadi; dushman raketaga — dushman o‘chadi) + <code>when touching enemy</code> hodisasi</li><li><b>4.</b> Ball — A: o‘q dasturida</li><li><b>5.</b> Jon — A: raketa dasturida, 12-darsdagi <code>if jon = 0 then</code> → <code>game over</code></li><li><b>6.</b> Dushmanlar oralig‘i — A: dvigatel sekinlashtiradi</li><li><b>7.</b> Chek-list — A: besh band</li><li><b>8.</b> Natija sonlari — A: «ta dushman urdi» · «ta o‘yin yutdi» · «pog‘ona bajardi»</li><li><b>9.</b> 17-dars dasturi — A: saqlangan bo‘lsa — o‘shani ochadi, bo‘lmasa tayyor</li><li><b>10.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="18" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="18" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «18·4 — B».</small></span></label></div></div>
+    <div class="savol" data-eski="19"><h3>19-dars · Bloklar ortidagi kod <small class="son">10 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Kod ko‘rinishi — A: haqiqiy JavaScript</li><li><b>2.</b> Yangi so‘z — A: bitta, «kod»</li><li><b>3.</b> Kod oynasi joyi — A: dastur ustuni ichida, bloklar yonida</li><li><b>4.</b> Asos o‘yin — A: 18-darsdagi o‘z kosmik o‘yini</li><li><b>5.</b> Kodda son — A: son bosiladi, blokdagi ro‘yxat ochiladi</li><li><b>6.</b> Kodni klaviatura bilan yozish — A: yo‘q</li><li><b>7.</b> 3-bekat — A: «Kodni o‘qiymiz» (bloksiz, oldindan aytish, 3-dars mexanizmi)</li><li><b>8.</b> O‘zgaruvchi e’loni (<code>let ball = 0;</code>) — A: kodda yo‘q</li><li><b>9.</b> Natija sonlari — A: «ta qatorni topdi» · «ta sonni o‘zgartirdi» · «pog‘ona bajardi»</li><li><b>10.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="19" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="19" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «19·4 — B».</small></span></label></div></div>
+    <div class="savol" data-eski="20"><h3>20-dars · Takrorlash va test <small class="son">8 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Test shakli — A: amaliy topshiriqlar</li><li><b>2.</b> Yangi so‘z — A: yo‘q</li><li><b>3.</b> Qiyin mavzuni aniqlash — A: sinf doskasi</li><li><b>4.</b> Maslahat — A: 2-bekatda yo‘q, qolganda bor</li><li><b>5.</b> «Noto‘g‘ri» — A: deyilmaydi</li><li><b>6.</b> Natija sonlari — A: «ta topshiriq yechdi» · «ta o‘yin yutdi» · «pog‘ona bajardi»</li><li><b>7.</b> Dars shakli — A: 18-darsdagi o‘yin ustida</li><li><b>8.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="20" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="20" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «20·4 — B».</small></span></label></div></div>
+    <div class="savol" data-eski="21"><h3>21-dars · Shaxsiy o‘yin 1 <small class="son">8 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Shaxsiy o‘yin — A: kosmik o‘yinning o‘z varianti</li><li><b>2.</b> Yangi so‘z — A: «loyiha kartasi»</li><li><b>3.</b> Karta — A: to‘rt tanlov</li><li><b>4.</b> Karta tekshiruvi — A: dastur kartaga mos</li><li><b>5.</b> Maqsad (yutish uchun ball) — A: o‘zi hisoblanadi</li><li><b>6.</b> Maslahat — A: hamma pog‘onada bor</li><li><b>7.</b> Natija sonlari — A: «ta karta to‘ldirdi» · «ta o‘yin yutdi» · «pog‘ona bajardi»</li><li><b>8.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="21" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="21" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «21·4 — B».</small></span></label></div></div>
+    <div class="savol" data-eski="22"><h3>22-dars · Shaxsiy o‘yin 2 <small class="son">8 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Dars shakli — A: 21-dars o‘yinini tugatish</li><li><b>2.</b> Yangi so‘z — A: yo‘q</li><li><b>3.</b> Sinash — A: ikki marta o‘ynash</li><li><b>4.</b> Taqdimot — A: uch gap + juftlikda mashq</li><li><b>5.</b> Taqdimot kartasi tekshiruvi — A: avto emas, faqat «Tayyorman»</li><li><b>6.</b> Maslahat — A: hamma pog‘onada bor</li><li><b>7.</b> Natija sonlari — A: «ta o‘yin yutdi» · «marta sinadi» · «pog‘ona bajardi»</li><li><b>8.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="22" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="22" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «22·4 — B».</small></span></label></div></div>
+    <div class="savol" data-eski="23"><h3>23-dars · Demo Day №1 <small class="son">8 ta savol</small></h3>
+      <details class="royxat"><summary>Savollar va qurilgan javob</summary><ol class="qisqa"><li><b>1.</b> Yangi so‘z — A: yo‘q</li><li><b>2.</b> Mehmon — A: ota-ona o‘ynaydi, bola aytib beradi</li><li><b>3.</b> Scratch yo‘riqnomasi — A: karta (uch qadam + jadval), ota-ona ruxsati bilan</li><li><b>4.</b> Jadval — A: «Blok studiya → Scratch» uch blok</li><li><b>5.</b> Himoya — A: ustoz tinglaydi</li><li><b>6.</b> Maslahat — A: 4-qadamda bor, 7-qadamda yo‘q</li><li><b>7.</b> Natija sonlari — A: «ta o‘yin tugadi» · «ta mehmon yutdi» · «pog‘ona bajardi»</li><li><b>8.</b> Manba v1 tasdig‘i</li></ol></details><div class="tanlov yon">
+      <label><input type="radio" name="23" value="A" checked><span><span class="t">A — hammasi shunday qolsin</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="23" value="B"><span><span class="t">B — ba’zisiga e’tirozim bor</span><small>Raqamini izohga yozing: masalan «23·4 — B».</small></span></label></div></div>
+  </section>
+
+  </details>
+  <details class="eski"><summary>Oldingi versiyalar (1–15-dars, 9-versiyagacha) — hammasiga javob berilgan</summary>
+  <section class="dars" id="royxat">
+    <span class="yorliq">Hamma dars · tuzatildi</span>
+    <h2>Ro‘yxat qatorlari <em>ko‘rinmasdi</em></h2>
+    <p class="lid">✓ belgisini qo‘shayotganda topildi: Blockly’ning har bir ro‘yxatida (repeat soni, if tomoni, tugma, o‘zgaruvchi, go to — 4, 5, 8, 11, 13, 14-dars) qatorlar <b>oq fonda oq matn</b> edi — bola ro‘yxatni ochsa, sonlarni ko‘rmasdi. Sinovlar qatorni matni bo‘yicha topgani uchun sezmagan. Endi matn to‘q, tanlangan son oldida ✓. Shu bilan birga 14-dars o‘yin pog‘onasida «Maslahat» qulfi «▶ Boshlash»dan keyin ochilmasdi — tuzatildi.</p>
+    <div class="suratlar"><figure><img src="img/royxat.jpg" alt="13-dars ro‘yxati: oldin va keyin"><figcaption><b>13-dars, go to ro‘yxati.</b> Chapda — oldin (faqat oq «0» ko‘rinardi), o‘ngda — keyin.</figcaption></figure></div>
+  </section>
+
+  <section class="dars" id="d15b">
+    <span class="yorliq">15-dars · yangi savollar</span>
+    <h2>Xakaton №1 — <em>ikki audit nima dedi</em></h2>
+    <p class="lid">Dvigatel auditi: tanlangan «Olma terish» o‘yini 4, 11–13-darsning imkoniyatlarini bitta o‘yinda birlashtiradi — dvigatelda ular bir-birini istisno qiladi, birlashgan o‘yin yangidan yoziladi. Bir nechta qism esa juda katta va xatoga moyil ish talab qiladi. Matn auditi: 37 ta aniq tuzatish (sarlavhalar sig‘masligi, «shart» so‘zi if uchun band, maslahat javobni aytmasin, ustoz namoyishidagi jon hisobi, juftliklar soni formulasi…) — hammasi qabul qilindi.</p>
+    <div class="savol" data-eski="15-12"><h3>15·12. Soddalashtirish to‘plami</h3><p>Sifat kamaymaydi, xato xavfi kamayadi.</p><div class="tanlov">
+      <label><input type="radio" name="15-12" value="A" checked><span><span class="t">A — qabul: «Tasodifiy olma» qismi keyingi xakatonga; Labirintdagi «Qadam» qismi yo‘q; ★ oltin olma faqat ★ tanlansa chiqadi; tanlash ekranida o‘ynaydigan kartalar o‘rniga kichik maydon rasmi; natija ikkinchi bolaga ustoz orqali</span><span class="tav">tavsiya</span><small>Qoladi: Olma terish — To‘rt strelka · Ball · Jon · Qadam · Quvonch · ★ Oltin olma; Labirint — Strelka va qoida · 2-daraja · Kalit va eshik · Qadam tovushi · Startga qaytish · ★ Uzun daraja.</small></span></label>
+      <label><input type="radio" name="15-12" value="B"><span><span class="t">B — v1 dagidek hammasi</span><small>Olma uchun alohida qahramon tizimi, labirintga o‘zgaruvchi, server — dars ancha kech tayyor bo‘ladi.</small></span></label></div></div>
+    <div class="savol" data-eski="15-13"><h3>15·13. Rol nomi</h3><p>«Yo‘lboshchi»dagi «bosh» «boshliq» bo‘lib eshitiladi — bola uni «buyruq beradigan» deb o‘qishi mumkin, rollar esa teng.</p><div class="tanlov">
+      <label><input type="radio" name="15-13" value="A" checked><span><span class="t">A — «haydovchi · xaritachi»</span><span class="tav">tavsiya</span><small>Rasm (rul va xarita) bilan bir so‘z; qoida sarlavhasi «Rul va xarita».</small></span></label>
+      <label><input type="radio" name="15-13" value="B"><span><span class="t">B — «haydovchi · yo‘lboshchi»</span></span></label></div></div>
+    <div class="savol" data-eski="15-14"><h3>15·14. «Xakatonchi» yutug‘i sharti</h3><p>v1 da 3 qism kerak edi — darsning fikri «avval o‘yin ishlasin», 9 yoshli juftliklarning ko‘pi yutuqsiz qolardi.</p><div class="tanlov">
+      <label><input type="radio" name="15-14" value="A" checked><span><span class="t">A — o‘yin ishlaydi (1-qism tayyor) va do‘stlar o‘ynadi; «Ikki haydovchi» — ikkalasi ham kamida bitta qism yasadi</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="15-14" value="B"><span><span class="t">B — 3 qism (v1 dagidek)</span></span></label></div></div>
+    <div class="savol" data-eski="15-15"><h3>15·15. 5-darsdagi ishora «Bir xil juftlik — N marta»</h3><p>«Juftlik» endi bolalar juftligi ma’nosida (bir ma’no — bir so‘z). 5-dars tasdiqlangan — shuning uchun so‘rayapman.</p><div class="tanlov">
+      <label><input type="radio" name="15-15" value="A" checked><span><span class="t">A — «Bir xil ikki blok — N marta» ga almashtiraman</span><span class="tav">tavsiya</span><small>5-dars oltin namunasidan 1–2 surat qayta yoziladi.</small></span></label>
+      <label><input type="radio" name="15-15" value="B"><span><span class="t">B — qoldiraman</span></span></label></div></div>
+    <div class="savol" data-eski="15-16"><h3>15·16. «Nimasi yoqdi?» kartalari</h3><p>«Qiyin» tanbeh bo‘lib, «Kulgili» «kulgi bo‘ladigan» bo‘lib o‘qilishi mumkin.</p><div class="tanlov">
+      <label><input type="radio" name="15-16" value="A" checked><span><span class="t">A — sarlavha «Sizga yoqdi:», kartalar «Qiziq · Chiroyli · Quvnoq · Yana o‘ynayman»</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="15-16" value="B"><span><span class="t">B — v1 dagidek «Qiziq · Qiyin · Chiroyli · Kulgili»</span></span></label></div></div>
+  </section>
+  <section class="dars" id="f1121">
+    <span class="yorliq">Safari · hamma dars</span>
+    <h2>Bloklar kartadan chiqardi — <em>tuzatildi</em></h2>
+    <p class="lid">Ikki sabab bor edi. <b>1)</b> Safari 9 px dan kichik harfni kattalashtiradi: kichraytirilgan blokda harf katta, hoshiya kichik qoladi — blok kartadan chiqadi (Chrome’da bu yo‘q, shuning uchun sinovlarimiz ko‘rmagan). Endi dvigatel (yangi <code>kichik.js</code>) Safari’da blokni o‘z o‘lchamida chizib, suratdek siqadi; Chrome’da hech narsa o‘zgarmaydi. <b>2)</b> 4, 5, 13-darsning 1-ekranidagi «O‘tgan darsda» kartasida blok chap ustunga sig‘masdi — hamma brauzerda; endi ustun blok kengligida.</p>
+    <div class="suratlar">
+      <figure><img src="img/f1121-oldin.jpg" alt="Safari, oldin: bloklar kartadan chiqqan"><figcaption><b>Oldin (sizning Safari suratingiz).</b> 13-dars huk kartalarida bloklar karta chetidan chiqib ketgan.</figcaption></figure>
+      <figure><img src="img/f1121-keyin.jpg" alt="Safari dvigateli, keyin: bloklar kartada"><figcaption><b>Keyin — QA saytining o‘zi, Safari dvigateli (WebKit), 1280 px.</b> 1-ekran kartasi va huk kartalari to‘g‘ri.</figcaption></figure>
+    </div>
+    <div class="darvoza"><span>setka 1–13: Chrome toza</span><span>setka 1–13: WebKit toza</span><span>oltin 1–13</span><span>QA sayti: bayt-bayt mos</span></div>
+    <ul class="qisqa">
+      <li>Endi har dars setkasi ikki brauzerda tekshiriladi: «blok o‘z kartasidan chiqmaydi».</li>
+      <li>Yo‘l-yo‘lakay topildi: LMS yig‘masida yangi kod 1-darsni oq ekranga aylantirardi — CRM’ga yuklanmasdan oldin tuzatildi.</li>
+      <li>Yo‘l-yo‘lakay topildi: pog‘ona yechilgach, keyingisi ochilguncha (1,4 soniya) yana «▶» bosilsa, bola bitta pog‘onani ko‘rmasdan o‘tib ketardi (hamma darsda bor edi). Endi bir ekranda bitta o‘tish.</li>
+    </ul>
+  </section>
+
+  <section class="dars" id="d14v">
+    <span class="yorliq">14-dars · yangi</span>
+    <h2>Xatoni topish — <em>ishga tushiring, qadam-baqadam yuring</em></h2>
+    <div class="darvoza"><span>to‘liq dars 64/64</span><span>solo 30/30</span><span>tovush 6/6</span><span>matn 467/467</span><span>xato.mjs 76/76</span><span>setka: Chrome va WebKit toza</span></div>
+    <div class="suratlar">
+      <figure><img src="img/d14-p2s.jpg" alt="14-dars huk: C kartasi bitta qadam bilan"><figcaption><b>2–4-qadam · Huk.</b> A — oxirgi blokni o‘zgartirdi: iz yana chiqdi; B — har xil o‘zgartirish: battar; C — dvigatel «Bitta qadam»ni o‘zi bosadi, 5-qadamda (2, 3) — «✓ 5-qadamda topildi».</figcaption></figure>
+      <figure><img src="img/d14-b2a.jpg" alt="14-dars: bitta qadam, rasmdan chiqdi"><figcaption><b>11-qadam · Bitta qadam.</b> Har bosish — qahramon bitta qadam; rasmdan chiqqan qadamda to‘xtaydi, xato blok belgilanadi, tugma ostida «3-qadam».</figcaption></figure>
+      <figure><img src="img/d14-b3b.jpg" alt="14-dars: o'yin"><figcaption><b>15-qadam · Olma terish.</b> Xato yashirin: → va ← ishlaydi; «ikkita dasturcha» ishorasi bu yerda ko‘rsatilmaydi; tugmani almashtirib yutish qabul qilinmaydi — har strelka o‘z tomoniga yurishi kerak.</figcaption></figure>
+      <figure><img src="img/d14-b3y.jpg" alt="14-dars: topishmoq tayyor"><figcaption><b>15-qadam · ★ Topishmoq.</b> Bola ishlaydigan dasturni bitta o‘zgartirish bilan buzadi; dvigatel «aynan bitta xato»ni o‘zi tekshiradi (400 dasturda mustaqil hisob bilan bir xil).</figcaption></figure>
+    </div>
+    <div class="savol" data-eski="14-5"><h3>14·5. 3-bekatda «Bitta qadam» tugmasi</h3><p>3-bekat usuli — «hamma holatni sinash» (ikki labirint, har strelka, random sonlari). 1–2-bekat va ★ da tugma bor.</p><div class="tanlov">
+      <label><input type="radio" name="14-5" value="A" checked><span><span class="t">A — 3-bekatning 1–3-pog‘onasida yo‘q</span><span class="tav">tavsiya</span><small>Usul aralashmaydi; ikki labirint, o‘yin va savatlarda qadam rejimi chalkashtiradi.</small></span></label>
+      <label><input type="radio" name="14-5" value="B"><span><span class="t">B — bor (ikki labirintda ham)</span><small>Dvigatelga qo‘shimcha ish: 1-labirint tugagach keyingi bosish 2-labirintni boshlaydi.</small></span></label></div></div>
+    <div class="savol" data-eski="14-6"><h3>14·6. Topishmoqni kim topadi (16-qadam)?</h3><p>Manba qarori: sinfdan taxmin so‘ralmaydi (59-qaror) — ustoz «Bitta qadam» bilan yuradi, sinf kuzatadi.</p><div class="tanlov">
+      <label><input type="radio" name="14-6" value="A" checked><span><span class="t">A — ustoz topadi, sinf kuzatadi</span><span class="tav">tavsiya</span><small>Bola ko‘radigan gap: «Avval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.»; reja kartasida «Ustoz xatoni izlaydi».</small></span></label>
+      <label><input type="radio" name="14-6" value="B"><span><span class="t">B — yonidagi do‘st topadi</span><small>16-qadam boshqacha yoziladi: do‘st noutbukida topadi; natija sanog‘i hal qilinishi kerak.</small></span></label></div></div>
+    <div class="savol" data-eski="14-7"><h3>14·7. «Bitta qadam» — nimani sanaydi?</h3><p>1-dars qoidasi: «Bitta buyruq — bitta qadam».</p><div class="tanlov">
+      <label><input type="radio" name="14-7" value="A" checked><span><span class="t">A — har bosishda qahramon bitta qadam; if tekshiruvi va repeat sanog‘i o‘sha bosishda ko‘rinadi</span><span class="tav">tavsiya</span><small>«N-qadam» — qahramon qadamlari; huk C kartasida «5-qadam» shunday.</small></span></label>
+      <label><input type="radio" name="14-7" value="B"><span><span class="t">B — if tekshiruvi ham alohida bosish</span><small>Qahramon qimirlamaydi, lekin «N-qadam» o‘sadi.</small></span></label></div></div>
+    <div class="savol" data-eski="14-8"><h3>14·8. Uch sarlavha bir qatorga sig‘masdi — qisqardi</h3><p>5-qadam «Muammocha — iz», 7-qadam «O‘zingiz topasiz», 12-qadam «Xato — topiladi!». To‘liq qoida «Xato — topiladigan narsa» yakunda va tayanch gaplarda qoladi.</p><div class="tanlov">
+      <label><input type="radio" name="14-8" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>71-qaror: sig‘masa — so‘z qisqaradi.</small></span></label>
+      <label><input type="radio" name="14-8" value="B"><span><span class="t">B — boshqa so‘z</span><small>Izohda yozing.</small></span></label></div></div>
+    <div class="savol" data-eski="14-9"><h3>14·9. Savatlarda xato faqat 3 marta sinagandan keyin aytiladi</h3><p>13-darsda dvigatel random’ning hamma sonini birinchi ishga tushirishdayoq sanab aytardi — 14-darsda «yashirin xato» yashirin bo‘lmasdi. Maydon chetiga tushish (ko‘ringan xato) — darhol.</p><div class="tanlov">
+      <label><input type="radio" name="14-9" value="A" checked><span><span class="t">A — shunday (faqat 14-darsda)</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="14-9" value="B"><span><span class="t">B — 13-darsdagidek darhol</span></span></label></div></div>
+    <div class="savol" data-eski="14-10"><h3>14·10. 14-dars tasdig‘i</h3><div class="tanlov">
+      <label><input type="radio" name="14-10" value="A" checked><span><span class="t">A — tasdiqlandi</span><span class="tav">tavsiya</span><small>Oltin namunasi yoziladi; QA da «tayyor».</small></span></label>
+      <label><input type="radio" name="14-10" value="B"><span><span class="t">B — avval o‘zim ko‘raman</span><small>qa.html → 14-dars (Ochish · Yonma-yon · Solo).</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d15">
+    <span class="yorliq">15-dars · faqat manba</span>
+    <h2>Xakaton №1 — <em>juftlikda bitta o‘yin</em></h2>
+    <p class="lid">Kursdagi birinchi xakaton: juftlik 60 daqiqada kichik o‘yin yasaydi, ishni bo‘lishadi, vaqtida tugatadi, do‘stlar o‘ynab baholaydi. Manba v1 qoralama (agent yozdi, 534 qator). Dars <b>qurilmagan</b> — yangi tur, qarorlar ko‘p; javoblaringizdan keyin quriladi. Darsning fikri: «Ishni bo‘lamiz, navbat bilan; avval o‘yin ishlasin — keyin qo‘shamiz.»</p>
+    <ul class="qisqa">
+      <li><b>0–10 daqiqa:</b> kirish, huk «Bitta o‘yinni qanday yasaymiz?» (uch karta, uch sinov), yangi so‘z «xakaton», reja, qoida (haydovchi va yo‘lboshchi), juftliklar.</li>
+      <li><b>10–70 daqiqa — juftlik ishi:</b> o‘yin tanlash (5) → qismlarni yasash (31; har qismdan keyin rollar almashadi) → sinash va tuzatish, 14-dars usuli (11,5) → do‘stlar o‘ynaydi va baholaydi (12).</li>
+      <li><b>70–81 daqiqa:</b> 2–3 juftlik o‘yinini aytib beradi, yakun, «Sinfimiz bugun».</li>
+    </ul>
+    <div class="savol" data-eski="15-1"><h3>15·1. Juftlik nechta noutbukda?</h3><div class="tanlov">
+      <label><input type="radio" name="15-1" value="A" checked><span><span class="t">A — bitta o‘yin noutbuki, navbat bilan (haydovchi va yo‘lboshchi); ikkinchisida «Juftlikdasiz» ekrani</span><span class="tav">tavsiya</span><small>Ikkalasi bitta narsaga qaraydi; dvigatelga kam ish. − Yo‘lboshchi zerikishi mumkin — uning aniq ishi bor (qism kartasini o‘qiydi).</small></span></label>
+      <label><input type="radio" name="15-1" value="B"><span><span class="t">B — ikki noutbuk, har kim o‘z qismi</span><small>Ikki dasturni bitta o‘yinga qo‘shish — katta yangi dvigatel ishi.</small></span></label>
+      <label><input type="radio" name="15-1" value="C"><span><span class="t">C — ikkinchi noutbuk yopiq</span><small>LMS ulanishi va natija ikkinchi bolada yo‘qoladi.</small></span></label></div></div>
+    <div class="savol" data-eski="15-2"><h3>15·2. O‘yin turi</h3><div class="tanlov">
+      <label><input type="radio" name="15-2" value="A" checked><span><span class="t">A — ikki tayyor o‘yindan biri («Olma terish» yoki «Labirint») + qismlar: 1-qism shart, yana 2 tasini o‘zi tanlaydi, ★ qo‘shimcha</span><span class="tav">tavsiya</span><small>60 daqiqa «nima yasaymiz»ga ketmaydi; har qism — tanish darsning natijasi, o‘zi tekshiriladi.</small></span></label>
+      <label><input type="radio" name="15-2" value="B"><span><span class="t">B — to‘liq erkin (bo‘sh maydon, hamma blok)</span><small>Ijod ko‘p, lekin 9 yoshli juftlik g‘oyada adashadi, tekshiruv yo‘q.</small></span></label>
+      <label><input type="radio" name="15-2" value="C"><span><span class="t">C — hammaga bitta o‘yin</span><small>Hamma natija bir xil.</small></span></label></div></div>
+    <div class="savol" data-eski="15-3"><h3>15·3. Ishni bo‘lishish</h3><div class="tanlov">
+      <label><input type="radio" name="15-3" value="A" checked><span><span class="t">A — qism bo‘yicha: qism tayyor bo‘lsa ekranda «Almashdik»</span><span class="tav">tavsiya</span><small>Almashish ishning tabiiy chegarasida — yarim dastur qolmaydi.</small></span></label>
+      <label><input type="radio" name="15-3" value="B"><span><span class="t">B — vaqt bo‘yicha (har 8–10 daqiqada)</span><small>Teng vaqt, lekin ish o‘rtasida uziladi.</small></span></label>
+      <label><input type="radio" name="15-3" value="C"><span><span class="t">C — rollarsiz, o‘zlari kelishadi</span><small>Kuchlirog‘i hammasini qiladi.</small></span></label></div></div>
+    <div class="savol" data-eski="15-4"><h3>15·4. Vaqt boshqaruvi</h3><p>15.11 da siz taymer va «Vaqt tugadi»ni olib tashlagansiz (63-qaror).</p><div class="tanlov">
+      <label><input type="radio" name="15-4" value="A" checked><span><span class="t">A — ekranda vaqt yo‘q; bekatni ustoz «Keyingi» bilan ochadi; bitta og‘zaki eslatma</span><span class="tav">tavsiya</span><small>«Vaqtida tugatish» tartib bilan o‘rgatiladi: avval o‘yin ishlasin, keyin qo‘shamiz. − Vaqtni ko‘rmasdan mashq qilinadi — bahsli.</small></span></label>
+      <label><input type="radio" name="15-4" value="B"><span><span class="t">B — faqat xakatonda doskada taymer</span><small>63-qarordan istisno.</small></span></label>
+      <label><input type="radio" name="15-4" value="C"><span><span class="t">C — raqamsiz yo‘lak (qancha qolgani rasmda)</span></span></label></div></div>
+    <div class="savol" data-eski="15-5"><h3>15·5. Baholash</h3><div class="tanlov">
+      <label><input type="radio" name="15-5" value="A" checked><span><span class="t">A — do‘stlar o‘ynaydi + «Nimasi yoqdi?»: to‘rt rasmli karta («Qiziq · Qiyin · Chiroyli · Kulgili»), kamida bittasi; «ishlaydi» va «xatosiz» — avto</span><span class="tav">tavsiya</span><small>Har o‘yin kamida bitta «yoqdi» oladi; past baho va g‘olib yo‘q; proyektorda faqat son.</small></span></label>
+      <label><input type="radio" name="15-5" value="B"><span><span class="t">B — 1–5 yulduzcha</span><small>Past baho bolani ranjitishi mumkin.</small></span></label>
+      <label><input type="radio" name="15-5" value="C"><span><span class="t">C — faqat og‘zaki</span><small>Dasturdagi «jamoalar baholashi» yozilmaydi.</small></span></label></div></div>
+    <div class="savol" data-eski="15-6"><h3>15·6. Yutuqlar</h3><p>LMS ga — modul tugagach (93-qaror).</p><div class="tanlov">
+      <label><input type="radio" name="15-6" value="A" checked><span><span class="t">A — «Xakatonchi» va «Ikki haydovchi» juftlikdagi har bolaga</span><span class="tav">tavsiya</span><small>Juftlikni serverda bog‘lash kerak bo‘ladi.</small></span></label>
+      <label><input type="radio" name="15-6" value="B"><span><span class="t">B — faqat o‘yin noutbuki egasiga</span><small>Ikkinchi bola yutuqsiz qoladi.</small></span></label></div></div>
+    <div class="savol" data-eski="15-7"><h3>15·7. Solo (kelmagan bola uyda)</h3><div class="tanlov">
+      <label><input type="radio" name="15-7" value="A" checked><span><span class="t">A — bor: bola o‘zi ikkala rolda, do‘st o‘rniga «Kimgadir o‘ynating»</span><span class="tav">tavsiya</span><small>Kelmagan bola 16-darsga xakatonsiz kelmaydi.</small></span></label>
+      <label><input type="radio" name="15-7" value="B"><span><span class="t">B — yo‘q, «Bu dars faqat sinfda»</span><small>Juftlik ma’nosi buzilmaydi, lekin solo qoidasidan istisno.</small></span></label></div></div>
+    <div class="savol" data-eski="15-8"><h3>15·8. Juftliklarni kim tuzadi?</h3><div class="tanlov">
+      <label><input type="radio" name="15-8" value="A" checked><span><span class="t">A — ustoz darsdan oldin: yoningizdagi do‘st, kuchi juda farq qiladiganlar birga emas; toq bo‘lsa — bitta uchtalik</span><span class="tav">tavsiya</span><small>Hech kim tanlanmay qolmaydi.</small></span></label>
+      <label><input type="radio" name="15-8" value="B"><span><span class="t">B — tasodif (dvigatel taqsimlaydi)</span><small>14 bola joy almashadi.</small></span></label>
+      <label><input type="radio" name="15-8" value="C"><span><span class="t">C — bolalar o‘zi tanlaydi</span><small>Kimdir yolg‘iz qoladi.</small></span></label></div></div>
+    <div class="savol" data-eski="15-9"><h3>15·9. Vaqt rejasi</h3><p>Dars 80–90 daqiqa; dasturda «60 daqiqada».</p><div class="tanlov">
+      <label><input type="radio" name="15-9" value="A" checked><span><span class="t">A — reja 81 daqiqa, zaxira deyarli yo‘q (juftlik ishi 60, do‘stlar o‘ynashi bilan)</span><span class="tav">tavsiya</span><small>12-bo‘lim 4-bandidan istisno.</small></span></label>
+      <label><input type="radio" name="15-9" value="B"><span><span class="t">B — 60 daqiqa faqat yasash va sinash; reja ~90</span><small>Dars uzayadi.</small></span></label>
+      <label><input type="radio" name="15-9" value="C"><span><span class="t">C — juftlik ishi 50 daqiqa, reja 71</span><small>Dasturdagi «60 daqiqa» bajarilmaydi.</small></span></label></div></div>
+    <div class="savol" data-eski="15-10"><h3>15·10. 16-qadam — o‘yinni ko‘rsatish</h3><div class="tanlov">
+      <label><input type="radio" name="15-10" value="A" checked><span><span class="t">A — 2–3 juftlik og‘zaki aytib beradi (o‘yinni 15-qadamda o‘ynab bo‘lishgan)</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="15-10" value="B"><span><span class="t">B — tanlangan o‘yin proyektorga chiqadi</span><small>Server bilan yangi ish.</small></span></label>
+      <label><input type="radio" name="15-10" value="C"><span><span class="t">C — 16-qadam yo‘q</span><small>5 daqiqa zaxiraga.</small></span></label></div></div>
+    <div class="savol" data-eski="15-11"><h3>15·11. Qolgan savollar (manbaning 9, 10, 13-savoli)</h3><p>Amaliyot qolipi va huk bor; «xakaton» — yangi so‘z, alohida ekranda; manba v1 — tasdiq.</p><div class="tanlov">
+      <label><input type="radio" name="15-11" value="A" checked><span><span class="t">A — tavsiya bo‘yicha</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="15-11" value="B"><span><span class="t">B — boshqacha</span><small>Izohda yozing.</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="umumiy4">
+    <span class="yorliq">Hamma dars</span>
+    <h2>Ro‘yxatdagi ✓ belgisi — <em>hech qachon chiqmagan</em></h2>
+    <p class="lid">Blockly son ro‘yxatida tanlangan son oldiga ✓ qo‘yadi, rasmni <code>/sprites.svg</code> dan oladi. Bu fayl saytda yo‘q (404) — belgi bolalarda ham hech qachon ko‘rinmagan. Sinov paytida topildi.</p>
+    <div class="savol" data-eski="U-3"><h3>U·3. ✓ belgisini qo‘shaymi?</h3><div class="tanlov">
+      <label><input type="radio" name="U-3" value="A" checked><span><span class="t">A — qo‘shamiz</span><span class="tav">tavsiya</span><small>Bitta fayl; hamma darsning «ro‘yxat ochilgan» suratlari bir marta qayta yoziladi.</small></span></label>
+      <label><input type="radio" name="U-3" value="B"><span><span class="t">B — shart emas</span><small>Ro‘yxatda tanlangan son kulrang fon bilan baribir ajralib turadi.</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d9">
+    <span class="yorliq">9-dars</span>
+    <h2>Labirint o‘yini 1 — <em>qoida: yo‘l bo‘lsa, yuradi</em></h2>
+    <div class="darvoza"><span>labirint 157/157</span><span>to‘liq dars 68/68</span><span>solo 34/34</span><span>tovush 9/9</span><span>setka toza</span><span>matn — qolgani dinamik</span></div>
+    <div class="suratlar">
+      <figure><img src="img/d9-p2.jpg" alt="9-dars huk: labirint va uch karta"><figcaption><b>2–3-qadam · Huk.</b> «O‘ynab ko‘rsat» — dvigatel 11 strelkani o‘zi bosadi, 7-si adashgan ↑: Coddy urildi, o‘yin to‘xtadi. Uch karta o‘sha 11 bosish bilan sinaladi.</figcaption></figure>
+      <figure><img src="img/d9-b2a.jpg" alt="9-dars: to'rt qoidali dasturcha ikki ustunda"><figcaption><b>11-qadam · Qoida.</b> Har strelkada <code>if path … then</code>. To‘rt dasturcha ikki ustunda — bitta ustunga o‘qiladigan masshtabda sig‘masdi.</figcaption></figure>
+      <figure><img src="img/d9-b3b.jpg" alt="9-dars: kalit va eshik, ro'yxat"><figcaption><b>15-qadam · Labirint o‘yini.</b> Javon ostida ro‘yxat «O‘yiningizda:» — to‘rt band o‘zi belgilanadi.</figcaption></figure>
+      <figure><img src="img/d9-b5.jpg" alt="9-dars natija"><figcaption><b>17-qadam.</b> Tugma bosdi · devor oldida to‘xtadi · labirint yutdi — haqiqiy son; o‘yin 10-dars uchun saqlandi.</figcaption></figure>
+    </div>
+    <div class="savol" style="border-top:0;padding-top:0"><h3>Sinovda topilib tuzatilgan (9-dars)</h3><ul class="qisqa">
+      <li>Dasturchalar ustma-ust tushardi (Blockly sig‘maganini itarardi) — ikki ustun, ro‘yxat ochiq bo‘lsa qayta joylash kutadi.</li>
+      <li>16 blokda Ortiqvoy «Joy qolmadi!» chiqmasdi; tasma «4 ta dasturcha» va «12 / 16 ta blok» endi ikki qatorda.</li>
+      <li>Ro‘yxatdagi «Yulduz» 1-bekatdagi har yutishda ✓ bo‘lib qolardi — endi faqat ro‘yxat bor o‘yinda.</li>
+    </ul></div>
+    <div class="savol" data-eski="9-1"><h3>9·1. Huk sarlavhasi qisqardi: «O‘yin to‘xtamasin. Qanday qilamiz?»</h3><p>Manbadagi «Adashsangiz ham o‘yin to‘xtamasin. Qanday qilamiz?» proyektorda uch qator bo‘ldi (huk savoliga ikki qator ruxsat). «Adashgan bosish» fikri Coddy gapida qoldi: «Bitta adashgan bosish — o‘yin to‘xtadi. Hammasi boshidan!».</p><div class="tanlov">
+      <label><input type="radio" name="9-1" value="A" checked><span><span class="t">A — qisqa sarlavha</span><span class="tav">tavsiya</span><small>71-qaror: sig‘masa — so‘z qisqaradi.</small></span></label>
+      <label><input type="radio" name="9-1" value="B"><span><span class="t">B — uzun sarlavha, shrift kichrayadi</span><small>Boshqa savol ekranlaridan kichikroq ko‘rinadi.</small></span></label></div></div>
+    <div class="savol" data-eski="9-2"><h3>9·2. Dasturchalar ikki ustunda (9–10-darsda dastur ustuni kengroq, labirint ~120 px tor)</h3><p>To‘rt qoidali dasturcha (12 blok) bitta ustunga faqat ~6 px yozuv bilan sig‘ardi. Suratda — 11-qadam.</p><div class="tanlov">
+      <label><input type="radio" name="9-2" value="A" checked><span><span class="t">A — ikki ustun</span><span class="tav">tavsiya</span><small>Yozuv 4–8-darsdagidek o‘qiladi. Dasturchalar qo‘shilish tartibida, qisqaroq ustunga tushadi.</small></span></label>
+      <label><input type="radio" name="9-2" value="B"><span><span class="t">B — bitta ustun, kichik yozuv</span><small>Bolaga o‘qish qiyin.</small></span></label></div></div>
+    <div class="savol" data-eski="9-3"><h3>9·3. «O‘ynab ko‘rsat» — bitta tugma</h3><p>Manbada ustoz avval «▶ Boshlash», keyin «O‘ynab ko‘rsat» bosardi. Bitta «▶ O‘ynab ko‘rsat» o‘yinni boshlab, 11 bosishni o‘zi bajaradi; bosilgan strelka sahnaning o‘ng yuqori burchagida bir zum ko‘rinadi.</p><div class="tanlov">
+      <label><input type="radio" name="9-3" value="A" checked><span><span class="t">A — bitta tugma</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="9-3" value="B"><span><span class="t">B — ikki tugma (manbadagidek)</span></span></label></div></div>
+    <div class="savol" data-eski="9-4"><h3>9·4. Ro‘yxat «O‘yiningizda:» — javon ustunining pastida; «Yulduz» faqat 3-bekat o‘yinida</h3><div class="tanlov">
+      <label><input type="radio" name="9-4" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>Labirintni ham, qahramonni ham yopmaydi; band 3-bekatda ma’noli.</small></span></label>
+      <label><input type="radio" name="9-4" value="B"><span><span class="t">B — sahna ustida, «Yulduz» istalgan yutishda</span></span></label></div></div>
+    <div class="savol" data-eski="9-5"><h3>9·5. 9-dars tasdig‘i</h3><div class="tanlov">
+      <label><input type="radio" name="9-5" value="A" checked><span><span class="t">A — tasdiqlandi</span><span class="tav">tavsiya</span><small>Oltin namunasi yozildi (133 holat); QA da «tayyor».</small></span></label>
+      <label><input type="radio" name="9-5" value="B"><span><span class="t">B — avval o‘zim ko‘raman</span><small>qa.html → 9-dars (Ochish · Yonma-yon · Solo)</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d10">
+    <span class="yorliq">10-dars</span>
+    <h2>Labirint o‘yini 2 — <em>o‘z labirintingiz, ikki daraja</em></h2>
+    <div class="darvoza"><span>labirint2 120/120</span><span>to‘liq dars 53/53</span><span>solo 33/33</span><span>tovush 7/7</span><span>setka toza</span><span>matn — qolgani dinamik</span></div>
+    <div class="suratlar">
+      <figure><img src="img/d10-p6.jpg" alt="10-dars labirint yasash"><figcaption><b>7-qadam · Labirint yasaymiz.</b> Javon o‘rnida asboblar: Devor · Kalit · Eshik · Yulduz. Tepada o‘lchov «Devor: 0 · Yo‘l: 10 qadam», o‘ngda «Daraja: 2 / 2».</figcaption></figure>
+      <figure><img src="img/d10-p5.jpg" alt="10-dars doska"><figcaption><b>8-qadam · Doska.</b> Zinapoyada shart belgisi va soni — labirint rasmi yo‘q (har bolaniki boshqa).</figcaption></figure>
+      <figure><img src="img/d10-b3a.jpg" alt="10-dars ikki daraja"><figcaption><b>15-qadam · Ikki daraja.</b> 1-daraja (9-darsdagi labirint), keyin bolaning o‘zi yasagani. Ro‘yxat besh band.</figcaption></figure>
+      <figure><img src="img/d10-p2c.jpg" alt="10-dars javob"><figcaption><b>4-qadam · Javob.</b> Ikki labirint yonma-yon — dastur bitta.</figcaption></figure>
+      <figure><img src="img/d10-bd.jpg" alt="10-dars do'st o'ynaydi"><figcaption><b>16-qadam.</b> «▶ Do‘stingiz o‘ynaydi» — dastur va asboblar yo‘q; tugagach «Joyingizga qayting» va do‘stining natijasi.</figcaption></figure>
+    </div>
+    <div class="savol" style="border-top:0;padding-top:0"><h3>Sinovda topilib tuzatilgan (10-dars)</h3><ul class="qisqa">
+      <li>O‘lchovlar (yo‘l, burilish, boshi berk, eshik, kalit, borib qaytish) ikki xil usulda hisoblanib solishtirildi — manbadagi 15 labirint va 7 namunaning hammasi mos.</li>
+      <li>Muammocha tartibi: eshik yo‘lni to‘smasa — «Eshik keraksiz!» (kalit bo‘lmasa ham), keyin «Kalit qani?», keyin «Yo‘l yo‘q!». Manbadagi «yo‘l o‘zgarmaydi» noto‘g‘ri edi (12 qadam bo‘ladi) — tuzatildi.</li>
+      <li>Asboblar bosilmasdi (qobiqning tasma tugmalari bilan bir xil belgi) — tuzatildi.</li>
+    </ul></div>
+    <div class="savol" data-eski="10-1"><h3>10·1. Ikki sarlavha qisqardi</h3><p>Huk: «O‘yinga ikkinchi labirintni qanday qo‘shamiz?» → <b>«Ikkinchi labirintni qanday qo‘shamiz?»</b> (uch qator bo‘lardi). 16-qadam: «Do‘stingiz o‘yinini o‘ynang» → <b>«Do‘stingiz o‘ynasin»</b> (qadam nomi bilan bir; chap ustunga sig‘madi).</p><div class="tanlov">
+      <label><input type="radio" name="10-1" value="A" checked><span><span class="t">A — qisqa sarlavhalar</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="10-1" value="B"><span><span class="t">B — boshqa so‘z</span><small>Izohda yozing.</small></span></label></div></div>
+    <div class="savol" data-eski="10-2"><h3>10·2. Huk A kartasini ham dvigatel o‘zi sinaydi</h3><p>Manbada ustoz A da → ni qo‘lda bosardi. Endi uchala karta bir xil: «Keyingi» — dvigatel o‘ynaydi, natija kartada (A da Bo‘shvoy «Men nimani kutaman?»).</p><div class="tanlov">
+      <label><input type="radio" name="10-2" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="10-2" value="B"><span><span class="t">B — A da ustoz qo‘lda bosadi</span></span></label></div></div>
+    <div class="savol" data-eski="10-3"><h3>10·3. «Labirint · Bloklar» almashtirgichi — oila tugmalari qatorida birinchi «Labirint»</h3><p>Labirint yasash ekranlari «Labirint» tanlangan holda ochiladi; boshqa oila tanlansa — bloklar (dasturni tuzatish uchun).</p><div class="tanlov">
+      <label><input type="radio" name="10-3" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>Dvigatelning oila tugmalari o‘sha — yangi tugma kerak emas.</small></span></label>
+      <label><input type="radio" name="10-3" value="B"><span><span class="t">B — alohida «Labirint | Bloklar» tugmasi</span></span></label></div></div>
+    <div class="savol" data-eski="10-4"><h3>10·4. «Oz qoldi!» ishoralari har shart uchun o‘z soni bilan</h3><ul class="qisqa">
+      <li>«Devor: 4 ta. Kerak: kamida 6» · «Yo‘l: 12 qadam. Kerak: kamida 14» · «Burilish: 3. Kerak: kamida 5»</li>
+      <li>«Boshi berk yo‘l: 1. Kerak: kamida 2» · «Borib qaytish: yo‘q. Kalitni yo‘ldan chetga qo‘ying» · «Eshik qo‘ying — yulduzga yo‘lni to‘ssin»</li>
+    </ul><div class="tanlov">
+      <label><input type="radio" name="10-4" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>Manbada faqat yo‘l uchun misol bor edi.</small></span></label>
+      <label><input type="radio" name="10-4" value="B"><span><span class="t">B — boshqa gaplar</span><small>Izohda yozing.</small></span></label></div></div>
+    <div class="savol" data-eski="10-5"><h3>10·5. «Do‘stingiz o‘ynaydi»: bitta tugma; do‘st «o‘ynadi» = kamida bir qadam yurdi; doskada son</h3><div class="tanlov">
+      <label><input type="radio" name="10-5" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>Natija o‘sha ekranda («Joyingizga qayting»), 2-darajada do‘stining yo‘li — oltin iz. Solo’da: «Kimgadir o‘ynating».</small></span></label>
+      <label><input type="radio" name="10-5" value="B"><span><span class="t">B — «o‘ynadi» = kamida 1-darajani yutdi</span></span></label></div></div>
+    <div class="savol" data-eski="10-6"><h3>10·6. Bolaning 2-darajasi va dasturi — noutbukda saqlanadi (serverda — LMS bilan, modul tugagach)</h3><div class="tanlov">
+      <label><input type="radio" name="10-6" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>93-qaror: server ro‘yxatiga modul tugagach.</small></span></label>
+      <label><input type="radio" name="10-6" value="B"><span><span class="t">B — hozirdan serverda</span><small>Sinf serveriga yangi ish kerak.</small></span></label></div></div>
+    <div class="savol" data-eski="10-7"><h3>10·7. 10-dars tasdig‘i</h3><div class="tanlov">
+      <label><input type="radio" name="10-7" value="A" checked><span><span class="t">A — tasdiqlandi</span><span class="tav">tavsiya</span><small>Oltin namunasi yozildi (123 holat); QA da «tayyor».</small></span></label>
+      <label><input type="radio" name="10-7" value="B"><span><span class="t">B — avval o‘zim ko‘raman</span><small>qa.html → 10-dars</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d11">
+    <span class="yorliq">11-dars · yangi</span>
+    <h2>O‘zgaruvchi: ball — <em>kompyuter sonni eslab qoladi</em></h2>
+    <div class="darvoza" id="d11-darvoza"><span>DARVOZA11</span></div>
+    <div class="suratlar">
+      <figure><img src="img/d11-p2s.jpg" alt="11-dars huk: uch karta"><figcaption><b>2–4-qadam · Huk.</b> Coddy uch olma teradi: A — har olmada «1», B — birinchi olmadayoq «1, 2, 3», C — kapsula «ball: 1, 2, 3». Uchala karta bir xil bosishlar bilan o‘zi o‘ynaladi.</figcaption></figure>
+      <figure><img src="img/d11-p3.jpg" alt="11-dars yangi so'z"><figcaption><b>5-qadam · O‘zgaruvchi.</b> Quti «ball»: 0 → change bilan 1 → 3. «Keyingi» har bosishda bitta bo‘lak.</figcaption></figure>
+      <figure><img src="img/d11-b1c.jpg" alt="11-dars oltin olma"><figcaption><b>8-qadam · 3-pog‘ona.</b> Dastur tepasida tayyor «Boshqaruv: → ← ↑ ↓» (bosilsa ochiladi). Oltin olmaga dasturcha yo‘q — Bo‘shvoy «Oltin olma-chi?», o‘yin davom etadi.</figcaption></figure>
+      <figure><img src="img/d11-p7.jpg" alt="11-dars ball 6"><figcaption><b>10-qadam · set.</b> Ikkinchi o‘yinda ball 3 dan davom etdi — «Olma 3 ta — ball 6». Keyin when ▶ clicked → set ball to 0.</figcaption></figure>
+      <figure><img src="img/d11-b3b.jpg" alt="11-dars oldindan aytish"><figcaption><b>15-qadam · Oldindan aytish.</b> Dastur tayyor va o‘zgarmaydi; bola kartani tanlaydi, «▶ Tekshirish» — har blok yonida «ball: N».</figcaption></figure>
+      <figure><img src="img/d11-b5.jpg" alt="11-dars natija"><figcaption><b>17-qadam.</b> Terilgan olmalar · eng katta ball (yig‘indi emas) · birinchi urinishda oldindan aytgani.</figcaption></figure>
+    </div>
+    <div class="savol" style="border-top:0;padding-top:0"><h3>Qurishda topilib tuzatilgan (11-dars)</h3><ul class="qisqa">
+      <li>Manbadagi har jadval (9 o‘yin maydoni, eng qisqa yo‘l, har yechim va xato varianti, 5 ta oldindan aytish) mustaqil hisob bilan tekshirildi — hammasi to‘g‘ri; keyin o‘sha jadvallar haqiqiy ekranlarda yurgizildi.</li>
+      <li>Javondagi «when touching apple» bloki ustunga sig‘masdi, kapsula «Y ↑» yozuvini yopardi — tuzatildi (setka toza).</li>
+      <li>Dvigateldagi hodisa bloklari umumlashtirildi (strelka, olmaga tekkanda, ▶ bosilganda) — 1–10-dars natijasi o‘zgarmadi (oltin farq 0).</li>
+    </ul></div>
+    <div class="savol" data-eski="11-1"><h3>11·1. 1-bekatda ball har o‘yin 0 dan boshlanadi; 10-qadamdan boshlab saqlanadi</h3><p>Manbada son doim saqlanadi. Lekin 1-bekatda set bloki hali yo‘q: birinchi urinishda adashgan bola (masalan, +1 qoldirib ball 4 olgan) qayta o‘ynasa 4 + 8 = 12 bo‘lib, pog‘onani hech qachon yecha olmasdi. 1-bekatda baribir birinchi yutishdayoq keyingi pog‘ona ochiladi — saqlanish u yerda ko‘rinmasdi. «Ball 6» 10-qadamda ustoz o‘yinida ko‘rinadi.</p><div class="tanlov">
+      <label><input type="radio" name="11-1" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>Bola tiqilib qolmaydi; ustoz varag‘ida aytilgan.</small></span></label>
+      <label><input type="radio" name="11-1" value="B"><span><span class="t">B — hamma joyda saqlansin, 1-bekatda adashsa — pog‘ona qaytadan ochilsin</span><small>Dvigatelga «Qaytadan» kerak bo‘ladi.</small></span></label></div></div>
+    <div class="savol" data-eski="11-2"><h3>11·2. Boshqaruv — dastur tepasidagi bitta qator, bosilsa to‘rt dasturcha rasmi ochiladi</h3><p>«Boshqaruv: → ← ↑ ↓» — bloklar sanog‘iga kirmaydi; o‘yinda bosilgan strelka qatorda bir lahza yonadi. Ochilganda — o‘qish uchun (o‘zgarmaydi).</p><div class="tanlov">
+      <label><input type="radio" name="11-2" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="11-2" value="B"><span><span class="t">B — to‘rt dasturcha Blockly’da yig‘ilgan bloklar</span><small>Ochib o‘zgartirsa bo‘ladi, lekin 8 ta blok qo‘shiladi.</small></span></label></div></div>
+    <div class="savol" data-eski="11-3"><h3>11·3. Javon: 1-bekatda set va when ▶ clicked ko‘rinadi, lekin yopiq; 3-bekatda javon butunlay yopiq</h3><div class="tanlov">
+      <label><input type="radio" name="11-3" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>1-darsdagi «hali o‘rgatilmagan bloklar» kabi.</small></span></label>
+      <label><input type="radio" name="11-3" value="B"><span><span class="t">B — yopiq bloklar umuman ko‘rinmasin</span></span></label></div></div>
+    <div class="savol" data-eski="11-4"><h3>11·4. Oldindan aytish: «Avval sonni tanlang» — xira tugma bosilganda; boshida ishora «Dasturni o‘qing: oxirida ball nechchi bo‘ladi?»</h3><div class="tanlov">
+      <label><input type="radio" name="11-4" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="11-4" value="B"><span><span class="t">B — «Avval sonni tanlang» doim tugma yonida</span></span></label></div></div>
+    <div class="savol" data-eski="11-5"><h3>11·5. ★ «O‘z o‘yiningiz» — uchinchi «Oz qoldi!» bandi qo‘shildi</h3><p>Manbada ikki band bor edi («O‘yin boshida ballni qo‘ying» · «Oltin olmaga ham dasturcha qo‘ying»). Shart to‘rtta: set, ikkala olma turi, yutish, ball 0 dan katta — oxirgisi uchun: «Olmalar ball bersin — change blokidagi sonni tanlang».</p><div class="tanlov">
+      <label><input type="radio" name="11-5" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="11-5" value="B"><span><span class="t">B — boshqa gap</span><small>Izohda yozing.</small></span></label></div></div>
+    <div class="savol" data-eski="11-6"><h3>11·6. 11-dars tasdig‘i</h3><div class="tanlov">
+      <label><input type="radio" name="11-6" value="A"><span><span class="t">A — tasdiqlandi</span><small>QA da «tayyor» bo‘ladi (oltin namunasi allaqachon yozilgan — regressiyadan himoya uchun).</small></span></label>
+      <label><input type="radio" name="11-6" value="B" checked><span><span class="t">B — avval o‘zim ko‘raman</span><span class="tav">hozirgi holat</span><small>qa.html → 11-dars (Ochish · Yonma-yon · Solo)</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d12">
+    <span class="yorliq">12-dars · yangi</span>
+    <h2>Jon va qadam — <em>shart o‘zgaruvchini tekshiradi</em></h2>
+    <div class="darvoza"><span>jon.mjs 124/124</span><span>to‘liq dars 54/54</span><span>solo 30/30</span><span>tovush 6/6</span><span>setka toza</span><span>matn 429/429</span><span>oltin yozildi</span></div>
+    <div class="suratlar">
+      <figure><img src="img/d12-p2s.jpg" alt="12-dars huk"><figcaption><b>2–4-qadam · Huk.</b> Coddy’da 3 ta jon, kaktus (2, 0): A — tegsa tugaydi (jon 3); B — jon −1, o‘yin davom; C — jon 0 da «O‘yin tugadi».</figcaption></figure>
+      <figure><img src="img/d12-b2b.jpg" alt="12-dars ball va jon"><figcaption><b>11-qadam · 2-pog‘ona «Jon sovg‘asi».</b> Dastur oldingi pog‘onadan o‘tadi; kaktus → jon −1, if jon = 0 → game over; sahnada faqat ishlatilgan o‘zgaruvchi kapsulasi.</figcaption></figure>
+      <figure><img src="img/d12-p8.jpg" alt="12-dars qadam"><figcaption><b>14-qadam · Qadam.</b> when any key pressed → change qadam by −1, if qadam = 0 then → game over.</figcaption></figure>
+    </div>
+    <div class="savol" style="border-top:0;padding-top:0"><h3>Qurishda topilib tuzatilgan (12-dars)</h3><ul class="qisqa">
+      <li>Blokdagi ro‘yxat (o‘zgaruvchi, son) bosilganda tanlov tushib qolardi — keyingi blok if ichiga emas, keyiniga tushardi. Dvigatelda tuzatildi (hamma darsga tegishli; 9–10 sinovlari yashil).</li>
+      <li>Manbadagi o‘yin jadvallari mustaqil hisob bilan tekshirildi (kaktusga tegmagan eng qisqa yo‘l, o‘yin qaysi bosishda tugashi) — 77/77.</li>
+    </ul></div>
+    <div class="savol" data-eski="12-1"><h3>12·1. Sinov pog‘onasida (15 · 1) yulduzga yetish — yechim emas</h3><p>Qadam katta qo‘yilsa, bola yulduzga yetib «yutardi» — lekin topshiriq «5-bosishda o‘yin tugasin». Endi: «Oz qoldi!», «Qadam 5 bo‘lsin: 5-bosishda o‘yin tugasin».</p><div class="tanlov">
+      <label><input type="radio" name="12-1" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="12-1" value="B"><span><span class="t">B — boshqa gap</span><small>Izohda yozing.</small></span></label></div></div>
+    <div class="savol" data-eski="12-2"><h3>12·2. Kapsulalar rangi: ball — jigarrang, jon — qizil, qadam — ko‘k</h3><div class="tanlov">
+      <label><input type="radio" name="12-2" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>Uch son bir qarashda ajraladi.</small></span></label>
+      <label><input type="radio" name="12-2" value="B"><span><span class="t">B — hammasi jigarrang (O‘zgaruvchi oilasi rangi)</span></span></label></div></div>
+    <div class="savol" data-eski="12-3"><h3>12·3. Natija: «ta shart qo‘ydi» va «ta o‘zgaruvchi ishlatdi» — eng ko‘pi (yig‘indi emas)</h3><p>Dastur pog‘onadan pog‘onaga o‘tadi — yig‘indi bitta shartni o‘n marta sanardi. «ta o‘yin yutdi» — faqat yutish pog‘onalari.</p><div class="tanlov">
+      <label><input type="radio" name="12-3" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="12-3" value="B"><span><span class="t">B — yig‘indi</span></span></label></div></div>
+    <div class="savol" data-eski="12-4"><h3>12·4. 12-dars tasdig‘i</h3><div class="tanlov">
+      <label><input type="radio" name="12-4" value="A"><span><span class="t">A — tasdiqlandi</span></span></label>
+      <label><input type="radio" name="12-4" value="B" checked><span><span class="t">B — avval o‘zim ko‘raman</span><span class="tav">hozirgi holat</span><small>qa.html → 12-dars</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d13">
+    <span class="yorliq">13-dars · yangi</span>
+    <h2>Tasodifiy son — <em>dastur o‘zi tanlaydi</em></h2>
+    <div class="darvoza"><span>tasodif.mjs 125/125</span><span>to‘liq dars 48/48</span><span>solo 27/27</span><span>tovush 6/6</span><span>setka toza</span><span>matn 422/422</span><span>oltin yozildi</span></div>
+    <div class="suratlar">
+      <figure><img src="img/d13-b1a.jpg" alt="13-dars random"><figcaption><b>8-qadam · Bitta son.</b> go to ning X katagida random (son ro‘yxatining oxirida «random»); savatlar; oldingi tushgan joylar xira; «Sinov: 3 / 3» — «Har safar boshqa joy!».</figcaption></figure>
+      <figure><img src="img/d13-p7.jpg" alt="13-dars ikki son"><figcaption><b>10-qadam · Ikki son.</b> X va Y ikki qatorda (bitta qatorda dastur ustuniga sig‘masdi).</figcaption></figure>
+      <figure><img src="img/d13-p2s.jpg" alt="13-dars huk"><figcaption><b>2–4-qadam · Huk.</b> Har kartada ikki o‘yin × uch olma — sonlar kartaning o‘zida.</figcaption></figure>
+    </div>
+    <div class="savol" style="border-top:0;padding-top:0"><h3>Qurishda topilib tuzatilgan (13-dars)</h3><ul class="qisqa">
+      <li>Javondagi random bosilmasdi — blok belgisi qobiqning tasma tugmalari belgisi bilan bir xil edi (10-darsdagi asboblar xatosi bilan bir sinf) — tuzatildi.</li>
+      <li>Tayyor go to (random bilan) dastur ustunidan chiqib, Y katagini bosib bo‘lmasdi — X va Y ikki qatorga, masshtab chizilgandan keyin.</li>
+      <li>Manbadagi hamma da’vo (savatlar, xato variantlari, «uch marta — 2 xil joy» ehtimoli) mustaqil hisoblandi — 70/70.</li>
+      <li>Internet yo‘li (lokal Upstash o‘xshatmasi): 11–13 to‘liq dars sinovlari ustoz + ikki bola alohida brauzerda — 61/61, 54/54, 48/48. Haqiqiy saytda Upstash hali ulanmagan (/api/sinf → «redis yo‘q») — ikki qurilmali dars uchun Vercel’da Upstash integratsiyasini siz qo‘shasiz.</li>
+      <li>Suratlarni ko‘z bilan ko‘rganda: huk C kartasidagi blok karta chetidan chiqardi; «Qahramon:» qatorining ▾ belgisi qirqilardi (11–12-darsning «Boshqaruv:» qatorida ham) — tuzatildi. Setka darvozasi buni tutmasdi — endi «ichidan oshish» tekshiruvi ham bor.</li>
+    </ul></div>
+    <div class="savol" data-eski="13-1"><h3>13·1. go to — yangi blok: X va Y son katagi (13-darsdan); 3–10-darsdagi go to o‘zgarmadi</h3><p>Katakdagi son ro‘yxatining oxirida «random» — tanlansa, katakka random 1 to 10 ulanadi; ✕ bilan olinsa — son qaytadi. Javondagi random — tanlangan (yoki oxirgi) go to ning bo‘sh katagiga.</p><div class="tanlov">
+      <label><input type="radio" name="13-1" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="13-1" value="B"><span><span class="t">B — javondan katakka sudrash ham kerak</span><small>Qo‘shimcha ish.</small></span></label></div></div>
+    <div class="savol" data-eski="13-2"><h3>13·2. Huk (2-qadam) — «olma doim (3, 0) ga» natija rasmi bilan (animatsiyasiz)</h3><div class="tanlov">
+      <label><input type="radio" name="13-2" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>Uch sinov (3-qadam) — haqiqiy tushish bilan.</small></span></label>
+      <label><input type="radio" name="13-2" value="B"><span><span class="t">B — 2-qadamda ham o‘yin o‘zi yursin</span></span></label></div></div>
+    <div class="savol" data-eski="13-3"><h3>13·3. repeat sonida random yo‘q (manbada topshiriq yo‘q)</h3><div class="tanlov">
+      <label><input type="radio" name="13-3" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="13-3" value="B"><span><span class="t">B — repeat ham son katakli bo‘lsin</span></span></label></div></div>
+    <div class="savol" data-eski="13-4"><h3>13·4. 13-dars tasdig‘i</h3><div class="tanlov">
+      <label><input type="radio" name="13-4" value="A"><span><span class="t">A — tasdiqlandi</span></span></label>
+      <label><input type="radio" name="13-4" value="B" checked><span><span class="t">B — avval o‘zim ko‘raman</span><span class="tav">hozirgi holat</span><small>qa.html → 13-dars</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d8">
+    <span class="yorliq">8-dars · tasdiqlangan</span>
+    <h2>Yangi darvoza topdi — <em>tegmadim</em></h2>
+    <div class="suratlar"><figure><img src="img/d8-p2c.jpg" alt="8-dars javob"><figcaption><b>4-qadam · Javob (P2C).</b> C kartasidagi belgilar qatori (takrorla 6 · shart → strelka) karta chetiga 7 px chiqib turibdi — A va B da yo‘q.</figcaption></figure></div>
+    <div class="savol" data-eski="8-1"><h3>8·1. 8-darsda tuzataymi?</h3><p>Faqat shu qator kichrayadi (bitta CSS qoida), boshqa hech narsa o‘zgarmaydi; 8-dars oltin namunasidan 3–4 surat qayta yoziladi. Dars tasdiqlangan — shuning uchun so‘rayapman.</p><div class="tanlov">
+      <label><input type="radio" name="8-1" value="A" checked><span><span class="t">A — tuzat</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="8-1" value="B"><span><span class="t">B — shunday qolsin</span></span></label></div></div>
+  </section>
+
+  <section class="dars" id="d14">
+    <span class="yorliq">14-dars</span>
+    <h2>Xatoni topish — <em>faqat manba tekshirildi</em></h2>
+    <p class="lid">14-dars — amaliyot: 9 ta xatoli dastur (takrorlash, kulrang rasm, ikki labirint, o‘yin, random — hammasi birga), yangi «Bitta qadam» tugmasi va «aynan bitta xato» tekshiruvi. Qurishni boshlamadim: dvigatelga ikki katta yangilik + besh xil sahna + 1–13 regressiyasi 10:30 gacha sifatli sig‘masdi, chala dvigatel qoldirmadim. Qilingani — manbadagi har dastur mustaqil hisob bilan tekshirildi (68/68) va 3 joy tuzatildi. Quyidagi savollarga javob bersangiz, keyingi seans darrov quradi.</p>
+    <div class="darvoza"><span>xato.mjs 68/68</span><span>manba: 3 tuzatish</span></div>
+    <div class="savol" style="border-top:0;padding-top:0"><h3>Manbada tuzatilgani</h3><ul class="qisqa">
+      <li>8 · 3 va 11 · 1 — manba «faqat shu tuzatish» degan, lekin ikkinchi yo‘l ham ishlaydi (go to dan keyin → qo‘shish; birinchi repeat 2→1). Ikkalasi ham haqiqiy tuzatish — pog‘ona natijani tekshiradi.</li>
+      <li>Ustoz varag‘idagi «uch ishga tushirishda 7 chiqishi — 41%» → 42%.</li>
+    </ul></div>
+    <div class="savol" data-eski="14-1"><h3>14·1. Dasturdagi «5 ta dastur» — 9 ta pog‘ona (har biri bitta xatoli dastur) + 3 ★; natija — kamida 5 tasi tuzatildi</h3><div class="tanlov">
+      <label><input type="radio" name="14-1" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span><small>6-dars qolipi (uch bekat × to‘rt pog‘ona); tez bola ham band.</small></span></label>
+      <label><input type="radio" name="14-1" value="B"><span><span class="t">B — aynan 5 ta dastur</span><small>Mashq kam — tez bola 30-daqiqada tugatadi.</small></span></label></div></div>
+    <div class="savol" data-eski="14-2"><h3>14·2. «Bitta qadam» tugmasi — «▶ Ishga tushir» yonida, keyingi darslarda ham qoladi</h3><p>Har bosish — bitta blok; qahramon kulrangdan chiqqan qadamda to‘xtaydi, blok belgilanadi. Bu dvigateldagi eng katta yangilik — 15-darsdan keyin ham hamma studiyada bo‘ladi.</p><div class="tanlov">
+      <label><input type="radio" name="14-2" value="A" checked><span><span class="t">A — ha, tugma</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="14-2" value="B"><span><span class="t">B — tugma yo‘q, sekin ijro</span><small>Kod kam, lekin bola qaysi qadamda to‘xtashni tanlay olmaydi.</small></span></label>
+      <label><input type="radio" name="14-2" value="C"><span><span class="t">C — oddiy ishga tushirishda xato blok belgilanadi</span><small>Juda oson — 2-bekat ma’nosini yo‘qotadi.</small></span></label></div></div>
+    <div class="savol" data-eski="14-3"><h3>14·3. ★ «Topishmoq» — bola bitta xatoli dastur tuzadi, dvigatel «aynan bitta xato»ni o‘zi tekshiradi</h3><div class="tanlov">
+      <label><input type="radio" name="14-3" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="14-3" value="B"><span><span class="t">B — ★ oddiy yopiq masala</span></span></label></div></div>
+    <div class="savol" data-eski="14-4"><h3>14·4. 3-bekatda uch xil sahna — ikki labirint, o‘yin, savatlar</h3><div class="tanlov">
+      <label><input type="radio" name="14-4" value="A" checked><span><span class="t">A — uch xil</span><span class="tav">tavsiya</span><small>8-, 4-, 13-dars qismlari tayyor.</small></span></label>
+      <label><input type="radio" name="14-4" value="B"><span><span class="t">B — hammasi ikki labirintda</span><small>Sodda, lekin 8-darsni takrorlaydi.</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="umumiy3">
+    <span class="yorliq">Sinov</span>
+    <h2>Oltin namunalari — <em>vaqt poygalari tuzatildi</em></h2>
+    <p class="lid">5-dars: bola pog‘onani yechgach 1,4 soniyada keyingisi o‘zi ochilardi va CPU band bo‘lsa stsenariyning keyingi qadamidan keyin ekranni surib yuborardi — eski namuna ham shu poyga bilan yozilgan ekan. Stsenariyda avto o‘tish o‘chirildi, namuna qayta yozildi, ikki solishtiruvda farq 0. 8-dars: ikki ketma-ket ijroda belgilar taymeri aralashardi — stsenariyga 1 soniya kutish; eski namuna bilan farq 0 (dars o‘zgarmagan). Dars kodiga tegilmadi.</p>
+    <div class="savol" data-eski="5-oltin" style="border-top:0;padding-top:0"><div class="tanlov">
+      <label><input type="radio" name="5-oltin" value="A" checked><span><span class="t">A — shunday (qilindi)</span><span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="5-oltin" value="B"><span><span class="t">B — boshqacha</span><small>Izohda yozing.</small></span></label></div></div>
+  </section>
+
+
+    <p class="lid" style="margin-top:12px">5-versiyadagi hamma savolga javob berilgan: 3–8-dars tasdiqlandi, A·1/A·2 1–2-darsga ham, U·2 — «Sinfimiz bugun» qoladi, 11–14 manbalari qabul. Suratlar shu sahifaning eski fayllarida saqlangan (img/d3-…, d4-…, … d8-…). To‘liq yozuv — HOLAT.md, 20.11.</p>
+  </details>
+</div>
+
+<div class="javob"><div class="ic"><span id="javobMatn"></span><button id="nusxa" type="button">Javobni nusxalash</button></div></div>
+<script>
+const savollar = [...document.querySelectorAll('.savol[data-s]')].map((s) => s.dataset.s)
+function javob() {
+  const q = savollar.map((s) => { const v = document.querySelector('input[name="' + s + '"]:checked'); return s + '-' + (v ? v.value : '?') }).join(', ')
+  const iz = document.getElementById('izoh').value.trim()
+  return '12-versiya: ' + q + (iz ? ' · izoh: ' + iz : '')
+}
+function yangila() { document.getElementById('javobMatn').textContent = javob() }
+document.addEventListener('change', yangila); document.getElementById('izoh').addEventListener('input', yangila); yangila()
+document.getElementById('nusxa').addEventListener('click', () => {
+  const t = javob(), b = document.getElementById('nusxa')
+  const ok = () => { b.textContent = 'Nusxalandi ✓'; setTimeout(() => { b.textContent = 'Javobni nusxalash' }, 1800) }
+  const tanla = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('javobMatn')); const s = getSelection(); s.removeAllRanges(); s.addRange(r) }
+  try { navigator.clipboard.writeText(t).then(ok, tanla) } catch (e) { tanla() }
+})
+</script>

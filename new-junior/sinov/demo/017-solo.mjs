@@ -77,7 +77,7 @@ for (const [x, q] of [[0, 0], [2, 1], [4, 2], [6, 0]]) await p.click('#ilova .ka
 tek('B3Y: to‘rt nishon qo‘yildi', (await p.$$('#ilova .ks-n')).length === 4 && /Nishon: 4 ta/.test(await hint()), await hint())
 await boshla(); await nishonBot(); tek('B3Y → B5', await ekrangacha('B5', 9000))
 await qayd(); tek('B5: «O‘yiningiz saqlandi.»', !(await p.$eval('#ilova .saqlandi', (e) => e.hidden).catch(() => true)))
-const n = await p.evaluate(() => ['ta o‘q otdi', 'ta nishon urdi', 'pog‘ona bajardi'].map((k) => +document.querySelector('#ilova .sn-t[data-k="' + k + '"] b').textContent))
+const n = await p.evaluate(() => ['ta o‘q otdi', 'ta nishon urildi', 'pog‘ona bajardi'].map((k) => +document.querySelector('#ilova .sn-t[data-k="' + k + '"] b').textContent))
 tek('B5: nishon 17, pog‘ona 12', n[1] === 17 && n[2] === 12 && n[0] >= 17, n.join(','))
 console.log(`\nNATIJA: ${ok} / ${jami}`); console.log('XATO:', xato.length ? xato.slice(0, 5) : 'yo‘q'); console.log('yo‘l:', yol.join(' ')); await b.close()
 process.exit(ok === jami ? 0 : 1)

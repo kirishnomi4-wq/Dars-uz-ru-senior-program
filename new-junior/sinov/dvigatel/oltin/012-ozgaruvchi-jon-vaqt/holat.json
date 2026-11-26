@@ -15,10 +15,10 @@
  },
  "u-03-P2S": {
   "id": "P2S",
-  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\n→\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "SAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "f27827cc6cbf",
-  "uzun": 39532
+  "html": "d105f5e3bd02",
+  "uzun": 39498
  },
  "u-04-P2C": {
   "id": "P2C",
@@ -48,8 +48,8 @@
    "f:when ▶ clickedsetjonto3",
    "z:setjonto3"
   ],
-  "html": "44adbecab2d7",
-  "uzun": 41508
+  "html": "5696e43306a6",
+  "uzun": 41504
  },
  "u-08-P5": {
   "id": "P5",
@@ -76,8 +76,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "ce263c6b2ca1",
-  "uzun": 45149
+  "html": "847c937ed143",
+  "uzun": 45174
  },
  "u-11-P5G": {
   "id": "P5G",
@@ -106,8 +106,8 @@
   "bloklar": [
    "f:when ▶ clicked"
   ],
-  "html": "750999f6877f",
-  "uzun": 40044
+  "html": "73d5df46fb89",
+  "uzun": 40040
  },
  "u-15-P5B": {
   "id": "P5B",
@@ -120,8 +120,8 @@
   "id": "P11",
   "matn": "KO‘RSATISH\nQoidalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "bf9357c27359",
-  "uzun": 46622
+  "html": "71c8dbc67153",
+  "uzun": 46618
  },
  "u-17-P12": {
   "id": "P12",
@@ -190,8 +190,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "b9d7190d03ad",
-  "uzun": 43955
+  "html": "a79772125c24",
+  "uzun": 43947
  },
  "u-x-P6-jon2": {
   "id": "P6",
@@ -204,8 +204,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "7685cf5900d5",
-  "uzun": 43922
+  "html": "db24e4aba0e7",
+  "uzun": 43914
  },
  "u-x-P6-tugadi": {
   "id": "P6",
@@ -218,8 +218,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "9b8ad4daacf6",
-  "uzun": 43933
+  "html": "c15eee0ed05a",
+  "uzun": 43925
  },
  "u-x-P8-qoida": {
   "id": "P8",
@@ -232,8 +232,8 @@
    "i:ifqadam=0thengame over",
    "g:game over"
   ],
-  "html": "daf671df456a",
-  "uzun": 40040
+  "html": "e9d323e4743b",
+  "uzun": 40036
  },
  "u-x-P8-tugadi": {
   "id": "P8",
@@ -246,8 +246,8 @@
    "i:ifqadam=0thengame over",
    "g:game over"
   ],
-  "html": "914502cfb1c3",
-  "uzun": 40545
+  "html": "1e4032ca9729",
+  "uzun": 40541
  },
  "u-x-P8-yutdi": {
   "id": "P8",
@@ -260,8 +260,8 @@
    "i:ifqadam=0thengame over",
    "g:game over"
   ],
-  "html": "d5e6ed69ba6e",
-  "uzun": 41202
+  "html": "cfc250b4e786",
+  "uzun": 41198
  },
  "u-x-yakunlandi": {
   "id": "P14",
@@ -341,8 +341,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "e1ccf57aab86",
-  "uzun": 27103
+  "html": "9cbd17c64c31",
+  "uzun": 27099
  },
  "bq-08-1-B1B": {
   "id": "B1B",
@@ -352,8 +352,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "391c39207b85",
-  "uzun": 27946
+  "html": "40fe4d2b6da4",
+  "uzun": 27942
  },
  "bq-08-2-B1C": {
   "id": "B1C",
@@ -363,8 +363,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "013a9577b6cd",
-  "uzun": 30724
+  "html": "0cce46f5a0c3",
+  "uzun": 30720
  },
  "bq-08-3-B1Y": {
   "id": "B1Y",
@@ -374,8 +374,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "bc322be32d56",
-  "uzun": 33255
+  "html": "f2bb0462171d",
+  "uzun": 33251
  },
  "bq-08-4-BK": {
   "id": "BK",
@@ -409,8 +409,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "e108e4ed697c",
-  "uzun": 30728
+  "html": "8dfb39a27860",
+  "uzun": 30753
  },
  "bq-11-1-B2B": {
   "id": "B2B",
@@ -423,8 +423,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "c9ee393ca433",
-  "uzun": 30571
+  "html": "a8300cdba17d",
+  "uzun": 30596
  },
  "bq-11-2-B2C": {
   "id": "B2C",
@@ -437,8 +437,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "e74993c9b06b",
-  "uzun": 31571
+  "html": "6c9421b74ccc",
+  "uzun": 31596
  },
  "bq-11-3-B2Y": {
   "id": "B2Y",
@@ -451,8 +451,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "a09f818db259",
-  "uzun": 32711
+  "html": "26cee1cdffd1",
+  "uzun": 32736
  },
  "bq-11-4-BK": {
   "id": "BK",
@@ -496,8 +496,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "559146df303a",
-  "uzun": 25635
+  "html": "57214cd3ebad",
+  "uzun": 25660
  },
  "bq-15-1-B3B": {
   "id": "B3B",
@@ -513,8 +513,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "e00f2dfe5578",
-  "uzun": 29879
+  "html": "5e7c577a85cd",
+  "uzun": 29904
  },
  "bq-15-2-B3C": {
   "id": "B3C",
@@ -530,8 +530,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "492d8924ede2",
-  "uzun": 31580
+  "html": "e55631f406e2",
+  "uzun": 31605
  },
  "bq-15-3-B3Y": {
   "id": "B3Y",
@@ -547,8 +547,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "3c1b1aef2770",
-  "uzun": 32144
+  "html": "35065a5d97ae",
+  "uzun": 32169
  },
  "bq-15-4-BK": {
   "id": "BK",
@@ -559,17 +559,17 @@
  },
  "bq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "b13ad515c506",
-  "uzun": 27264
+  "html": "823f31f46345",
+  "uzun": 27315
  },
  "bq-18-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "b13ad515c506",
-  "uzun": 27264
+  "html": "823f31f46345",
+  "uzun": 27315
  },
  "bx-B1A-bosh": {
   "id": "B1A",
@@ -579,8 +579,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "e1ccf57aab86",
-  "uzun": 27103
+  "html": "9cbd17c64c31",
+  "uzun": 27099
  },
  "bx-B1A-boshkaktus": {
   "id": "B1A",
@@ -590,8 +590,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "12b25bebad1a",
-  "uzun": 32428
+  "html": "84bb311fce63",
+  "uzun": 32424
  },
  "bx-B1A-jontugadiku": {
   "id": "B1A",
@@ -602,8 +602,8 @@
    "q:when touchingcactuschangejonby−1",
    "c:changejonby−1"
   ],
-  "html": "0dd2cecf7128",
-  "uzun": 27104
+  "html": "796e164d6b5c",
+  "uzun": 27100
  },
  "bx-B1A-erta": {
   "id": "B1A",
@@ -616,8 +616,8 @@
    "i:ifjon=1thengame over",
    "g:game over"
   ],
-  "html": "433116329c9e",
-  "uzun": 32647
+  "html": "58e4e263b861",
+  "uzun": 32672
  },
  "bx-B1A-ishladi": {
   "id": "B1A",
@@ -630,8 +630,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "cd0649c126d9",
-  "uzun": 28058
+  "html": "a4f4402533cc",
+  "uzun": 28083
  },
  "bx-B1B-oldingi": {
   "id": "B1B",
@@ -644,8 +644,8 @@
    "i:game overifjon=0then",
    "g:game over"
   ],
-  "html": "a02f37f6c6c6",
-  "uzun": 27946
+  "html": "98d2285e9482",
+  "uzun": 27971
  },
  "bx-B1B-kamoldi": {
   "id": "B1B",
@@ -658,8 +658,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "e718c08f78f8",
-  "uzun": 33549
+  "html": "75d233eb32be",
+  "uzun": 33554
  },
  "bx-B1C-qoidachi": {
   "id": "B1C",
@@ -670,8 +670,8 @@
    "q:when touchingcactuschangejonby−1",
    "c:changejonby−1"
   ],
-  "html": "2f1896b31e45",
-  "uzun": 37103
+  "html": "3a65ce315948",
+  "uzun": 37108
  },
  "bx-B3A-tayyor": {
   "id": "B3A",
@@ -687,8 +687,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "559146df303a",
-  "uzun": 25635
+  "html": "57214cd3ebad",
+  "uzun": 25660
  },
  "bx-B3A-ishladi": {
   "id": "B3A",
@@ -709,15 +709,15 @@
    "i:ifqadam=0thengame over",
    "g:game over"
   ],
-  "html": "465d89a53912",
-  "uzun": 26855
+  "html": "42ea945dc4b2",
+  "uzun": 26880
  },
  "bx-B5-natija": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n2\nta shart qo‘ydi\n3\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n2\nta shart qo‘ydi\n3\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "29ddde8e8824",
-  "uzun": 27264
+  "html": "b93cb52957ea",
+  "uzun": 27315
  },
  "bx-P2N-tanladi": {
   "id": "P2N",
@@ -800,8 +800,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "5004f5918a9d",
-  "uzun": 40248
+  "html": "2dad7728520e",
+  "uzun": 40273
  },
  "sq-08-0-B1A": {
   "id": "B1A",
@@ -811,8 +811,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "4105790c5891",
-  "uzun": 27150
+  "html": "7b9129bf236e",
+  "uzun": 27146
  },
  "sq-08-1-B1B": {
   "id": "B1B",
@@ -822,8 +822,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "0e4eb9b6511b",
-  "uzun": 27993
+  "html": "3bb8fca4bd6f",
+  "uzun": 27989
  },
  "sq-08-2-B1C": {
   "id": "B1C",
@@ -833,8 +833,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "2b8b31a04345",
-  "uzun": 30771
+  "html": "918d29a5f199",
+  "uzun": 30767
  },
  "sq-08-3-B1Y": {
   "id": "B1Y",
@@ -844,8 +844,8 @@
    "z:setjonto3",
    "q:when touchingcactus"
   ],
-  "html": "4776ff565cc1",
-  "uzun": 33302
+  "html": "f2a9495eddec",
+  "uzun": 33298
  },
  "sq-09-0-P4B": {
   "id": "P4B",
@@ -868,8 +868,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "dc0fe7422759",
-  "uzun": 43846
+  "html": "2c7e97901301",
+  "uzun": 43871
  },
  "sq-11-0-B2A": {
   "id": "B2A",
@@ -882,8 +882,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "f39ca672b10a",
-  "uzun": 30775
+  "html": "b220127159b7",
+  "uzun": 30800
  },
  "sq-11-1-B2B": {
   "id": "B2B",
@@ -896,8 +896,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "60c713b41dc0",
-  "uzun": 30618
+  "html": "9c94746104be",
+  "uzun": 30643
  },
  "sq-11-2-B2C": {
   "id": "B2C",
@@ -910,8 +910,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "84b402f9b754",
-  "uzun": 31618
+  "html": "dea662c7df26",
+  "uzun": 31643
  },
  "sq-11-3-B2Y": {
   "id": "B2Y",
@@ -924,8 +924,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "44e376559edc",
-  "uzun": 32758
+  "html": "ecc22df27b24",
+  "uzun": 32783
  },
  "sq-12-0-P9": {
   "id": "P9",
@@ -952,8 +952,8 @@
    "i:ifqadam=0thengame over",
    "g:game over"
   ],
-  "html": "c68a81f55acf",
-  "uzun": 38803
+  "html": "af06dd3fcd3f",
+  "uzun": 38828
  },
  "sq-15-0-B3A": {
   "id": "B3A",
@@ -969,8 +969,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "f5858271a826",
-  "uzun": 25682
+  "html": "5255c33d1e17",
+  "uzun": 25707
  },
  "sq-15-1-B3B": {
   "id": "B3B",
@@ -986,8 +986,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "43888e1d4aa1",
-  "uzun": 29926
+  "html": "5386c1fad4e2",
+  "uzun": 29951
  },
  "sq-15-2-B3C": {
   "id": "B3C",
@@ -1003,8 +1003,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "3a368c59cc99",
-  "uzun": 31627
+  "html": "b11d35316c26",
+  "uzun": 31652
  },
  "sq-15-3-B3Y": {
   "id": "B3Y",
@@ -1020,15 +1020,15 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "cb323f268dc1",
-  "uzun": 32191
+  "html": "8f8571dc68b8",
+  "uzun": 32216
  },
  "sq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nO‘yiningizda jon bor!\n\nBulut\nJon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!\n\nSiz bugun\n0\nta o‘yin yutdi\n0\nta shart qo‘ydi\n0\nta o‘zgaruvchi ishlatdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\njon:\n3\nqadam:\n5\nBulut\nKeyingi darsda tasodifiy son bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "b13ad515c506",
-  "uzun": 27264
+  "html": "823f31f46345",
+  "uzun": 27315
  },
  "sx-P2S-C": {
   "id": "P2S",
@@ -1048,8 +1048,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "5004f5918a9d",
-  "uzun": 40248
+  "html": "2dad7728520e",
+  "uzun": 40273
  },
  "sx-P8-tayyor": {
   "id": "P8",
@@ -1062,8 +1062,8 @@
    "i:ifqadam=0thengame over",
    "g:game over"
   ],
-  "html": "c68a81f55acf",
-  "uzun": 38803
+  "html": "af06dd3fcd3f",
+  "uzun": 38828
  },
  "y-01": {
   "id": "P1",
@@ -1081,10 +1081,10 @@
  },
  "y-03": {
   "id": "P2S",
-  "matn": "USTOZ · PROYEKTOR\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\n→\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nJon tugasa, o‘yinni qanday tugatamiz?\n\nCoddy\nMenda 3 ta jon. Kaktusga tegsam, bittasi ketadi.\n\nA\nTegsa — o‘yin tugasin\nwhen touching\ncactus\ngame over\nB\nJonni kamaytiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nC\nKamaytiramiz va tekshiramiz\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\njon:\n3\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "90cdac3f8a84",
-  "uzun": 92284
+  "html": "7c815f118b44",
+  "uzun": 92250
  },
  "y-04": {
   "id": "P2C",
@@ -1114,8 +1114,8 @@
    "f:when ▶ clickedsetjonto3",
    "z:setjonto3"
   ],
-  "html": "6a4633e05348",
-  "uzun": 94260
+  "html": "90e1ad102574",
+  "uzun": 94256
  },
  "y-08": {
   "id": "P5",
@@ -1142,8 +1142,8 @@
    "i:ifjon=0thengame over",
    "g:game over"
   ],
-  "html": "6c5321d5345c",
-  "uzun": 97901
+  "html": "5b4b6d117115",
+  "uzun": 97926
  },
  "y-11": {
   "id": "P5G",
@@ -1172,8 +1172,8 @@
   "bloklar": [
    "f:when ▶ clicked"
   ],
-  "html": "c667cbf41fb6",
-  "uzun": 92796
+  "html": "c59d6a636953",
+  "uzun": 92792
  },
  "y-15": {
   "id": "P5B",
@@ -1186,8 +1186,8 @@
   "id": "P11",
   "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nQoidalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nShart\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\ngame over\nwhen\nany\nkey pressed\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 16 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: jon tugasa, o‘yinni qanday tugatamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kamaytiramiz va tekshiramiz\n5 / 18 · Yangi so‘z: jon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: jon qoidasi\n8 / 18 · Jon: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ball va jon\n11 / 18 · Ball va jon: pog‘onalar\n12 / 18 · Xulosa: jon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: qadam qoidasi\n15 / 18 · Qadam: pog‘onalar\n16 / 18 · O‘yiningiz qoidalarini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "b33723a98880",
-  "uzun": 99374
+  "html": "d68b263f27e6",
+  "uzun": 99370
  },
  "y-17": {
   "id": "P12",

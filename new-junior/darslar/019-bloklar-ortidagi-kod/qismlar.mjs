@@ -81,7 +81,7 @@ const darsOxiri = () => `<div class="gl kd3" data-z="dars oxirida"><small>Dars o
 const TEST_RASM = '<svg class="kd-xy" viewBox="0 0 100 64" aria-hidden="true"><rect x="0" y="0" width="100" height="64" rx="6" fill="#FFFFFF" stroke="#D6DCE6" stroke-width="2"/><circle cx="18" cy="20" r="6" fill="#3FAE6A"/><path d="M15 20l2.2 2.2 4-4.4" stroke="#fff" stroke-width="1.8" fill="none"/><rect x="30" y="17" width="54" height="6" rx="3" fill="#C9D3E3"/><circle cx="18" cy="42" r="6" fill="#D6DCE6"/><rect x="30" y="39" width="44" height="6" rx="3" fill="#C9D3E3"/></svg>'
 const keyingiDars = () => `<div class="gl kd3" data-z="keyingi dars"><small>Keyingi dars</small><div class="kd3-r lb2">${TEST_RASM}</div><b>20 · Takrorlash va test</b></div>`
 // kirish: «O‘tgan darsda» — kosmik o'yin tayyor (uch personaj)
-const otganDars = () => `<div class="otd"><small>O‘tgan darsda</small><div class="tf-l"><div class="tf"><div class="tf-r otd-3">${RAK()}${OQ('oq-k')}${DUSH()}</div><div class="tf-t"><b>Kosmik o‘yin</b><span>Kosmik o‘yin tayyor bo‘ldi</span></div></div></div></div>`
+const otganDars = () => `<div class="otd"><small>O‘tgan darsda</small><div class="tf-l"><div class="tf"><div class="tf-r otd-3">${RAK()}${OQ('oq-k')}${DUSH()}</div><div class="tf-t"><b>Kosmik o‘yin</b><span>Raketa, o‘q va dushman — har birining o‘z dasturi</span></div></div></div></div>`
 
 // uch zinapoya (8, 11, 15-qadam): nom — rasmniki, javob aytilmaydi
 const POG = {

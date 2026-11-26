@@ -133,8 +133,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "88e37aa5bf29",
-  "uzun": 46697
+  "html": "f6ed15ca29f5",
+  "uzun": 46696
  },
  "u-15-P5B": {
   "id": "P5B",
@@ -370,8 +370,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "b60fd4f0ecbe",
-  "uzun": 47900
+  "html": "ccd24aa18239",
+  "uzun": 47899
  },
  "u-x-P8-yutdi": {
   "id": "P8",
@@ -390,8 +390,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "f5f5a12a4698",
-  "uzun": 47017
+  "html": "c43e626c8df6",
+  "uzun": 47016
  },
  "u-x-yakunlandi": {
   "id": "P14",
@@ -669,8 +669,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "38f77d1d15f0",
-  "uzun": 32312
+  "html": "de15c7fba7d0",
+  "uzun": 32311
  },
  "bq-15-1-B3Y": {
   "id": "B3Y",
@@ -689,8 +689,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "cf4f06a306ae",
-  "uzun": 32332
+  "html": "6a24c9422ee0",
+  "uzun": 32360
  },
  "bq-15-2-BK": {
   "id": "BK",
@@ -708,17 +708,17 @@
  },
  "bq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "c3e40f41082a",
-  "uzun": 26711
+  "html": "5d06f040f4a9",
+  "uzun": 26762
  },
  "bq-18-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "c3e40f41082a",
-  "uzun": 26711
+  "html": "5d06f040f4a9",
+  "uzun": 26762
  },
  "bx-B1A-bosh": {
   "id": "B1A",
@@ -837,8 +837,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "610d292c2a5b",
-  "uzun": 33759
+  "html": "5a0535e1574f",
+  "uzun": 33758
  },
  "bx-BD-natija": {
   "id": "BD",
@@ -849,10 +849,10 @@
  },
  "bx-B5-natija": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n8\nta devor qo‘ydi\n10\nqadam — labirintingiz yo‘li\n2\ndaraja yutdi\nDo‘stingiz o‘ynadi: 2 / 2 daraja · 1 marta devor oldida to‘xtadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n✓\n2-daraja: kalit va eshik\n✓\nIkki daraja yutildi\n✓\nDo‘stingiz o‘ynadi\nBulut\nO‘yiningiz saqlandi. Keyingi darsda ball bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n8\nta devor qo‘ydi\n10\nqadam — labirintingiz yo‘li\n2\ndaraja yutdi\nDo‘stingiz o‘ynadi: 2 / 2 daraja · 1 marta devor oldida to‘xtadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n✓\n2-daraja: kalit va eshik\n✓\nIkki daraja yutildi\n✓\nDo‘stingiz o‘ynadi\nBulut\nO‘yiningiz saqlandi. Keyingi darsda ball bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "8971ab07b63f",
-  "uzun": 30699
+  "html": "928ed3a6a452",
+  "uzun": 30750
  },
  "bx-P2N-tanladi": {
   "id": "P2N",
@@ -1142,8 +1142,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "1b8c41579381",
-  "uzun": 45444
+  "html": "8f7daf3b3a5c",
+  "uzun": 45443
  },
  "sq-15-0-B3A": {
   "id": "B3A",
@@ -1162,8 +1162,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "81ebc5fcd225",
-  "uzun": 32359
+  "html": "277c0f688f2e",
+  "uzun": 32358
  },
  "sq-15-1-B3Y": {
   "id": "B3Y",
@@ -1182,8 +1182,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "5151104653cb",
-  "uzun": 32379
+  "html": "71b2cad04af9",
+  "uzun": 32407
  },
  "sq-16-0-BD": {
   "id": "BD",
@@ -1194,10 +1194,10 @@
  },
  "sq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ikki darajali o‘yin yasadingiz!\n\nBulut\nIkki daraja — birini o‘zim yasadim!\n\nSiz bugun\n0\nta devor qo‘ydi\n0\nqadam — labirintingiz yo‘li\n0\ndaraja yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nQoida\n2-daraja: kalit va eshik\nIkki daraja yutildi\nDo‘stingiz o‘ynadi\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "c3e40f41082a",
-  "uzun": 26711
+  "html": "5d06f040f4a9",
+  "uzun": 26762
  },
  "sx-P2S-A": {
   "id": "P2S",
@@ -1305,8 +1305,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "b2bae6c8b7c4",
-  "uzun": 96569
+  "html": "eb9b64fcb2ef",
+  "uzun": 96598
  },
  "y-08": {
   "id": "P5",
@@ -1339,8 +1339,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "defb1f0e7349",
-  "uzun": 98320
+  "html": "94b2b45d1ba8",
+  "uzun": 98349
  },
  "y-11": {
   "id": "P5G",
@@ -1380,8 +1380,8 @@
    "a:if path↓thenmove down",
    "d:move down"
   ],
-  "html": "fe599490e0c2",
-  "uzun": 99475
+  "html": "7e59b36d6898",
+  "uzun": 99503
  },
  "y-15": {
   "id": "P5B",

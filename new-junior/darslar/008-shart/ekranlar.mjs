@@ -91,5 +91,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '15-qadam. Sayr bog‘i: kamida ikki if, har xil tomon, 4 qadam.', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>sayringiz</em>', 'Shart bilan bog‘da sayr qiling.', 'SAYR', 12, H3) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Qahramon devor oldida <em>to‘xtaydi</em>!', '')}${qg('Har qadamdan oldin yo‘lni tekshirdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${katakHtml(SAYR, { aktyor: qahK() })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda labirint o‘yinida ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

@@ -1,0 +1,11 @@
+-- eski 16:16
+NATIJA: 44 / 44 — toza
+-- hozir 16:21
+✗ B3C tegmasdan — «Ro‘yxatga qarang…» — ishora: «Ball: 2. Yana uring!» kamvoy:Oz qoldi! ball 2 jon 3
+NATIJA: 43 / 44 — muammo bor
+-- qoshni 16:27
+✗ B2Y +2 — rekord (ball ≥ 8) — ishora: «Ball: 6. Yana uring!» kamvoy:Oz qoldi! ball 6 jon 0
+✗ B2Y ball ≥ 8 — 6
+✗ B3C tegmasdan — «Ro‘yxatga qarang…» — ishora: «Ball: 2. Yana uring!» kamvoy:Oz qoldi! ball 2 jon 3
+NATIJA: 41 / 44 — muammo bor
+TAMOM 16:32

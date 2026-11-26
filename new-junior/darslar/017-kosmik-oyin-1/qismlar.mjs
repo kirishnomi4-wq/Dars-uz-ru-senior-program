@@ -77,5 +77,7 @@ const keyingiDars = () => `<div class="gl kd3" data-z="keyingi dars"><small>Keyi
 const otganDars = () => `<div class="otd"><small>O‘tgan darsda</small><div class="tf-l"><div class="tf"><div class="tf-r">${mb('C')}</div><div class="tf-t"><b>Klon</b><span>Dastur ishlab turganda yasalgan nusxa</span></div></div></div></div>`
 
 // natija (17, 18-qadam): sonlar kartaning boshida (natijaSon)
-const SINF_T = [['h', OQ_OQ, 'ta o‘q otdi', 846], ['g', NISHON_OQ, 'ta nishon urdi', 412], ['y', RAK_OQ, 'pog‘ona bajardi', 121]]
-const BOLA_T = [['h', OQ_OQ, 'ta o‘q otdi', 64], ['g', NISHON_OQ, 'ta nishon urdi', 31], ['y', RAK_OQ, 'pog‘ona bajardi', 9]]
+const SINF_T = [['h', OQ_OQ, 'ta o‘q otdi', 846], ['g', NISHON_OQ, 'ta nishon urildi', 412], ['y', RAK_OQ, 'pog‘ona bajardi', 121]]
+const BOLA_T = [['h', OQ_OQ, 'ta o‘q otdi', 64], ['g', NISHON_OQ, 'ta nishon urildi', 31], ['y', RAK_OQ, 'pog‘ona bajardi', 9]]
+// 25.11 (K1): bola yakunida ro'yxat «O‘yiningizda:» (9-darsdagidek) — bandlar e'londan (DARS.kosmikGap.chek), ✓ ni kosmik.js kosmikNatija qo'yadi
+const chekY = () => `<div class="gl chek-y"><div class="chek"><small>${DARS.kosmikGap.royxat}</small>${DARS.kosmikGap.chek.map(([id, t]) => `<span class="ch-r" data-ch="${id}"><i></i>${t}</span>`).join('')}</div></div>`

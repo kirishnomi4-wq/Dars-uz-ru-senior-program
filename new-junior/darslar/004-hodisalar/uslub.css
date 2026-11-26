@@ -60,6 +60,8 @@
 .kt-t.katta{min-width:4cqw;height:4cqw;font-size:2.1cqw;border-radius:.8cqw}
 .kt4{display:grid;grid-template-columns:repeat(3,auto);grid-template-areas:". u ." "l d r";gap:.3cqw}
 .kt4 .u{grid-area:u}.kt4 .l{grid-area:l}.kt4 .d{grid-area:d}.kt4 .r{grid-area:r}
+/* 25.11 (F-1125-03): o'yin paytida C kartasidagi strelkalar bosiladi (studiya.js hukBosish) */
+.jk.sinov .kt-t{cursor:pointer}.jk.sinov .kt-t:active{transform:translateY(.1cqw)}
 .kt4.katta .kt-t{min-width:3.6cqw;height:3.6cqw;font-size:1.8cqw}
 /* javon tor — hodisa bloki ixcham (3-darsdagi go to kabi) */
 .pl .mb[data-tugma]{gap:.3cqw;padding-inline:.8cqw .5cqw;font-size:1.05cqw}

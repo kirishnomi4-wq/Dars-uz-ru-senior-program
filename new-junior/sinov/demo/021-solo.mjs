@@ -59,7 +59,8 @@ tek('P2C: namuna karta — besh katak', (await qayd()) === 'P2C' && (await p.$$(
 await keyingi(); tek('P3', (await qayd()) === 'P3')
 for (let k = 0; k < 3; k++) { await p.click('#ust .hn .asos'); await p.waitForTimeout(150) } tek('P3: uch bo‘lak', (await p.$$('#ust .xs-b.on')).length === 3)
 await keyingi(); tek('P4', (await qayd()) === 'P4'); await keyingi()
-tek('P7: ustoz kartasi — to‘rt qator tanlangan, «Yutish uchun» to‘lgan', (await qayd()) === 'P7' && (await p.$$('#ust .kc-o.on')).length === 4 && (await matn('#ust .kc-xul')).includes('6'))
+const bos0 = (await p.$$('#ust .kc-o.on')).length; for (const [g, v] of [['kim', 'do‘stim'], ['dush', '5'], ['ball', '2'], ['jon', '3']]) { await p.click('#ust .kc-o[data-g="' + g + '"][data-v="' + v + '"]'); await p.waitForTimeout(150) } // 25.11 (Q17-A)
+tek('P7: ustoz kartasi — bo‘sh, bosib to‘ldirildi, «Yutish uchun» 6, bolaning kartasiga yozilmadi', (await qayd()) === 'P7' && bos0 === 0 && (await p.$$('#ust .kc-o.on')).length === 4 && (await matn('#ust .kc-xul')).includes('6') && !(await p.evaluate(() => localStorage.getItem('demo-jr021-karta'))))
 await keyingi()
 // ---- 1-bekat: karta ----
 tek('K1: karta bo‘sh — «?» belgilari', (await qayd()) === 'K1' && (await p.$$('#ilova .kc-o.on')).length === 0 && (await p.$$('#ilova .kx-q.ok')).length === 0)

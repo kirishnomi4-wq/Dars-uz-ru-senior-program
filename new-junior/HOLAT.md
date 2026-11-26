@@ -4,6 +4,176 @@ Har yozuv: sana-vaqt · nima qilindi · qaror. Eng yangisi tepada.
 
 ## Yangi seans shu yerdan boshlaydi (yangilandi 2026-11-20 ertalab)
 
+## 26.11 11:38 (`date`) — 12-VERSIYA JAVOBI: T1 A, T2 A, T3 A, C1 A
+
+- Tungi 3 tuzatish (T1 varaq, T2 019 P3, T3 if C-blok) — o'z holicha qoladi, qaytariladigan narsa yo'q → demo/oltin/setka qayta yurgizish shart emas (06:48 dan beri saytga chiqadigan fayl o'zgarmagan).
+- C1-A: faqat `new-junior/` commit (pathspec bilan — boshqa seansning staged fayllari, ildiz `.gitignore`, `src/tekshiruv/`, `uyga-vazifa-v2/` kirmaydi). Push YO'Q.
+- Kutilmoqda: QA ga xabar (foydalanuvchi) · QA fidbeki · Upstash.
+
+## 26.11 11:33 (`date`) — bot va sayt tekshirildi, o'zgarish yo'q
+
+- Bot (getUpdates, offset BERILMADI — AILM xabarlari o'qilmadi, tasdiqlanmadi): 55 yangilanish, foydalanuvchidan 24 ta shaxsiy (25.11 15:26–15:27) — `fidbek/F-1125-qa/asl/xabarlar.json` dagi 24 ta bilan matnma-matn bir xil, **yangi QA xabari yo'q**. Yuklangan nusxa scratchpad'dan o'chirildi.
+- QA sayti `bayt-solish.sh` — **24/24** (06:48 deploy). O'shandan beri saytga chiqadigan fayl o'zgarmagan (faqat 006/007 `oltin.mjs`) → qayta deploy kerak emas.
+- Hali kutilmoqda: «12-versiya: T1, T2, T3, C1» javobi · QA ga xabar (foydalanuvchi) · Upstash.
+
+## ▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶ 26.11 10:49 SEANS YOPILDI (foydalanuvchi noutbukni o'chiradi) — YANGI SEANS SHU YERDAN
+
+**Holat:** tungi ish to'liq tugagan (pastdagi «YAKUN»): QA sayti 06:48 da yangilangan (24/24 bayt-bayt), oltin 23/23 dars farq 0, hamma sinov yashil.
+Hech qanday fon jarayoni yo'q; lokal server 5340 to'xtatildi (yangi seansda kerak bo'lsa qayta yoqiladi). `new-junior/` da 149 fayl commit qilinmagan.
+**Foydalanuvchi kechqurun ko'radi:** ko'rik sahifasi 12-versiya — https://claude.ai/artifact/GxSWECj2WU6nZwQ79Mehxy (manba `arxiv/seans-2511/korik/index.html`).
+**Kutilayotgan javoblar:** «12-versiya: T1, T2, T3, C1» (T1 varaq · T2 019 P3 · T3 if C-blok — A rozi / B qaytar; C1 — commit qilish-qilmaslik) · QA ga xabar (foydalanuvchi o'zi beradi) · QA fidbeki · Upstash.
+**Yangi seansda tartib:** 1) shu blokni o'qi; 2) foydalanuvchi javobini kut — B bo'lsa o'sha tuzatishni qaytar, demo yig', o'sha darslarda `oltin sol` + setka; 3) C1 bo'yicha — commit faqat buyruq bilan, push yo'q;
+4) QA dan yangi fidbek kelsa — B retsepti (F-ID, tashxis avval). Telegram AILM xabarlariga tegilmaydi.
+
+## ▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶ 26.11 01:32–07:35 (`date`) — 25.11 dagi 7 qadam BAJARILDI: QA sayti yangilandi, oltin 23/23; javob kutilmoqda (pastda «YAKUN»)
+
+**Agar noutbuk yana o'chsa — shu yerdan:** server 5340 → `bash new-junior/arxiv/seans-2511/skriptlar/g25g.sh` natijasi (`g25g-natija.txt`) qayerda to'xtaganini ko'r,
+qolganini yurgiz → keyin quyidagi «Qolgan qadamlar». Foydalanuvchi 26.11 ~01:40: «tuzatishimiz kerak bo'lsa halol avtopilotda tuzat, savol bo'lsa ber».
+
+- **g25e (23:24–00:34, o'chishgacha):** javon-qirq 0 · qa25 13/13 · 017 solo 40/40, tovush 5/5 · 018 44/40/6 · 019 45/52/6 · 020 35/40/5 · 022 25/21/4 · 023 23/17/4 ·
+  sim katak…jon yashil. **021 toliq/solo — `TypeError … reading 'length'`**: sinov xatosi (25.11 Q17-A qatori `u.$(…).length` — bitta element, bo'sh kartada null);
+  `$` → `$$` (021-toliq-dars.mjs:78–79, 021-solo.mjs:62–63) — tuzatilgan fayllar 30/30 va 33/33 bilan o'tgan nusxaga bayt-bayt teng. Supurish: 95 sinov fayli — boshqa yo'q.
+- **g25f (01:37–02:44):** sim tasodif 125/125 · xato 76/76 · klon toza · xakaton 20/20 · **kosmik2 44/44** · raketa 30/30 · chek17 6/6 · karta27 27/27 ·
+  matn 011–023 to'liq; 001–010 dagi TOPILMADI (73,1,16,9,14,12,33,15,17,40) — 22.11 QA saytidagi yig'mada ham xuddi shunday (001 va 004 da hozir bittadan kam) → eski manba shablon/qaror gaplari, regressiya emas ·
+  setka 22 dars toza (Chrome + WebKit), **019 Chrome: «P3: move right idishidan chiqdi»** · **oltin sol 001–009 har birida yiqildi** («route.fetch: Request context disposed»).
+- **Tashxis va tuzatish (02:4x–02:52):**
+  1. oltin yiqilishi: varaqning to'liq surati paytida Chrome Q02 qoidasini (`#ilova::after` «↻ Telefonni yotqizing») hisoblab, Onest «symbols» shriftini so'raydi (keshda yo'q) — kontekst darhol yopiladi → so'rov yiqiladi.
+     22.11 yig'masida bu so'rov yo'q (tekshirildi), Q02-qoidasi o'chirilsa — yo'q. Surat o'zi buzilmagan (qoplama ko'rinmaydi). `oltin.mjs` shrift yo'nalishi — yopilgan sahifadagi «disposed» xatosi yutiladi.
+  2. **Haqiqiy xato (shu tashxisdan chiqdi):** telefon tik turganda ustoz varag'i (`?rol=varaq`, qobiq.js izohi «telefonda o'qish uchun») butunlay «Telefonni yotqizing» bilan yopilardi.
+     `qobiq.css`: `#ilova:not(:has(> .vq))::after` — varaq ochiq, dars ekranlarida qoplama qoladi. Telefon 390×844 surati — varaq o'qiladi.
+  3. 019 P3: F-1125-16 dagi `.8fr .9fr 1.5fr` da 1-karta «move right» (93 px) o'z joyidan (88 px) chiqardi → `.85fr .9fr 1.45fr` (3-kartada kodga 13 px ortiqcha joy bor edi). setka 019 Chrome + WebKit toza, P3 surati ko'z bilan ko'rildi.
+- 02:52 hamma demo + LMS qayta yig'ildi. Zaxira: `arxiv/zaxira-2026-11-26-tun-0253.tar.gz`. **g25g** (fonda, bittadan): qa25 → qutiden 019 → 019 toliq/solo → oltin sol 1–14 → oltin 15–23 yoz + darhol sol.
+- **03:0x–03:45 oltin 1–8 ko'rildi — hammasi kutilgan:** Q14 yozuvi · Q07 ishorasi · Q04 `aylan` + `jr-bl-ws` bo'yi (surat ≤ 8–51/255, ko'zga ko'rinmaydi — k007 ko'rildi) · solo ▶ · F-05 C-blok (5, 6, 7, 8 P1/P9) · F-03 ishora (4) ·
+  005 «Bir xil ikki blok» (21.11) · javon `class="mb f-h "` oxiridagi bo'sh joy (faqat HTML) · 6, 7 da ustma-ust ikkinchi «3» sanoq belgisi yo'qoldi (surat bir xil). Turlash: scratchpad `turlar.py` (token bo'yicha difflib).
+- **03:45 yangi topilma (ko'z bilan, 008 P9):** statik `if path` C-blokining yoni va tubi `repeat` yashilida edi (Blockly'da butun blok #5B80A5; 12, 15-dars `if =` (.sv) ni o'zi tuzatgan).
+  `qobiq.css`: `.c-blok[data-yon] > .c-ich / > .c-tub` — #5B80A5. Ta'sir: 008, 009, 010, 014 (statik if C-blok bor demolar). **Reja:** g25g 014 dan o'tgach 008/009/010/014 demolarini yig' →
+  g25g tugagach o'sha 4 dars `sol` (faqat C-blok rangi qo'shilishi kerak) → 1–14 namunasi = ko'rilgan `.yangi` (eski namuna `arxiv/oltin-eski-2026-11-25/` ga) → hamma demo + LMS yig' → **23 dars to'liq `sol` — farq 0** → R2-A.
+- **04:1x oltin 1–14 KO'RIB CHIQILDI — kutilmagan farq YO'Q** (har tur ko'z bilan, suratlar scratchpad k004…k014): 9–14 da qo'shimcha — 10 F-06 (C karta labirintlari ichida), 11 F-19 (Tekshirish qatorda) + F-09 (change ball by 1 ikki qator),
+  12 B5 K8 · P2S dagi `oyin-bos` (420 ms lik vaqtinchalik belgi — eski namuna tasodifan ushlagan; Q12 dan keyin yo'q), 13 P6 ro'yxat ✓, 14 B3B Maslahat qulfi (25.11 g25 da ham). Konsol xatosi 0 (14 dars).
+  Eski namuna → `arxiv/oltin-eski-2026-11-25/` (474 MB, `.gitignore` ga qo'shildi). **1–7, 11–13 namunasi = ko'rilgan `.yangi`** (yoz bilan bir xil papka tuzilishi; ko'rilgan surat = namuna).
+  008/009/010/014 demolari 04:06 da C-blok rangi bilan yig'ildi — ularning namunasi g25g dan keyin qayta `sol` bilan.
+- **04:06–04:52 oltin 15–23 yoz + darhol sol:** 015 116/116 · 018 118/118 · 019 113/113 · 020 89/89 · 021 84/84 · 022 95/95 · 023 89/89 — barqaror. Har namuna kichik suratlar varag'i bilan ko'z bilan ko'rildi
+  (bo'sh/buzuq ekran yo'q; avtomatik: past og'ishli faqat `varaq.png`), konsol xatosi 0.
+  **016 123/126** — huk sinovida (P2S) dushman o'rni tasodifiy (`Math.random`, mahalliy `urug` faqat ayrim ishlarda) → `darslar/016-klonlar/oltin.mjs` ga `export const URUG = 16`.
+  **017 125/126** — `u-x-P8-uchyapti` (700 ms da o'q yo'lda; qaysi blok yonib turgani vaqtga bog'liq) → olib tashlandi, o'rniga o'q uchib o'chgandan keyin `u-x-P8-uchdi` (2,9 s).
+  016 va 017 namunasi qayta yoziladi — **g25h** (04:52–): 008/009/010/014 sol (C-blok rangi) → 016 yoz+sol → 017 yoz+sol.
+- **g25h (04:52–05:24):** 008/009/010/014 (C-blok rangi bilan) — turlar 1–14 ko'rigidagidek + faqat P9 dagi `if` C-blokining yoni/tubi (#5B80A5, k008c ko'rildi); 014 da statik if C-blok olingan holatlarda ko'rinmaydi.
+  Namuna = ko'rilgan `.yangi` (4 dars). **016 126/126 · 017 126/126** (URUG va `uchdi` dan keyin barqaror). **1–23 hammasining namunasi bor.**
+- **g25i (05:24–):** hamma demo + LMS yig'ish → setka 008/009/010/014 (Chrome + WebKit) → **oltin sol 1–23 (hammasi) — har birida FARQ YO'Q shart** → keyin R2-A.
+- **g25i (05:24–06:40):** 23 demo + LMS yig'ildi · setka 008/009/010/014 Chrome + WebKit toza · **oltin sol 1–23: 19 dars farq 0**; 4 darsda ko'rinmas vaqtinchalik element (surat farqi yo'q yoki faqat o'sha joy):
+  006 B3Y-kamoila va 007 B2A-yetdi — takrorlash sanog'i «3» (`.bl-son`, ish tugagach 900 ms da o'chadi) HTML da goh bor, goh yo'q; suratda farq yo'q. **Avvalgi talqinim xato edi** («ustma-ust ikkinchi belgi»):
+  aslida g25g (03:2x, yuklama) namunasi belgisiz yozilgan — surat taymerdan kech olingan; 20.11 eski namuna, g25i va keyingi yurishlarda belgi 1 ta. 1800 ms kutish va «takrorni olib tashlash» qaytarildi;
+  006/007 namunasi odatiy holat (1 belgi) bilan yangilanadi. Poyga (surat ~0,4 s ↔ taymer 0,9 s) qoladi — yuklama katta bo'lsa yana chiqishi mumkin.
+  012 u-03-P2S — `.oyin-bos` (tugma aks-sadosi, 420 ms) goh suratga tushadi → `sinov/dvigatel/oltin.mjs ol()` uni surat/HTML dan oldin olib tashlaydi (belgining o'zini qa25 F-03 tekshiradi); 015 shu tufayli faqat u-03-P2S, y-03 farqi → namuna yangilandi.
+  Sabab to'liq topilmagan: ikkinchi belgi boshqa blok id bilan qoladi (blSanoq id bo'yicha bitta qiladi) — qaysi yo'l bilan, aniqlanmadi; ko'zga ko'rinmaydi.
+- **g25j (06:40–):** 7 simulyator aniq natija bilan: katak 24/24 · maydon 47/47 · hodisa 35/35 · takror 34/34 · amaliyot 38/38 · kostyum 35/35 · shart 38/38 (g25e filtri «N / M — HAMMASI TO‘G‘RI» ni ushlamagan edi).
+  Keyin 006/007 ikki martadan sol, 009/011/012 yangi vosita bilan sol → ko'rib namuna → **g25k** (009, 011, 012, 015 sol, farq 0).
+- **06:48 R2-A QA DEPLOY:** `vite build` (8–15-yadro) → scratchpad `coddycamp-junior-dars1` (+ deploy-sozlama, api/sinf.mjs) → `vercel deploy --prod` (asl85939m) →
+  `arxiv/seans-2511/skriptlar/bayt-solish.sh` — **BAYT-BAYT 24/24** (qa.html + demo + demo-002…023). `/api/sinf` → 503 «redis yo'q» — 16.11 dan ma'lum (Upstash foydalanuvchida), yangi emas. **QA ga xabarni foydalanuvchi beradi.**
+- **06:5x ko'rik sahifasi 12-versiya** (artifact GxSWECj2WU6nZwQ79Mehxy, ver 14; manba `arxiv/seans-2511/korik/index.html`, eski `scratchpad/korik-v11.html`): holat, tekshiruv, tungi 3 tuzatish (T1 varaq, T2 P3, T3 if C-blok — A/B), sinov vositasidagi 6 tuzatish, C1 commit savoli.
+- **g25k (07:12–07:34): 006 132/132 · 007 124/124 · 009 133/133 · 011 134/134 · 012 126/126 · 015 116/116 — hammasi farq 0.** 006/007 namunasi g25j yurishidan (odatiy holat — 1 belgi), 009/011/012/015 — `.oyin-bos` siz.
+  **YAKUN: 7 qadamning hammasi bajarildi.** 23/23 dars oltin namuna bilan mos (2907 holat) · QA sayti 24/24 bayt-bayt (06:48) · ko'rik sahifasi 12-versiya (artifact ver 15) · zaxira `arxiv/zaxira-2026-11-26-ertalab-0713.tar.gz`.
+  **Foydalanuvchidan kutilmoqda:** QA ga «yangilandi» xabari · ko'rik sahifasi javobi «12-versiya: T1, T2, T3, C1» (tungi 3 tuzatish rozimi + commit) · Upstash (16.11 dan). Commit/push/CRM — YO'Q (C1 javobigacha).
+  Lokal server 5340 yoniq qoldirildi (10:49 da to‘xtatildi — yuqoridagi blok).
+
+## ▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶ 25.11 20:42 SEANS YOPILDI (foydalanuvchi noutbukni o'chiradi) — YANGI SEANS SHU YERDAN
+
+**Holat:** QA fidbeki (F-1125-01…19) va ko'rik sahifasi 11-versiya javoblari (Q02, Q04, Q07, Q10, Q12, Q14, Q17, R1, R2 — hammasi A) KODDA TO'LIQ BAJARILGAN.
+Hamma demo + LMS 18:24 da yig'ilgan (javon `.sigmas:has()` tuzatishi bilan). Commit/push/CRM — YO'Q (buyruqsiz). Zaxira: `arxiv/zaxira-2026-11-25-kech-2040.tar.gz`.
+
+**18:2x javon qayta tuzatildi:** g25d javon-qirq 9, 10, 15, 17-darsda «play sound …», «switch costume to …» qirqilishini topdi (17:5x dagi `.sigmas` faqat matnni o'rardi, yorliq o'ralmasdi).
+`qobiq.css`: `.pl .mb.sigmas:has(> .xy:last-child)` — ikona + matn 1-qatorda, yorliq (.xy) keyingi qatorda (`::after` qator bo'luvchi, `row-gap:0`, `.xy margin-top`).
+Birinchi urinish (`flex:1 1 0`) matnni yorliq ostiga mindirgan va sinov buni ko'rmagan — `javon-qirq.mjs` kuchaytirildi: qirqilish + bo'laklar ustma-ust + bo'lak blokdan chiqdi
++ matn o'z qutisidan toshdi (yomon variantda TOSHDI ni ushlashi tekshirildi); klik kutishi 1,5 s (ko'rinmas oila 30 s kutardi — 23 dars 30+ daqiqa edi). 004, 009, 015, 017, 018 — toza; ko'z bilan ko'rildi.
+
+**g25d natijasi (to'xtatilgunicha, `g25d-natija.txt`):** qa25 13/13 · qutiden 0 · ustma 0 · 001–016 toliq/solo/tovush HAMMASI yashil · 017 toliq 45/45. (javon-qirq qismi — eski CSS, keyin tuzatilgan.)
+
+**Yangi seansda — tartib bilan (bittadan, `nice -n 19 taskset -c 0-3`):**
+1. Lokal server: `npx vite --config new-junior/vite.config.js --port 5340 --strictPort` (ildizdan, fonda).
+2. Demolar yig'ilgan (18:24) — o'zgarish bo'lmasa qayta yig'ish shart emas. Shubha bo'lsa: `for d in $(ls new-junior/darslar); do node new-junior/dvigatel/yig.mjs $d; done; node new-junior/lms/yig.mjs`.
+3. **`bash new-junior/arxiv/seans-2511/skriptlar/g25e.sh`** (fonda; natija `g25e-natija.txt`, ~3–4 soat): javon-qirq 23 dars · qa25 · 017 solo/tovush · 018–023 toliq/solo/tovush ·
+   simulyatorlar (kosmik2 B2Y «rekord» — Q12 dan keyin qayta o'lchanadi; karta27) · matn · setka Chrome + WebKit · oltin `sol` 1–14.
+4. Oltin 1–14: farqlarni ko'rib chiqish — kutilgan: ▶ (solo tugmasi), C-blok (F-05), javon `.sigmas`, Q14 yozuvi, `tug-xira` (F-19), Q10 matni (yo'q — 1–14 da kosmik yo'q), boshqa farq — tekshiriladi.
+   Hammasi kutilgan bo'lsa — har dars `node new-junior/sinov/dvigatel/oltin.mjs yoz <dars>` (R1-A).
+5. 15–23 namunalar: `oltin.mjs yoz` (15–17 stsenariy bor edi; 18–23 bugun yozildi, `URUG` bilan), keyin **barqarorlik uchun darhol `sol`** — farq 0 bo'lishi shart
+   (bo'lmasa — o'sha holat stsenariydan olib tashlanadi yoki kutish qo'shiladi; o'yin davomidagi holat namunaga olinmaydi).
+6. R2-A: QA saytiga — `npx vite build --config new-junior/vite.config.js` → `D=<vaqtinchalik>/coddycamp-junior-dars1 && mkdir -p $D && cp -r new-junior/dist/. $D/ && cp -r new-junior/arxiv/seans-2111/deploy-sozlama/. $D/ && cp new-junior/api/sinf.mjs $D/api/` →
+   `cd $D && npx vercel deploy --prod --yes` → qa.html + demo.html + demo-002…023 ni lokal `dist` bilan bayt-bayt solishtirish (24/24). QA ga xabarni FOYDALANUVCHI beradi.
+7. Ko'rik sahifasini (artifact GxSWECj2WU6nZwQ79Mehxy, manba `arxiv/seans-2511/korik/index.html`) yakuniy holat bilan yangilash; HOLAT.md + memory.
+
+**Eslatma:** `fidbek/F-1125-qa/ROYXAT.md` — 17 qator ✅. Telegram bot (@claudeopusssbot) — 12 ta AILM xabariga tegilmaydi (getUpdates'ga `offset` berilmaydi); token chatda ochiq — @BotFather /revoke taklif qilingan.
+Scratchpad (`/tmp`) o'chadi — kerakli yordamchi skriptlar `arxiv/seans-2511/skriptlar/bosh/` ga ko'chirildi (ustma.mjs, supur.mjs, javon.mjs, javonr.mjs).
+
+## ▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶ 25.11 17:3x–17:54 (yozildi 17:54, `date`) — 11-VERSIYA JAVOBI: Q02, Q04, Q07, Q10, Q12, Q14, Q17, R1, R2 — hammasi A
+
+- **Q10** ro'yxat «O‘q tegsa — ball +1», «Dushman tegsa — jon −1» (18, 20–23) · **Q14** `bosh.mjs TUGADI_YOZUV` «✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin» (23 dars) ·
+  **Q07** Scratch'dagidek; ishora «Tanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi» (blockly.js, 3 joy) ·
+  **Q12** raketa qadami ~170 ms (`ijro` kut 70, `katakSilj` 130 ms), bosib tursa uzluksiz · **Q17** 21-dars P7: ustoz kartani bosadi (`kod.js kartaUstozTanla`, `qobiq.js`, `DARS.ustozKarta`).
+- **Q04** `blockly.js blMasshtab`: pastki chegara hamma darsda `masshtabMin || 0.5` (13–23-darsdagidek; 1440 px da ≈0,45); shunda ham sig'masa `.jr-bl.aylan` — maydon dastur bo'yiga cho'ziladi, ustun pastga aylanadi
+  (ko'rinadigan joy `.jr-bl` clientHeight bilan o'lchanadi — tebranmaydi); ✕ va sanoq belgilari `scrollTop` ni hisobga oladi (`blXJoy`, `blSanoq`). `qobiq.css .jr-bl.aylan`.
+- **Q02** `qobiq.css`: `@media (orientation:portrait) and (max-width:600px)` — `#ilova::after` «↻ Telefonni yotqizing · Dars yotiq ekranda to‘liq ko‘rinadi»; LMS yig'masida `\\A` saqlanadi (tekshirildi). `qa.html` izohi: «Kompyuterda ochiladi; telefonda — yotiq holda.»
+- **F-1125-09 qayta:** 17:29 dagi `.pl .mb{flex-wrap:wrap}` HAMMA blokni o'rardi («move right», «when ▶ clicked» ham ikki qator — 1440 px suratda ko'rindi). Endi faqat sig'magan blok: `studiya.js javonSigdir` `.sigmas` qo'yadi (ekran chizilganda + oila almashganda), `qobiq.css .pl .mb.sigmas`. 004/018 javonlari ko'z bilan: sig'adiganlar bir qatorda, qirqilgan yo'q.
+- Yangi `sinov/dvigatel/qa25.mjs` — 13/13 (Q04 ustma-ust yo'q + aylanadi + ✕ ko'rinadi; Q02 tik/yotiq; Q12 ≤220 ms; F-03; F-19; Q14; Q10; konsol).
+- **R1 tayyorgarlik:** `sinov/dvigatel/oltin.mjs` — ixtiyoriy `export const URUG` (Math.random qotiriladi; 1–17-darsga ta'siri yo'q). 18–23 `oltin.mjs` stsenariylari yozildi (huk, «Eslaymiz», ustoz dasturlari — ishga tushirilmagan holat, 19/20 kod, 21 karta, 22/23 ikki profil: 21-dars kartasi bilan / namuna). Namunalar g25d dan keyin: 1–14 `yoz` (farqlar ko'rib chiqilgach), 15–23 `yoz` + barqarorlik uchun `sol`.
+- `fidbek/F-1125-qa/ROYXAT.md` — 17 qator ✅ ga yangilandi.
+- 17:49 **g25d** (yakuniy navbat, bittadan): qa25 → javon-qirq → qutiden → ustma → 23 dars toliq/solo/tovush → simulyatorlar → matn → setka Chrome + WebKit → oltin sol 1–14. Natija `arxiv/seans-2511/skriptlar/g25d-natija.txt`.
+
+## ▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶ 25.11 15:28– — QA FIDBEKI KELDI (bot orqali): `fidbek/F-1125-qa/ROYXAT.md` — F-1125-01…19
+
+- 18 mavzu: ✅ 3 ta bugun tuzatilgan (01 Safari 21.11; 08, 18 — K7); 🔴 9 ta xato (03, 05, 06, 09, 11, 13, 15, 16, 17-sarlavha) + 19 (o'zimiz topdik: 11-dars solo «Tekshirish» 2-qatorga tushib qirqiladi); 🟡 7 ta qaror (02 telefon, 04 scroll/kichraytirish, 07 sudrash, 10 ro'yxat matni, 12 raketa tezligi, 14 solo yakuni tugmasi, 17 ustoz kartasi).
+- Foydalanuvchiga ro'yxat berildi — 🔴 ga tasdiq, 🟡 uchun suratli qaror sahifasi taklif qilindi.
+- **~16:05 foydalanuvchi: «ha tuzat»** (🔴). Kodda (demolar hali qayta yig'ilmagan — g25b yurgani uchun):
+  - 03: `studiya.js hukBosish` — `.jk.sinov .kt-t` bosilsa `oyinTugmaBos`; `hukOyin` — ishora «Strelkani bosing — klaviaturada yoki kartada»; 004 `uslub.css` cursor; manba 004.
+  - 05: `qobiq.css` — `.c-blok > .mb:first-child{min-width:100%}`, `.c-tub{align-self:stretch}` (statik C-blok bir butun; hamma dars — oltin farqlari kutiladi).
+  - 11: «ta dushman urdi»/«ta nishon urdi» → «…urildi» (017/018 dars, qismlar, manba, 4 sinov).
+  - 13: 018 3-bekat (P10, B3A–B3Y, P11) chegara 10 → 12 — **B3B real bolaga yechilmas edi** (9 blokdan boshlanadi, yechim 11; sinovlar qur() bilan chetlab o'tgan).
+  - 17: sarlavhalar «<em>Kartani</em> to‘ldiramiz» (021 + manba), «<em>Juftlikdasiz</em>» (015) — so'z ichida bo'lingan rang; supurish: faqat shu ikkitasi.
+  - 06/09/16: yangi `sinov/dvigatel/qutiden.mjs` (jonli demo, 5 en: karta ichidan chiqish, matn qirqilishi, hn tashqarisi) — yurgiziladi.
+- **17:00–17:35 qolgan 🔴 lar (foydalanuvchi: «qolgan xatolarni tuzat, keyin hamma demoni yig', 7 ta savol — artifact»):**
+  - 06: 010 `uslub.css` `.hkv .hk-q` ixcham (C kartada ikki labirint 7 px chiqardi, hamma enda).
+  - 09: `qobiq.css` `.pl .mb{flex-wrap:wrap}` + span `white-space:normal` — sig'masa 2-qator (004 «go to x: y:» +47 px, 018 Hodisa «key pressed», «touching enemy»). Yangi `sinov/dvigatel/javon-qirq.mjs` (har oila bosiladi).
+  - 15: 019 kirish kartasi izohi → «Raketa, o‘q va dushman — har birining o‘z dasturi» (QA suratidagi «K» ustidagi chiziq — QA ning qizil chizig'i edi, joylashuv to'g'ri). Supurish: izoh = sarlavha takrori boshqa darsda yo'q.
+  - 16: 019 P3 `.xs` .8fr .9fr 1.5fr, `.xs-kod` ixcham (kod 21 px chiqardi). Yangi `sinov/dvigatel/qutiden.mjs` (jonli demo, ko'p en: kartadan chiqish, qirqilish, hn tashqarisi).
+  - 19: **sinf to'qnashuvi** — `sonBashTugma` tugmaga `xira` qo'shardi, `shablon.html` `.xira` = absolut qoplama → tugma qatordan chiqib, 1322 px enli bo'lib qolardi (solo VA jonli bola); `tug-xira` ga almashtirildi (studiya.js 3 joy, qobiq.css, 2 sinov). Supurish: JS qo'shadigan 63 klassdan global absolut/yashirin qoidasi bor — 0.
+- **kosmik2 sababi topildi (17:07):** eski 44/44 · hozir 43/44 · qo'shni 41/44 · k7siz 44/44 · cheksiz 43/44 → K7; lekin raketa tezligi bir xil (~330 ms), halqa yo'q; **Math.random chaqiruvlari 809 vs 811** — Blockly ID'lari urug'li ketma-ketlikni siljitadi → dushman ustunlari boshqa. `kosmik2.mjs` — urug' `boshla` da qayta o'rnatiladi; shunda hozir = k7siz = 42/44 (B3C o'tadi; B2Y «rekord» ikkalasida yiqiladi — bot jonsiz qoladi → F-1125-12 raketa tezligi qaroriga bog'liq).
+- 17:29 hamma demo + LMS qayta yig'ildi. Ko'rik sahifasi **11-versiya** (o'sha havola): QA holat jadvali, 7 savol (Q02 telefon, Q04 ko'p dasturcha, Q07 sudrash, Q10 ro'yxat matni, Q12 raketa tezligi, Q14 solo yakuni, Q17 21-dars kartasi) + R1 oltin, R2 QA deploy. g25c tekshiruvi (`g25c.sh` → `g25c-natija.txt`) yurmoqda.
+- **kosmik2 regressiya:** g25b da ikki marta bir xil 41/44 (B2Y rekord ×2, B3C) — deterministik → bugungi o'zgarishdan. `k2ab.sh`: eski (dist 22.11) / hozir / qo'shni selektor (:has siz) — natija `k2ab-natija.txt`. Vaqtinchalik fayllar: `public/demo-018-{eski,hozir,qoshni}.html`, `sinov/dvigatel/.kosmik2-url.mjs` — tajribadan keyin olib tashlanadi.
+- g25 oltin 1–11: hammasi faqat ▶ farqi (+005 kutilgan); 011 B3A–C dagi farq F-1125-19 ni ochdi.
+- **15:57 g25 TAMOM.** Oltin 1–14 — kutilmagan farq YO'Q: hamma dars solo ▶ (14×17 px); 005 P8-juft + varaq (21.11 ishora); 012 B5 ×4 (K8); 013 P6-royxat (✓); 014 B3B ×2 (Maslahat qulfi). Namunalar hali yozilmagan (QA tuzatishlaridan keyin, tasdiq bilan). g25b boshlandi.
+
+## ▶▶▶▶▶▶▶▶▶▶▶▶▶▶▶ 25.11 13:0x–13:24 (yozildi 13:24, `date`) — JAVOB: hammasi A (K1–K8, 16–23); foydalanuvchi «avtopilotda ishla, 1 soatda kelaman»
+
+- Zaxira: `arxiv/zaxira-2026-11-25-javoblar-oldin.tar.gz`.
+- **K7:** `dvigatel/blockly.js blMasshtab` — bo'yi bo'yicha ham `DARS.masshtabMin` (0.6 o'rniga). **15-dars boshqa sabab:** ikki ustun (`blTartib2`, 2-ustun x≥330) 17,5 cqw dastur ustuniga eniga sig'masdi (kerak ~350 px, bor 226) → Blockly 2-ustunni chapga itarardi; tuzatish — `015/uslub.css` `.t3 .hm` 23,9 cqw (9–10-darsdagidek) + `.dst .dsn` pre-line, `015/dars.mjs masshtabMin: 0.5`.
+- **K8:** `dvigatel/qobiq.css` — `.oyna:has(> .ball-q) > .gl.kd2.a-tr{left:15.5cqw}` (faqat 12, 18, 20–23 B5 — demo HTML bo'yicha tekshirildi).
+- **K1:** 17-dars B5 — `qismlar.mjs chekY()` (bandlar `DARS.kosmikGap.chek`), `ekranlar.mjs` B5 ga, `uslub.css` `.chek-y` + `.e-B5 .oyna > .gl.kd2.a-tr{max-width:44%}`; `kosmik.js` — bola o'yinidagi bandlar `K+'ksChek'` ga yig'iladi (`kosmikChekChiz`), `kosmikNatija` ✓ qo'yadi.
+- **K2:** 18 `dars.mjs` `bir` → «Hammasi bir ustundan tushdi. Nusxa boshiga go to qo‘ying, x — random»; manba jadvali + qaror 5 «Qabul».
+- **K5:** 23 varaq + manba «Darsdan oldin»: «Mehmon» pog'onalarida o'yinni faqat mehmon o'ynaydi.
+- **K3, K6:** o'zgarishsiz. **K4:** `sinov/dvigatel/karta27.mjs` (27 kombinatsiya × 3 urug', 021-solo boti) — yurgiziladi.
+- 16–23 manbalari «## Savollar» ostida «Qabul (25.11 …): hammasi A».
+- Yig'ish: 23 demo, `node --check` toza, LMS yig'ma toza. `ustma` qayta: 015 toza (B5 dagi `.filter` xatosi — sinovning sun'iy `{oyin:'lab'}` holatidan, `qism` yo'q; haqiqiy oqimda BT tanlovi yozadi).
+- **13:27 ustma qayta (12, 15, 17–23) — JAMI 0 topilma** (avval 51). g25 navbati boshlandi (`arxiv/seans-2511/skriptlar/g25.sh`, natija `g25-natija.txt`).
+- **13:30 chek17 USHLADI (haqiqiy xato, tuzatildi):** umumiy `studiya.js labNatija` har darsda `.chek-y` ni labirint ro'yxati bilan qayta yozardi → 17-dars yakunida «To‘rt strelka · Qoida · Kalit va eshik · Yulduz» chiqardi. Tuzatish: `data-ch` li (o'z bandlari bilan kelgan) ro'yxatga tegmaydi — 9–10 o'zgarmaydi. Ko'z bilan: ro'yxat yashil chiziqdan 25 px pastga tushardi → 017 `uslub.css` `.e-B5 .chek-y` ixcham. `chek17.mjs` 6/6, surat `arxiv/seans-2511/skriptlar/chek17-B5.png`. Faqat demo-017 qayta yig'ilgan — **QA deploydan oldin hamma demo qayta yig'iladi** (studiya.js o'zgardi; 17 dan boshqa darsda xatti-harakat o'zgarmaydi).
+- **13:44 K4 karta27:** 27 kombinatsiya — 16 tasi 3/3, 11 tasi 2/3, 0 tasi imkonsiz. Yutilmaganlar — bitta urug', 5 dushmanli kartalar (+3·3·4/5), har birida bitta urish yetmagan, jon tugamagan (bot sodda). Qiymatlar o'zgarmadi; manba 021 «Tekshirilmagan joylar 1» yangilandi.
+- **13:44–14:16 dars sinovlari (g25):** 017 45/45 · 40/40 · 5/5; 018 44/44 · 40/40 · 6/6; 023 23/23 · 17/17 · 4/4; 015 62/62 · 35/35 · 5/5; 012 solo 30/30 · tovush 6/6; 019 45/45 · 52/52 · 6/6. **012 toliq-dars 52/54** (7-qadam: «if» ro'yxatidan «jon» tanlanmay qoldi — `menyu` 180 ms kutadi) → alohida qayta yurgizildi **54/54** — sinov vaqt poygasi, dars emas (12-darsga tegadigan o'zgarish yo'q).
+- **14:16–14:47:** 020 35/35 · 40/40 · 5/5; 021 30/30 · 33/33 · 5/5; 022 25/25 · 21/21 · 4/4; 013 48/48 · 27/27 · 6/6; 014 66/66 · 30/30 · 6/6; 016 43/43 · 39/39 · 6/6 — 12 darsning hamma dars sinovlari yashil. Simulyator raketa 30/30.
+- **14:56 kosmik2 43/44:** B3C «tegmasdan» (urug' 2, bot 'ur') — bot 2 ta urdi (kerak ≥3) → o'yin to'g'ri «Ball: 2. Yana uring!» dedi; sinov botning shu urug'da ≥3 urishiga tayanadi (real vaqt). 22.11 da o'tgan. Rejа: navbatdan keyin yolg'iz 2 marta qayta; ikkalasida yiqilsa — 18-darsni tekshirish.
+- **15:00–15:30:** simulyator xakaton 20/20, klon toza; tasodif, xato — natija qatori filtrga tushmadi (✗ yo'q) → g25b da qayta. Setka Chrome: 12 (35), 17 (35), 18 (35), 20 (30), 21 (25), 22 (22), 23 (20) toza. **15 — mening regressiyam:** `.t3 .hm` javonni 14,6 cqw ga toraytirgan edi → «when any key pressed» javon kartasidan chiqdi (BXO, P8) → javon 15 cqw, dastur 23,5 cqw; qayta: Chrome 33 toza, WebKit «hech narsa oshmadi». **WebKit natijalari g25 jurnaliga tushmagan** (filtr «labirintli» qatorini tashlagan) → g25b da qayta. Matn: 017 259/259, 018 288/288, 023 145/145.
+- **g25b** (`arxiv/seans-2511/skriptlar/g25b.sh`, natija `g25b-natija.txt`, g25 tugagach): WebKit 7 dars, kosmik2 ×2, tasodif/xato, 015 ustma+toliq+solo, matn 021.
+- **Navbat:** ustma (12, 17–23) → karta27 → tegilgan darslar sinovlari (toliq/solo/tovush, setka ×2, matn) → oltin sol 1–14 (kutilgan: solo ▶, 12 B5) → hisobot.
+
+## ▶▶▶▶▶▶▶▶▶▶▶▶▶▶ 25.11 11:20–12:50 — QA fidbekidan OLDIN ma'lum kamchiliklarni yopish (foydalanuvchi: «maqul … barchasiga ruxsat»)
+
+- **Reja (tasdiqlangan):** 1) ▶ belgisi · 2) qa.html · 3) qaror sahifasi · 4) QA fidbeki (B retsepti) · 5) oltin namunalar (18–23 uchun avval STSENARIY — `oltin.mjs` yo'q edi) · 6) to'liq regressiya + QA deploy (buyruq bilan). Oltin — QA tuzatishlaridan keyin (ikki marta yozmaslik uchun).
+- **Zaxira:** `arxiv/zaxira-2026-11-25-qa-fidbek-oldin.tar.gz` (o'zgarishdan oldin; QA sayti = lokal dist bayt-bayt tekshirilgan).
+- **1 ✅ ▶ belgisi (hamma 23 dars, faqat solo):** sabab — `qobiq.js soloTugma` asosiy tugmani `mas ishga` ga tushiradi, ichidagi PLAY svg `fill="#fff"` qoladi → oq fonda oq, tugma chapi bo'sh («Boshlash», «Ishga tushir», «Tekshirish», «Sinab ko‘rish» — ~230 ekran). O'yin to'xtaganda tugma `dataset.asl` dan tiklanadi → kodda almashtirish yetmaydi. Tuzatish: `dvigatel/qobiq.css` — `.hn .mas svg [fill="#fff"]{fill:currentColor}` (+stroke). Boshqa 1394 oq tugmada oq belgi yo'q (grep). Darvoza: `arxiv/seans-2511/skriptlar/supur.mjs` (solo har ekran + o'yin paytida + to'xtagach + ustoz) — eski 9-dars nusxasida 33 topdi, yangi 23 dars — **0**; 9-dars oltin sol — faqat 11 solo surat (14×17 px uchburchak). 23 demo qayta yig'ilgan, `node --check` toza. **1–14 oltin namunalaridagi solo suratlar shu bilan o'zgaradi** (5-qadamda yangilanadi).
+- **2 ✅ qa.html:** «14 ta dars» → «23 ta dars»; 69 havola — hammasi mavjud faylga.
+- **3 ⏳ Ko'rik sahifasi 10-versiya** https://claude.ai/artifact/GxSWECj2WU6nZwQ79Mehxy (manba `arxiv/seans-2511/korik/`): K1 17 B5 «O‘yiningizda:» · K2 18 B1C maslahat («Nusxa boshiga go to qo‘ying, x — random» — javondagi go to x:3 y:4) · K3 20 test shakli · K4 21 karta (27 kombinatsiya bot bilan O'LCHANMAGAN) · K5 23 «mehmon yutdi» · K6 23 Scratch · **K7, K8 — yangi topilmalar** · 16–23 qolgan 71 savol (dars bo'yicha A/B). Javob kutilmoqda.
+- **Yangi topilma K7 — dasturchalar ustma-ust:** `blMasshtab` bo'yi bo'yicha `asos*0.6` dan kichraytirmaydi (eniga `DARS.masshtabMin` 0.5); 23-dars raketa dasturiga 0.489 kerak → Blockly qo'zg'almas maydonda pastki bo'lakni yuqoriga itaradi. Sahifada sinab ko'rildi: bo'yi uchun ham `masshtabMin` → 4 dasturcha sig'adi (tavsiya A). Fayl tegilmagan.
+- **Yangi topilma K8 — yakunda kapsulalar karta ortida:** `ozgQ` (ball/jon/qadam) `.gl.kd2.a-tr` ostida — 12-dars (TASDIQLANGAN, oltin shu holda!) va 23; tuzatish sinovi: `.oyna:has(> .ball-q) > .gl.kd2.a-tr{left:…}`. Fayl tegilmagan.
+- **Tekshiruv `ustma.mjs` TUGADI** (23 dars; Blockly yuqori bloklari kesishuvi + kapsula `elementFromPoint`; natija `arxiv/seans-2511/skriptlar/ustma-natija2.txt`, suratlar o'sha papkada): ustma-ust — 18 (5), 19 (12), 20 (11), 21 (5), 22 (8), 23 (5) — hammasi raketa dasturi `when_start × when_touch`; **15 — boshqa sabab** (P8, solo va ustoz 13-qadam: ikki ustunli `blTartib2` — 2-ustun 1-ustun ustida; sababi hali aniqlanmagan). Kapsula — 12, 18, 20 (qisman), 23. Toza: 1–14, 16, 17. Ko'rik sahifasi 12-versiya shu qamrov bilan.
+- **Yolg'on signal (yozib qo'yildi):** «Siz bugun» ostida kartalar yo'qdek ko'rindi — suratni kirish animatsiyasi tugamasdan olganim; 3 s dan keyin kartalar bor. Surat skriptlari endi 2,5 s kutadi.
+
 ## ▶▶▶▶▶▶▶▶▶▶▶▶▶ 22.11 ~09:30 — QA SAYTIGA 1–23 CHIQARILDI (foydalanuvchi: «A»)
 
 - vite build → dist (qa.html ga 18–23 «ko‘rikda» qatorlari qo‘shildi) + `arxiv/seans-2111/deploy-sozlama` → `vercel deploy --prod` (coddycamp-junior-dars1-hb3j14anp). https://coddycamp-junior-dars1.vercel.app/qa.html — qa.html, demo, demo-002…023: 24/24 bayt-bayt lokal dist bilan mos; .env.local 404. Oltin namunalar (5/13/14 yangilash, 15–23 yozish) hali kutadi — quyidagi blokka qarang. CRM/LMS/commit/push — yo'q.

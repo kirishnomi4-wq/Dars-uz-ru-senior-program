@@ -24,4 +24,6 @@ const kartalar = (arr, cls = '') => `<div class="jv ${cls}">` + arr.map(([l, t, 
 const qahramonlar = () => `<div class="qq"><span class="m1">${hero({ k: 'momiq', mood: 'xursand' })}</span><span class="m2">${robot({ pose: 'quvonadi' })}</span><span class="m3">${hero({ k: 'katak', mood: 'xursand' })}</span></div>`
 
 const fJim = (t) => `<footer class="hn jim"><span class="hint">${t}</span></footer>`
+// 25.11 (QA F-1125-14, Q14-A): bola yakuni — keyin nima qilish aniq (avval faqat «Dars tugadi» — QA: «keyin nimani bosib chiqiladi?»)
+const TUGADI_YOZUV = '✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin'
 

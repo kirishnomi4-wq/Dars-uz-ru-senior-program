@@ -1,0 +1,175 @@
+== BOSHLANDI 01:37
+== SIMULYATOR 01:37
+-- sim tasodif
+125 / 125
+-- sim xato
+76 / 76
+-- sim klon
+NATIJA: toza
+-- sim xakaton
+NATIJA: 20 / 20
+-- sim kosmik2
+NATIJA: 44 / 44 — toza
+-- sim raketa
+NATIJA: 30 / 30 — toza
+-- sim chek17
+NATIJA: 6/6
+-- sim karta27
+NATIJA: 27 kombinatsiya — bot har urug'da yutdi: 27; ba'zida: 0; hech yutmadi: 0
+== MATN 02:07
+-- matn 001-tanishuv
+001-tanishuv: manbadagi gaplar 446, demo.html da topildi 373 (aynan 357, karta shaklida 16)
+TOPILMADI (73):
+-- matn 002-ketma-ketlik
+002-ketma-ketlik: manbadagi gaplar 282, demo-002.html da topildi 281 (aynan 275, karta shaklida 6)
+TOPILMADI (1):
+-- matn 003-koordinata
+003-koordinata: manbadagi gaplar 375, demo-003.html da topildi 359 (aynan 351, karta shaklida 8)
+TOPILMADI (16):
+-- matn 004-hodisalar
+004-hodisalar: manbadagi gaplar 296, demo-004.html da topildi 287 (aynan 280, karta shaklida 7)
+TOPILMADI (9):
+-- matn 005-takrorlash
+005-takrorlash: manbadagi gaplar 378, demo-005.html da topildi 364 (aynan 357, karta shaklida 7)
+TOPILMADI (14):
+-- matn 006-amaliyot
+006-amaliyot: manbadagi gaplar 382, demo-006.html da topildi 370 (aynan 363, karta shaklida 7)
+TOPILMADI (12):
+-- matn 007-kostyum-tovush
+007-kostyum-tovush: manbadagi gaplar 401, demo-007.html da topildi 368 (aynan 360, karta shaklida 8)
+TOPILMADI (33):
+-- matn 008-shart
+008-shart: manbadagi gaplar 386, demo-008.html da topildi 371 (aynan 361, karta shaklida 10)
+TOPILMADI (15):
+-- matn 009-labirint-oyini-1
+009-labirint-oyini-1: manbadagi gaplar 425, demo-009.html da topildi 408 (aynan 400, karta shaklida 8)
+TOPILMADI (17):
+-- matn 010-labirint-oyini-2
+010-labirint-oyini-2: manbadagi gaplar 424, demo-010.html da topildi 384 (aynan 375, karta shaklida 9)
+TOPILMADI (40):
+-- matn 011-ozgaruvchi-ball
+011-ozgaruvchi-ball: manbadagi gaplar 405, demo-011.html da topildi 405 (aynan 391, karta shaklida 14)
+-- matn 012-ozgaruvchi-jon-vaqt
+012-ozgaruvchi-jon-vaqt: manbadagi gaplar 429, demo-012.html da topildi 429 (aynan 419, karta shaklida 10)
+-- matn 013-tasodifiy-son
+013-tasodifiy-son: manbadagi gaplar 422, demo-013.html da topildi 422 (aynan 415, karta shaklida 7)
+-- matn 014-xatoni-topish
+014-xatoni-topish: manbadagi gaplar 467, demo-014.html da topildi 467 (aynan 458, karta shaklida 9)
+-- matn 015-xakaton-1
+015-xakaton-1: manbadagi gaplar 505, demo-015.html da topildi 505 (aynan 493, karta shaklida 12)
+-- matn 016-klonlar
+016-klonlar: manbadagi gaplar 315, demo-016.html da topildi 315 (aynan 297, karta shaklida 18)
+-- matn 017-kosmik-oyin-1
+017-kosmik-oyin-1: manbadagi gaplar 259, demo-017.html da topildi 259 (aynan 240, karta shaklida 19)
+-- matn 018-kosmik-oyin-2
+018-kosmik-oyin-2: manbadagi gaplar 288, demo-018.html da topildi 288 (aynan 271, karta shaklida 17)
+-- matn 019-bloklar-ortidagi-kod
+019-bloklar-ortidagi-kod: manbadagi gaplar 252, demo-019.html da topildi 252 (aynan 233, karta shaklida 19)
+-- matn 020-takrorlash-va-test
+020-takrorlash-va-test: manbadagi gaplar 198, demo-020.html da topildi 198 (aynan 181, karta shaklida 17)
+-- matn 021-shaxsiy-oyin-1
+021-shaxsiy-oyin-1: manbadagi gaplar 209, demo-021.html da topildi 209 (aynan 192, karta shaklida 17)
+-- matn 022-shaxsiy-oyin-2
+022-shaxsiy-oyin-2: manbadagi gaplar 150, demo-022.html da topildi 150 (aynan 134, karta shaklida 16)
+-- matn 023-demo-day-1
+023-demo-day-1: manbadagi gaplar 145, demo-023.html da topildi 145 (aynan 130, karta shaklida 15)
+== SETKA 02:07
+-- setka 001-tanishuv
+ekran: 42 — toza
+[WebKit] labirintli ekran: 0; ichidan oshish tekshirildi: 44 element — qahramon ochiq, hech narsa oshmadi
+-- setka 002-ketma-ketlik
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 154 element — qahramon ochiq, hech narsa oshmadi
+-- setka 003-koordinata
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 59 element — qahramon ochiq, hech narsa oshmadi
+-- setka 004-hodisalar
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 44 element — qahramon ochiq, hech narsa oshmadi
+-- setka 005-takrorlash
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 60 element — qahramon ochiq, hech narsa oshmadi
+-- setka 006-amaliyot
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 121 element — qahramon ochiq, hech narsa oshmadi
+-- setka 007-kostyum-tovush
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 19 element — qahramon ochiq, hech narsa oshmadi
+-- setka 008-shart
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 56 element — qahramon ochiq, hech narsa oshmadi
+-- setka 009-labirint-oyini-1
+ekran: 34 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 32 element — qahramon ochiq, hech narsa oshmadi
+-- setka 010-labirint-oyini-2
+ekran: 33 — toza
+[WebKit] labirintli ekran: 21; ichidan oshish tekshirildi: 10 element — qahramon ochiq, hech narsa oshmadi
+-- setka 011-ozgaruvchi-ball
+ekran: 35 — toza
+[WebKit] labirintli ekran: 18; ichidan oshish tekshirildi: 78 element — qahramon ochiq, hech narsa oshmadi
+-- setka 012-ozgaruvchi-jon-vaqt
+ekran: 35 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 122 element — qahramon ochiq, hech narsa oshmadi
+-- setka 013-tasodifiy-son
+ekran: 35 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 46 element — qahramon ochiq, hech narsa oshmadi
+-- setka 014-xatoni-topish
+ekran: 35 — toza
+[WebKit] labirintli ekran: 24; ichidan oshish tekshirildi: 72 element — qahramon ochiq, hech narsa oshmadi
+-- setka 015-xakaton-1
+ekran: 33 — toza
+[WebKit] labirintli ekran: 13; ichidan oshish tekshirildi: 23 element — qahramon ochiq, hech narsa oshmadi
+-- setka 016-klonlar
+ekran: 35 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 47 element — qahramon ochiq, hech narsa oshmadi
+-- setka 017-kosmik-oyin-1
+ekran: 35 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 35 element — qahramon ochiq, hech narsa oshmadi
+-- setka 018-kosmik-oyin-2
+ekran: 35 — toza
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 49 element — qahramon ochiq, hech narsa oshmadi
+-- setka 019-bloklar-ortidagi-kod
+  P3: «move right» idishidan chiqdi
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 57 element — qahramon ochiq, hech narsa oshmadi
+-- setka 020-takrorlash-va-test
+ekran: 30 — toza
+[WebKit] labirintli ekran: 17; ichidan oshish tekshirildi: 40 element — qahramon ochiq, hech narsa oshmadi
+-- setka 021-shaxsiy-oyin-1
+ekran: 25 — toza
+[WebKit] labirintli ekran: 13; ichidan oshish tekshirildi: 18 element — qahramon ochiq, hech narsa oshmadi
+-- setka 022-shaxsiy-oyin-2
+ekran: 22 — toza
+[WebKit] labirintli ekran: 11; ichidan oshish tekshirildi: 21 element — qahramon ochiq, hech narsa oshmadi
+-- setka 023-demo-day-1
+ekran: 20 — toza
+[WebKit] labirintli ekran: 7; ichidan oshish tekshirildi: 12 element — qahramon ochiq, hech narsa oshmadi
+== OLTIN SOL 1–14 02:11 (farq kutiladi: ▶, C-blok, javon .sigmas, TUGADI_YOZUV, tug-xira — har birini ko'rib, keyin «yoz»)
+-- oltin 001-tanishuv 02:11
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 002-ketma-ketlik 02:16
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 003-koordinata 02:20
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 004-hodisalar 02:23
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 005-takrorlash 02:26
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 006-amaliyot 02:29
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 007-kostyum-tovush 02:32
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 008-shart 02:36
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 009-labirint-oyini-1 02:40
+TargetClosedError2: "route.fetch: Request context disposed.
+Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+-- oltin 010-labirint-oyini-2 02:44
+-- TO'XTATILDI 02:45: oltin 001–009 har birida «route.fetch: Request context disposed» (eshik bosqichida) — tashxis qilinmoqda

@@ -10,7 +10,7 @@
 - **Dars turi:** loyiha (blokli). Yangi blok bitta — `when touching enemy` (11-darsdagi `when touching apple` ning yangi turi). Yangi so'z yo'q: dars uch eski so'zni bitta o'yinda uchrashtiradi — klon (16), o'zgaruvchi (11), shart (8) («Savollar» 2).
 - **Natija (dasturdan):** to'liq ishlaydigan kosmik o'yin. **Bu manbada:** 17-darsdagi o'yinga uchinchi personaj — **Dushman** qo'shiladi: u o'zidan nusxa yasaydi, nusxalar tepadan tushadi (16-dars). O'q dushmanga tegsa — ikkalasi o'chadi va `ball` bittaga oshadi (11-dars). Dushman raketaga tegsa — `jon` bittaga kamayadi; jon 0 bo'lsa — `game over` (12-dars). Hamma dushman tushib bo'lsa va jon qolsa — «Siz yutdingiz!».
 - **Bola nimani tushunadi:** katta o'yin — eski bloklardan yig'iladi. Har personaj o'z ishini qiladi: dushman — tushadi, o'q — uradi va ball beradi, raketa — yuradi va jonini saqlaydi. Klon ko'p dushman beradi, o'zgaruvchi ball va jonni sanaydi, shart o'yinni to'xtatadi. 
-- **Tekshiruv (dasturdan):** chek-list (avto, 17-darsdagidek). 3-bekatda besh band: «Dushmanlar tushadi» · «O‘q urganda ball» · «Tekkanda jon» · «Jon tugasa — o‘yin tugaydi» · «O‘yin yutildi». Beshalasi ✓ — o'yin tayyor. Chek-list LMS natijasiga ham boradi (**KOD**, LMS — modul tugagach, 93-qaror).
+- **Tekshiruv (dasturdan):** chek-list (avto, 17-darsdagidek). 3-bekatda besh band: «Dushmanlar tushadi» · «O‘q tegsa — ball +1» · «Dushman tegsa — jon −1» · «Jon tugasa — o‘yin tugaydi» · «O‘yin yutildi». Beshalasi ✓ — o'yin tayyor. Chek-list LMS natijasiga ham boradi (**KOD**, LMS — modul tugagach, 93-qaror).
 - **Vaqt:** reja 68 daqiqa, zaxira 12–22 daqiqa (dars 80–90 daqiqa). Zaxira — 15-qadamdagi to'liq o'yinga.
 - **Uch bekat:** 1 · Dushman — 2 · Ball — 3 · Jon. Reja tepaligi 6-qadamda; har bekat boshida qaytadi (9-, 13-qadam); yakunda (17-qadam) uchala bekat ✓.
 - **Savol:** darsda bitta — boshidagi huk (2–4-qadam: savol, uch sinov, javob).
@@ -75,7 +75,7 @@ Bu darsda AYTILMAYDI: «forever», «touching» sharti (`if touching`), «o‘ld
 
 **O'yin** (17-darsdagidek): «▶ Boshlash» / «■ To‘xtatish»; sahna ustida «O‘yin: ← → va space». `when ▶ clicked` — hamma personajda (raketada — `set`, dushmanda — nusxalar). Dushman nusxalari bittadan, oralig'i bilan chiqadi (**KOD** 4: dushmanning `when ▶ clicked` dasturchasi asta bajariladi — har blokdan keyin 0,9 soniya). O'yin tugashi: hamma dushman nusxasi o'chdi (urildi, raketaga tegdi yoki yerda o'chdi) va jon 0 emas — «Siz yutdingiz!»; `game over` — «O‘yin tugadi».
 
-**Chek-list** «O‘yiningizda:» (3-bekat, **KOD** 5): «Dushmanlar tushadi» (kamida 3 dushman nusxasi tushdi) · «O‘q urganda ball» (o'q dushmanni urdi va ball oshdi) · «Tekkanda jon» (dushman raketaga tegdi va jon kamaydi) · «Jon tugasa — o‘yin tugaydi» (dasturda `if jon = 0 then` → `game over`) · «O‘yin yutildi».
+**Chek-list** «O‘yiningizda:» (3-bekat, **KOD** 5): «Dushmanlar tushadi» (kamida 3 dushman nusxasi tushdi) · «O‘q tegsa — ball +1» (o'q dushmanni urdi va ball oshdi) · «Dushman tegsa — jon −1» (dushman raketaga tegdi va jon kamaydi) · «Jon tugasa — o‘yin tugaydi» (dasturda `if jon = 0 then` → `game over`) · «O‘yin yutildi».
 
 **Dastur** — 17-darsda saqlangan raketa va o'q dasturi (`K+'per'`); yo'q bo'lsa — tayyor. Dushman dasturi 1-bekatda bo'sh boshlanadi (1-pog'onada tayyor bo'lak). Pog'onadan pog'onaga — bolaning o'z dasturi (17-dars `prog: 'per'`). Har personaj dasturida eng ko'pi 10 ta blok.
 
@@ -112,6 +112,7 @@ Bu darsda AYTILMAYDI: «forever», «touching» sharti (`if touching`), «o‘ld
 | Kamvoy | dushman tegdi, jon o'zgarmadi | «Jon qani?» | «Dushman tegdi. Raketa dasturida when touching enemy ostiga — change jon by -1» |
 | Kamvoy | jon 0 — o'yin davom etyapti | «Jon tugadi-ku!» | «Jon 0 bo‘lsa — o‘yin tugasin: if jon = 0 then → game over» |
 | Kamvoy | dushman yerda qoldi | «Yerda qolib ketdi!» | «Tushib bo‘lgan dushman o‘chsin — delete this clone» (16-dars) |
+| Kamvoy | 8 · 3: hamma nusxa bir ustundan | «Yana o‘sha joy!» | «Hammasi bir ustundan tushdi. Nusxa boshiga go to qo‘ying, x — random» (25.11, K2: tayyor bo'lakda go to yo'q; javondagi go to x: 3 y: 4) |
 | Kamvoy | pog'ona sharti bajarilmadi | «Oz qoldi!» | pog'onaning o'z gapi |
 
 Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-dars): yana o'ynasa bo'ladi.
@@ -286,14 +287,14 @@ Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-d
 - **Bekat:** 2 · Ball
 - **Ekran:** proyektor — sinf doskasi · bola — Blok studiya (o'yin), zinapoya 1 · 2 · 3 · ★
 - **Qadamlar:**
-  1. Proyektorda: yorliq «Mashq», sarlavha «Ball <em>yig‘ing</em>!». Coddy: «O‘q urganda ball oshsin.» Chapda «Uch pog‘onani tugatdi 5 / 14»; o'ngda zinapoya: 1 «Ball» · 2 «Boshidan 0» · 3 «Har dushman — 2 ball» · ★ «Rekord». Panelda: «Yordam so‘radi: 1 ta noutbuk».
+  1. Proyektorda: yorliq «Mashq», sarlavha «Ball <em>yig‘ing</em>!». Coddy: «O‘q tegsa — ball +1 oshsin.» Chapda «Uch pog‘onani tugatdi 5 / 14»; o'ngda zinapoya: 1 «Ball» · 2 «Boshidan 0» · 3 «Har dushman — 2 ball» · ★ «Rekord». Panelda: «Yordam so‘radi: 1 ta noutbuk».
   2. Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»
 - **Tayanch gaplar:**
   1. «Ball qaysi personajda oshadi? Kim dushmanni uradi?»
   2. (oxirida) «To‘xtadik. Qo‘llar klaviaturadan.»
 - **Ustoz satri:** Yordam so‘radi: 1 ta noutbuk
 - **Parta:** Blok studiya; uch personaj; sahnada «ball: 0».
-  - 1 «Ball» — «O‘q urganda ball oshsin».
+  - 1 «Ball» — «O‘q tegsa — ball +1 oshsin».
   - 2 «Boshidan 0» — «Har o‘yin ball 0 dan boshlansin. Ikki marta o‘ynang».
   - 3 «Har dushman — 2 ball» — «Har urilgan dushman 2 ball bersin».
   - ★ «Rekord» — «Bitta o‘yinda 8 ball yig‘ing».
@@ -333,7 +334,7 @@ Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-d
 - **Ekran:** proyektor — Blok studiya, o'yin (ustoz; uch dastur tayyor; personaj «Raketa») · bola «Ustoz ekraniga qarang» («Ustoz jonni ko‘rsatyapti — kuzating»)
 - **Qadamlar:**
   1. Ustoz raketa dasturiga: `when ▶ clicked` ostiga `set jon to 3`; `when touching enemy` → `change jon by -1` → `if jon = 0 then` → `game over`.
-  2. O'ynaydi va ataylab dushman ostida turadi — jon 2, 1, 0 — «O‘yin tugadi». Sahna yonida ro'yxat «O‘yiningizda:» — «Tekkanda jon» va «Jon tugasa — o‘yin tugaydi» ✓.
+  2. O'ynaydi va ataylab dushman ostida turadi — jon 2, 1, 0 — «O‘yin tugadi». Sahna yonida ro'yxat «O‘yiningizda:» — «Dushman tegsa — jon −1» va «Jon tugasa — o‘yin tugaydi» ✓.
 - **Tayanch gaplar:**
   1. «Raketa dasturida: dushman tegdi — jon −1.»
   2. «Jon 0 bo‘lsa — o‘yin tugaydi. 12-darsdagi shart.»
@@ -387,7 +388,7 @@ Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-d
 - **Tayanch gaplar:**
   1. «Uchala bekatdan o‘tdik: dushman, ball, jon. O‘yiningiz tayyor!»
   2. «Keyingi darsda o‘yiningizning kodini ko‘ramiz — bloklar ortida nima bor.»
-- **Parta:** yorliq «Sizning natijangiz», sarlavha «O‘yin tayyor!»; «Siz bugun»: «ta dushman urdi» · «ta o‘yin yutdi» · «pog‘ona bajardi»; ro'yxat «O‘yiningizda:»; «O‘yiningiz saqlandi.» (faqat saqlansa); «Keyingi darsda o‘yiningizning kodini ko‘ramiz!».
+- **Parta:** yorliq «Sizning natijangiz», sarlavha «O‘yin tayyor!»; «Siz bugun»: «ta dushman urildi» · «ta o‘yin yutdi» · «pog‘ona bajardi»; ro'yxat «O‘yiningizda:»; «O‘yiningiz saqlandi.» (faqat saqlansa); «Keyingi darsda o‘yiningizning kodini ko‘ramiz!».
 - **Bola qiladi:** o'z natijasini ko'radi.
 - **Tekshiruv:** dars tugadi deb belgilanadi.
 
@@ -397,7 +398,7 @@ Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-d
 - **Bekat:** uchalasi ✓
 - **Ekran:** proyektor — sinf natijasi · bola — o'z natijasi
 - **Qadamlar:**
-  1. Proyektorda: yorliq «Sinf natijasi», sarlavha «Sinfimiz <em>bugun</em>». Coddy: «Hammangiz zo‘r ishladingiz!» Jami (ismsiz): «ta dushman urdi» · «ta o‘yin yutdi» · «pog‘ona bajardi». Panelda «Darsni yakunlash».
+  1. Proyektorda: yorliq «Sinf natijasi», sarlavha «Sinfimiz <em>bugun</em>». Coddy: «Hammangiz zo‘r ishladingiz!» Jami (ismsiz): «ta dushman urildi» · «ta o‘yin yutdi» · «pog‘ona bajardi». Panelda «Darsni yakunlash».
   2. «Darsni yakunlash» — «Dars tugadi!», ostida «Ko‘rishguncha — keyingi darsda kod bilan!».
 - **Tayanch gaplar:**
   1. «Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o'qiydi)
@@ -440,6 +441,8 @@ Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-d
 
 ## Savollar (tavsiya — A)
 
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.** 8 · 3 maslahati yangilandi (K2).
+
 1. **Dushman — A: uchinchi personaj (o'z kartasi va dasturi), 16-darsdagi dastur.** **B** — dushman tayyor (bola dasturlamaydi): **−** «klonni birlashtiradi» yo'qoladi.
 2. **Yangi so'z — A: yo'q; 5-qadam — «Eslaymiz» (klon, o'zgaruvchi, shart).** **B** — yangi so'z «o‘yin qoidasi»: **−** 9-darsdagi «qoida» bilan sinonim.
 3. **Tegish — A: dvigatel (o'q va dushman bir katakda — ikkalasi o'chadi; dushman raketaga — dushman o'chadi) + `when touching enemy` hodisasi.** **B** — `if touching` sharti va `forever`: **−** ikki yangi blok, 19-darsgacha kerak emas.
@@ -447,7 +450,7 @@ Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-d
 5. **Jon — A: raketa dasturida, 12-darsdagi `if jon = 0 then` → `game over`.**
 6. **Dushmanlar oralig'i — A: dvigatel sekinlashtiradi** (dushmanning ▶ dasturchasi 0,9 soniyalik qadam bilan) — yangi blok (`wait`) kerak emas. **B** — `wait 1 seconds` bloki: **−** yangi blok.
 7. **Chek-list — A: besh band** (17-darsdagi to'rt band — ichida bor).
-8. **Natija sonlari — A: «ta dushman urdi» · «ta o‘yin yutdi» · «pog‘ona bajardi».**
+8. **Natija sonlari — A: «ta dushman urildi» · «ta o‘yin yutdi» · «pog‘ona bajardi».**
 9. **17-dars dasturi — A: saqlangan bo'lsa — o'shani ochadi, bo'lmasa tayyor.**
 10. **Manba v1 tasdig'i.**
 
@@ -457,7 +460,7 @@ Muammocha raketani yopmaydi (91-qaror). «O‘yin tugadi» — muammo emas (12-d
 2. **«Jon qani?» o'yin oxirida ham qoladi** (3-bekat, jon pog'onalari): tegdi, jon o'zgarmadi — oxirida ham shu gap (ball uchun «Ball qani?» kabi). Oldin oxirida «Ataylab dushman ostida turing» chiqardi — bola tekkan bo'lsa ham.
 3. **8 · 3 «Har xil ustun» — kamida 2 xil ustun** (3 emas; 16-darsdagi «xil» bilan bir xil). Besh nusxa tasodifan ikki ustunga tushsa, oldin «5 ta dushman tushsin» chiqardi (beshtasi tushgan bo'lsa ham). Endi: beshtadan kam — «5 ta dushman tushsin»; hammasi bir ustunda — «Hammasi bir ustundan tushdi…».
 4. **8 · 3 tayyor dastur** — bolaning saqlangan dushman dasturi emas, jadvaldagi tayyor bo'lak (`go to` siz; `progYoq`, 2- va 3-bekat 1-pog'onasidagidek). Oldin bolaning 2-pog'onadagi dasturida `go to random` bor edi — pog'ona ▶ bilan o'zi yechilardi.
-5. **Ochiq savol:** 8 · 3 da tayyor bo'lakda `go to` yo'q, lekin oxirgi gap «Hammasi bir ustundan tushdi. Son o‘rniga random qo‘ying» (16-darsdan) — almashtiriladigan son yo'q. Tavsiya: «Hammasi bir ustundan tushdi. Nusxa boshiga go to x: (random 0 to 6) y: 4 qo‘ying».
+5. **Qabul (25.11, K2-A): «Hammasi bir ustundan tushdi. Nusxa boshiga go to qo‘ying, x — random».** Oldingi ochiq savol: 8 · 3 da tayyor bo'lakda `go to` yo'q, lekin oxirgi gap «Hammasi bir ustundan tushdi. Son o‘rniga random qo‘ying» (16-darsdan) — almashtiriladigan son yo'q. Tavsiya: «Hammasi bir ustundan tushdi. Nusxa boshiga go to x: (random 0 to 6) y: 4 qo‘ying».
 
 ## Tekshirilmagan joylar
 

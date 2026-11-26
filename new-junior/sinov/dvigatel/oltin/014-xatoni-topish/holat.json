@@ -70,8 +70,8 @@
    "u:move upmove right",
    "r:move right"
   ],
-  "html": "408f654a44d8",
-  "uzun": 39116
+  "html": "ec8debf0ce5b",
+  "uzun": 39111
  },
  "u-11-P5G": {
   "id": "P5G",
@@ -101,8 +101,8 @@
    "y:go to x:y:random2to70",
    "m:random2to7"
   ],
-  "html": "ad289c16189c",
-  "uzun": 28572
+  "html": "6cfb2168ac86",
+  "uzun": 28571
  },
  "u-15-P5B": {
   "id": "P5B",
@@ -115,8 +115,8 @@
   "id": "P11",
   "matn": "KO‘RSATISH\nTopishmog‘ingizni o‘qib bering\nSiz o‘qiysiz — men xatoni izlayman.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "581c2c51679c",
-  "uzun": 39943
+  "html": "ea9489bae760",
+  "uzun": 39938
  },
  "u-17-P12": {
   "id": "P12",
@@ -210,8 +210,8 @@
    "u:move upmove right",
    "r:move right"
   ],
-  "html": "dc3156ca2d74",
-  "uzun": 44982
+  "html": "7fcda9a5ab75",
+  "uzun": 44977
  },
  "u-x-P7-qadam1": {
   "id": "P7",
@@ -221,8 +221,8 @@
    "u:move upmove right",
    "r:move right"
   ],
-  "html": "113d40b69b09",
-  "uzun": 44671
+  "html": "9bdb08db30d1",
+  "uzun": 44666
  },
  "u-x-P7-tayyor": {
   "id": "P7",
@@ -232,8 +232,8 @@
    "r:move rightmove up",
    "u:move up"
   ],
-  "html": "67cf5ed9809a",
-  "uzun": 40380
+  "html": "bea415717f52",
+  "uzun": 40375
  },
  "u-x-P8-1": {
   "id": "P8",
@@ -242,8 +242,8 @@
    "y:go to x:y:random2to70",
    "m:random2to7"
   ],
-  "html": "a258aee1ed2f",
-  "uzun": 29216
+  "html": "776a7fb9aec0",
+  "uzun": 29215
  },
  "u-x-P8-chet": {
   "id": "P8",
@@ -252,8 +252,8 @@
    "y:go to x:y:random2to70",
    "m:random2to7"
   ],
-  "html": "483e2eb64985",
-  "uzun": 35948
+  "html": "48684d9444d5",
+  "uzun": 35947
  },
  "u-x-P8-tayyor": {
   "id": "P8",
@@ -262,8 +262,8 @@
    "y:go to x:y:random2to60",
    "m:random2to6"
   ],
-  "html": "e4719a0fd543",
-  "uzun": 32400
+  "html": "959749723248",
+  "uzun": 32399
  },
  "u-x-yakunlandi": {
   "id": "P14",
@@ -344,8 +344,8 @@
    "p:repeat2move up",
    "u:move up"
   ],
-  "html": "3240ffa44fba",
-  "uzun": 25530
+  "html": "dc97324d4cb1",
+  "uzun": 25525
  },
  "bq-08-1-B1B": {
   "id": "B1B",
@@ -354,8 +354,8 @@
    "p:repeat5move down",
    "d:move down"
   ],
-  "html": "94943f50c009",
-  "uzun": 26095
+  "html": "7f21c99b7257",
+  "uzun": 26090
  },
  "bq-08-2-B1C": {
   "id": "B1C",
@@ -365,8 +365,8 @@
    "p:repeat5move left",
    "l:move left"
   ],
-  "html": "3ada16c1f03b",
-  "uzun": 26661
+  "html": "185c8084f26f",
+  "uzun": 26656
  },
  "bq-08-3-B1Y": {
   "id": "B1Y",
@@ -377,8 +377,8 @@
    "p:repeat3move up",
    "u:move up"
   ],
-  "html": "a46f210254eb",
-  "uzun": 25542
+  "html": "b0863d4715fa",
+  "uzun": 25537
  },
  "bq-08-4-BK": {
   "id": "BK",
@@ -411,8 +411,8 @@
    "p:repeat3move right",
    "r:move right"
   ],
-  "html": "14953826e405",
-  "uzun": 24785
+  "html": "02f5d587a29f",
+  "uzun": 24780
  },
  "bq-11-1-B2B": {
   "id": "B2B",
@@ -424,8 +424,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "1833af0e2df5",
-  "uzun": 24792
+  "html": "3e31f6068037",
+  "uzun": 24787
  },
  "bq-11-2-B2C": {
   "id": "B2C",
@@ -438,8 +438,8 @@
    "p:repeat2move right",
    "r:move right"
   ],
-  "html": "32b23229a870",
-  "uzun": 24796
+  "html": "c13383620ffc",
+  "uzun": 24791
  },
  "bq-11-3-B2Y": {
   "id": "B2Y",
@@ -454,8 +454,8 @@
    "p:repeat3move up",
    "u:move up"
   ],
-  "html": "433f91d77952",
-  "uzun": 24857
+  "html": "c8c98d9821d0",
+  "uzun": 24881
  },
  "bq-11-4-BK": {
   "id": "BK",
@@ -495,8 +495,8 @@
    "a:if path↓thenmove up",
    "u:move up"
   ],
-  "html": "46761e7d6a74",
-  "uzun": 44140
+  "html": "f4cfb3647bf7",
+  "uzun": 44139
  },
  "bq-15-1-B3B": {
   "id": "B3B",
@@ -511,8 +511,8 @@
    "k:when↑key pressedmove down",
    "d:move down"
   ],
-  "html": "f82ee472b600",
-  "uzun": 24230
+  "html": "225288cf167e",
+  "uzun": 24258
  },
  "bq-15-2-B3C": {
   "id": "B3C",
@@ -521,15 +521,15 @@
    "y:go to x:y:random1to52",
    "m:random1to5"
   ],
-  "html": "ada6245c8f34",
-  "uzun": 21331
+  "html": "92c0e821cc94",
+  "uzun": 21330
  },
  "bq-15-3-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nTopishmoq\nAvval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval ishlaydigan dastur tuzing\nBitta qadam\nIshga tushir",
   "bloklar": [],
-  "html": "ee81e6b1d603",
-  "uzun": 25577
+  "html": "f89d4c8ef8f6",
+  "uzun": 25572
  },
  "bq-15-4-BK": {
   "id": "BK",
@@ -540,17 +540,17 @@
  },
  "bq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "9f10e9863269",
-  "uzun": 20128
+  "html": "c2ab7c7f1078",
+  "uzun": 20179
  },
  "bq-18-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "9f10e9863269",
-  "uzun": 20128
+  "html": "c2ab7c7f1078",
+  "uzun": 20179
  },
  "bx-B1A-bosh": {
   "id": "B1A",
@@ -561,8 +561,8 @@
    "p:repeat2move up",
    "u:move up"
   ],
-  "html": "3240ffa44fba",
-  "uzun": 25530
+  "html": "dc97324d4cb1",
+  "uzun": 25525
  },
  "bx-B1A-chet": {
   "id": "B1A",
@@ -573,8 +573,8 @@
    "p:repeat2move up",
    "u:move up"
   ],
-  "html": "b54c0d342b77",
-  "uzun": 30844
+  "html": "f6ee6df07247",
+  "uzun": 30839
  },
  "bx-B1A-yetdi": {
   "id": "B1A",
@@ -585,8 +585,8 @@
    "p:repeat2move up",
    "u:move up"
   ],
-  "html": "f60007c84b1c",
-  "uzun": 26490
+  "html": "3fab4a9fa21e",
+  "uzun": 26485
  },
  "bx-B1B-qadam3": {
   "id": "B1B",
@@ -595,8 +595,8 @@
    "p:repeat5move down",
    "d:move down"
   ],
-  "html": "63a31851866f",
-  "uzun": 26121
+  "html": "4efe6af28826",
+  "uzun": 26116
  },
  "bx-B1B-chet": {
   "id": "B1B",
@@ -605,8 +605,8 @@
    "p:repeat5move down",
    "d:move down"
   ],
-  "html": "0334f7473544",
-  "uzun": 31630
+  "html": "5203eef8f6b0",
+  "uzun": 31625
  },
  "bx-B1C-olma": {
   "id": "B1C",
@@ -616,8 +616,8 @@
    "p:repeat5move left",
    "l:move left"
   ],
-  "html": "881c8279a287",
-  "uzun": 32360
+  "html": "880c2d162de1",
+  "uzun": 32355
  },
  "bx-B2A-chiqdi": {
   "id": "B2A",
@@ -629,8 +629,8 @@
    "p:repeat3move right",
    "r:move right"
   ],
-  "html": "6c093d0089a0",
-  "uzun": 30322
+  "html": "9166032d68d2",
+  "uzun": 30317
  },
  "bx-B2A-qadam3": {
   "id": "B2A",
@@ -642,8 +642,8 @@
    "p:repeat3move right",
    "r:move right"
   ],
-  "html": "f81c80fcdd28",
-  "uzun": 30142
+  "html": "8cfde1e41bf5",
+  "uzun": 30137
  },
  "bx-B2C-qadam5": {
   "id": "B2C",
@@ -656,8 +656,8 @@
    "p:repeat2move right",
    "r:move right"
   ],
-  "html": "e37454ec438d",
-  "uzun": 30281
+  "html": "161613d46c1c",
+  "uzun": 30276
  },
  "bx-B3A-2lab": {
   "id": "B3A",
@@ -669,8 +669,8 @@
    "a:if path↓thenmove up",
    "u:move up"
   ],
-  "html": "0f1b5b71dd80",
-  "uzun": 49799
+  "html": "2af971ab243c",
+  "uzun": 49798
  },
  "bx-B3A-yetdi": {
   "id": "B3A",
@@ -682,8 +682,8 @@
    "a:if path↑thenmove up",
    "u:move up"
   ],
-  "html": "7f4233fd3cb7",
-  "uzun": 45450
+  "html": "e247bedbef19",
+  "uzun": 45449
  },
  "bx-B3B-boshla": {
   "id": "B3B",
@@ -698,8 +698,8 @@
    "k:when↑key pressedmove down",
    "d:move down"
   ],
-  "html": "3efeaf3fa3a4",
-  "uzun": 24232
+  "html": "05a92ebad0d3",
+  "uzun": 23984
  },
  "bx-B3B-past": {
   "id": "B3B",
@@ -714,8 +714,8 @@
    "k:when↑key pressedmove down",
    "d:move down"
   ],
-  "html": "b47b9c1300d0",
-  "uzun": 29690
+  "html": "1eecc9f0f9c2",
+  "uzun": 29442
  },
  "bx-B3C-1": {
   "id": "B3C",
@@ -724,8 +724,8 @@
    "y:go to x:y:random1to52",
    "m:random1to5"
   ],
-  "html": "584c26ba1167",
-  "uzun": 21656
+  "html": "7497195fb9fd",
+  "uzun": 21655
  },
  "bx-B3C-bosh": {
   "id": "B3C",
@@ -734,8 +734,8 @@
    "y:go to x:y:random1to52",
    "m:random1to5"
   ],
-  "html": "5d6967b2c43b",
-  "uzun": 28414
+  "html": "92cd52cd3327",
+  "uzun": 28413
  },
  "bx-B3Y-ishlayapti": {
   "id": "B3Y",
@@ -746,8 +746,8 @@
    "p:repeat4move right",
    "r:move right"
   ],
-  "html": "a42b2124a68a",
-  "uzun": 25736
+  "html": "c6c2983704b5",
+  "uzun": 25731
  },
  "bx-B3Y-kop": {
   "id": "B3Y",
@@ -758,8 +758,8 @@
    "p:repeat5move right",
    "r:move right"
   ],
-  "html": "ddfbd5d972df",
-  "uzun": 31239
+  "html": "16fae1cc4ddb",
+  "uzun": 31234
  },
  "bx-B3Y-tayyor": {
   "id": "B3Y",
@@ -770,15 +770,15 @@
    "p:repeat3move right",
    "r:move right"
   ],
-  "html": "25b644ade776",
-  "uzun": 26468
+  "html": "f9ae20f3f3ed",
+  "uzun": 26463
  },
  "bx-B5-natija": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n2\nta xato tuzatdi\n11\nmarta «Bitta qadam» bosdi\n3\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n2\nta xato tuzatdi\n11\nmarta «Bitta qadam» bosdi\n3\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "38172cb9734f",
-  "uzun": 20129
+  "html": "6eebf3c6fe37",
+  "uzun": 20180
  },
  "bx-P2N-tanladi": {
   "id": "P2N",
@@ -866,8 +866,8 @@
    "p:repeat2move up",
    "u:move up"
   ],
-  "html": "73f7c78cd8fe",
-  "uzun": 25577
+  "html": "17569f4dc758",
+  "uzun": 25572
  },
  "sq-08-1-B1B": {
   "id": "B1B",
@@ -876,8 +876,8 @@
    "p:repeat5move down",
    "d:move down"
   ],
-  "html": "2736b97d2cab",
-  "uzun": 26142
+  "html": "afa287e5b2ba",
+  "uzun": 26137
  },
  "sq-08-2-B1C": {
   "id": "B1C",
@@ -887,8 +887,8 @@
    "p:repeat5move left",
    "l:move left"
   ],
-  "html": "9b5540e6c7cd",
-  "uzun": 26708
+  "html": "1c775f83bfda",
+  "uzun": 26703
  },
  "sq-08-3-B1Y": {
   "id": "B1Y",
@@ -899,8 +899,8 @@
    "p:repeat3move up",
    "u:move up"
   ],
-  "html": "a449319049dd",
-  "uzun": 25589
+  "html": "70dbd929f0c2",
+  "uzun": 25584
  },
  "sq-09-0-P4B": {
   "id": "P4B",
@@ -917,8 +917,8 @@
    "u:move upmove right",
    "r:move right"
   ],
-  "html": "4925a9b3193d",
-  "uzun": 37821
+  "html": "6838e4e5b0b8",
+  "uzun": 37816
  },
  "sq-11-0-B2A": {
   "id": "B2A",
@@ -930,8 +930,8 @@
    "p:repeat3move right",
    "r:move right"
   ],
-  "html": "3b9b591eb8bd",
-  "uzun": 24832
+  "html": "985d3947e8cd",
+  "uzun": 24827
  },
  "sq-11-1-B2B": {
   "id": "B2B",
@@ -943,8 +943,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "0241da441969",
-  "uzun": 24839
+  "html": "1a7746263d51",
+  "uzun": 24834
  },
  "sq-11-2-B2C": {
   "id": "B2C",
@@ -957,8 +957,8 @@
    "p:repeat2move right",
    "r:move right"
   ],
-  "html": "fa5344c33f8d",
-  "uzun": 24843
+  "html": "56a263cd9dcd",
+  "uzun": 24838
  },
  "sq-11-3-B2Y": {
   "id": "B2Y",
@@ -973,8 +973,8 @@
    "p:repeat3move up",
    "u:move up"
   ],
-  "html": "d2db20c8890b",
-  "uzun": 24904
+  "html": "829194ab40c0",
+  "uzun": 24928
  },
  "sq-12-0-P9": {
   "id": "P9",
@@ -997,8 +997,8 @@
    "y:go to x:y:random2to70",
    "m:random2to7"
   ],
-  "html": "851390f373e4",
-  "uzun": 27299
+  "html": "a7e8c4789f60",
+  "uzun": 27298
  },
  "sq-15-0-B3A": {
   "id": "B3A",
@@ -1010,8 +1010,8 @@
    "a:if path↓thenmove up",
    "u:move up"
   ],
-  "html": "a90f628194e6",
-  "uzun": 44187
+  "html": "70c5b6d60efd",
+  "uzun": 44186
  },
  "sq-15-1-B3B": {
   "id": "B3B",
@@ -1026,8 +1026,8 @@
    "k:when↑key pressedmove down",
    "d:move down"
   ],
-  "html": "974e037464f8",
-  "uzun": 24277
+  "html": "de2ecdabc19f",
+  "uzun": 24305
  },
  "sq-15-2-B3C": {
   "id": "B3C",
@@ -1036,22 +1036,22 @@
    "y:go to x:y:random1to52",
    "m:random1to5"
   ],
-  "html": "21264c85124a",
-  "uzun": 21378
+  "html": "65e26c2cff39",
+  "uzun": 21377
  },
  "sq-15-3-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nTopishmoq\nAvval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nAvval ishlaydigan dastur tuzing\nBitta qadam\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "a8fa4c983cc2",
-  "uzun": 25624
+  "html": "5a89ee7da42a",
+  "uzun": 25619
  },
  "sq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz xatolarni topdingiz!\n\nBulut\nXatolarni qadam-baqadam topib tuzatdingiz.\n\nSiz bugun\n0\nta xato tuzatdi\n0\nmarta «Bitta qadam» bosdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda xakatonda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "9f10e9863269",
-  "uzun": 20128
+  "html": "c2ab7c7f1078",
+  "uzun": 20179
  },
  "sx-P2S-C": {
   "id": "P2S",
@@ -1068,8 +1068,8 @@
    "u:move upmove right",
    "r:move right"
   ],
-  "html": "67fb8574b4f5",
-  "uzun": 43350
+  "html": "2d9699cbf2b1",
+  "uzun": 43345
  },
  "sx-P8-tayyor": {
   "id": "P8",
@@ -1078,8 +1078,8 @@
    "y:go to x:y:random2to70",
    "m:random2to7"
   ],
-  "html": "851390f373e4",
-  "uzun": 27299
+  "html": "a7e8c4789f60",
+  "uzun": 27298
  },
  "y-01": {
   "id": "P1",
@@ -1152,8 +1152,8 @@
    "u:move upmove right",
    "r:move right"
   ],
-  "html": "049c0f3795f1",
-  "uzun": 91869
+  "html": "759efea3fd8b",
+  "uzun": 91864
  },
  "y-11": {
   "id": "P5G",
@@ -1183,8 +1183,8 @@
    "y:go to x:y:random2to70",
    "m:random2to7"
   ],
-  "html": "d5f5c40a194e",
-  "uzun": 81325
+  "html": "5b085d1bb9f3",
+  "uzun": 81324
  },
  "y-15": {
   "id": "P5B",
@@ -1197,8 +1197,8 @@
   "id": "P11",
   "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nTopishmog‘ingizni o‘qib bering\nSiz o‘qiysiz — men xatoni izlayman.\nHarakat\nTakrorlash\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nBitta qadam\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: xatoni qanday topamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: qadam-baqadam yuramiz\n5 / 18 · Eslaymiz: muammochalar\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: o‘zingiz topasiz\n8 / 18 · To‘xtagan joy\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: bitta qadam\n11 / 18 · Bitta qadam\n12 / 18 · Xulosa: xato qanday topiladi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: ko‘p marta sinaymiz\n15 / 18 · Yashirin xato\n16 / 18 · Topishmog‘ingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "2155d5224699",
-  "uzun": 92696
+  "html": "60d9c4e22c64",
+  "uzun": 92691
  },
  "y-17": {
   "id": "P12",

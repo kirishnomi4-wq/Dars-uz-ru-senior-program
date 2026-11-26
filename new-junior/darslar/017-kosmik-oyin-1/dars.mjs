@@ -84,8 +84,8 @@ const DARS = {
     P11: { tur: 'yol', chegara: 10, bosh: kb({ nishon: [[1, 4], [3, 3], [5, 4]], kerak: 'nishon', chek: true }, { ...PR, tanla: 'oq' }, { perProg: { raketa: RPR } }) },
     B5: { ish: 'natija' },
   },
-  // natija: ta o‘q otdi — 'O' (yutilgan o'yinlardagi o'q nusxalari); ta nishon urdi — 'U'; pog‘ona bajardi — 12 pog'ona
-  natija: [{ k: 'ta o‘q otdi', blok: 'O' }, { k: 'ta nishon urdi', blok: 'U' }, { k: 'pog‘ona bajardi', ekran: ['B1A', 'B1B', 'B1C', 'B1Y', 'B2A', 'B2B', 'B2C', 'B2Y', 'B3A', 'B3B', 'B3C', 'B3Y'] }],
+  // natija: ta o‘q otdi — 'O' (yutilgan o'yinlardagi o'q nusxalari); ta nishon urildi — 'U'; pog‘ona bajardi — 12 pog'ona
+  natija: [{ k: 'ta o‘q otdi', blok: 'O' }, { k: 'ta nishon urildi', blok: 'U' }, { k: 'pog‘ona bajardi', ekran: ['B1A', 'B1B', 'B1C', 'B1Y', 'B2A', 'B2B', 'B2C', 'B2Y', 'B3A', 'B3B', 'B3C', 'B3Y'] }],
   gapStandart: 'Salom!',
 
   lms: {

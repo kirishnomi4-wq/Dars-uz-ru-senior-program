@@ -258,7 +258,7 @@ Maslahat — 4-qadamda bor; 7-qadamda yo'q (mehmon bilan o'ynash — sinov emas,
 ## Darsdan oldin (ustoz uchun)
 
 - **Bugungi asosiy fikr:** bola o'z ishini ko'rsatadi, mehmon o'ynaydi. Ota-ona bolaning mehnatini ko'radi.
-- **Mehmonlar bilan:** noutbuklar tayyor, o'yinlar saqlangan bo'lishi kerak (21–22-dars). Mehmon yutmasa — bola «yana urining» deydi. Ism proyektorga chiqmaydi.
+- **Mehmonlar bilan:** noutbuklar tayyor, o'yinlar saqlangan bo'lishi kerak (21–22-dars). Mehmon yutmasa — bola «yana urining» deydi. «Mehmon» pog‘onalarida o‘yinni faqat mehmon o‘ynaydi — bola aytib beradi (natijadagi «ta mehmon yutdi» shu o‘yinlar; 25.11, K5). Ism proyektorga chiqmaydi.
 - **Uy yo'riqnomasi:** Scratch — bepul sayt (scratch.mit.edu); bolalar ota-ona ruxsati bilan kiradi. Blok nomlari Scratch'da deyarli bir xil, lekin o'zgaruvchi nomi «score» bo'lishi mumkin.
 - Himoya: har bolani tinglang — nechta dushman, qanday yutiladi, eng qiyin joyi.
 
@@ -272,6 +272,8 @@ Maslahat — 4-qadamda bor; 7-qadamda yo'q (mehmon bilan o'ynash — sinov emas,
 4. **Sinov** `sinov/dvigatel/shaxsiy.mjs` (21–22-dars bilan umumiy).
 
 ## Savollar (tavsiya — A)
+
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.** «ta mehmon yutdi» qoladi, ustoz varag‘ida eslatma (K5); Scratch yo‘riqnomasi shunday (K6).
 
 1. **Yangi so'z — A: yo'q.**
 2. **Mehmon — A: ota-ona o'ynaydi, bola aytib beradi** (dvigatel «mehmon» ni ajratmaydi — o'yin tugashi sanaladi). **B** — mehmon ismi kiritiladi: **−** shaxsiy ma'lumot, kerak emas.

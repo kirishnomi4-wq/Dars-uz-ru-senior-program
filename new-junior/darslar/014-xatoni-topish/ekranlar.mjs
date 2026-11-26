@@ -104,5 +104,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '15-qadam. Topishmoq: start (0, 0), olma (2, 2), yulduz (4, 2); dastur bo‘sh, 12 ta blok; aynan bitta xato — dvigatel tekshiradi (tahrir.js).', ...bol('Mashq · ★ qo‘shimcha', '<em>Topishmoq</em>', 'Avval ishlaydigan dastur tuzing. Keyin bitta xato qo‘ying.', 'B3Y', 'Avval ishlaydigan dastur tuzing', maydon(yolM('B3Y'), qahK()), []) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz xatolarni <em>topdingiz</em>!', '')}${qg('Xatolarni qadam-baqadam topib tuzatdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK())}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda xakatonda ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

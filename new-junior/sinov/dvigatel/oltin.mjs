@@ -24,7 +24,9 @@ if (!DARSLAR.length) { console.error('namunasi bor dars yo\'q'); process.exit(2)
 for (const d of DARSLAR) if (!existsSync(ILDIZ + '/darslar/' + d + '/oltin.mjs')) { console.error(d + ': darslar/' + d + '/oltin.mjs yo\'q'); process.exit(2) }
 const SHRIFT = ILDIZ + '/sinov/dvigatel/shrift-kesh'
 mkdirSync(SHRIFT, { recursive: true })
-let PAPKA = '', U = '', LMS = null, PROFIL = {} // har dars boshida o'rnatiladi
+let PAPKA = '', U = '', LMS = null, PROFIL = {}, URUG = 0 // har dars boshida o'rnatiladi
+// 25.11: URUG — dars oltin.mjs da «export const URUG = <son>» bo'lsa, har sahifada Math.random qotiriladi (18–23-dars: dushman o'rni,
+// 19-dars kod nishoni tasodifiy). Bo'lmasa (1–17-dars) hech narsa o'zgarmaydi.
 
 const MUZLAT = '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'
 let holat = {}, htmlArxiv = {}, xato = [] // har dars boshida yangilanadi
@@ -46,12 +48,18 @@ async function sahifa(nom, url, { w = 1440, h = 810, profil } = {}) {
   })
   // Google shriftlari — mahalliy keshdan (19.11): har kontekst ularni internetdan qayta yuklardi va bir yurishda butun kontekst
   // (solo, LMS) harflari boshqacha chizilgan edi (57 holat, 215/255 gacha). Birinchi so'rovda yuklab olinadi, keyin har safar o'sha baytlar.
+  // 26.11: sahifa yopilgandan keyin tugagan so'rov («Request context disposed») butun yurishni yiqitardi — varaqning to'liq surati
+  // Q02 qoidasi tufayli belgilar shriftini so'radi va kontekst o'sha zahoti yopildi (001–009 oltin shu bilan to'xtadi). Yopilgan sahifaning
+  // shrifti endi hech narsaga ta'sir qilmaydi — xato yutiladi; ochiq sahifada shrift yuklanmasa ol() «shrift yuklanmadi» deb yozadi.
   await ctx.route(/^https:\/\/fonts\.(googleapis|gstatic)\.com\//, async (route) => {
-    const url = route.request().url(), f = SHRIFT + '/' + createHash('sha1').update(url).digest('hex').slice(0, 16)
-    if (!existsSync(f)) { const r = await route.fetch(); if (!r.ok()) return route.fulfill({ response: r }); writeFileSync(f, await r.body()); writeFileSync(f + '.tur', r.headers()['content-type'] || '') }
-    const tur = readFileSync(f + '.tur', 'utf8')
-    return route.fulfill({ status: 200, body: readFileSync(f), headers: { 'content-type': tur, 'access-control-allow-origin': '*', 'cache-control': 'max-age=31536000' } })
+    try {
+      const url = route.request().url(), f = SHRIFT + '/' + createHash('sha1').update(url).digest('hex').slice(0, 16)
+      if (!existsSync(f)) { const r = await route.fetch(); if (!r.ok()) return await route.fulfill({ response: r }); writeFileSync(f, await r.body()); writeFileSync(f + '.tur', r.headers()['content-type'] || '') }
+      const tur = readFileSync(f + '.tur', 'utf8')
+      return await route.fulfill({ status: 200, body: readFileSync(f), headers: { 'content-type': tur, 'access-control-allow-origin': '*', 'cache-control': 'max-age=31536000' } })
+    } catch (e) { if (!/disposed|closed/i.test(e.message)) throw e }
   })
+  if (URUG) await ctx.addInitScript((sd) => { let u = sd * 7919; Math.random = () => { u = (u * 1103515245 + 12345) % 2147483648; return u / 2147483648 } }, URUG)
   const p = await ctx.newPage()
   p.on('pageerror', (e) => xato.push(nom + ': ' + e.message))
   if (profil) {
@@ -74,6 +82,9 @@ async function ol(p, nom, { toliq = false } = {}) {
   if (shrift.length) xato.push(nom + ': shrift yuklanmadi — ' + shrift.join(', '))
   const yurgan = await p.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').map((a) => a.animationName || a.constructor.name))
   if (yurgan.length) xato.push(nom + ': surat paytida animatsiya yuryapti — ' + yurgan.join(', '))
+  // 26.11: tugma bosilganining aks-sadosi (.oyin-bos, studiya.js — 420 ms turadi) holat emas: suratga tushishi kompyuter yukiga bog'liq edi
+  // (012 u-03-P2S ikki yurishda goh bor, goh yo'q). Surat va HTML dan oldin olib tashlanadi; belgining o'zini qa25 (F-03) tekshiradi.
+  await p.evaluate(() => document.querySelectorAll('.oyin-bos').forEach((x) => x.remove()))
   await p.screenshot({ path: PAPKA + '/' + nom + '.png', fullPage: toliq })
   const r = await p.evaluate(() => {
     const il = document.getElementById('ilova') || document.body
@@ -108,7 +119,7 @@ for (const DARS of DARSLAR) {
   PAPKA = (rejim === 'yoz' ? NAMUNA : YANGI) + '/' + DARS
   U = (DARSLAR.length === 1 && process.env.OLTIN_URL) || 'http://localhost:5340/' + D.DEMO
   LMS = D.LMS ? ((DARSLAR.length === 1 && process.env.OLTIN_LMS) || 'http://localhost:5340/' + D.LMS) : null
-  PROFIL = D.PROFIL; holat = {}; htmlArxiv = {}; xato = []
+  PROFIL = D.PROFIL; URUG = D.URUG || 0; holat = {}; htmlArxiv = {}; xato = []
   if (existsSync(PAPKA)) rmSync(PAPKA, { recursive: true })
   mkdirSync(PAPKA, { recursive: true })
   const profillar = Object.keys(PROFIL)

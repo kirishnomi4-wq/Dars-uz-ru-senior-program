@@ -132,6 +132,8 @@
 
 /* 9-dars: huk kartasining rasmi — buta / tugma / strelka va belgi */
 .hk-q{display:flex;align-items:center;gap:.7cqw}
+/* 25.11 (F-1125-06): C kartadagi ikki labirint + strelka karta ichiga 6–7 px sig'masdi (hamma enda) — labirintlar va oraliq ixchamroq */
+.hkv .hk-q{gap:.4cqw}.hkv .hk-q .hk-mk{width:4.1cqw}
 .hk-buta{width:3.6cqw;height:3.6cqw}
 .hk-z{font:800 2.2cqw/1 var(--f-kod);color:#C7381A}
 .hk-z.hk-s{font:800 1.15cqw/1.15 var(--f-matn);color:#3F6283;max-width:6cqw;text-align:left}

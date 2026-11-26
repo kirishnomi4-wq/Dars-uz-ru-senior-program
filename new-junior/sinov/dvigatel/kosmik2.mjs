@@ -20,7 +20,8 @@ async function och(id, urug = 1, oldin = null) {
   const p = await (await b.newContext({ viewport: { width: 1440, height: 810 } })).newPage()
   p.on('pageerror', (e) => { xato++; console.log('✗ sahifa xatosi (' + id + '): ' + e.message) })
   await p.goto(U + '?rol=varaq'); await p.evaluate(({ v, oldin }) => { localStorage.clear(); localStorage.setItem('demo-ism', 'Aziz'); localStorage.setItem('demo-qah', 'nihol'); localStorage.setItem('demo-jr018-solo', v); for (const k in oldin || {}) localStorage.setItem(k, oldin[k]) }, { v: SOLO[id.slice(0, 2)] + ':' + POG.indexOf(id[2]), oldin })
-  await p.addInitScript((sd) => { let u = sd * 7919; Math.random = () => { u = (u * 1103515245 + 12345) % 2147483648; return u / 2147483648 } }, urug)
+  // 25.11: urug' o'yin boshlanishida qayta o'rnatiladi (boshla) — Blockly ham Math.random dan ID oladi; dastur joylashuvi o'zgarsa (masshtab, 7-savol) ketma-ketlik siljib, dushmanlar boshqa ustunga tushardi va bot natijasi «o'zgarardi»
+  await p.addInitScript((sd) => { let u = sd * 7919; window.__urug = () => { u = sd * 7919 }; Math.random = () => { u = (u * 1103515245 + 12345) % 2147483648; return u / 2147483648 } }, urug)
   await p.goto(U + '?rol=solo'); await p.waitForTimeout(1300)
   await p.evaluate(() => { window.__bk = 0; bolaKeyingi = () => { window.__bk++ } })
   return p
@@ -31,7 +32,7 @@ const holat = (p) => p.evaluate(() => {
   const ek = document.querySelector('#ilova .ekran'), o = OYIN.get(ek), m = ek.querySelector('.dv-muam')
   return { id: ek.dataset.id, oyin: !!ek.dataset.oyin, band: !!ek.dataset.yuryapti, hint: ek.querySelector('.hn .hint').textContent, muam: m ? (m.className.match(/m-(\w+)/) || [])[1] + ':' + m.textContent.trim() : '', ball: vOl(ek, 'ball'), jon: vOl(ek, 'jon'), dush: ek.__dush ? ek.__dush.nusxa.length : 0, chek: Array.from(ek.querySelectorAll('.pl .chek .ch-r.ok')).length, chekJami: ek.querySelectorAll('.pl .chek .ch-r').length, tugadi: !!ek.querySelector('.oyin-tugadi'), urdi: ek.__dush ? ek.__dush.nusxa.filter((n) => n.urildi).length : null, bk: window.__bk }
 })
-const boshla = async (p) => { await p.click('#ilova .hn .ishga, #ilova .hn .asos'); await p.waitForTimeout(500) }
+const boshla = async (p) => { await p.evaluate(() => window.__urug && window.__urug()); await p.click('#ilova .hn .ishga, #ilova .hn .asos'); await p.waitForTimeout(500) }
 // bot: o'yin tugaguncha (yoki 70 s)
 async function oyna(p, rejim = 'ur') {
   const bos = async (k) => { for (let t = 0; t < 40 && (await p.evaluate(() => !!document.querySelector('#ilova .ekran').dataset.yuryapti)); t++) await p.waitForTimeout(40); await p.keyboard.press(k) }

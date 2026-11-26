@@ -289,6 +289,13 @@ function kartaTanla(ek, ko) {
   const g = ko.dataset.g, m = kartaOl(); m[g] = g === 'kim' ? ko.dataset.v : +ko.dataset.v; kartaYoz(m)
   if (typeof chal === 'function') chal('bos'); kartaChiz(ek)
 }
+// 25.11 (Q17-A): ustoz ekranidagi karta (DARS.ustozKarta) — sinf oldida bosib to'ldiriladi; tanlov faqat xotirada (ek.__karta): yonma-yon ko'rikda ham bolaning kartasi oldindan to'lib qolmasin
+function kartaUstozTanla(ek, ko) {
+  const m = ek.__karta || (ek.__karta = { ...KARTA0 }), g = ko.dataset.g; m[g] = g === 'kim' ? ko.dataset.v : +ko.dataset.v
+  if (typeof chal === 'function') chal('bos')
+  ek.querySelectorAll('.kc-o').forEach((x) => { const v = m[x.dataset.g]; x.classList.toggle('on', !!v && String(v) === x.dataset.v) })
+  ek.querySelectorAll('.kc-xul').forEach((s) => { s.innerHTML = kartaXulosa(m) })
+}
 // «Karta tayyor»: hamma qator tanlanganmi; shundagina keyingi ekran (qobiq.js)
 function kartaTayyor(ek) {
   const m = kartaOl()

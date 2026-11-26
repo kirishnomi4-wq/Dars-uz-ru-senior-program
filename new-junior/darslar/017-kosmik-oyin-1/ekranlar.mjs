@@ -100,6 +100,6 @@ const E = {
   B3C: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · 3-pog‘ona', izoh: '15-qadam. Yetti nishon — (0, 4)…(6, 4).', ...bol('Mashq · 3-pog‘ona', '<em>Qator</em>', 'Yetti nishon — hammasini uring', 'B3C', H3, { r: R_RAK }) },
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · ★ qo‘shimcha', izoh: '15-qadam. Nishonlarni bola o‘zi qo‘yadi (katakni bosib, kamida 4 ta), keyin yutadi.', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>nishonlaringiz</em>', 'Katakni bosib kamida to‘rtta nishon qo‘ying — keyin yuting', 'B3Y', H3, { r: R_RAK }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
-    body: () => `<div class="chap">${matn('Sizning natijangiz', 'Raketa <em>uchdi</em>!', '')}${qg('Raketam nishonlarni urdi!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK(), { nishon: [[1, 4], [5, 4]], oq: [[3, 2]] })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda dushmanlar bilan ko‘rishamiz!</b><span class="saqlandi" data-z="saqlandi" hidden>O‘yiningiz saqlandi.</span></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    body: () => `<div class="chap">${matn('Sizning natijangiz', 'Raketa <em>uchdi</em>!', '')}${qg('Raketam nishonlarni urdi!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK(), { nishon: [[1, 4], [5, 4]], oq: [[3, 2]] })}${chekY()}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda dushmanlar bilan ko‘rishamiz!</b><span class="saqlandi" data-z="saqlandi" hidden>O‘yiningiz saqlandi.</span></div></div>`,
+    foot: () => fJim(TUGADI_YOZUV) },
 }

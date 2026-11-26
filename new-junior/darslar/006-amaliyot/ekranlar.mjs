@@ -92,5 +92,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '15-qadam. O‘z rasmi: go to ham, repeat ham, 12 ta blok.', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>rasmingiz</em>', 'go to va repeat bilan o‘z rasmingizni chizing.', 12, maydon({}, qahK()), TANLANG6) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son; maydonda ★ rasmi (bo‘lsa) oltin iz bilan.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz <em>o‘zingiz</em> tuzdingiz!', '')}${qg('Bloklarni o‘zingiz tanlab, dastur tuzdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK())}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda kostyum va tovush bilan ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

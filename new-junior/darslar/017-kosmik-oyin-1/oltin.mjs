@@ -38,7 +38,8 @@ export async function ustozIshlari({ p, qi, bor, ol }) {
   await bor(p, qi('P7')); await qur(p, { raketa: RAK }); await boshla(p); await bos(p, 'ArrowRight', 2); await p.waitForTimeout(800); await ol(p, 'u-x-P7-yurdi'); await toxtat(p)
   // 10-qadam: o'q turib qoldi → uchib o'chdi
   await bor(p, qi('P8')); await qur(p, { oq: [OQ[0]] }); await boshla(p); await bos(p, ' '); await p.waitForTimeout(1200); await ol(p, 'u-x-P8-turib'); await toxtat(p)
-  await qur(p, { oq: OQ }); await boshla(p); await bos(p, ' '); await p.waitForTimeout(700); await ol(p, 'u-x-P8-uchyapti'); await p.waitForTimeout(2200); await toxtat(p)
+  // 26.11: «uchyapti» (700 ms da, o'q yo'lda) olinmaydi — qaysi blok yonib turgani vaqtga bog'liq, ikki yurishda boshqa chiqdi; o'q uchib o'chgandan keyingi holat olinadi
+  await qur(p, { oq: OQ }); await boshla(p); await bos(p, ' '); await p.waitForTimeout(2900); await ol(p, 'u-x-P8-uchdi'); await toxtat(p)
   // 14-qadam: nishonlar — yutdi, ro'yxat to'ldi
   await bor(p, qi('P10')); await boshla(p); await nishonBot(p); await ol(p, 'u-x-P10-yutdi')
 }

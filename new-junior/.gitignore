@@ -3,3 +3,5 @@ sinov/dvigatel/.yangi/
 sinov/dvigatel/.setka-*.html
 # Oltin namuna suratlari — diskda va zaxira arxivida; git'da faqat html/json (21.11 qaror)
 sinov/dvigatel/oltin/**/*.png
+# Eski oltin namunalar nusxasi (26.11, yangisi yozilishidan oldin) — faqat diskda
+arxiv/oltin-eski-*/

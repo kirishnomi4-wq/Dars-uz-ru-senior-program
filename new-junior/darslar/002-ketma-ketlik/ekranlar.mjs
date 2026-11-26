@@ -105,5 +105,5 @@ const E = {
     foot: () => fB({ hint: 'Kalit qayerda? Avval o‘sha yerga boring' }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — bolaning o‘z muvaffaqiyatli dasturlaridan (haqiqiy son); qahramon chiqishda, yulduz yonida.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Labirintdan <em>chiqdingiz</em>!', 'Labirintda yurdingiz, xatoni tuzatdingiz va kalit bilan chiqdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${katakSahna(X.K1, qahK(), { dastur: 'rluurrrr' })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda X va Y bilan ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

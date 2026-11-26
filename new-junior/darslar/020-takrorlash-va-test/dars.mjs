@@ -36,7 +36,7 @@ const DARS = {
   // kosmik o'yin gaplari (kosmik.js KS) — 18-dars bilan bir xil (chek-list — 3-bekat)
   kosmikGap: {
     dasturi: 'dasturi', royxat: 'O‘yiningizda:',
-    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q urganda ball'], ['jon', 'Tekkanda jon'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
+    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q tegsa — ball +1'], ['jon', 'Dushman tegsa — jon −1'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
     oyinYz: 'O‘yin: ← → va space', dushSanoq: 'Dushman: N',
     bosh: 'Avval blokni bosing — u dasturga qo‘shiladi', boshP: 'Bu yerda hech narsa yo‘q-ku…',
     raketaKlon: 'create clone of myself — O‘q yoki Dushman dasturiga', raketaKlonP: 'Raketa ko‘payib ketdi!',

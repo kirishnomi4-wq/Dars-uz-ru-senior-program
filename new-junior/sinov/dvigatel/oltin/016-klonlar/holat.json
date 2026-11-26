@@ -1,0 +1,1173 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "16-DARS · KLONLAR\nBugun nusxa yasaymiz!\n\nCoddy\nSalom! Bugun bitta dushmandan ko‘p nusxa yasaymiz.\n\nO‘TGAN DARSDA\nXakaton\nBirga, oz vaqtda bitta narsa yasash\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ad151046fd0a",
+  "uzun": 32426
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "16-DARS · KLONLAR\nSAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ab90e3c7c5ef",
+  "uzun": 37807
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "db80f3b54f39",
+  "uzun": 38215
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur o‘zi nusxa yasaydi\n\nCoddy\nBitta dastur yozdik — dushman o‘zidan beshta nusxa yasadi.\n\nA\nBittasini besh marta tushiramiz\n✕ bittadan tushadi\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n✕ beshta bir xil dastur\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n✓ bitta dastur, beshta dushman\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6011c0a65dff",
+  "uzun": 40683
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKlon nima?\n\nCoddy\nKlon — dastur ishlab turganda yasalgan nusxa.\n\nAsl\ncreate clone of myself\nnusxa\nNusxa\nBitta dastur — ko‘p nusxa\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3b9287080719",
+  "uzun": 29320
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida dushmanlardan qochadigan o‘yin.\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n1\nBitta nusxa\n2\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a921c34e6d75",
+  "uzun": 43778
+ },
+ "u-07-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nNusxa yasaymiz\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 1\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "03b5e6c0ff1c",
+  "uzun": 26160
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nNusxani tushiring!\n\nCoddy\nNusxa yasang — u yerga tushsin.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBitta nusxa\n2\n0\nYerga\n3\n0\nIkki nusxa\n★\n0\nBoshqa ustun\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7ebc21fed9f6",
+  "uzun": 40377
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ko‘p nusxa\n\nCoddy\nEndi ko‘p nusxa — har biri boshqa joydan.\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n✓\nBitta nusxa\n2\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "93388704cb27",
+  "uzun": 43516
+ },
+ "u-10-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p nusxa\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 5\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "0b2f6088c6cb",
+  "uzun": 27416
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nDushman yomg‘iri!\n\nCoddy\nKo‘p nusxa yasang — har biri boshqa joydan.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBeshta\n2\n0\nHar xil ustun\n3\n0\nChap yarmi\n★\n0\nYomg‘ir\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8dfc9f1c38f3",
+  "uzun": 41730
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKlon\n\nCoddy\nAsl bitta. Nusxa — qancha kerak bo‘lsa.\n\ncreate clone of myself\ncreate clone of myself\nAsldan nusxa yasaydi\nwhen I start as a clone\nwhen I start as a clone\nHar nusxa shuni bajaradi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6a1d0bf059bb",
+  "uzun": 35445
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nEndi dushmanlardan qochamiz!\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n✓\nBitta nusxa\n✓\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8a0db238b98e",
+  "uzun": 43663
+ },
+ "u-14-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nTushgan nusxa o‘chsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n6\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 6\njon:\n3\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedrepeat6create clone of myself",
+   "p:repeat6create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "c91f551392a8",
+  "uzun": 29892
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nDushmandan qoching!\n\nCoddy\nDushman dasturini tuzing — keyin qochib yuting.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nTozalang\n2\n0\nSakkizta\n3\n0\nTor yo‘l\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4ac14a1e7c17",
+  "uzun": 41068
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0\njon:\n3\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1bfd53394f1e",
+  "uzun": 29928
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz nusxa yasadingiz!\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\nKeyingi dars\n17 · Kosmik o‘yin 1\n✓\nBitta nusxa\n✓\nKo‘p nusxa\n✓\nO‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d46c62e86989",
+  "uzun": 31978
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta nusxa yasadi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ac97e06d80d9",
+  "uzun": 41817
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n✕ bittadan tushadi\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e82cffc4a7e2",
+  "uzun": 38242
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n✕ bittadan tushadi\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n✕ beshta bir xil dastur\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3015ba7f0859",
+  "uzun": 40489
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n✕ bittadan tushadi\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n✕ beshta bir xil dastur\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n✓ bitta dastur, beshta dushman\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "47aef7d33433",
+  "uzun": 41979
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKlon nima?\n\nCoddy\nKlon — dastur ishlab turganda yasalgan nusxa.\n\nAsl\ncreate clone of myself\nnusxa\nNusxa\nBitta dastur — ko‘p nusxa\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "db4c0e0e01e8",
+  "uzun": 29323
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKlon nima?\n\nCoddy\nKlon — dastur ishlab turganda yasalgan nusxa.\n\nAsl\ncreate clone of myself\nnusxa\nNusxa\nBitta dastur — ko‘p nusxa\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "91b0092aa0d8",
+  "uzun": 29326
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKlon nima?\n\nCoddy\nKlon — dastur ishlab turganda yasalgan nusxa.\n\nAsl\ncreate clone of myself\nnusxa\nNusxa\nBitta dastur — ko‘p nusxa\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a686cb8d18e6",
+  "uzun": 29332
+ },
+ "u-x-P7-turib": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nNusxa yasaymiz\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\n1 ta dasturcha\n2 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 1 / 1\nMen nima qilay?\n‹ Orqaga\nNusxa when I start as a clone ostidagi bloklarni bajaradi\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "1b2404665c9f",
+  "uzun": 32011
+ },
+ "u-x-P7-tushdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nNusxa yasaymiz\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 1 / 1\n‹ Orqaga\nHammasi tushdi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "cb08397dd6b9",
+  "uzun": 27565
+ },
+ "u-x-P8-bir": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p nusxa\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n6 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 5 / 5\nYana o‘sha joy!\n‹ Orqaga\nHammasi bir ustundan tushdi. Son o‘rniga random qo‘ying\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "336208ddec1a",
+  "uzun": 35761
+ },
+ "u-x-P8-random": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p nusxa\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 5 / 5\n‹ Orqaga\nHammasi tushdi!\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "a7e6f92119f9",
+  "uzun": 31062
+ },
+ "u-x-P10-yerda": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nTushgan nusxa o‘chsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n6\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 6 / 6\njon:\n2\nYerda qolib ketdi!\n‹ Orqaga\nTushib bo‘lgan nusxa o‘chsin — delete this clone\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedrepeat6create clone of myself",
+   "p:repeat6create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "0035409e37a6",
+  "uzun": 38244
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta nusxa yasadi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\nDars tugadi!\nKo‘rishguncha — keyingi darsda kosmik o‘yin bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fc0517f9980c",
+  "uzun": 41960
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "16-DARS · KLONLAR\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "e3d12c1a3198",
+  "uzun": 26283
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "16-DARS · KLONLAR\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "5e5a0cab22ed",
+  "uzun": 17895
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "16-DARS · KLONLAR\nSAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBeshta dushmanni qaysi yo‘l bilan tushiramiz?\n\nA\nBittasini besh marta tushiramiz\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "112996435474",
+  "uzun": 35585
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "16-DARS · KLONLAR\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "16f0a5146109",
+  "uzun": 17898
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "c4a01eccc152",
+  "uzun": 17910
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "a51f960a1358",
+  "uzun": 17890
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: klon",
+  "bloklar": [],
+  "html": "799a8b39bb6e",
+  "uzun": 17890
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "0dce5415297e",
+  "uzun": 17892
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz nusxa yasayapti — kuzating",
+  "bloklar": [],
+  "html": "eea975dd1cfa",
+  "uzun": 17906
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta nusxa\nNusxa yasang: when ▶ clicked ostiga create clone of myself\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\nrepeat\n4\nmove down\n1 ta dasturcha\n3 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 1\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir",
+  "bloklar": [
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "6d4bb25a821a",
+  "uzun": 18428
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nYerga\nNusxa yerga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\n1 ta dasturcha\n2 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nNusxa: 0 / 1\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "df9b82b66997",
+  "uzun": 18384
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki nusxa\nIkkita nusxa yerga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\nrepeat\n4\nmove down\n1 ta dasturcha\n3 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nNusxa: 0 / 2\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir",
+  "bloklar": [
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "3594ffe2516f",
+  "uzun": 18396
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshqa ustun\nNusxa (1, 0) ga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\n1 ta dasturcha\n2 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nNusxa: 0 / 1\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "8c0d448f23f7",
+  "uzun": 18838
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "23f744d521f8",
+  "uzun": 17905
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: ko‘p nusxa",
+  "bloklar": [],
+  "html": "3a74f4754f95",
+  "uzun": 17893
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz ko‘p nusxa yasayapti — kuzating",
+  "bloklar": [],
+  "html": "87b8d487018e",
+  "uzun": 17911
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nBeshta\nBeshta nusxa tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n1 ta dasturcha\n5 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 5\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir",
+  "bloklar": [
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "1b2e970d5c96",
+  "uzun": 19662
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nHar xil ustun\nNusxalar har xil ustundan tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n4\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\n3\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n7 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 4\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedrepeat4create clone of myself",
+   "p:repeat4create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:34repeat4move down",
+   "y:go to x:y:34repeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "19fa7b9f415f",
+  "uzun": 19711
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nChap yarmi\nNusxalar faqat chap yarmiga tushsin: 0 dan 3 gacha\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\n1 ta dasturcha\n3 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 5\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "8c1e7e2c8072",
+  "uzun": 19697
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nYomg‘ir\nO‘nta nusxa — hammasi yerga\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 10\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir",
+  "bloklar": [],
+  "html": "798c95052dcb",
+  "uzun": 19684
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "23f744d521f8",
+  "uzun": 17905
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: klon",
+  "bloklar": [],
+  "html": "07b7682e5e5a",
+  "uzun": 17886
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: o‘yin",
+  "bloklar": [],
+  "html": "d5e77946d94a",
+  "uzun": 17888
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "e8a489929a6e",
+  "uzun": 17911
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTozalang\nTushgan nusxa o‘chsin, keyin yuting\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 5\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "d63f0939d0f0",
+  "uzun": 22304
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nSakkizta\nSakkizta dushman — va yuting\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\ndelete this clone\n1 ta dasturcha\n6 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 8\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [
+   "H:when I start as a clonego to x:y:random0to64repeat4move downdelete this clone",
+   "y:go to x:y:random0to64repeat4move downdelete this clone",
+   "m:random0to6",
+   "p:repeat4move downdelete this clone",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "c0f22e24958b",
+  "uzun": 22268
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nTor yo‘l\nDushmanlar 1 dan 5 gacha ustundan tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n6\ncreate clone of myself\n1 ta dasturcha\n3 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 6\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedrepeat6create clone of myself",
+   "p:repeat6create clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "3fbd33bf598a",
+  "uzun": 22281
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nKamida beshta dushman — o‘yinni o‘zingiz tuzing\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash",
+  "bloklar": [],
+  "html": "6c01a0b850a2",
+  "uzun": 22301
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "23f744d521f8",
+  "uzun": 17905
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz nusxa yasadingiz!\n\nBulut\nBitta dushmandan ko‘p nusxa yasadim!\n\nSiz bugun\n0\nta nusxa yasadi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBulut\nKeyingi darsda kosmik o‘yinda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "97af9b692a00",
+  "uzun": 19098
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz nusxa yasadingiz!\n\nBulut\nBitta dushmandan ko‘p nusxa yasadim!\n\nSiz bugun\n0\nta nusxa yasadi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBulut\nKeyingi darsda kosmik o‘yinda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "97af9b692a00",
+  "uzun": 19098
+ },
+ "bx-B1A-bosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta nusxa\nNusxa yasang: when ▶ clicked ostiga create clone of myself\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\nrepeat\n4\nmove down\n1 ta dasturcha\n3 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 1\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir",
+  "bloklar": [
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "6d4bb25a821a",
+  "uzun": 18428
+ },
+ "bx-B1A-qani": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta nusxa\nNusxa yasang: when ▶ clicked ostiga create clone of myself\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\nrepeat\n4\nmove down\n1 ta dasturcha\n3 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 1\nNusxa qani?\nMaslahat\nNusxani create clone of myself bloki yasaydi\nIshga tushir",
+  "bloklar": [
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "a753c18e6431",
+  "uzun": 23426
+ },
+ "bx-B1A-tushdi": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta nusxa\nNusxa yasang: when ▶ clicked ostiga create clone of myself\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 1 / 1\nMaslahat\nHammasi tushdi!\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "3ba3aebd2cdd",
+  "uzun": 19536
+ },
+ "bx-B1B-yetmadi": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nYerga\nNusxa yerga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n3\nmove down\n2 ta dasturcha\n5 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nNusxa: 1 / 1\nYerga yetmadi!\nMaslahat\nNusxa (5, 1) da to‘xtadi. Yergacha yana 1 ta katak\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat3move down",
+   "p:repeat3move down",
+   "d:move down"
+  ],
+  "html": "3aa84ed1a0fc",
+  "uzun": 24234
+ },
+ "bx-B1B-chet": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nYerga\nNusxa yerga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n5\nmove down\n2 ta dasturcha\n5 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nNusxa: 1 / 1\nMaydon tugadi!\nMaslahat\nNusxa yerdan ham pastga yurmoqchi bo‘ldi. move down necha marta?\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat5move down",
+   "p:repeat5move down",
+   "d:move down"
+  ],
+  "html": "56fdf18ca9b8",
+  "uzun": 24248
+ },
+ "bx-B1C-oz": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki nusxa\nIkkita nusxa yerga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nNusxa: 1 / 2\nOz qoldi!\nMaslahat\n2 ta nusxa tushishi kerak\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "250a37b93154",
+  "uzun": 24211
+ },
+ "bx-B1Y-joy": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshqa ustun\nNusxa (1, 0) ga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nNusxa: 1 / 1\nBu yerga emas!\nMaslahat\nNusxa (3, 0) ga tushdi. Kerak — (1, 0)\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "1272e33879e5",
+  "uzun": 24671
+ },
+ "bx-B2B-bir": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nHar xil ustun\nNusxalar har xil ustundan tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n4\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\n3\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n7 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 4 / 4\nYana o‘sha joy!\nMaslahat\nHammasi bir ustundan tushdi. Son o‘rniga random qo‘ying\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedrepeat4create clone of myself",
+   "p:repeat4create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:34repeat4move down",
+   "y:go to x:y:34repeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "6e1603ef0606",
+  "uzun": 27203
+ },
+ "bx-B2C-ustun": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nChap yarmi\nNusxalar faqat chap yarmiga tushsin: 0 dan 3 gacha\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 5 / 5\nBu yerga emas!\nMaslahat\nrandom 4 ni ham tanlashi mumkin. random sonlarini tekshiring\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "fca8c34a2b56",
+  "uzun": 27610
+ },
+ "bx-B2Y-yomgir": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nYomg‘ir\nO‘nta nusxa — hammasi yerga\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n10\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 10 / 10\nMaslahat\nHammasi tushdi!\nIshga tushir",
+  "bloklar": [
+   "f:when ▶ clickedrepeat10create clone of myself",
+   "p:repeat10create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "f03fddc470ba",
+  "uzun": 25735
+ },
+ "bx-B3A-yerda": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTozalang\nTushgan nusxa o‘chsin, keyin yuting\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 5 / 5\njon:\n1\nYerda qolib ketdi!\nMaslahat\nTushib bo‘lgan nusxa o‘chsin — delete this clone\nBoshlash",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "be649c51621b",
+  "uzun": 29234
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz nusxa yasadingiz!\n\nBulut\nBitta dushmandan ko‘p nusxa yasadim!\n\nSiz bugun\n11\nta nusxa yasadi\n0\nta o‘yin yutdi\n2\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBulut\nKeyingi darsda kosmik o‘yinda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "c8b538214cc1",
+  "uzun": 19099
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "16-DARS · KLONLAR\nSAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBeshta dushmanni qaysi yo‘l bilan tushiramiz?\n\nA\nBittasini besh marta tushiramiz\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "16c86158eac3",
+  "uzun": 35594
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "16-DARS · KLONLAR\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "ecb57db2cc68",
+  "uzun": 54409
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "16-DARS · KLONLAR\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "87ba3972543f",
+  "uzun": 16960
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "16-DARS · KLONLAR\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "e3d12c1a3198",
+  "uzun": 26283
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "16-DARS · KLONLAR\nBugun nusxa yasaymiz!\n\nCoddy\nSalom! Bugun bitta dushmandan ko‘p nusxa yasaymiz.\n\nO‘TGAN DARSDA\nXakaton\nBirga, oz vaqtda bitta narsa yasash\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "4c4e7baeff4b",
+  "uzun": 31108
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "16-DARS · KLONLAR\nSAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBeshta dushmanni qaysi yo‘l bilan tushiramiz?\n\nA\nBittasini besh marta tushiramiz\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "112996435474",
+  "uzun": 35585
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n▶ Sinab ko‘rish\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n▶ Sinab ko‘rish\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n▶ Sinab ko‘rish\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "432170d90a05",
+  "uzun": 37056
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nDastur o‘zi nusxa yasaydi\n\nCoddy\nBitta dastur yozdik — dushman o‘zidan beshta nusxa yasadi.\n\nA\nBittasini besh marta tushiramiz\n✕ bittadan tushadi\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n✕ beshta bir xil dastur\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n✓ bitta dastur, beshta dushman\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "ebea317d7ea3",
+  "uzun": 39373
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKlon nima?\n\nCoddy\nKlon — dastur ishlab turganda yasalgan nusxa.\n\nAsl\ncreate clone of myself\nnusxa\nNusxa\nBitta dastur — ko‘p nusxa\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "36c3a0523377",
+  "uzun": 28010
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida dushmanlardan qochadigan o‘yin.\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n1\nBitta nusxa\n2\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "2c4116cb5ab3",
+  "uzun": 42468
+ },
+ "sq-07-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nNusxa yasaymiz\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 1\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "b77c6db7e793",
+  "uzun": 24841
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nBitta nusxa\nNusxa yasang: when ▶ clicked ostiga create clone of myself\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\nrepeat\n4\nmove down\n1 ta dasturcha\n3 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 1\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "c4304e46a6ba",
+  "uzun": 18475
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nYerga\nNusxa yerga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\n1 ta dasturcha\n2 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nNusxa: 0 / 1\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "2c5dd56ad61b",
+  "uzun": 18431
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nIkki nusxa\nIkkita nusxa yerga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\nrepeat\n4\nmove down\n1 ta dasturcha\n3 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nNusxa: 0 / 2\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "c41069cf9d8b",
+  "uzun": 18443
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshqa ustun\nNusxa (1, 0) ga tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\n1 ta dasturcha\n2 / 6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nNusxa: 0 / 1\nMaslahat\nNusxa yasang — u yerga tushsin\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "cd1054fa8b65",
+  "uzun": 18885
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ko‘p nusxa\n\nCoddy\nEndi ko‘p nusxa — har biri boshqa joydan.\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n✓\nBitta nusxa\n2\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "903fcdfe9290",
+  "uzun": 42206
+ },
+ "sq-10-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p nusxa\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 5\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "f50aa8643405",
+  "uzun": 26135
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nBeshta\nBeshta nusxa tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n1 ta dasturcha\n5 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 5\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "10f5a093a085",
+  "uzun": 19709
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nHar xil ustun\nNusxalar har xil ustundan tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n4\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\n3\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n7 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nNusxa: 0 / 4\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat4create clone of myself",
+   "p:repeat4create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:34repeat4move down",
+   "y:go to x:y:34repeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "85f07aba3dc5",
+  "uzun": 19758
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nChap yarmi\nNusxalar faqat chap yarmiga tushsin: 0 dan 3 gacha\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\n1 ta dasturcha\n3 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 5\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "fd5c7982fe74",
+  "uzun": 19744
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nYomg‘ir\nO‘nta nusxa — hammasi yerga\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 10\nMaslahat\nNechta nusxa kerak? Har biri qayerdan?\nIshga tushir\nKeyingi ›",
+  "bloklar": [],
+  "html": "bebf250a4a49",
+  "uzun": 19731
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKlon\n\nCoddy\nAsl bitta. Nusxa — qancha kerak bo‘lsa.\n\ncreate clone of myself\ncreate clone of myself\nAsldan nusxa yasaydi\nwhen I start as a clone\nwhen I start as a clone\nHar nusxa shuni bajaradi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "bd55a1aa61da",
+  "uzun": 34135
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nEndi dushmanlardan qochamiz!\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n✓\nBitta nusxa\n✓\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "44b2051c89f5",
+  "uzun": 42353
+ },
+ "sq-14-0-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nTushgan nusxa o‘chsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n6\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 6\njon:\n3\n‹ Orqaga\nNusxa dasturchasining oxiriga delete this clone qo‘ying\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat6create clone of myself",
+   "p:repeat6create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "1362fd36a07b",
+  "uzun": 28637
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nTozalang\nTushgan nusxa o‘chsin, keyin yuting\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 5\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "ba8ed66217c4",
+  "uzun": 22351
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nSakkizta\nSakkizta dushman — va yuting\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\ndelete this clone\n1 ta dasturcha\n6 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 8\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "H:when I start as a clonego to x:y:random0to64repeat4move downdelete this clone",
+   "y:go to x:y:random0to64repeat4move downdelete this clone",
+   "m:random0to6",
+   "p:repeat4move downdelete this clone",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "280fe4f778e3",
+  "uzun": 22315
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nTor yo‘l\nDushmanlar 1 dan 5 gacha ustundan tushsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n6\ncreate clone of myself\n1 ta dasturcha\n3 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 6\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat6create clone of myself",
+   "p:repeat6create clone of myself",
+   "C:create clone of myself"
+  ],
+  "html": "2f87663166bf",
+  "uzun": 22328
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nKamida beshta dushman — o‘yinni o‘zingiz tuzing\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0\njon:\n3\nMaslahat\nDushman dasturini tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "f8a3891642e3",
+  "uzun": 22348
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz nusxa yasadingiz!\n\nBulut\nBitta dushmandan ko‘p nusxa yasadim!\n\nSiz bugun\n0\nta nusxa yasadi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBulut\nKeyingi darsda kosmik o‘yinda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "97af9b692a00",
+  "uzun": 19098
+ },
+ "sx-P7-tayyor": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nNusxa yasaymiz\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 1\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "b77c6db7e793",
+  "uzun": 24841
+ },
+ "sx-P8-tayyor": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKo‘p nusxa\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\nrepeat\n5\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 5\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat5create clone of myself",
+   "p:repeat5create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "f50aa8643405",
+  "uzun": 26135
+ },
+ "sx-P10-tayyor": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nTushgan nusxa o‘chsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n6\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 6\njon:\n3\n‹ Orqaga\nNusxa dasturchasining oxiriga delete this clone qo‘ying\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:when ▶ clickedrepeat6create clone of myself",
+   "p:repeat6create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "1362fd36a07b",
+  "uzun": 28637
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n16-DARS · KLONLAR\nBugun nusxa yasaymiz!\n\nCoddy\nSalom! Bugun bitta dushmandan ko‘p nusxa yasaymiz.\n\nO‘TGAN DARSDA\nXakaton\nBirga, oz vaqtda bitta narsa yasash\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n16-DARS · KLONLAR\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "db1c22ffa54f",
+  "uzun": 86979
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n16-DARS · KLONLAR\nSAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n16-DARS · KLONLAR\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "34aa2350bd6b",
+  "uzun": 92360
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nKo‘p dushmanni qanday tushiramiz?\n\nCoddy\nBitta dushman tushdi. Bizga beshta kerak.\n\nA\nBittasini besh marta tushiramiz\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ff84efd7b06a",
+  "uzun": 92768
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nDastur o‘zi nusxa yasaydi\n\nCoddy\nBitta dastur yozdik — dushman o‘zidan beshta nusxa yasadi.\n\nA\nBittasini besh marta tushiramiz\n✕ bittadan tushadi\n↻ 5\n1 ta dastur · 5 ta blok\nB\nBeshta dushman chizamiz\n✕ beshta bir xil dastur\n5 ta dastur · 20 ta blok\nC\nDushmandan nusxa olamiz\n✓ bitta dastur, beshta dushman\n1 ta dastur · 7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "705fbb1e62eb",
+  "uzun": 95236
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nKlon nima?\n\nCoddy\nKlon — dastur ishlab turganda yasalgan nusxa.\n\nAsl\ncreate clone of myself\nnusxa\nNusxa\nBitta dastur — ko‘p nusxa\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "49f0f691cb85",
+  "uzun": 83873
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida dushmanlardan qochadigan o‘yin.\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n1\nBitta nusxa\n2\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0a6d8ed2efc5",
+  "uzun": 98331
+ },
+ "y-07": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nNusxa yasaymiz\nKlon\nHodisa\nHarakat\nTakrorlash\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 5 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 1\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2d20f53a08fe",
+  "uzun": 80713
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nNusxani tushiring!\n\nCoddy\nNusxa yasang — u yerga tushsin.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBitta nusxa\n2\n0\nYerga\n3\n0\nIkki nusxa\n★\n0\nBoshqa ustun\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ccbd99234236",
+  "uzun": 94930
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Ko‘p nusxa\n\nCoddy\nEndi ko‘p nusxa — har biri boshqa joydan.\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n✓\nBitta nusxa\n2\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a1b0d5ecb49f",
+  "uzun": 98069
+ },
+ "y-10": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nKo‘p nusxa\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\nDushman dasturi\nwhen ▶ clicked\ncreate clone of myself\nwhen I start as a clone\nrepeat\n4\nmove down\n2 ta dasturcha\n5 / 9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nNusxa: 0 / 5\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedcreate clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonerepeat4move down",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "b50474637efd",
+  "uzun": 81969
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nDushman yomg‘iri!\n\nCoddy\nKo‘p nusxa yasang — har biri boshqa joydan.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBeshta\n2\n0\nHar xil ustun\n3\n0\nChap yarmi\n★\n0\nYomg‘ir\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "07f1cd400e37",
+  "uzun": 96283
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nKlon\n\nCoddy\nAsl bitta. Nusxa — qancha kerak bo‘lsa.\n\ncreate clone of myself\ncreate clone of myself\nAsldan nusxa yasaydi\nwhen I start as a clone\nwhen I start as a clone\nHar nusxa shuni bajaradi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "edd7d6074bd1",
+  "uzun": 89998
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · O‘yin\n\nCoddy\nEndi dushmanlardan qochamiz!\n\nDars oxirida · dushman yomg‘iri\nDushmanlardan qochamiz\n✓\nBitta nusxa\n✓\nKo‘p nusxa\n3\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ab453f86ea4a",
+  "uzun": 98216
+ },
+ "y-14": {
+  "id": "P10",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nTushgan nusxa o‘chsin\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nwhen ▶ clicked\nrepeat\n6\ncreate clone of myself\nwhen I start as a clone\ngo to x:\ny:\nrandom\n0\nto\n6\n4\nrepeat\n4\nmove down\n2 ta dasturcha\n8 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0 / 6\njon:\n3\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:when ▶ clickedrepeat6create clone of myself",
+   "p:repeat6create clone of myself",
+   "C:create clone of myself",
+   "H:when I start as a clonego to x:y:random0to64repeat4move down",
+   "y:go to x:y:random0to64repeat4move down",
+   "m:random0to6",
+   "p:repeat4move down",
+   "d:move down"
+  ],
+  "html": "8e2038556400",
+  "uzun": 84445
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nDushmandan qoching!\n\nCoddy\nDushman dasturini tuzing — keyin qochib yuting.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nTozalang\n2\n0\nSakkizta\n3\n0\nTor yo‘l\n★\n0\nO‘z o‘yiningiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bfd3e8c45fcc",
+  "uzun": 95621
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nKlon\nHodisa\nHarakat\nTakrorlash\nO‘zgaruvchi\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBoshqaruv:\n←\n→\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nNusxa: 0\njon:\n3\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a886c752d161",
+  "uzun": 84481
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz nusxa yasadingiz!\nBUGUNGI SO‘Z\nKlon\nDastur ishlab turganda yasalgan nusxa\nKeyingi dars\n17 · Kosmik o‘yin 1\n✓\nBitta nusxa\n✓\nKo‘p nusxa\n✓\nO‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cdc0a6e7a731",
+  "uzun": 86531
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta nusxa yasadi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: beshta dushmanni qanday tushiramiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur o‘zi nusxa yasaydi\n5 / 18 · Yangi so‘z: klon\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: nusxa yasaymiz\n8 / 18 · Bitta nusxa: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: ko‘p nusxa\n11 / 18 · Ko‘p nusxa: pog‘onalar\n12 / 18 · Xulosa: klon\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: yerda qolgan nusxa\n15 / 18 · O‘yin: pog‘onalar\n16 / 18 · Dushman dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "670e8303bc55",
+  "uzun": 96370
+ },
+ "varaq": {
+  "id": "",
+  "matn": "16-dars · Klonlar — ustoz varag‘i\n\nAsosiy fikr: dushmanni bir marta yasaymiz — nusxalarni dastur o‘zi yasaydi; har nusxa when I start as a clone ni bajaradi; tushgan nusxa o‘chadi. Hukda, xulosada (12) va yakunda chiqadi.\n\nYo‘l: huk (beshta dushman — uch sinov) → yangi so‘z «klon» → reja → 1-bekat «Bitta nusxa» → 2-bekat «Ko‘p nusxa» → 3-bekat «O‘yin» → o‘qib berish → yakun.\n\nIkki dasturcha: «asl uchun» (when ▶ clicked — nusxa yasaydi) va «nusxa uchun» (when I start as a clone — nusxa nima qiladi). Bola adashsa — «qaysi dasturchani asl bajaradi, qaysini nusxa?» deb so‘rang.\n\nYangi bloklar — oila «Klon» (to‘q sariq): create clone of myself — o‘zimdan nusxa yasa; when I start as a clone — nusxa bo‘lib boshlaganimda; delete this clone — bu nusxani o‘chir (14-qadamda). Nusxalar bir vaqtda harakatlanadi — har nusxa o‘z dasturchasini o‘zi bajaradi.\n\nYechimni aytmang: «Nusxa qayerda to‘xtadi? Yergacha nechta katak? Nechta nusxa kerak — repeat soni nechchi? random qaysi ustunlarni tanlaydi?» 3-bekat o‘yini qiyin bo‘lsa — ← → ni erta bosishni maslahat bering.\n\nKo‘rish ekranlarida (huk, 7, 10, 14-qadam) tasodif oldindan berilgan: 10-qadamda birinchi beshta nusxa bir ustundan, random qo‘yilgach — 1, 5, 2, 6, 0. 16-qadamda proyektorga ism chiqmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«16-dars · Klonlar» — «Bugun nusxa yasaymiz!» Kosmos maydoni, tepada dushman, Coddy (3, 0) da; pastda «O‘tgan darsda» — xakaton.\n\nSIZ\n«O‘tgan darsda do‘stingiz bilan birga o‘yin yasadingiz.» «Bugun yangi bloklar: dastur o‘zi nusxa yasaydi.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun dushmandan nusxa yasashini biladi.\n\n2\nSavol: beshta dushmanni qanday tushiramiz?\n\nEKRANDA\nSavol: «Ko‘p dushmanni qanday tushiramiz?» Uchta karta: A «Bittasini besh marta tushiramiz» · B «Beshta dushman chizamiz» · C «Dushmandan nusxa olamiz».\n\nSIZ\n«Bizning dushman bitta. Osmondan beshta dushman qanday tushadi?» «Har kim noutbukida bitta kartani tanlasin.»\n\nBOLA O‘RGANADI\nKo‘p dushman qanday tushishi haqida o‘ylaydi.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A — bitta dushman besh marta («✕ bittadan tushadi»). «Keyingi» — B: beshta dushman, beshta dastur («✕ beshta bir xil dastur»). «Keyingi» — C: nusxalar («✓ bitta dastur, beshta dushman»).\n\nSIZ\n«Bittasini qayta-qayta tushirsak — osmonda doim bitta dushman. Beshta chizsak — beshta bir xil dastur.» «Nusxa olsak — dastur bitta, dushman esa ko‘p.»\n\nBOLA O‘RGANADI\nUch usulning natijasini ko‘radi.\n\n4\nJavob: dastur o‘zi nusxa yasaydi\n\nEKRANDA\nJavob: «Dastur o‘zi nusxa yasaydi». A va B xira, C oltin; tepada asl, pastda beshta nusxa.\n\nSIZ\n«Dushmanni bir marta yasaymiz. Nusxalarni dastur o‘zi yasaydi.»\n\nBOLA O‘RGANADI\nBugungi asosiy fikrni eshitadi.\n\n5\nYangi so‘z: klon\n\nEKRANDA\nYangi so‘z: «Klon nima?» «Keyingi» — birma-bir: asl, nusxa, uchala nusxa tushdi.\n\nSIZ\n«Klon — nusxa. Ko‘rinishi ham, dasturchasi ham aslniki bilan bir xil.» «Asl joyida qoladi. Nusxa uning joyidan boshlaydi.»\n\nBOLA O‘RGANADI\n«Klon» so‘zini biladi.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — bitta nusxa → ko‘p nusxa → o‘yin; cho‘qqida «Dars oxirida · dushman yomg‘iri».\n\nSIZ\n«Bugun uchta bekat: bitta nusxa, ko‘p nusxa, o‘yin.» «Dars oxirida o‘yiningizda osmondan dushmanlar tushadi — qochib qutulasiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: nusxa yasaymiz\n\nEKRANDA\nKo‘ramiz: «Nusxa yasaymiz». Asl (3, 4), Coddy (6, 0); dastur bo‘sh. when ▶ clicked + create clone of myself — nusxa paydo bo‘ladi va turib qoladi (Bo‘shvoy «Men nima qilay?»); when I start as a clone + repeat 4 [move down] — nusxa yerga tushadi.\n\nSIZ\n«create clone of myself — o‘zimdan nusxa yasa. Mana, nusxa paydo bo‘ldi — lekin u nima qilishni bilmaydi.» «when I start as a clone — nusxa shu dasturchani bajaradi. Asl esa joyida qoladi.»\n\nBOLA O‘RGANADI\nIkki yangi blokni ko‘radi.\n\n8\nBitta nusxa: pog‘onalar\n\nEKRANDA\nMashq: «Nusxani tushiring!» — zinapoya: 1 bitta nusxa · 2 yerga · 3 ikki nusxa · ★ boshqa ustun.\n\nSIZ\n«Ikki dasturcha bor: biri — asl uchun, biri — nusxa uchun.» «Nusxa qayerda to‘xtadi? Yergacha yana nechta katak?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nBitta nusxa yasab, uni yerga tushiradi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Ko‘p nusxa».\n\nSIZ\n«Bitta nusxani yasadik. Endi beshtasini — va har biri boshqa ustundan.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: ko‘p nusxa\n\nEKRANDA\nKo‘ramiz: «Ko‘p nusxa». Tayyor ▶[C] · K[R4[↓]]; create clone ni repeat 5 ichiga — beshtasi bir ustundan; go to x: (random 0 to 6) y: 4 — 1, 5, 2, 6, 0.\n\nSIZ\n«repeat 5 ichida create clone — beshta nusxa.» «Har nusxa o‘z random sonini tanlaydi — shuning uchun har biri boshqa ustundan tushadi.»\n\nBOLA O‘RGANADI\nrepeat va random bilan ko‘p nusxani ko‘radi.\n\n11\nKo‘p nusxa: pog‘onalar\n\nEKRANDA\nMashq: «Dushman yomg‘iri!» — zinapoya: 1 beshta · 2 har xil ustun · 3 chap yarmi · ★ yomg‘ir.\n\nSIZ\n«Nechta nusxa kerak? repeat soni — shuncha.» «random qaysi ustunlarni tanlay oladi? Kerakmas joyga tushmaydimi?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nKo‘p nusxa yasaydi, har birini boshqa ustundan tushiradi.\n\n12\nXulosa: klon\n\nEKRANDA\nXulosa: «Klon». Ikki karta: create clone of myself — «Asldan nusxa yasaydi»; when I start as a clone — «Har nusxa shuni bajaradi».\n\nSIZ\n«Asl nusxa yasaydi. Nusxa o‘z dasturchasini bajaradi.» «Yuzta dushman kerak bo‘lsa ham — dastur bitta.»\n\nBOLA O‘RGANADI\nKlon nimaligini aytib bera oladi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «O‘yin».\n\nSIZ\n«Oxirgi bekat: dushman yomg‘iri o‘yinga aylanadi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: yerda qolgan nusxa\n\nEKRANDA\nKo‘ramiz: «Tushgan nusxa o‘chsin». O‘yin, Coddy (3, 0), jon 3; tayyor ▶[R6[C]] · K[go(R0-6, 4) R4[↓]] — nusxalar yerda qoladi; delete this clone qo‘shasiz — o‘chadi, yutasiz.\n\nSIZ\n«Nusxa yerga tushdi — endi u kerak emas. U yo‘lni to‘sib qoldi.» «delete this clone — bu nusxani o‘chir. Asl o‘chmaydi.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\ndelete this clone nega kerakligini ko‘radi.\n\n15\nO‘yin: pog‘onalar\n\nEKRANDA\nMashq: «Dushmandan qoching!» — zinapoya: 1 tozalang · 2 sakkizta · 3 tor yo‘l · ★ o‘z o‘yiningiz.\n\nSIZ\n«Avval dushman dasturi, keyin o‘yin. Tushgan nusxa o‘chsin.» «Jon tugasa — yana boshlang. Dasturingiz to‘g‘ri bo‘lsa, yutish mumkin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nDushman dasturini tuzadi va o‘ynaydi.\n\n16\nDushman dasturingizni o‘qib bering\n\nEKRANDA\n«Dasturingizni o‘qib bering». Dushman dasturi bo‘sh; bola o‘qiydi, siz qo‘yasiz va Coddy bilan o‘ynaysiz. Proyektorda ism yo‘q.\n\nSIZ\n«Kim dushman dasturini o‘qib beradi? Avval asl, keyin nusxa.» «Nechta nusxa? Qaysi ustunlardan?»\n\nBOLA O‘RGANADI\nDasturini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz nusxa yasadingiz!» Bugungi so‘z — «Klon»; keyingi dars — 17 · Kosmik o‘yin 1.\n\nSIZ\n«Uchala bekatdan o‘tdik: bitta nusxa, ko‘p nusxa, o‘yin.» «Bitta dastur — ko‘p nusxa. Tushgan nusxa o‘chadi.» «Keyingi darsda kosmik o‘yin: raketa o‘q otadi.»\n\nBOLA O‘RGANADI\nBugun nima qilganini biladi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta nusxa yasaldi, nechta o‘yin yutildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Bugun sinfimiz 600 ta nusxa yasadi!» (haqiqiy son bilan)\n\nBOLA O‘RGANADI\nSinf natijasini ko‘radi.",
+  "bloklar": [],
+  "html": "8b7021baf243",
+  "uzun": 9076
+ },
+ "eshik": {
+  "id": "",
+  "matn": "16-dars · Klonlar\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "cf242473e5c1",
+  "uzun": 763
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

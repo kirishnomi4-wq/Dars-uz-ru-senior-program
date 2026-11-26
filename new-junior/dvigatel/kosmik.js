@@ -55,7 +55,10 @@ function perJsonD(j) {
   for (const t of bl) if (BL_HODISA.has(t.type)) { const z = zanjir(t.next && t.next.block); r.push({ tur: t.type, tugma: t.type === 'when_key' ? (t.fields || {}).KEY : '', olma: t.type === 'when_touch' ? (t.fields || {}).OLMA : '', daraxt: z, bloklar: z.map((x) => x.el), hodisa: document.createElement('span') }) }
   return r
 }
-function kosmikNatija(ek) { const s = ek.querySelector('.saqlandi'), m = perOl(); let y = null; try { y = localStorage.getItem(perKalit() + '3') } catch (e) {} if (s) s.hidden = !(y && (m.raketa || m.oq)) }
+function kosmikNatija(ek) {
+  const s = ek.querySelector('.saqlandi'), m = perOl(); let y = null; try { y = localStorage.getItem(perKalit() + '3') } catch (e) {} if (s) s.hidden = !(y && (m.raketa || m.oq))
+  const ch = ksChekOl(); ek.querySelectorAll('.chek-y .ch-r[data-ch]').forEach((r) => { const ok = !!ch[r.dataset.ch]; r.classList.toggle('ok', ok); const i = r.querySelector('i'); if (i) i.textContent = ok ? '✓' : '' }) // 25.11 (K1)
+}
 function perD(ek, id) { const s = ek.__per; if (!s) return []; return id === s.cur ? blDasturchalar(ek) : perJsonD(s.json[id]) }
 
 // ---- maydon: bayroqlar va nishonlar ----
@@ -74,8 +77,12 @@ function kosmikTayyorla(ek) {
   if (D18(ek)) dushTayyorla(ek)
 }
 // chek-list «O‘yiningizda:» (3-bekat) — javon ustunining pastida (9-darsdagi .chek ko'rinishi); oila almashsa ham qaytadi (studiya.js)
+// 25.11 (K1): bola o'yinlarida belgilangan bandlar dars bo'yi to'planadi — yakunda (.chek-y) ✓ bo'lib chiqadi
+const ksChekKalit = () => (typeof K !== 'undefined' ? K : 'jr-') + 'ksChek'
+function ksChekOl() { try { return JSON.parse(localStorage.getItem(ksChekKalit()) || '{}') || {} } catch (e) { return {} } }
 function kosmikChekChiz(ek, c) {
   const b = TOP(ek.dataset.id).bosh, k = b.kosmik || {}, pl = ek.querySelector('.pl'); if (!pl || !k.chek) return
+  if (c && perBola(ek)) { const s = ksChekOl(); let o = false; for (const id in c) if (c[id] && !s[id]) { s[id] = true; o = true } if (o) try { localStorage.setItem(ksChekKalit(), JSON.stringify(s)) } catch (e) {} }
   c = c || ek.__ksChek || {}; ek.__ksChek = c
   pl.querySelectorAll('.chek').forEach((x) => x.remove())
   pl.insertAdjacentHTML('beforeend', '<div class="chek"><small>' + KS('royxat') + '</small>' + (KS('chek') || []).map(([id, t]) => '<span class="ch-r' + (c[id] ? ' ok' : '') + '"><i>' + (c[id] ? '✓' : '') + '</i>' + t + '</span>').join('') + '</div>')
@@ -92,7 +99,7 @@ async function kosmikBoshla(ek) {
   if (k.qoy && (ek.__ksNishon || []).length < k.qoy) { chal('muammo'); ishora(ek, KS('qoyKam', k.qoy)); muammo(ek, 'kamvoy', KS('ozP')); return }
   kosmikChiz(ek)
   klonOl(ek)
-  const h = await SAHNA.katak.boshla(ek, b)
+  const h = await SAHNA.katak.boshla(ek, b); h.tez = true // 25.11 (Q12-A): raketa sakramaydi — tez sirpanadi (sahna.js)
   ek.__klon = { asl: { x: h.x, y: mdY(h.xr, h.y), asl: true }, nusxa: [], soni: 0, ishlar: [], kosmik: true, kut: k.kut || 380, nusxaD: () => perD(ek, 'oq'), sanoqYoq: D18(ek) } // 18-dars: sanoq — faqat «Dushman: N»
   const o = { h, bosish: 0, yurdi: new Set(), bayroq: new Set(), tovushYur: new Set(), oqTovush: false, urildi: 0, tepaga: 0, tepadaOchdi: 0, chek: {}, kosmik: true }
   OYIN.set(ek, o); ek.dataset.oyin = 'kosmik'
@@ -115,7 +122,7 @@ async function kosmikBos(ek, k, o) {
   // raketa dasturchalari — kutiladi (raketa yuradi); o'q dasturchalari — nusxa yasaydi (uchishi kutilmaydi)
   ek.dataset.yuryapti = '1'
   const bor = (z, tur) => z.some((t) => t.tur === tur || bor(t.ichki || [], tur))
-  for (const d of ds.filter((x) => x.p !== 'oq')) { d.hodisa.classList && d.hodisa.classList.add('hozir'); const x0 = o.h.x, z = turla(d.daraxt); await ijro(z, (t) => kosmikBlok(ek, o, d.p, t), { kut: 140 }); d.hodisa.classList && d.hodisa.classList.remove('hozir'); if (o.h.x !== x0 && bor(z, 'n')) o.tovushYur.add(o.h.x > x0 ? 'r' : 'l') } // ★: tovush — yurgan dasturchada
+  for (const d of ds.filter((x) => x.p !== 'oq')) { d.hodisa.classList && d.hodisa.classList.add('hozir'); const x0 = o.h.x, z = turla(d.daraxt); await ijro(z, (t) => kosmikBlok(ek, o, d.p, t), { kut: 70, oxir: 20 }) /* 25.11 (QA F-1125-12, Q12-A): raketa ~2× tez */; d.hodisa.classList && d.hodisa.classList.remove('hozir'); if (o.h.x !== x0 && bor(z, 'n')) o.tovushYur.add(o.h.x > x0 ? 'r' : 'l') } // ★: tovush — yurgan dasturchada
   delete ek.dataset.yuryapti
   const oqD = ds.filter((x) => x.p === 'oq').map((d) => ({ ...d, z: turla(d.daraxt) }))
   if (k === 'space' && !oqD.some((d) => bor(d.z, 'C')) && !ds.some((d) => d.p !== 'oq' && bor(turla(d.daraxt), 'C'))) { chal('muammo'); ishora(ek, KS('oqQani')); muammo(ek, 'boshvoy', KS('oqQaniP')) } // space — o'q paydo bo'lmaydi

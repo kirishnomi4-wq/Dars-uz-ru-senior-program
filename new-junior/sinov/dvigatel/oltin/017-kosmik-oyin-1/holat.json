@@ -1,0 +1,1108 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nBugun raketa uchadi!\n\nCoddy\nSalom! Bugun raketa o‘q otadi.\n\nO‘TGAN DARSDA\ncreate clone of myself\nKlon\nDastur ishlab turganda yasalgan nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fd62180cb1a4",
+  "uzun": 33734
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nSAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "900e86c684b4",
+  "uzun": 49148
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "13f5f3a3962a",
+  "uzun": 49246
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nO‘qning o‘z dasturi\n\nCoddy\nRaketa yuradi. O‘q esa o‘z dasturi bilan uchadi.\n\nA\nRaketaning o‘zi uchsin\n✕ raketa ketib qoldi\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\n✕ bir marta otildi\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\n✓ har safar yangi o‘q\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6315a2522ffc",
+  "uzun": 50351
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nPersonaj nima?\n\nCoddy\nPersonaj — o‘yindagi har bir qatnashchi.\n\nwhen\n→\nkey pressed\nRaketa dasturi\nwhen\nspace\nkey pressed\nO‘q dasturi\nHar personajning o‘z dasturi\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7fa84892d8e8",
+  "uzun": 42866
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida raketa nishonlarni uradi.\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n1\nRaketa\n2\nO‘q\n3\nNishonlar\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b3b822a27bb8",
+  "uzun": 43684
+ },
+ "u-07-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nRaketaning dasturi\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "928d606000c7",
+  "uzun": 26065
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nRaketani yurgizing!\n\nCoddy\nRaketa strelkalar bilan yursin.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nO‘ngga\n2\n0\nIkki tomonga\n3\n0\nStartga\n★\n0\nQadam tovushi\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "551bed1ac7c3",
+  "uzun": 40182
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · O‘q\n\nCoddy\nEndi o‘q — ikkinchi personaj.\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n✓\nRaketa\n2\nO‘q\n3\nNishonlar\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a6ead1e652a5",
+  "uzun": 43491
+ },
+ "u-10-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘qning dasturi\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "88494250cb2d",
+  "uzun": 29100
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nO‘q oting!\n\nCoddy\nSpace bosilsa, o‘q uchsin.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nOtish\n2\n0\nUchish\n3\n0\nO‘chish\n★\n0\nOtish tovushi\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "dd1c017b7666",
+  "uzun": 40181
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nPersonaj\n\nCoddy\nIkki personaj — ikki dastur, bitta o‘yin.\n\nRaketa dasturi\nyuradi\nO‘q dasturi\nuchadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "85981cf207fe",
+  "uzun": 47767
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Nishonlar\n\nCoddy\nEndi nishonlarni uramiz!\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n✓\nRaketa\n✓\nO‘q\n3\nNishonlar\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "72f6a2185ab7",
+  "uzun": 43481
+ },
+ "u-14-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nNishonlar\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "be0384e95ce1",
+  "uzun": 30828
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nNishonlarni uring!\n\nCoddy\nHamma nishonni uring — ro‘yxat to‘lsin.\n\nUch o‘yinni yutdi\n0 / 0\nHar belgi — uch o‘yinni yutgan bitta bola\n1\n0\nUch nishon\n2\n0\nPastda nishon\n3\n0\nQator\n★\n0\nO‘z nishonlaringiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a592e5051302",
+  "uzun": 41081
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men otaman.\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nO‘q dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7487d0d0787e",
+  "uzun": 30903
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nRaketa uchdi!\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\nKeyingi dars\n18 · Kosmik o‘yin 2\n✓\nRaketa\n✓\nO‘q\n✓\nNishonlar\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "68c80546bf8c",
+  "uzun": 31679
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘q otdi\n0\nta nishon urildi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6e1c69315341",
+  "uzun": 41812
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n✕ raketa ketib qoldi\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5b3006305694",
+  "uzun": 49284
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n✕ raketa ketib qoldi\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\n✕ bir marta otildi\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q qani?\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "76cd79ed37ec",
+  "uzun": 54941
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n✕ raketa ketib qoldi\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\n✕ bir marta otildi\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\n✓ har safar yangi o‘q\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "debf4dd6a7f9",
+  "uzun": 50237
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nPersonaj nima?\n\nCoddy\nPersonaj — o‘yindagi har bir qatnashchi.\n\nwhen\n→\nkey pressed\nRaketa dasturi\nwhen\nspace\nkey pressed\nO‘q dasturi\nHar personajning o‘z dasturi\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f5049345a562",
+  "uzun": 42869
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nPersonaj nima?\n\nCoddy\nPersonaj — o‘yindagi har bir qatnashchi.\n\nwhen\n→\nkey pressed\nRaketa dasturi\nwhen\nspace\nkey pressed\nO‘q dasturi\nHar personajning o‘z dasturi\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e99857aec169",
+  "uzun": 42872
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nPersonaj nima?\n\nCoddy\nPersonaj — o‘yindagi har bir qatnashchi.\n\nwhen\n→\nkey pressed\nRaketa dasturi\nwhen\nspace\nkey pressed\nO‘q dasturi\nHar personajning o‘z dasturi\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6f759fcf10aa",
+  "uzun": 42878
+ },
+ "u-x-P7-yurdi": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nRaketaning dasturi\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yin: ← → va space\n‹ Orqaga\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "6e31eed2d785",
+  "uzun": 26266
+ },
+ "u-x-P8-turib": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘qning dasturi\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nRaketa\nO‘q\n1 ta dasturcha\n2 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 1\nO‘yin: ← → va space\nMen nima qilay?\n‹ Orqaga\nO‘q when I start as a clone ostidagi bloklarni bajaradi\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself"
+  ],
+  "html": "cee258ea30f2",
+  "uzun": 34831
+ },
+ "u-x-P8-uchdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘qning dasturi\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n6 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 1\nO‘yin: ← → va space\n‹ Orqaga\nO‘q when I start as a clone ostidagi bloklarni bajaradi\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "fe6914238220",
+  "uzun": 29218
+ },
+ "u-x-P10-yutdi": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nNishonlar\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\n✓\nRaketa yuradi\n✓\nO‘q otiladi\n✓\nO‘q o‘chadi\n✓\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘q: 3\n‹ Orqaga\nSiz yutdingiz!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "8071e74557df",
+  "uzun": 30732
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘q otdi\n0\nta nishon urildi\n0\npog‘ona bajardi\nDars tugadi!\nKo‘rishguncha — keyingi darsda dushmanlar bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d2d5776b842e",
+  "uzun": 41953
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "bf5a85873f32",
+  "uzun": 26290
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "675361ae1842",
+  "uzun": 17902
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nSAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nO‘qni qaysi yo‘l bilan otamiz?\n\nA\nRaketaning o‘zi uchsin\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "9bf49332d238",
+  "uzun": 46937
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "6117b9244e2d",
+  "uzun": 17905
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘llarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "708d490aca97",
+  "uzun": 17917
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "c2cdce24b33b",
+  "uzun": 17897
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: personaj",
+  "bloklar": [],
+  "html": "c9224d1259dd",
+  "uzun": 17901
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "57eaeb4bd24c",
+  "uzun": 17899
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz raketani yurgizyapti — kuzating",
+  "bloklar": [],
+  "html": "47d1519d70ee",
+  "uzun": 17918
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilsa, raketa o‘ngga yursin. Bayroqqa yeting\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash",
+  "bloklar": [],
+  "html": "a68a5dea8f6f",
+  "uzun": 18812
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nIkki tomonga\n← ham ishlasin. Ikkala bayroqqa yeting\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nRaketa\nO‘q\n1 ta dasturcha\n2 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right"
+  ],
+  "html": "261312c4a70e",
+  "uzun": 19104
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nStartga\n▶ bosilganda raketa (3, 0) ga borsin\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "24406dcb0850",
+  "uzun": 18791
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nQadam tovushi\nRaketa yurganda tovush chalinsin\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "9572d0dbc427",
+  "uzun": 18491
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "14a781b50108",
+  "uzun": 17912
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: o‘q",
+  "bloklar": [],
+  "html": "e76056559123",
+  "uzun": 17893
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘q otyapti — kuzating",
+  "bloklar": [],
+  "html": "04bbf10ac32b",
+  "uzun": 17909
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nOtish\nSpace bosilsa, o‘q paydo bo‘lsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n1 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash",
+  "bloklar": [
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "2e0cd574cd62",
+  "uzun": 21508
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nUchish\nO‘q tepagacha uchsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\ndelete this clone\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:delete this clonewhen I start as a clone",
+   "D:delete this clone"
+  ],
+  "html": "440723fe5384",
+  "uzun": 21497
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nO‘chish\nTepaga yetgan o‘q o‘chsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n5 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move uprepeat4when I start as a clone",
+   "p:move uprepeat4",
+   "u:move up"
+  ],
+  "html": "dbc4bcef5a19",
+  "uzun": 21503
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nOtish tovushi\nO‘q otilganda tovush chalinsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n6 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "02c823086cce",
+  "uzun": 21517
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "14a781b50108",
+  "uzun": 17912
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: personaj",
+  "bloklar": [],
+  "html": "4f02270eded4",
+  "uzun": 17897
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: nishonlar",
+  "bloklar": [],
+  "html": "65848d629d66",
+  "uzun": 17899
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz nishon uryapti — kuzating",
+  "bloklar": [],
+  "html": "daa0646d2392",
+  "uzun": 17912
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch nishon\nHamma nishonni uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "ec63e85798c6",
+  "uzun": 23255
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastda nishon\nNishonlar pastroqda — hammasini uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "4376c2cc7b4c",
+  "uzun": 23275
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nQator\nYetti nishon — hammasini uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "f5c25849ad79",
+  "uzun": 25260
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z nishonlaringiz\nKatakni bosib kamida to‘rtta nishon qo‘ying — keyin yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "a19aa8dd35e7",
+  "uzun": 21814
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "14a781b50108",
+  "uzun": 17912
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nRaketa uchdi!\n\nBulut\nRaketam nishonlarni urdi!\n\nSiz bugun\n0\nta o‘q otdi\n0\nta nishon urildi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nBulut\nKeyingi darsda dushmanlar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "350f128a97dc",
+  "uzun": 19656
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nRaketa uchdi!\n\nBulut\nRaketam nishonlarni urdi!\n\nSiz bugun\n0\nta o‘q otdi\n0\nta nishon urildi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nBulut\nKeyingi darsda dushmanlar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "350f128a97dc",
+  "uzun": 19656
+ },
+ "bx-B1A-bosh": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilsa, raketa o‘ngga yursin. Bayroqqa yeting\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash",
+  "bloklar": [],
+  "html": "a68a5dea8f6f",
+  "uzun": 18812
+ },
+ "bx-B1A-yoq": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilsa, raketa o‘ngga yursin. Bayroqqa yeting\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nBu yerda hech narsa yo‘q-ku…\nMaslahat\nAvval blokni bosing — u dasturga qo‘shiladi\nBoshlash",
+  "bloklar": [],
+  "html": "2ba08ce444e8",
+  "uzun": 23826
+ },
+ "bx-B1A-qulf": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilsa, raketa o‘ngga yursin. Bayroqqa yeting\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nBu yerda hech narsa yo‘q-ku…\nMaslahat\nO‘q — 2-bekatda\nBoshlash",
+  "bloklar": [],
+  "html": "33bb7596a425",
+  "uzun": 23798
+ },
+ "bx-B1C-start": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nStartga\n▶ bosilganda raketa (3, 0) ga borsin\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yin: ← → va space\nOz qoldi!\nMaslahat\n▶ bosilganda raketa (3, 0) ga borsin\n■ To‘xtatish",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "eb56326ab34f",
+  "uzun": 24053
+ },
+ "bx-B2A-bosh": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nOtish\nSpace bosilsa, o‘q paydo bo‘lsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n1 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash",
+  "bloklar": [
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "2e0cd574cd62",
+  "uzun": 21508
+ },
+ "bx-B2A-raketa": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nOtish\nSpace bosilsa, o‘q paydo bo‘lsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "7de13d6f6630",
+  "uzun": 21511
+ },
+ "bx-B2B-yetmadi": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nUchish\nO‘q tepagacha uchsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\ndelete this clone\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 1\nO‘yin: ← → va space\nOz qoldi!\nMaslahat\nO‘q tepaga yetmay o‘chdi. move up necha marta?\n■ To‘xtatish",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:delete this clonewhen I start as a clone",
+   "D:delete this clone"
+  ],
+  "html": "c4da49e95f69",
+  "uzun": 26769
+ },
+ "bx-B2B-chet": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nUchish\nO‘q tepagacha uchsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n5\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n6 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 1\nO‘yin: ← → va space\nMaydon tugadi!\nMaslahat\nO‘q tepadan ham yuqoriga uchmoqchi bo‘ldi. move up necha marta?\n■ To‘xtatish",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat5when I start as a clone",
+   "p:move updelete this clonerepeat5",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "86746e028e20",
+  "uzun": 27149
+ },
+ "bx-B2C-qoldi": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nO‘chish\nTepaga yetgan o‘q o‘chsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n5 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 1\nO‘yin: ← → va space\nTepada qolib ketdi!\nMaslahat\nUchib bo‘lgan o‘q o‘chsin — delete this clone\n■ To‘xtatish",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move uprepeat4when I start as a clone",
+   "p:move uprepeat4",
+   "u:move up"
+  ],
+  "html": "d29e28fc2ddf",
+  "uzun": 27142
+ },
+ "bx-B3A-bosh": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch nishon\nHamma nishonni uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "ec63e85798c6",
+  "uzun": 23255
+ },
+ "bx-B3A-yutdi": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch nishon\nHamma nishonni uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\n✓\nRaketa yuradi\n✓\nO‘q otiladi\n✓\nO‘q o‘chadi\n✓\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nO‘q: 3\nMaslahat\nSiz yutdingiz!\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "dcd8c375954a",
+  "uzun": 22974
+ },
+ "bx-B3Y-qoydi": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z nishonlaringiz\nKatakni bosib kamida to‘rtta nishon qo‘ying — keyin yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "2f819fb5460e",
+  "uzun": 23803
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nRaketa uchdi!\n\nBulut\nRaketam nishonlarni urdi!\n\nSiz bugun\n3\nta o‘q otdi\n3\nta nishon urildi\n1\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘yiningizda:\n✓\nRaketa yuradi\n✓\nO‘q otiladi\n✓\nO‘q o‘chadi\n✓\nHamma nishon urildi\nBulut\nKeyingi darsda dushmanlar bilan ko‘rishamiz!\nO‘yiningiz saqlandi.\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "977397ef5845",
+  "uzun": 19662
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nSAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nO‘qni qaysi yo‘l bilan otamiz?\n\nA\nRaketaning o‘zi uchsin\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "8cec05235474",
+  "uzun": 46946
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "2c60b5feffff",
+  "uzun": 54416
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "b417db19d4e5",
+  "uzun": 16967
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "bf5a85873f32",
+  "uzun": 26290
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nBugun raketa uchadi!\n\nCoddy\nSalom! Bugun raketa o‘q otadi.\n\nO‘TGAN DARSDA\ncreate clone of myself\nKlon\nDastur ishlab turganda yasalgan nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "3fbed2900814",
+  "uzun": 32436
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "17-DARS · KOSMIK O‘YIN 1\nSAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nO‘qni qaysi yo‘l bilan otamiz?\n\nA\nRaketaning o‘zi uchsin\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "9bf49332d238",
+  "uzun": 46937
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n▶ Sinab ko‘rish\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\n▶ Sinab ko‘rish\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\n▶ Sinab ko‘rish\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "f50dad5bb001",
+  "uzun": 48109
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nO‘qning o‘z dasturi\n\nCoddy\nRaketa yuradi. O‘q esa o‘z dasturi bilan uchadi.\n\nA\nRaketaning o‘zi uchsin\n✕ raketa ketib qoldi\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\n✕ bir marta otildi\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\n✓ har safar yangi o‘q\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "19bc9fadf264",
+  "uzun": 49061
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nPersonaj nima?\n\nCoddy\nPersonaj — o‘yindagi har bir qatnashchi.\n\nwhen\n→\nkey pressed\nRaketa dasturi\nwhen\nspace\nkey pressed\nO‘q dasturi\nHar personajning o‘z dasturi\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9733b942451a",
+  "uzun": 41576
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida raketa nishonlarni uradi.\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n1\nRaketa\n2\nO‘q\n3\nNishonlar\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "906a0507e3c9",
+  "uzun": 42394
+ },
+ "sq-07-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nRaketaning dasturi\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nRaketa dasturi: → va ← tugmalariga dasturcha\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "644a29b5d65a",
+  "uzun": 24810
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilsa, raketa o‘ngga yursin. Bayroqqa yeting\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "623ab6ee6794",
+  "uzun": 18859
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nIkki tomonga\n← ham ishlasin. Ikkala bayroqqa yeting\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nRaketa\nO‘q\n1 ta dasturcha\n2 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right"
+  ],
+  "html": "ad3c26b19869",
+  "uzun": 19151
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nStartga\n▶ bosilganda raketa (3, 0) ga borsin\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "0b2545f7c093",
+  "uzun": 18838
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nQadam tovushi\nRaketa yurganda tovush chalinsin\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nMaslahat\nRaketa strelkalar bilan yursin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "6453f8b6d991",
+  "uzun": 18538
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · O‘q\n\nCoddy\nEndi o‘q — ikkinchi personaj.\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n✓\nRaketa\n2\nO‘q\n3\nNishonlar\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "37674e8897ef",
+  "uzun": 42201
+ },
+ "sq-10-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘qning dasturi\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n6 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\nO‘q dasturi: space — nusxa, nusxa tepaga uchadi\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "fb79a7d762e1",
+  "uzun": 27848
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nOtish\nSpace bosilsa, o‘q paydo bo‘lsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n1 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "16f43468c4ae",
+  "uzun": 21555
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nUchish\nO‘q tepagacha uchsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\ndelete this clone\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:delete this clonewhen I start as a clone",
+   "D:delete this clone"
+  ],
+  "html": "4dd99f4bf601",
+  "uzun": 21544
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nO‘chish\nTepaga yetgan o‘q o‘chsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n5 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move uprepeat4when I start as a clone",
+   "p:move uprepeat4",
+   "u:move up"
+  ],
+  "html": "d420a4fc8c96",
+  "uzun": 21550
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nOtish tovushi\nO‘q otilganda tovush chalinsin\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n6 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nSpace bosilsa, o‘q uchsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "28ed34b67ada",
+  "uzun": 21564
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nPersonaj\n\nCoddy\nIkki personaj — ikki dastur, bitta o‘yin.\n\nRaketa dasturi\nyuradi\nO‘q dasturi\nuchadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "30da6d9624d8",
+  "uzun": 46477
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Nishonlar\n\nCoddy\nEndi nishonlarni uramiz!\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n✓\nRaketa\n✓\nO‘q\n3\nNishonlar\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "4c45d0b16507",
+  "uzun": 42191
+ },
+ "sq-14-0-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nNishonlar\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\nNishon ostiga boring — keyin space\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "14fa8ca8bbdb",
+  "uzun": 29572
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nUch nishon\nHamma nishonni uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "c48bda5b5a10",
+  "uzun": 23302
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nPastda nishon\nNishonlar pastroqda — hammasini uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "e33c392da04d",
+  "uzun": 23322
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nQator\nYetti nishon — hammasini uring\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "1ef1eb7938d8",
+  "uzun": 25307
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z nishonlaringiz\nKatakni bosib kamida to‘rtta nishon qo‘ying — keyin yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\nMaslahat\nHamma nishonni uring — ro‘yxat to‘lsin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "15eccf44f6d7",
+  "uzun": 21861
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nRaketa uchdi!\n\nBulut\nRaketam nishonlarni urdi!\n\nSiz bugun\n0\nta o‘q otdi\n0\nta nishon urildi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nBulut\nKeyingi darsda dushmanlar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "350f128a97dc",
+  "uzun": 19656
+ },
+ "sx-P7-tayyor": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nRaketaning dasturi\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nRaketa dasturi: → va ← tugmalariga dasturcha\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "644a29b5d65a",
+  "uzun": 24810
+ },
+ "sx-P8-tayyor": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nO‘qning dasturi\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\n2 ta dasturcha\n6 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\nO‘q dasturi: space — nusxa, nusxa tepaga uchadi\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "fb79a7d762e1",
+  "uzun": 27848
+ },
+ "sx-P10-tayyor": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nNishonlar\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\nNishon ostiga boring — keyin space\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "14fa8ca8bbdb",
+  "uzun": 29572
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n17-DARS · KOSMIK O‘YIN 1\nBugun raketa uchadi!\n\nCoddy\nSalom! Bugun raketa o‘q otadi.\n\nO‘TGAN DARSDA\ncreate clone of myself\nKlon\nDastur ishlab turganda yasalgan nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n17-DARS · KOSMIK O‘YIN 1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "53f6b4f0e431",
+  "uzun": 88294
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n17-DARS · KOSMIK O‘YIN 1\nSAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n17-DARS · KOSMIK O‘YIN 1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "65002e7d88c4",
+  "uzun": 103708
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nRaketa qanday o‘q otadi?\n\nCoddy\nSpace bosilsa, o‘q nishonga uchsin.\n\nA\nRaketaning o‘zi uchsin\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b52fad93eda6",
+  "uzun": 103806
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nO‘qning o‘z dasturi\n\nCoddy\nRaketa yuradi. O‘q esa o‘z dasturi bilan uchadi.\n\nA\nRaketaning o‘zi uchsin\n✕ raketa ketib qoldi\n↑\nraketa nishonga uchadi\nB\nBitta o‘q chizamiz\n✕ bir marta otildi\nbitta o‘q — bitta otish\nC\nO‘qdan nusxa olamiz\n✓ har safar yangi o‘q\nhar space — yangi nusxa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "74bc6274a680",
+  "uzun": 104911
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nPersonaj nima?\n\nCoddy\nPersonaj — o‘yindagi har bir qatnashchi.\n\nwhen\n→\nkey pressed\nRaketa dasturi\nwhen\nspace\nkey pressed\nO‘q dasturi\nHar personajning o‘z dasturi\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "753ec8ee7548",
+  "uzun": 97426
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida raketa nishonlarni uradi.\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n1\nRaketa\n2\nO‘q\n3\nNishonlar\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0a75d9364df5",
+  "uzun": 98244
+ },
+ "y-07": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nRaketaning dasturi\nHodisa\nHarakat\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nRaketa dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "72da91d72dbb",
+  "uzun": 80625
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nRaketani yurgizing!\n\nCoddy\nRaketa strelkalar bilan yursin.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nO‘ngga\n2\n0\nIkki tomonga\n3\n0\nStartga\n★\n0\nQadam tovushi\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ad16ebed3dfa",
+  "uzun": 94742
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · O‘q\n\nCoddy\nEndi o‘q — ikkinchi personaj.\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n✓\nRaketa\n2\nO‘q\n3\nNishonlar\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6c220da0ecd7",
+  "uzun": 98051
+ },
+ "y-10": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nO‘qning dasturi\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘q dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 8 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a28db3dc56aa",
+  "uzun": 83660
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nO‘q oting!\n\nCoddy\nSpace bosilsa, o‘q uchsin.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nOtish\n2\n0\nUchish\n3\n0\nO‘chish\n★\n0\nOtish tovushi\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2f518393a7b1",
+  "uzun": 94741
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nPersonaj\n\nCoddy\nIkki personaj — ikki dastur, bitta o‘yin.\n\nRaketa dasturi\nyuradi\nO‘q dasturi\nuchadi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "84d4d220bbfb",
+  "uzun": 102327
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Nishonlar\n\nCoddy\nEndi nishonlarni uramiz!\n\nDars oxirida · kosmik o‘yin\nRaketa nishonlarni uradi\n✓\nRaketa\n✓\nO‘q\n3\nNishonlar\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b92ebd99d624",
+  "uzun": 98041
+ },
+ "y-14": {
+  "id": "P10",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nNishonlar\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\n2 ta dasturcha\n4 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "dc3b6ee58780",
+  "uzun": 85397
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nNishonlarni uring!\n\nCoddy\nHamma nishonni uring — ro‘yxat to‘lsin.\n\nUch o‘yinni yutdi\n0 / 1\nHar belgi — uch o‘yinni yutgan bitta bola\n1\n0\nUch nishon\n2\n0\nPastda nishon\n3\n0\nQator\n★\n0\nO‘z nishonlaringiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f9e9d746f1cd",
+  "uzun": 95641
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men otaman.\nHodisa\nHarakat\nTakrorlash\nKlon\nTovush\nHodisa\nwhen\nspace\nkey pressed\nwhen ▶ clicked\nO‘yiningizda:\nRaketa yuradi\nO‘q otiladi\nO‘q o‘chadi\nHamma nishon urildi\nO‘q dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\n0 ta dasturcha\n0 / 10 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nO‘q: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0ba36f71aa44",
+  "uzun": 85463
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nRaketa uchdi!\nBUGUNGI SO‘Z\nPersonaj\nO‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor\nKeyingi dars\n18 · Kosmik o‘yin 2\n✓\nRaketa\n✓\nO‘q\n✓\nNishonlar\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "98ef494bceee",
+  "uzun": 86239
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘q otdi\n0\nta nishon urildi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: raketa qanday o‘q otadi?\n3 / 18 · Uch sinov\n4 / 18 · Javob: o‘q — o‘z dasturi bilan\n5 / 18 · Yangi so‘z: personaj\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: raketaning dasturi\n8 / 18 · O‘zingiz: raketa\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: o‘qning dasturi\n11 / 18 · O‘zingiz: o‘q\n12 / 18 · Xulosa: personaj\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: nishonlar\n15 / 18 · O‘zingiz: kosmik o‘yin\n16 / 18 · O‘q dasturingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2e1684d3041b",
+  "uzun": 96372
+ },
+ "varaq": {
+  "id": "",
+  "matn": "17-dars · Kosmik o‘yin 1 — ustoz varag‘i\n\nAsosiy fikr: katta o‘yin — bir nechta personaj, har birining o‘z dasturi. Avval raketa, keyin o‘q, keyin nishonlar — har qismni alohida yasab, sinaymiz. Hukda, xulosada (12) va yakunda chiqadi.\n\nYo‘l: huk (o‘q qanday otiladi — uch sinov) → yangi so‘z «personaj» → reja → 1-bekat «Raketa» → 2-bekat «O‘q» → 3-bekat «Nishonlar» → o‘qib berish → yakun.\n\nPersonaj kartalari dastur ustunining tepasida: «Raketa» · «O‘q». Kartani bosing — uning dasturi ochiladi. Bola «blok qayerga ketdi?» desa — qaysi personaj tanlanganini so‘rang.\n\nO‘qning asli raketaning ichida — ko‘rinmaydi; create clone of myself o‘qni raketa turgan joyda paydo qiladi. O‘yinda bosilgan tugma hamma personajda ishlaydi: raketa → bilan yuradi, o‘q space bilan otiladi.\n\nYechimni aytmang: «Qaysi personaj otadi? O‘q qayerda to‘xtadi? Tepaga yetgan o‘q nima qilsin?» 3-bekatda ro‘yxatga qarating: qaysi band hali ✓ emas.\n\nDastur saqlanadi: 3-bekatda o‘yin yutilsa — ikkala personaj dasturi keyingi darsga (18 · Kosmik o‘yin 2) o‘tadi. 16-qadamda proyektorga ism chiqmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«17-dars · Kosmik o‘yin 1» — «Bugun raketa uchadi!» Kosmos maydoni, pastda raketa (ichida Coddy), tepada uchta nishon; pastda «O‘tgan darsda» — klon.\n\nSIZ\n«O‘tgan darsda dushmandan ko‘p nusxa yasadik.» «Bugun va keyingi darsda katta o‘yin yasaymiz — kosmik o‘yin.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun kosmik o‘yin yasashini biladi.\n\n2\nSavol: raketa qanday o‘q otadi?\n\nEKRANDA\nSavol: «Raketa qanday o‘q otadi?» Uchta karta: A «Raketaning o‘zi uchsin» · B «Bitta o‘q chizamiz» · C «O‘qdan nusxa olamiz».\n\nSIZ\n«Space bosilsa, o‘q uchsin. Qaysi yo‘l bilan?» «Har kim noutbukida bitta kartani tanlasin.»\n\nBOLA O‘RGANADI\nO‘q qanday otilishi haqida o‘ylaydi.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A — raketaning o‘zi uchadi va tepada qoladi («✕ raketa ketib qoldi»). «Keyingi» — B: bitta o‘q, ikkinchi marta yo‘q («✕ bir marta otildi»). «Keyingi» — C: har space — yangi o‘q («✓ har safar yangi o‘q»).\n\nSIZ\n«Raketa uchib ketsa — o‘yinchi qayerda? Bitta o‘q — bitta otish.» «O‘qdan nusxa olsak — har bosishda yangi o‘q.»\n\nBOLA O‘RGANADI\nUch usulning natijasini ko‘radi.\n\n4\nJavob: o‘q — o‘z dasturi bilan\n\nEKRANDA\nJavob: «O‘qning o‘z dasturi». A va B xira, C oltin; maydonda raketa, uchayotgan uch o‘q.\n\nSIZ\n«Raketa va o‘q — ikki personaj. Har birining o‘z dasturi.»\n\nBOLA O‘RGANADI\nBugungi asosiy fikrni eshitadi.\n\n5\nYangi so‘z: personaj\n\nEKRANDA\nYangi so‘z: «Personaj nima?» «Keyingi» — birma-bir: raketa dasturi, o‘q dasturi, ikkalasi bitta o‘yinda.\n\nSIZ\n«Personaj — o‘yindagi har bir qatnashchi. Har birining o‘z rasmi va o‘z dasturi bor.» «Katta o‘yinni personajlarga bo‘lamiz — har birini alohida yasaymiz.»\n\nBOLA O‘RGANADI\n«Personaj» so‘zini biladi.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — raketa → o‘q → nishonlar; cho‘qqida «Dars oxirida · kosmik o‘yin».\n\nSIZ\n«Bugun uchta bekat: raketa, o‘q, nishonlar.» «Har bekatda o‘yinning bitta qismini yasaymiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: raketaning dasturi\n\nEKRANDA\nKo‘ramiz: «Raketaning dasturi». Personaj kartalari «Raketa» · «O‘q»; dastur bo‘sh — when → key pressed + move right, when ← key pressed + move left; ▶ Boshlash, → → ←.\n\nSIZ\n«Bu — Raketa dasturi. Raketa strelkalar bilan yuradi — 4-darsdagidek.» «Har personajning dasturi alohida: kartani bosamiz — uning dasturi ochiladi.»\n\nBOLA O‘RGANADI\nPersonaj kartasini va raketa dasturini ko‘radi.\n\n8\nO‘zingiz: raketa\n\nEKRANDA\nMashq: «Raketani yurgizing!» — zinapoya: 1 o‘ngga · 2 ikki tomonga · 3 startga · ★ qadam tovushi.\n\nSIZ\n«Raketa dasturiga bloklarni qo‘ying. Har strelkaga o‘z dasturchasi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nRaketani strelkalar bilan yurgizadi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «O‘q».\n\nSIZ\n«Raketa yuradi. Endi o‘q — uning o‘z dasturi bo‘ladi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: o‘qning dasturi\n\nEKRANDA\nKo‘ramiz: «O‘qning dasturi». «O‘q» kartasi — dastur bo‘sh; when space key pressed + create clone of myself — o‘q paydo bo‘ladi va turib qoladi (Bo‘shvoy «Men nima qilay?»); when I start as a clone + repeat 4 [move up] + delete this clone — har space — yangi o‘q.\n\nSIZ\n«O‘qning asli raketaning ichida. Space — o‘qdan nusxa.» «Nusxa tepaga uchadi va o‘chadi — 16-darsdagi dushman kabi, faqat teskari.»\n\nBOLA O‘RGANADI\nO‘q dasturini — nusxa, uchish, o‘chishni ko‘radi.\n\n11\nO‘zingiz: o‘q\n\nEKRANDA\nMashq: «O‘q oting!» — zinapoya: 1 otish · 2 uchish · 3 o‘chish · ★ otish tovushi.\n\nSIZ\n«O‘q dasturini oching — kartani bosing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘q dasturini tuzadi va otadi.\n\n12\nXulosa: personaj\n\nEKRANDA\nXulosa: «Personaj». Ikki karta: raketa — «Raketa dasturi: yuradi»; o‘q — «O‘q dasturi: uchadi».\n\nSIZ\n«Katta o‘yinni personajlarga bo‘ldik. Har birini alohida yasadik.»\n\nBOLA O‘RGANADI\nPersonaj nimaligini aytib bera oladi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Nishonlar».\n\nSIZ\n«Oxirgi bekat: o‘yin tayyor bo‘ladi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: nishonlar\n\nEKRANDA\nKo‘ramiz: «Nishonlar». Ikkala dastur tayyor; nishonlar (1, 4), (3, 3), (5, 4); ▶ Boshlash — ← → va space; uchala nishon — «Siz yutdingiz!», ro‘yxat «O‘yiningizda:» to‘ladi.\n\nSIZ\n«Nishon ostiga boring — keyin space.» «Ro‘yxatga qarang: o‘yinda hamma narsa bormi?» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nO‘yin qanday yutilishini ko‘radi.\n\n15\nO‘zingiz: kosmik o‘yin\n\nEKRANDA\nMashq: «Nishonlarni uring!» — zinapoya: 1 uch nishon · 2 pastda nishon · 3 qator · ★ o‘z nishonlaringiz.\n\nSIZ\n«Ro‘yxatdagi to‘rt band — hammasi ✓ bo‘lsin.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nKosmik o‘yinni tugatadi.\n\n16\nO‘q dasturingizni o‘qib bering\n\nEKRANDA\n«Dasturingizni o‘qib bering». Raketa dasturi tayyor, o‘q dasturi bo‘sh; bola o‘qiydi, siz qo‘yasiz va o‘ynaysiz. Proyektorda ism yo‘q.\n\nSIZ\n«Kim o‘q dasturini o‘qib beradi? Avval otish, keyin uchish.»\n\nBOLA O‘RGANADI\nO‘q dasturini o‘qib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Raketa uchdi!» Bugungi so‘z — «Personaj»; keyingi dars — 18 · Kosmik o‘yin 2.\n\nSIZ\n«Uchala bekatdan o‘tdik: raketa, o‘q, nishonlar.» «Keyingi darsda osmondan dushmanlar tushadi — ball va jon ham bo‘ladi.»\n\nBOLA O‘RGANADI\nBugun nima qilganini biladi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta o‘q otildi, nechta nishon urildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)\n\nBOLA O‘RGANADI\nSinf natijasini ko‘radi.",
+  "bloklar": [],
+  "html": "6fc712dbaacd",
+  "uzun": 8314
+ },
+ "eshik": {
+  "id": "",
+  "matn": "17-dars · Kosmik o‘yin 1\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "ede0e81ec2de",
+  "uzun": 770
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

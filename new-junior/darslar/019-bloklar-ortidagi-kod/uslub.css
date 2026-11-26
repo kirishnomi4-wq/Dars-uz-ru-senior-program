@@ -345,6 +345,10 @@
 /* yangi so'z (P3): uchinchi bo'lakda bloklar va kod yonma-yon */
 .xs-kod{font-size:.95cqw}
 .e-P3 .xs-d.xs-ikki{gap:.8cqw}
+/* 25.11 (F-1125-16): «Bitta dastur — ikki ko'rinish» kartasida kod (onKey…) karta enidan 21 px keng edi — uchinchi karta kengroq, kod qutisi ixchamroq */
+.e-P3 .xs{grid-template-columns:.85fr .9fr 1.45fr}
+/* 26.11: .8fr da 1-kartadagi «move right» bloki (93 px) o'z joyidan (88 px) chiqardi — setka 7-qoida; 3-kartada kodga 13 px ortiqcha joy bor edi */
+.e-P3 .xs-kod{padding:.5cqw .7cqw;font-size:.9cqw}
 .xs-bl{display:flex;flex-direction:column;gap:.2cqw;align-items:flex-start}
 /* xulosa (P9): kod kartasi */
 .tf-kod{font-size:1.1cqw}

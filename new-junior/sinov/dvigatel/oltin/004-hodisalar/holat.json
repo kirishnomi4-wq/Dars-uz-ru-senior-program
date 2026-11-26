@@ -45,8 +45,8 @@
   "id": "P6",
   "matn": "KO‘RAMIZ\nTugma bosilganda\nwhen → key pressed — tugma bosilganda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "a0524f66e2f8",
-  "uzun": 35800
+  "html": "143a81feadc5",
+  "uzun": 35799
  },
  "u-08-P5": {
   "id": "P5",
@@ -75,8 +75,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "c6ff1c02918f",
-  "uzun": 35742
+  "html": "61b6d16ba074",
+  "uzun": 35770
  },
  "u-11-P5G": {
   "id": "P5G",
@@ -112,8 +112,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "b72af0d6a93d",
-  "uzun": 37439
+  "html": "7acf5846e2ef",
+  "uzun": 37467
  },
  "u-15-P5B": {
   "id": "P5B",
@@ -126,8 +126,8 @@
   "id": "P11",
   "matn": "KO‘RSATISH\nDasturchalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘sha tugmalarni kutaman.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "cf959b015305",
-  "uzun": 37534
+  "html": "4b52231df1e1",
+  "uzun": 37533
  },
  "u-17-P12": {
   "id": "P12",
@@ -159,17 +159,17 @@
  },
  "u-x-P2S-C-qochdi": {
   "id": "P2S",
-  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nO‘yin: strelkalarni bosing\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nO‘yin: strelkalarni bosing\n‹ Orqaga\nStrelkani bosing — klaviaturada yoki kartada\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "584ea1ce7523",
-  "uzun": 37614
+  "html": "018f1d8accf5",
+  "uzun": 37658
  },
  "u-x-P2S-C": {
   "id": "P2S",
-  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n✕ yana o‘sha yo‘l\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nStrelkani bosing — klaviaturada yoki kartada\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "a13ce2c00fb6",
-  "uzun": 38755
+  "html": "9783d65eac65",
+  "uzun": 38799
  },
  "u-x-P3-1": {
   "id": "P3",
@@ -199,8 +199,8 @@
    "k:when→key pressedmove right",
    "r:move right"
   ],
-  "html": "fa5aefb55b37",
-  "uzun": 35791
+  "html": "5f7bd93ef686",
+  "uzun": 35790
  },
  "u-x-P6-yetdi": {
   "id": "P6",
@@ -209,8 +209,8 @@
    "k:when→key pressedmove right",
    "r:move right"
   ],
-  "html": "b45229b650ee",
-  "uzun": 36858
+  "html": "99221c66ccd4",
+  "uzun": 36857
  },
  "u-x-P8-yulduz": {
   "id": "P8",
@@ -225,8 +225,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "7d18b3fc82a8",
-  "uzun": 38361
+  "html": "70e76a1c0249",
+  "uzun": 38389
  },
  "u-x-P8-qochdi": {
   "id": "P8",
@@ -241,8 +241,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "2391c8af4932",
-  "uzun": 38568
+  "html": "085b2c0dc7aa",
+  "uzun": 38596
  },
  "u-x-P8-yetdi": {
   "id": "P8",
@@ -257,8 +257,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "abe94bda2e24",
-  "uzun": 39465
+  "html": "3ec523d71623",
+  "uzun": 39493
  },
  "u-x-yakunlandi": {
   "id": "P14",
@@ -334,29 +334,29 @@
   "id": "B1A",
   "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilganda qahramon o‘ngga yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "2eb791e09a91",
-  "uzun": 21375
+  "html": "601e30b21cfc",
+  "uzun": 21374
  },
  "bq-08-1-B1B": {
   "id": "B1B",
   "matn": "MASHQ · 2-POG‘ONA\nChapga\nYulduz chapda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "010383045049",
-  "uzun": 21354
+  "html": "e3c84979b159",
+  "uzun": 21353
  },
  "bq-08-2-B1C": {
   "id": "B1C",
   "matn": "MASHQ · 3-POG‘ONA\nIkki tugma\nYulduz (3, 2) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "f6b0b1f76447",
-  "uzun": 21360
+  "html": "c3f4d8fff1b7",
+  "uzun": 21359
  },
  "bq-08-3-B1Y": {
   "id": "B1Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki katak\n→ bir bosishda ikki katak yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "44b0b99cd6d6",
-  "uzun": 21378
+  "html": "65e659ec6c1b",
+  "uzun": 21377
  },
  "bq-08-4-BK": {
   "id": "BK",
@@ -383,29 +383,29 @@
   "id": "B2A",
   "matn": "MASHQ · 1-POG‘ONA\nTo‘rt strelka\nYulduz (4, 4) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "f79142a3b6db",
-  "uzun": 21362
+  "html": "e2365fa0ac23",
+  "uzun": 21361
  },
  "bq-11-1-B2B": {
   "id": "B2B",
   "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 3) da, yulduz (5, 0) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "f98f93383dd0",
-  "uzun": 21951
+  "html": "da7913dcec2f",
+  "uzun": 21950
  },
  "bq-11-2-B2C": {
   "id": "B2C",
   "matn": "MASHQ · 3-POG‘ONA\nIkki olma\nQahramon (3, 2) da. Ikkala olmani oling, keyin yulduzga.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "13b33f625b20",
-  "uzun": 22531
+  "html": "fe3b2e3c72c8",
+  "uzun": 22530
  },
  "bq-11-3-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshiga qayt\nspace bosilganda qahramon (0, 0) ga qaytsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "7f69747dfbff",
-  "uzun": 21391
+  "html": "7b06d954eace",
+  "uzun": 21390
  },
  "bq-11-4-BK": {
   "id": "BK",
@@ -439,22 +439,22 @@
   "id": "B3A",
   "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "ef374e1cd2fd",
-  "uzun": 23100
+  "html": "e79e12b073fa",
+  "uzun": 23099
  },
  "bq-15-1-B3B": {
   "id": "B3B",
   "matn": "MASHQ · 2-POG‘ONA\nBesh olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "2cdbacf84709",
-  "uzun": 24235
+  "html": "95ebe8d129d6",
+  "uzun": 24234
  },
  "bq-15-2-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nspace bosilganda qahramoningiz gapirsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash",
   "bloklar": [],
-  "html": "d37a09467e9d",
-  "uzun": 23099
+  "html": "f214c7916a2b",
+  "uzun": 23098
  },
  "bq-15-3-BK": {
   "id": "BK",
@@ -465,17 +465,17 @@
  },
  "bq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "777cde8eb900",
-  "uzun": 20501
+  "html": "f0e5982ac8bb",
+  "uzun": 20552
  },
  "bq-18-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "777cde8eb900",
-  "uzun": 20501
+  "html": "f0e5982ac8bb",
+  "uzun": 20552
  },
  "bx-B1A-dasturchayoq": {
   "id": "B1A",
@@ -484,8 +484,8 @@
    "k:when→key pressedmove right",
    "r:move right"
   ],
-  "html": "9ac1ff2a15b5",
-  "uzun": 26640
+  "html": "53d6ee8cf08d",
+  "uzun": 26639
  },
  "bx-B1A-yetdi": {
   "id": "B1A",
@@ -494,8 +494,8 @@
    "k:when→key pressedmove right",
    "r:move right"
   ],
-  "html": "efdd792c04dd",
-  "uzun": 21562
+  "html": "85c535f21114",
+  "uzun": 21561
  },
  "bx-B1Y-shart": {
   "id": "B1Y",
@@ -506,8 +506,8 @@
    "k:when↑key pressedmove up",
    "u:move up"
   ],
-  "html": "e8258256b4ea",
-  "uzun": 27586
+  "html": "27876d85443b",
+  "uzun": 27585
  },
  "bx-B2B-olmasiz": {
   "id": "B2B",
@@ -522,8 +522,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "1a7be5377dbd",
-  "uzun": 27830
+  "html": "6b79febf562c",
+  "uzun": 27858
  },
  "bx-B2B-yetdi": {
   "id": "B2B",
@@ -538,8 +538,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "37a06235bfeb",
-  "uzun": 23503
+  "html": "d4bb23489beb",
+  "uzun": 23531
  },
  "bx-B3A-yashirin": {
   "id": "B3A",
@@ -554,8 +554,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "5de3ba8d0d85",
-  "uzun": 23596
+  "html": "bb1d8bcfc73b",
+  "uzun": 23624
  },
  "bx-B3A-ochildi": {
   "id": "B3A",
@@ -570,8 +570,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "1de857daffa9",
-  "uzun": 23870
+  "html": "9e0b6eefac06",
+  "uzun": 23898
  },
  "bx-B3A-qochdi": {
   "id": "B3A",
@@ -586,8 +586,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "6b674224fa28",
-  "uzun": 24077
+  "html": "f1f9531b93b5",
+  "uzun": 24105
  },
  "bx-B3A-yutdi": {
   "id": "B3A",
@@ -602,15 +602,15 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "3333898abd1a",
-  "uzun": 25006
+  "html": "da5d8c9c2da8",
+  "uzun": 25034
  },
  "bx-B5-natija": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n27\nmarta tugma bosdi\n4\nolma terdi\n1\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n27\nmarta tugma bosdi\n4\nolma terdi\n1\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "e0cc7ca62ec4",
-  "uzun": 20502
+  "html": "f7bff6d18242",
+  "uzun": 20553
  },
  "bx-P2N-tanladi": {
   "id": "P2N",
@@ -689,36 +689,36 @@
    "k:when→key pressedmove right",
    "r:move right"
   ],
-  "html": "0a1ce37a499e",
-  "uzun": 34565
+  "html": "c24ad28d1756",
+  "uzun": 34564
  },
  "sq-08-0-B1A": {
   "id": "B1A",
   "matn": "MASHQ · 1-POG‘ONA\nO‘ngga\n→ bosilganda qahramon o‘ngga yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "c9c38133d815",
-  "uzun": 21422
+  "html": "6262aa4d8169",
+  "uzun": 21421
  },
  "sq-08-1-B1B": {
   "id": "B1B",
   "matn": "MASHQ · 2-POG‘ONA\nChapga\nYulduz chapda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "74a0c071867e",
-  "uzun": 21401
+  "html": "1ac0b1d61481",
+  "uzun": 21400
  },
  "sq-08-2-B1C": {
   "id": "B1C",
   "matn": "MASHQ · 3-POG‘ONA\nIkki tugma\nYulduz (3, 2) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "1bff9676f98d",
-  "uzun": 21407
+  "html": "094989b1e9fb",
+  "uzun": 21406
  },
  "sq-08-3-B1Y": {
   "id": "B1Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki katak\n→ bir bosishda ikki katak yursin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "74954a40d33a",
-  "uzun": 21425
+  "html": "2c9517451cf9",
+  "uzun": 21424
  },
  "sq-09-0-P4B": {
   "id": "P4B",
@@ -740,36 +740,36 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "3320ed69b3f2",
-  "uzun": 34516
+  "html": "3a59b1824217",
+  "uzun": 34544
  },
  "sq-11-0-B2A": {
   "id": "B2A",
   "matn": "MASHQ · 1-POG‘ONA\nTo‘rt strelka\nYulduz (4, 4) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "7653a9e37fea",
-  "uzun": 21409
+  "html": "163844f4254f",
+  "uzun": 21408
  },
  "sq-11-1-B2B": {
   "id": "B2B",
   "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 3) da, yulduz (5, 0) da.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "33158f130ba0",
-  "uzun": 21998
+  "html": "d860acfb1358",
+  "uzun": 21997
  },
  "sq-11-2-B2C": {
   "id": "B2C",
   "matn": "MASHQ · 3-POG‘ONA\nIkki olma\nQahramon (3, 2) da. Ikkala olmani oling, keyin yulduzga.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "f318ec04353f",
-  "uzun": 22578
+  "html": "3abc53707c28",
+  "uzun": 22577
  },
  "sq-11-3-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nBoshiga qayt\nspace bosilganda qahramon (0, 0) ga qaytsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "67b3bdeefe83",
-  "uzun": 21438
+  "html": "a24ba57fc9be",
+  "uzun": 21437
  },
  "sq-12-0-P9": {
   "id": "P9",
@@ -798,36 +798,36 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "2fe476456e0b",
-  "uzun": 36213
+  "html": "c77094041472",
+  "uzun": 36241
  },
  "sq-15-0-B3A": {
   "id": "B3A",
   "matn": "MASHQ · 1-POG‘ONA\nUch olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "20799d4ba230",
-  "uzun": 23147
+  "html": "40560f3dac3b",
+  "uzun": 23146
  },
  "sq-15-1-B3B": {
   "id": "B3B",
   "matn": "MASHQ · 2-POG‘ONA\nBesh olma\nOlmalarni tering, keyin yulduzni tuting — u qochadi!\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "f36fd1117d24",
-  "uzun": 24282
+  "html": "65391e586555",
+  "uzun": 24281
  },
  "sq-15-2-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nspace bosilganda qahramoningiz gapirsin.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturcha tuzing, keyin ▶ Boshlash\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "d1c06cb8bcc2",
-  "uzun": 23146
+  "html": "b701e780917d",
+  "uzun": 23145
  },
  "sq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin tuzdingiz!\n\nBulut\nTugmalar bilan boshqardingiz va o‘yinni yutdingiz.\n\nSiz bugun\n0\nmarta tugma bosdi\n0\nolma terdi\n0\nmarta yutdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 4)\nBulut\nKeyingi darsda takrorlash bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "777cde8eb900",
-  "uzun": 20501
+  "html": "f0e5982ac8bb",
+  "uzun": 20552
  },
  "sx-P2S-A": {
   "id": "P2S",
@@ -838,10 +838,10 @@
  },
  "sx-P2S-C": {
   "id": "P2S",
-  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n▶ Sinab ko‘rish\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nKeyingi ›",
+  "matn": "SAVOL\nYulduz qochsa, qanday yetamiz?\n\nCoddy\nYulduz qochib yuradi. Qanday yetamiz?\n\nA\nTayyor dastur\n✕ yulduz boshqa joyda\nB\nIshga tushirni qayta bosamiz\n▶ Sinab ko‘rish\nC\nStrelka bosilganda yursin\n✓ yetib bordi\n↑\n←\n↓\n→\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 4)\n‹ Orqaga\nStrelkani bosing — klaviaturada yoki kartada\nKeyingi ›",
   "bloklar": [],
-  "html": "69d5bbb995c6",
-  "uzun": 37657
+  "html": "76e8326b66cf",
+  "uzun": 37701
  },
  "y-01": {
   "id": "P1",
@@ -889,8 +889,8 @@
   "id": "P6",
   "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nTugma bosilganda\nwhen → key pressed — tugma bosilganda.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "afcdc11764bc",
-  "uzun": 88548
+  "html": "a2db2fe12f3e",
+  "uzun": 88547
  },
  "y-08": {
   "id": "P5",
@@ -919,8 +919,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "bb557f986ab2",
-  "uzun": 88490
+  "html": "830f4039d446",
+  "uzun": 88518
  },
  "y-11": {
   "id": "P5G",
@@ -956,8 +956,8 @@
    "k:when↓key pressedmove down",
    "d:move down"
   ],
-  "html": "cfa8bebb6387",
-  "uzun": 90187
+  "html": "3deb1e2ec651",
+  "uzun": 90215
  },
  "y-15": {
   "id": "P5B",
@@ -970,8 +970,8 @@
   "id": "P11",
   "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturchalaringizni o‘qib bering\nSiz o‘qiysiz — men o‘sha tugmalarni kutaman.\nHodisa\nHarakat\nGap\nHodisa\nwhen\n→\nkey pressed\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: dastur kutadi\n5 / 18 · Yangi so‘z: hodisa\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: when → key pressed\n8 / 18 · Bitta tugma\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: to‘rt tugma\n11 / 18 · To‘rt tugma\n12 / 18 · Xulosa: hodisa\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: olma terish\n15 / 18 · O‘yin\n16 / 18 · Dasturchalaringizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "dcbcba05ab7d",
-  "uzun": 90282
+  "html": "d73431e44cbc",
+  "uzun": 90281
  },
  "y-17": {
   "id": "P12",

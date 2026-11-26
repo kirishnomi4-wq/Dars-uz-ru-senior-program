@@ -66,8 +66,8 @@
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2\nKeyingi ›\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "932f53cc42f5",
-  "uzun": 38027
+  "html": "4dbbecc143c5",
+  "uzun": 38024
  },
  "u-11-P5A": {
   "id": "P5A",
@@ -85,8 +85,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "b0a0074f3c84",
-  "uzun": 37864
+  "html": "fe209505e813",
+  "uzun": 37861
  },
  "u-13-P5": {
   "id": "P5",
@@ -122,15 +122,15 @@
   "bloklar": [
    "s:say2 qadam yur"
   ],
-  "html": "b8b38d2e5b36",
-  "uzun": 38078
+  "html": "432788a1fc4b",
+  "uzun": 38077
  },
  "u-18-P7": {
   "id": "P7",
   "matn": "YANGI BLOK · SAY — AYT\nGapirdi, lekin yurmadi\nsay faqat gapiradi, yurgizmaydi.\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nsay\n2 qadam yur\n1 ta blok\n2 qadam yur\n‹ Orqaga\nKeyingi ›\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "b239bfc4b2f3",
-  "uzun": 38232
+  "html": "5c7721867777",
+  "uzun": 38231
  },
  "u-19-P4I": {
   "id": "P4I",
@@ -145,8 +145,8 @@
   "bloklar": [
    "s:saySalom!"
   ],
-  "html": "300496124326",
-  "uzun": 37656
+  "html": "88b0c7ed2eff",
+  "uzun": 37655
  },
  "u-21-P11": {
   "id": "P11",
@@ -157,8 +157,8 @@
    "j:jumpmove right",
    "r:move right"
   ],
-  "html": "344de470ce3a",
-  "uzun": 41888
+  "html": "29c4a40a8d87",
+  "uzun": 41885
  },
  "u-22-P12": {
   "id": "P12",
@@ -232,8 +232,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "758c7e352cf5",
-  "uzun": 37985
+  "html": "96b150fe94b7",
+  "uzun": 37982
  },
  "u-x-P7A-ishga": {
   "id": "P7A",
@@ -241,8 +241,8 @@
   "bloklar": [
    "s:say2 qadam yur"
   ],
-  "html": "1dc2180e8b79",
-  "uzun": 38244
+  "html": "b18fd77468cc",
+  "uzun": 38243
  },
  "u-x-P11-ishga": {
   "id": "P11",
@@ -253,20 +253,20 @@
    "j:jumpmove right",
    "r:move right"
   ],
-  "html": "f0d435f1a52e",
-  "uzun": 42067
+  "html": "493e24e5dd57",
+  "uzun": 42064
  },
  "u-x-P6-tanlandi": {
   "id": "P6",
-  "matn": "KO‘RAMIZ\n4 ta blok — 4 qadam\nBizga 3 qadam kerak edi — bitta blok ortiqcha.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\nmove right\n✕\n4 ta blok\n4\n1\n2\n3\n4\n«To‘xta! Men shu yerdaman!»\n‹ Orqaga\nTanlandi: boshqa blokni bosing yoki ✕\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "KO‘RAMIZ\n4 ta blok — 4 qadam\nBizga 3 qadam kerak edi — bitta blok ortiqcha.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\nmove right\n✕\n4 ta blok\n4\n1\n2\n3\n4\n«To‘xta! Men shu yerdaman!»\n‹ Orqaga\nTanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [
    "r:move rightmove rightmove rightmove right",
    "r:move rightmove rightmove right",
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "c81f6bbd4bb8",
-  "uzun": 38068
+  "html": "1824b028c923",
+  "uzun": 38106
  },
  "u-x-P6-olindi": {
   "id": "P6",
@@ -276,8 +276,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "37eb54140a2a",
-  "uzun": 37936
+  "html": "1a15aa64ba7b",
+  "uzun": 37933
  },
  "u-x-P6-tuzatildi": {
   "id": "P6",
@@ -287,8 +287,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "f0a04353b500",
-  "uzun": 38693
+  "html": "af4a237e18a8",
+  "uzun": 38690
  },
  "u-x-yakunlandi": {
   "id": "P14",
@@ -385,22 +385,22 @@
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2",
   "bloklar": [],
-  "html": "6c2847d7ccde",
-  "uzun": 36454
+  "html": "edd0eb52e23a",
+  "uzun": 36451
  },
  "by-11-0-B2": {
   "id": "B2",
   "matn": "MASHQ · 1-POG‘ONA\nQahramoningizni yulduzga olib boring.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nQadamlarni sanang: yulduzgacha nechta?\nIshga tushir",
   "bloklar": [],
-  "html": "020119b64229",
-  "uzun": 23256
+  "html": "0a12bf818076",
+  "uzun": 23253
  },
  "by-11-1-B4": {
   "id": "B4",
   "matn": "MASHQ · 1-POG‘ONA\nYetib bordi! Birinchi dasturingiz.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\nQayta ko‘rish\nZo‘r! Ustoz keyingisini ko‘rsatadi",
   "bloklar": [],
-  "html": "03c41320d768",
-  "uzun": 24270
+  "html": "b5db2dc68b0e",
+  "uzun": 24267
  },
  "by-12-0-BK": {
   "id": "BK",
@@ -418,36 +418,36 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "afbd2f61afde",
-  "uzun": 22989
+  "html": "5f9c88b1b005",
+  "uzun": 22986
  },
  "by-12-2-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · XATONI TUZATING\nTo‘g‘ri! 3 ta blok — 3 qadam\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\n4\nXatoni o‘zingiz tuzatdingiz!",
   "bloklar": [],
-  "html": "c3032efaba73",
-  "uzun": 24121
+  "html": "20dd067a91a3",
+  "uzun": 24118
  },
  "by-13-0-B2P": {
   "id": "B2P",
   "matn": "MASHQ · 2-POG‘ONA\nOrqaga qayting\nYulduz orqada qoldi.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\nMaslahat\nQahramon qaysi tomonga yurishi kerak?\nIshga tushir",
   "bloklar": [],
-  "html": "532d88240cbe",
-  "uzun": 23183
+  "html": "5a7658688a98",
+  "uzun": 23180
  },
  "by-13-1-B2Q": {
   "id": "B2Q",
   "matn": "MASHQ · 3-POG‘ONA\nOlma, keyin yulduz\nOlmani oling va yulduzga qayting.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nOlma qaysi zonachada? Avval o‘sha yerga boring\nIshga tushir",
   "bloklar": [],
-  "html": "53bdae7103dd",
-  "uzun": 23844
+  "html": "162fdbfbe797",
+  "uzun": 23841
  },
  "by-13-2-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nAniq 9 ta blok\nOlma va yulduz — 9 ta blok bilan.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\n5\n6\nMaslahat\nOlmagacha nechta qadam? Yulduzga qaytish uchun-chi?\nIshga tushir",
   "bloklar": [],
-  "html": "06bcd26fba37",
-  "uzun": 24023
+  "html": "abab2735d3e8",
+  "uzun": 24020
  },
  "by-13-3-BK": {
   "id": "BK",
@@ -511,8 +511,8 @@
   "bloklar": [
    "s:saySalom!"
   ],
-  "html": "6a2a62c922be",
-  "uzun": 36171
+  "html": "9ace8d92e337",
+  "uzun": 36170
  },
  "by-20-1-BK": {
   "id": "BK",
@@ -539,8 +539,8 @@
   "id": "B8",
   "matn": "O‘Z SAHNANGIZ\nO‘z sahnangizni yarating!\nJoy\n✓\n2 ta harakat\nO‘z gapingiz\n★ jump\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYana o‘zgartirsangiz bo‘ladi\nIshga tushir",
   "bloklar": [],
-  "html": "d40b703cd394",
-  "uzun": 23270
+  "html": "1448b8dcca54",
+  "uzun": 23269
  },
  "by-22-2-BK": {
   "id": "BK",
@@ -558,17 +558,17 @@
  },
  "by-24-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "636a9e15ec50",
-  "uzun": 29226
+  "html": "cefacd257b5a",
+  "uzun": 29277
  },
  "by-25-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "636a9e15ec50",
-  "uzun": 29226
+  "html": "cefacd257b5a",
+  "uzun": 29277
  },
  "bt-01-0-B0": {
   "id": "B0",
@@ -658,22 +658,22 @@
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2",
   "bloklar": [],
-  "html": "c45757762768",
-  "uzun": 21804
+  "html": "d08fe246b8a9",
+  "uzun": 21801
  },
  "bt-11-0-B2": {
   "id": "B2",
   "matn": "MASHQ · 1-POG‘ONA\nQahramoningizni yulduzga olib boring.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nQadamlarni sanang: yulduzgacha nechta?\nIshga tushir",
   "bloklar": [],
-  "html": "a0aea4ff25f5",
-  "uzun": 22248
+  "html": "07d54fe0d78c",
+  "uzun": 22245
  },
  "bt-11-1-B4": {
   "id": "B4",
   "matn": "MASHQ · 1-POG‘ONA\nYetib bordi! Birinchi dasturingiz.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\nQayta ko‘rish\nZo‘r! Ustoz keyingisini ko‘rsatadi",
   "bloklar": [],
-  "html": "9fed115f3028",
-  "uzun": 23262
+  "html": "abbdb48d19b7",
+  "uzun": 23259
  },
  "bt-12-0-BK": {
   "id": "BK",
@@ -691,36 +691,36 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "c376ffe451dd",
-  "uzun": 21925
+  "html": "ed65186f1c5a",
+  "uzun": 21922
  },
  "bt-12-2-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · XATONI TUZATING\nTo‘g‘ri! 3 ta blok — 3 qadam\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\n4\nXatoni o‘zingiz tuzatdingiz!",
   "bloklar": [],
-  "html": "3bf77f6e57ac",
-  "uzun": 23113
+  "html": "a61e854ea68a",
+  "uzun": 23110
  },
  "bt-13-0-B2P": {
   "id": "B2P",
   "matn": "MASHQ · 2-POG‘ONA\nOrqaga qayting\nYulduz orqada qoldi.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\nMaslahat\nQahramon qaysi tomonga yurishi kerak?\nIshga tushir",
   "bloklar": [],
-  "html": "9ade000ad7af",
-  "uzun": 22175
+  "html": "05c1def4b634",
+  "uzun": 22172
  },
  "bt-13-1-B2Q": {
   "id": "B2Q",
   "matn": "MASHQ · 3-POG‘ONA\nOlma, keyin yulduz\nOlmani oling va yulduzga qayting.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nOlma qaysi zonachada? Avval o‘sha yerga boring\nIshga tushir",
   "bloklar": [],
-  "html": "34bde047bbf6",
-  "uzun": 22836
+  "html": "01a4d5b17394",
+  "uzun": 22833
  },
  "bt-13-2-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nAniq 9 ta blok\nOlma va yulduz — 9 ta blok bilan.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\n5\n6\nMaslahat\nOlmagacha nechta qadam? Yulduzga qaytish uchun-chi?\nIshga tushir",
   "bloklar": [],
-  "html": "59bf07a918db",
-  "uzun": 23015
+  "html": "6666e8e33b14",
+  "uzun": 23012
  },
  "bt-13-3-BK": {
   "id": "BK",
@@ -784,8 +784,8 @@
   "bloklar": [
    "s:saySalom!"
   ],
-  "html": "3f616fe5dfe9",
-  "uzun": 21521
+  "html": "9edecd6090d0",
+  "uzun": 21520
  },
  "bt-20-1-BK": {
   "id": "BK",
@@ -812,8 +812,8 @@
   "id": "B8",
   "matn": "O‘Z SAHNANGIZ\nO‘z sahnangizni yarating!\nJoy\n✓\n2 ta harakat\nO‘z gapingiz\n★ jump\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYana o‘zgartirsangiz bo‘ladi\nIshga tushir",
   "bloklar": [],
-  "html": "9d26b2e17e9f",
-  "uzun": 23796
+  "html": "31498854a77a",
+  "uzun": 23795
  },
  "bt-22-2-BK": {
   "id": "BK",
@@ -831,24 +831,24 @@
  },
  "bt-24-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n5\nqadam\n1\nsakrash\n1\ngap\n1\nsahna\nBulut\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n5\nqadam\n1\nsakrash\n1\ngap\n1\nsahna\nBulut\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "5360ef10c088",
-  "uzun": 29352
+  "html": "875aa8c6e48a",
+  "uzun": 29403
  },
  "bt-25-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n5\nqadam\n1\nsakrash\n1\ngap\n1\nsahna\nBulut\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n5\nqadam\n1\nsakrash\n1\ngap\n1\nsahna\nBulut\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "5360ef10c088",
-  "uzun": 29352
+  "html": "875aa8c6e48a",
+  "uzun": 29403
  },
  "bx-B2-bosh": {
   "id": "B2",
   "matn": "MASHQ · 1-POG‘ONA\nQahramoningizni yulduzga olib boring.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nBu yerda hech narsa yo‘q-ku…\nMaslahat\nAvval blokni bosing — u dasturga qo‘shiladi\nIshga tushir",
   "bloklar": [],
-  "html": "1c8606e6e415",
-  "uzun": 27517
+  "html": "88770dc19674",
+  "uzun": 27514
  },
  "bx-B2-kam": {
   "id": "B2",
@@ -857,8 +857,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "64a95e794090",
-  "uzun": 27782
+  "html": "d0573a9eef02",
+  "uzun": 27779
  },
  "bx-B2-maslahat": {
   "id": "B2",
@@ -867,8 +867,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "20e4cec52dde",
-  "uzun": 27799
+  "html": "a55a4ab76b6b",
+  "uzun": 27796
  },
  "bx-B2-qoshildi": {
   "id": "B2",
@@ -879,8 +879,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "ac53feb5fa47",
-  "uzun": 22251
+  "html": "c558813f1627",
+  "uzun": 22248
  },
  "bx-B2-ortiq": {
   "id": "B2",
@@ -891,8 +891,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "01e906fc2348",
-  "uzun": 27660
+  "html": "edcf60a6ec58",
+  "uzun": 27657
  },
  "bx-B2-yetdi": {
   "id": "B2",
@@ -902,22 +902,22 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "b3e5a6500e5b",
-  "uzun": 23080
+  "html": "03dec62d50e0",
+  "uzun": 23077
  },
  "bx-B4": {
   "id": "B4",
   "matn": "MASHQ · 1-POG‘ONA\nYetib bordi! Birinchi dasturingiz.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\nQayta ko‘rish\nZo‘r! Ustoz keyingisini ko‘rsatadi",
   "bloklar": [],
-  "html": "9fed115f3028",
-  "uzun": 23262
+  "html": "abbdb48d19b7",
+  "uzun": 23259
  },
  "bx-B4-qayta": {
   "id": "B4",
   "matn": "MASHQ · 1-POG‘ONA\nYetib bordi! Birinchi dasturingiz.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\nQayta ko‘rish\nYetib bordi! Zo‘r! Ustoz keyingisini ko‘rsatadi",
   "bloklar": [],
-  "html": "2f6afcac750f",
-  "uzun": 23263
+  "html": "d94a04597f42",
+  "uzun": 23260
  },
  "bx-B3X-ortiq": {
   "id": "B3X",
@@ -928,20 +928,20 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "cef384eb1dfb",
-  "uzun": 27353
+  "html": "e3bd6ac6db4a",
+  "uzun": 27350
  },
  "bx-B3X-tanlandi": {
   "id": "B3X",
-  "matn": "MASHQ · XATONI TUZATING\nBir qadam ortiqcha!\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\nmove right\n✕\n4 ta blok\n1\n2\n3\n4\nKo‘payib ketdi!\nMaslahat\nTanlandi: boshqa blokni bosing yoki ✕\nIshga tushir",
+  "matn": "MASHQ · XATONI TUZATING\nBir qadam ortiqcha!\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\nmove right\n✕\n4 ta blok\n1\n2\n3\n4\nKo‘payib ketdi!\nMaslahat\nTanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi\nIshga tushir",
   "bloklar": [
    "r:move rightmove rightmove rightmove right",
    "r:move rightmove rightmove right",
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "af29c7a9fc4e",
-  "uzun": 27453
+  "html": "f6193fa7ffbd",
+  "uzun": 27491
  },
  "bx-B3X-olindi": {
   "id": "B3X",
@@ -951,8 +951,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "9f83aefb3516",
-  "uzun": 21932
+  "html": "cddee1e3523b",
+  "uzun": 21929
  },
  "bx-B3X-yetdi": {
   "id": "B3X",
@@ -962,8 +962,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "98a03e562d4e",
-  "uzun": 22772
+  "html": "7233fd20a1d6",
+  "uzun": 22769
  },
  "bx-B2P-teskari": {
   "id": "B2P",
@@ -971,8 +971,8 @@
   "bloklar": [
    "r:move right"
   ],
-  "html": "2ab94601d2e9",
-  "uzun": 27714
+  "html": "ba1be62758bd",
+  "uzun": 27711
  },
  "bx-B2P-ortiq": {
   "id": "B2P",
@@ -982,8 +982,8 @@
    "l:move leftmove left",
    "l:move left"
   ],
-  "html": "8a7ffded486a",
-  "uzun": 27569
+  "html": "8ce2d0928eb6",
+  "uzun": 27566
  },
  "bx-B2P-yetdi": {
   "id": "B2P",
@@ -992,8 +992,8 @@
    "l:move leftmove left",
    "l:move left"
   ],
-  "html": "a70b59cfc060",
-  "uzun": 23026
+  "html": "84f91aa23ece",
+  "uzun": 23023
  },
  "bx-B2Q-olma": {
   "id": "B2Q",
@@ -1003,8 +1003,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "77b74f696c01",
-  "uzun": 28371
+  "html": "219154729d86",
+  "uzun": 28368
  },
  "bx-B2Q-yetdi": {
   "id": "B2Q",
@@ -1016,8 +1016,8 @@
    "r:move rightmove left",
    "l:move left"
   ],
-  "html": "af18aa4f8f29",
-  "uzun": 23686
+  "html": "fc5c712f248a",
+  "uzun": 23683
  },
  "bx-B2Q-olmasiz": {
   "id": "B2Q",
@@ -1029,12 +1029,12 @@
    "l:move leftmove right",
    "r:move right"
   ],
-  "html": "3fb859f99b34",
-  "uzun": 28371
+  "html": "104e1226bdf9",
+  "uzun": 28368
  },
  "bx-B2Q-tanlandi": {
   "id": "B2Q",
-  "matn": "MASHQ · 3-POG‘ONA\nOlma, keyin yulduz\nOlmani oling va yulduzga qayting.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\nmove left\nmove right\n✕\n5 ta blok\n1\n2\n3\n4\nOlma qoldi-ku!\nMaslahat\nTanlandi: boshqa blokni bosing yoki ✕\nIshga tushir",
+  "matn": "MASHQ · 3-POG‘ONA\nOlma, keyin yulduz\nOlmani oling va yulduzga qayting.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\nmove left\nmove right\n✕\n5 ta blok\n1\n2\n3\n4\nOlma qoldi-ku!\nMaslahat\nTanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi\nIshga tushir",
   "bloklar": [
    "r:move rightmove rightmove rightmove leftmove right",
    "r:move rightmove rightmove leftmove right",
@@ -1042,8 +1042,8 @@
    "l:move leftmove right",
    "r:move right"
   ],
-  "html": "676ca4d872ac",
-  "uzun": 28488
+  "html": "8ef799493218",
+  "uzun": 28526
  },
  "bx-B2Q-almashdi": {
   "id": "B2Q",
@@ -1055,8 +1055,8 @@
    "r:move rightmove left",
    "l:move left"
   ],
-  "html": "83813e6e7ad1",
-  "uzun": 22817
+  "html": "4e79cea2cd31",
+  "uzun": 22814
  },
  "bx-B2Q-almashib-yetdi": {
   "id": "B2Q",
@@ -1068,8 +1068,8 @@
    "r:move rightmove left",
    "l:move left"
   ],
-  "html": "af0637592a27",
-  "uzun": 23685
+  "html": "1211b39b5997",
+  "uzun": 23682
  },
  "bx-B2Y-yetdi": {
   "id": "B2Y",
@@ -1085,8 +1085,8 @@
    "l:move leftmove left",
    "l:move left"
   ],
-  "html": "74c18463c0f9",
-  "uzun": 23868
+  "html": "b0237bf6b4d2",
+  "uzun": 23894
  },
  "bx-B2Y-toldi": {
   "id": "B2Y",
@@ -1103,8 +1103,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "87b8f94abafc",
-  "uzun": 22995
+  "html": "92264ad8f241",
+  "uzun": 23021
  },
  "bx-B2Y-10dan-kop": {
   "id": "B2Y",
@@ -1121,8 +1121,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "78fe967ed2da",
-  "uzun": 23000
+  "html": "46c4fa22694a",
+  "uzun": 23026
  },
  "bx-B7-salom": {
   "id": "B7",
@@ -1130,29 +1130,29 @@
   "bloklar": [
    "s:saySalom!"
   ],
-  "html": "6f080e96b42d",
-  "uzun": 27190
+  "html": "bd7ee8be8492",
+  "uzun": 27189
  },
  "bx-B1-kok": {
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nEndi binafshani bosing\nIkkala rangni bosing · 1 / 2",
   "bloklar": [],
-  "html": "f8030aada53f",
-  "uzun": 21824
+  "html": "2d4a45d635b0",
+  "uzun": 21821
  },
  "bx-B1-binafsha": {
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nZo‘r!\nIkkala rangni bosing · 2 / 2",
   "bloklar": [],
-  "html": "5e443e6f1c72",
-  "uzun": 22740
+  "html": "58c435b513b4",
+  "uzun": 22736
  },
  "bx-B1-tugadi": {
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\nIkkala rangni bosing · 2 / 2",
   "bloklar": [],
-  "html": "91d72f1536ca",
-  "uzun": 22657
+  "html": "caa3b2831423",
+  "uzun": 22653
  },
  "bx-B6-ism-rang": {
   "id": "B6",
@@ -1169,8 +1169,8 @@
    "r:move rightjump",
    "j:jump"
   ],
-  "html": "1f81d2f9e4f7",
-  "uzun": 24972
+  "html": "3c34418bb53f",
+  "uzun": 24968
  },
  "bx-B8-gapsiz": {
   "id": "B8",
@@ -1180,8 +1180,8 @@
    "r:move rightjump",
    "j:jump"
   ],
-  "html": "bd770b124e06",
-  "uzun": 24970
+  "html": "bcb5f1732e90",
+  "uzun": 24966
  },
  "bx-P2N-tanladi": {
   "id": "P2N",
@@ -1285,22 +1285,22 @@
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2\nKeyingi ›",
   "bloklar": [],
-  "html": "960d4166d1db",
-  "uzun": 36496
+  "html": "5938ba3d2a70",
+  "uzun": 36493
  },
  "sy-11-0-B2": {
   "id": "B2",
   "matn": "MASHQ · 1-POG‘ONA\nQahramoningizni yulduzga olib boring.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nQadamlarni sanang: yulduzgacha nechta?\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "decd75b20d9e",
-  "uzun": 23303
+  "html": "f5383dfa2c4c",
+  "uzun": 23300
  },
  "sy-11-1-B4": {
   "id": "B4",
   "matn": "MASHQ · 1-POG‘ONA\nYetib bordi! Birinchi dasturingiz.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\nQayta ko‘rish\nZo‘r!\nKeyingi ›",
   "bloklar": [],
-  "html": "ff632b8d04b5",
-  "uzun": 24283
+  "html": "19ab8eb1f07e",
+  "uzun": 24280
  },
  "sy-12-0-P6": {
   "id": "P6",
@@ -1311,8 +1311,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "1d53d65d224a",
-  "uzun": 36313
+  "html": "ede56fd3eeb8",
+  "uzun": 36310
  },
  "sy-12-1-B3X": {
   "id": "B3X",
@@ -1323,36 +1323,36 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "eddf7c25df77",
-  "uzun": 23036
+  "html": "16991f68554f",
+  "uzun": 23033
  },
  "sy-12-2-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · XATONI TUZATING\nTo‘g‘ri! 3 ta blok — 3 qadam\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\n4\nXatoni o‘zingiz tuzatdingiz!\nKeyingi ›",
   "bloklar": [],
-  "html": "ae6b372fda65",
-  "uzun": 24163
+  "html": "49f785c6ad29",
+  "uzun": 24160
  },
  "sy-13-0-B2P": {
   "id": "B2P",
   "matn": "MASHQ · 2-POG‘ONA\nOrqaga qayting\nYulduz orqada qoldi.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\nMaslahat\nQahramon qaysi tomonga yurishi kerak?\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "1c449190a05f",
-  "uzun": 23230
+  "html": "c7aa838a3f44",
+  "uzun": 23227
  },
  "sy-13-1-B2Q": {
   "id": "B2Q",
   "matn": "MASHQ · 3-POG‘ONA\nOlma, keyin yulduz\nOlmani oling va yulduzga qayting.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nOlma qaysi zonachada? Avval o‘sha yerga boring\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "e9a4ea01a9b1",
-  "uzun": 23891
+  "html": "0b5bce22cd9e",
+  "uzun": 23888
  },
  "sy-13-2-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nAniq 9 ta blok\nOlma va yulduz — 9 ta blok bilan.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\n5\n6\nMaslahat\nOlmagacha nechta qadam? Yulduzga qaytish uchun-chi?\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "bab70b40e7e5",
-  "uzun": 24070
+  "html": "c9c87af9e0fa",
+  "uzun": 24067
  },
  "sy-14-0-P9": {
   "id": "P9",
@@ -1374,15 +1374,15 @@
   "bloklar": [
    "s:say2 qadam yur"
   ],
-  "html": "41d00f620db8",
-  "uzun": 36546
+  "html": "b71114b3b196",
+  "uzun": 36545
  },
  "sy-18-0-P7": {
   "id": "P7",
   "matn": "YANGI BLOK · SAY — AYT\nGapirdi, lekin yurmadi\nsay faqat gapiradi, yurgizmaydi.\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nsay\n2 qadam yur\n1 ta blok\n2 qadam yur\n‹ Orqaga\nKeyingi ›",
   "bloklar": [],
-  "html": "c7648e5ca20b",
-  "uzun": 36700
+  "html": "ef69d0973fa6",
+  "uzun": 36699
  },
  "sy-19-0-B6": {
   "id": "B6",
@@ -1397,8 +1397,8 @@
   "bloklar": [
    "s:saySalom!"
   ],
-  "html": "5ef7e804781c",
-  "uzun": 36218
+  "html": "c40ec9ceda3a",
+  "uzun": 36217
  },
  "sy-21-0-P11": {
   "id": "P11",
@@ -1409,8 +1409,8 @@
    "j:jumpmove right",
    "r:move right"
   ],
-  "html": "8444b5532106",
-  "uzun": 40356
+  "html": "68f960c53078",
+  "uzun": 40353
  },
  "sy-22-0-B8A": {
   "id": "B8A",
@@ -1423,8 +1423,8 @@
   "id": "B8",
   "matn": "O‘Z SAHNANGIZ\nO‘z sahnangizni yarating!\nJoy\n✓\n2 ta harakat\nO‘z gapingiz\n★ jump\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYana o‘zgartirsangiz bo‘ladi\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "9e60e9761aa0",
-  "uzun": 23317
+  "html": "f3bd11fa88a3",
+  "uzun": 23316
  },
  "sy-23-0-B9": {
   "id": "B9",
@@ -1442,10 +1442,10 @@
  },
  "sy-24-1-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "636a9e15ec50",
-  "uzun": 29226
+  "html": "cefacd257b5a",
+  "uzun": 29277
  },
  "sx-BY-bosdi": {
   "id": "BY",
@@ -1528,22 +1528,22 @@
   "id": "B1",
   "matn": "BLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2\nKeyingi ›",
   "bloklar": [],
-  "html": "5976d7abd5b5",
-  "uzun": 21846
+  "html": "e63cdd7015ee",
+  "uzun": 21843
  },
  "st-11-0-B2": {
   "id": "B2",
   "matn": "MASHQ · 1-POG‘ONA\nQahramoningizni yulduzga olib boring.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nQadamlarni sanang: yulduzgacha nechta?\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "214e059d4be2",
-  "uzun": 22295
+  "html": "6e92ce86b8d4",
+  "uzun": 22292
  },
  "st-11-1-B4": {
   "id": "B4",
   "matn": "MASHQ · 1-POG‘ONA\nYetib bordi! Birinchi dasturingiz.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\nQayta ko‘rish\nZo‘r!\nKeyingi ›",
   "bloklar": [],
-  "html": "8fea75da8c25",
-  "uzun": 23275
+  "html": "5853dfc47456",
+  "uzun": 23272
  },
  "st-12-0-P6": {
   "id": "P6",
@@ -1554,8 +1554,8 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "1d53d65d224a",
-  "uzun": 36313
+  "html": "ede56fd3eeb8",
+  "uzun": 36310
  },
  "st-12-1-B3X": {
   "id": "B3X",
@@ -1566,36 +1566,36 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "e5b9f782f117",
-  "uzun": 21972
+  "html": "0f2723136165",
+  "uzun": 21969
  },
  "st-12-2-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · XATONI TUZATING\nTo‘g‘ri! 3 ta blok — 3 qadam\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nmove right\nmove right\nmove right\n3 ta blok\n1\n2\n3\n4\nXatoni o‘zingiz tuzatdingiz!\nKeyingi ›",
   "bloklar": [],
-  "html": "506f7c94f66b",
-  "uzun": 23155
+  "html": "fd096af7c84f",
+  "uzun": 23152
  },
  "st-13-0-B2P": {
   "id": "B2P",
   "matn": "MASHQ · 2-POG‘ONA\nOrqaga qayting\nYulduz orqada qoldi.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\nMaslahat\nQahramon qaysi tomonga yurishi kerak?\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "fbedc2561914",
-  "uzun": 22222
+  "html": "d329899cf283",
+  "uzun": 22219
  },
  "st-13-1-B2Q": {
   "id": "B2Q",
   "matn": "MASHQ · 3-POG‘ONA\nOlma, keyin yulduz\nOlmani oling va yulduzga qayting.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nOlma qaysi zonachada? Avval o‘sha yerga boring\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "31c582caadd1",
-  "uzun": 22883
+  "html": "a1d1929ce741",
+  "uzun": 22880
  },
  "st-13-2-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nAniq 9 ta blok\nOlma va yulduz — 9 ta blok bilan.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\n5\n6\nMaslahat\nOlmagacha nechta qadam? Yulduzga qaytish uchun-chi?\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "1546ca21413f",
-  "uzun": 23062
+  "html": "bf7a85cbb7bc",
+  "uzun": 23059
  },
  "st-14-0-P9": {
   "id": "P9",
@@ -1617,15 +1617,15 @@
   "bloklar": [
    "s:say2 qadam yur"
   ],
-  "html": "41d00f620db8",
-  "uzun": 36546
+  "html": "b71114b3b196",
+  "uzun": 36545
  },
  "st-18-0-P7": {
   "id": "P7",
   "matn": "YANGI BLOK · SAY — AYT\nGapirdi, lekin yurmadi\nsay faqat gapiradi, yurgizmaydi.\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nsay\n2 qadam yur\n1 ta blok\n2 qadam yur\n‹ Orqaga\nKeyingi ›",
   "bloklar": [],
-  "html": "c7648e5ca20b",
-  "uzun": 36700
+  "html": "ef69d0973fa6",
+  "uzun": 36699
  },
  "st-19-0-B6": {
   "id": "B6",
@@ -1640,8 +1640,8 @@
   "bloklar": [
    "s:saySalom!"
   ],
-  "html": "3ac35362e27a",
-  "uzun": 21568
+  "html": "837e801c211a",
+  "uzun": 21567
  },
  "st-21-0-P11": {
   "id": "P11",
@@ -1652,8 +1652,8 @@
    "j:jumpmove right",
    "r:move right"
   ],
-  "html": "8444b5532106",
-  "uzun": 40356
+  "html": "68f960c53078",
+  "uzun": 40353
  },
  "st-22-0-B8A": {
   "id": "B8A",
@@ -1666,8 +1666,8 @@
   "id": "B8",
   "matn": "O‘Z SAHNANGIZ\nO‘z sahnangizni yarating!\nJoy\n✓\n2 ta harakat\nO‘z gapingiz\n★ jump\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nBlokni shu yerga ulang\n0 ta blok\nMaslahat\nYana o‘zgartirsangiz bo‘ladi\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "c41f3e4a448c",
-  "uzun": 23843
+  "html": "bf970154334f",
+  "uzun": 23842
  },
  "st-23-0-B9": {
   "id": "B9",
@@ -1685,10 +1685,10 @@
  },
  "st-24-1-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n5\nqadam\n1\nsakrash\n1\ngap\n1\nsahna\nBulut\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n5\nqadam\n1\nsakrash\n1\ngap\n1\nsahna\nBulut\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "5360ef10c088",
-  "uzun": 29352
+  "html": "875aa8c6e48a",
+  "uzun": 29403
  },
  "y-01": {
   "id": "P1",
@@ -1757,15 +1757,15 @@
   "id": "B1",
   "matn": "USTOZ · PROYEKTOR\nBLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nBLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "748ec2ded02d",
-  "uzun": 74625
+  "html": "0031e2926d8e",
+  "uzun": 74619
  },
  "y-11": {
   "id": "P5A",
   "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nQahramoningizni yulduzga olib boring.\n\nYulduzga yetdi\n0 / 1\nHar belgi — yulduzga yetgan bitta bola\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nMASHQ · 1-POG‘ONA\nQahramoningizni yulduzga olib boring.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nQadamlarni sanang: yulduzgacha nechta?\nIshga tushir\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "c358cc98fb41",
-  "uzun": 53091
+  "html": "f0a0f0b9d6bd",
+  "uzun": 53088
  },
  "y-12": {
   "id": "P6",
@@ -1776,15 +1776,15 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "b4504eabe671",
-  "uzun": 61173
+  "html": "3ae2c1506d7c",
+  "uzun": 61170
  },
  "y-13": {
   "id": "P5",
   "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nQiynalsangiz — «Maslahat»ni bosing.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nYulduzda to‘xtang\n2\n0\nOrqaga qayting\n3\n0\nOlma, keyin yulduz\n★\n0\n6 + 3\nAniq 9 ta blok\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nMASHQ · 2-POG‘ONA\nOrqaga qayting\nYulduz orqada qoldi.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\nMaslahat\nQahramon qaysi tomonga yurishi kerak?\nIshga tushir\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "f6f9773b059c",
-  "uzun": 68278
+  "html": "4404ba0969fa",
+  "uzun": 68275
  },
  "y-14": {
   "id": "P9",
@@ -1813,15 +1813,15 @@
   "bloklar": [
    "s:say2 qadam yur"
   ],
-  "html": "8b2651c3e89b",
-  "uzun": 61365
+  "html": "0194c71b8f28",
+  "uzun": 61364
  },
  "y-18": {
   "id": "P7",
   "matn": "USTOZ · PROYEKTOR\nYANGI BLOK · SAY — AYT\nGapirdi, lekin yurmadi\nsay faqat gapiradi, yurgizmaydi.\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nsay\n2 qadam yur\n1 ta blok\n2 qadam yur\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n↑\nUstoz ekraniga qarang\nsay faqat gapiradi\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "9122a8ecee04",
-  "uzun": 61522
+  "html": "2575b9e77d48",
+  "uzun": 61521
  },
  "y-19": {
   "id": "P4I",
@@ -1837,8 +1837,8 @@
    "s:saySalom!",
    "s:saySalom!"
   ],
-  "html": "2f747853f71a",
-  "uzun": 73971
+  "html": "2d8df37b9a54",
+  "uzun": 73969
  },
  "y-21": {
   "id": "P11",
@@ -1849,8 +1849,8 @@
    "j:jumpmove right",
    "r:move right"
   ],
-  "html": "7527c6285dc2",
-  "uzun": 65192
+  "html": "584f6e6c14e0",
+  "uzun": 65189
  },
  "y-22": {
   "id": "P12",
@@ -1868,17 +1868,17 @@
  },
  "y-24": {
   "id": "P8",
-  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz dastur tuzdingiz!\n!\nDasturlash\nKompyuterga buyruq berish\nBlok\nBitta buyruq\nDastur\nKetma-ket buyruqlar\nKeyingi dars\n2 · Labirint\n✓\nHarakatlantirish\n✓\nGapirtirish\n✓\nSahna yaratish\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz dastur tuzdingiz!\n!\nDasturlash\nKompyuterga buyruq berish\nBlok\nBitta buyruq\nDastur\nKetma-ket buyruqlar\nKeyingi dars\n2 · Labirint\n✓\nHarakatlantirish\n✓\nGapirtirish\n✓\nSahna yaratish\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "fa4bea62859d",
-  "uzun": 64946
+  "html": "16a37e44aeda",
+  "uzun": 64997
  },
  "y-25": {
   "id": "P14",
-  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "d26a2eb1ebbb",
-  "uzun": 69830
+  "html": "76efae9dfe5e",
+  "uzun": 69881
  },
  "varaq": {
   "id": "",
@@ -1968,15 +1968,15 @@
   "id": "B1",
   "matn": "USTOZ · PROYEKTOR\nBLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nBLOK STUDIYA\nKo‘k blok yurgizadi, binafsha blok gapirtiradi\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n👈\nKo‘k doirachani bosing\nIkkala rangni bosing · 0 / 2\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "f6406ea65e07",
-  "uzun": 74622
+  "html": "4dd8b1df809c",
+  "uzun": 74616
  },
  "l-11": {
   "id": "P5A",
   "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nQahramoningizni yulduzga olib boring.\n\nYulduzga yetdi\n0 / 1\nHar belgi — yulduzga yetgan bitta bola\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nMASHQ · 1-POG‘ONA\nQahramoningizni yulduzga olib boring.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\n4\nMaslahat\nQadamlarni sanang: yulduzgacha nechta?\nIshga tushir\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "e19add946678",
-  "uzun": 53088
+  "html": "63de2c32c373",
+  "uzun": 53085
  },
  "l-12": {
   "id": "P6",
@@ -1987,15 +1987,15 @@
    "r:move rightmove right",
    "r:move right"
   ],
-  "html": "416acf5a213f",
-  "uzun": 61170
+  "html": "9eae9b50e832",
+  "uzun": 61167
  },
  "l-13": {
   "id": "P5",
   "matn": "USTOZ · PROYEKTOR\nMASHQ\nEndi o‘zingiz!\n\nCoddy\nQiynalsangiz — «Maslahat»ni bosing.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nYulduzda to‘xtang\n2\n0\nOrqaga qayting\n3\n0\nOlma, keyin yulduz\n★\n0\n6 + 3\nAniq 9 ta blok\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nMASHQ · 2-POG‘ONA\nOrqaga qayting\nYulduz orqada qoldi.\nHarakat\nGap\nHarakat\nmove right\nmove left\njump\nDastur\nBlokni shu yerga ulang\n0 ta blok\n1\n2\n3\nMaslahat\nQahramon qaysi tomonga yurishi kerak?\nIshga tushir\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "84b66f1e790f",
-  "uzun": 68275
+  "html": "b5bd78be8e72",
+  "uzun": 68272
  },
  "l-14": {
   "id": "P9",
@@ -2024,15 +2024,15 @@
   "bloklar": [
    "s:say2 qadam yur"
   ],
-  "html": "7e7a6e048e44",
-  "uzun": 61362
+  "html": "279bd333e034",
+  "uzun": 61361
  },
  "l-18": {
   "id": "P7",
   "matn": "USTOZ · PROYEKTOR\nYANGI BLOK · SAY — AYT\nGapirdi, lekin yurmadi\nsay faqat gapiradi, yurgizmaydi.\nHarakat\nGap\nGap\nsay\nSalom!\nDastur\nsay\n2 qadam yur\n1 ta blok\n2 qadam yur\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n↑\nUstoz ekraniga qarang\nsay faqat gapiradi\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "41718cfb59db",
-  "uzun": 61519
+  "html": "6fffe242a345",
+  "uzun": 61518
  },
  "l-19": {
   "id": "P4I",
@@ -2048,8 +2048,8 @@
    "s:saySalom!",
    "s:saySalom!"
   ],
-  "html": "9d4b21220085",
-  "uzun": 73968
+  "html": "2f042739e9fb",
+  "uzun": 73966
  },
  "l-21": {
   "id": "P11",
@@ -2060,8 +2060,8 @@
    "j:jumpmove right",
    "r:move right"
   ],
-  "html": "c3bb43f20954",
-  "uzun": 65189
+  "html": "10128d901c14",
+  "uzun": 65186
  },
  "l-22": {
   "id": "P12",
@@ -2079,16 +2079,16 @@
  },
  "l-24": {
   "id": "P8",
-  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz dastur tuzdingiz!\n!\nDasturlash\nKompyuterga buyruq berish\nBlok\nBitta buyruq\nDastur\nKetma-ket buyruqlar\nKeyingi dars\n2 · Labirint\n✓\nHarakatlantirish\n✓\nGapirtirish\n✓\nSahna yaratish\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz dastur tuzdingiz!\n!\nDasturlash\nKompyuterga buyruq berish\nBlok\nBitta buyruq\nDastur\nKetma-ket buyruqlar\nKeyingi dars\n2 · Labirint\n✓\nHarakatlantirish\n✓\nGapirtirish\n✓\nSahna yaratish\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "acd53cbab194",
-  "uzun": 64943
+  "html": "307e7646fed3",
+  "uzun": 64994
  },
  "l-25": {
   "id": "P14",
-  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\nDars tugadi\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nSIZNING NATIJANGIZ\nBirinchi dasturingiz tayyor!\n\nCoddy\nQahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.\n\nSiz bugun\n0\nqadam\n0\nsakrash\n0\ngap\n0\nsahna\nMomiq\nKeyingi darsda labirintda ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin\n‹\n1 / 25 · Kirish\n2 / 25 · Savol\n3 / 25 · 1-sinov: YUR!\n4 / 25 · 2-sinov: ko‘chiramiz\n5 / 25 · 3-sinov: buyruq\n6 / 25 · Javob\n7 / 25 · Dasturlash nima?\n8 / 25 · Reja\n9 / 25 · Qahramon tanlash\n10 / 25 · Ranglar\n11 / 25 · Birinchi dastur\n12 / 25 · Coddy sanaydi\n13 / 25 · Pog‘onalar\n14 / 25 · Xulosa\n15 / 25 · O‘yin: Men robotman\n16 / 25 · 2-bekat\n17 / 25 · say bloki\n18 / 25 · say: natija\n19 / 25 · Ism va rang\n20 / 25 · Gapirtiramiz\n21 / 25 · Ustozning sahnasi\n22 / 25 · O‘z sahnangiz\n23 / 25 · Ko‘rgazma\n24 / 25 · Yakun\n25 / 25 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "13b07867a7b6",
-  "uzun": 69827
+  "html": "5ee5bb61f072",
+  "uzun": 69878
  }
 }

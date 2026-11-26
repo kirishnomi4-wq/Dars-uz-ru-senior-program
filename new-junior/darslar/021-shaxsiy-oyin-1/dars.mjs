@@ -40,7 +40,7 @@ const DARS = {
   // kosmik o'yin gaplari (kosmik.js KS) — 18-dars bilan bir xil (chek-list — 3-bekat)
   kosmikGap: {
     dasturi: 'dasturi', royxat: 'O‘yiningizda:',
-    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q urganda ball'], ['jon', 'Tekkanda jon'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
+    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q tegsa — ball +1'], ['jon', 'Dushman tegsa — jon −1'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
     oyinYz: 'O‘yin: ← → va space', dushSanoq: 'Dushman: N',
     bosh: 'Avval blokni bosing — u dasturga qo‘shiladi', boshP: 'Bu yerda hech narsa yo‘q-ku…',
     raketaKlon: 'create clone of myself — O‘q yoki Dushman dasturiga', raketaKlonP: 'Raketa ko‘payib ketdi!',
@@ -86,6 +86,7 @@ const DARS = {
   // pog'onalar: 1 karta (K1), 2–3 dushmanlar (B2A, B2Y), 4–5 ball va jon (B3A, B3Y)
   sanoq: { P1: ['kirdi'], P2: ['javob'], P5: ['pog', 1, 0], P5G: ['pog', 2, 1], P5B: ['pog', 4, 3], P14: ['sinf'] },
 
+  ustozKarta: 'P7', // 25.11 (QA F-1125-17, Q17-A): ustoz kartani sinf oldida bosib to'ldiradi (qobiq.js → kod.js kartaUstozTanla; xotirada — bolaning kartasiga yozilmaydi)
   bola: { javob: 'P2N', karta: 'K1', qahramonYoq: 'BQ', yakun: 'B5', kutish: 'BK', kutishGap: 'Ustozni tinglang' },
   ochish: [],
   oqishGap: 'O‘yiningiz kartasini ustozga aytib bering',

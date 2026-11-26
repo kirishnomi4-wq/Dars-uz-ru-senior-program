@@ -92,7 +92,7 @@ const SAHNA = {
       if (c === '#' || (c === 'E' && !h.kalit)) { h.urildi = { eshik: c === 'E', el: tugun.el }; katakTurtil(h, d); chal('tuk'); return 'toxta' }
       if (c === 'E') { const e = h.k.querySelector('.kt-eshik[data-k="' + nx + ',' + ny + '"]'); if (e && !e.classList.contains('ochiq')) { e.classList.add('ochiq'); chal('bos'); await KUT(280) } }
       katakIz(h, h.x, h.y, nx, ny)
-      h.x = nx; h.y = ny; katakSur(h.q, nx, ny, true); chal('qadam'); h.qadamlar++
+      h.x = nx; h.y = ny; if (h.tez) katakSilj(h.q, nx, ny); else katakSur(h.q, nx, ny, true); chal('qadam'); h.qadamlar++
       if (c === 'K' && !h.kalit) { h.kalit = true; setTimeout(() => h.k.classList.add('kalitli'), 380) }
     },
     baho(h, b) {
@@ -116,6 +116,8 @@ function katakSur(g, x, y, sakrab, baland = 0) {
   const m = eski.match(/-?[\d.]+/g).map(Number), n = yangi.match(/-?[\d.]+/g).map(Number)
   g.animate([{ transform: eski }, { transform: 'translate(' + (m[0] + n[0]) / 2 + 'px,' + ((m[1] + n[1]) / 2 - 26 - baland) + 'px)' }, { transform: yangi }], { duration: 520 + (baland ? 160 : 0), easing: 'ease-in-out' })
 }
+// 25.11 (Q12-A): tez sirpanish — kosmik raketa (h.tez): sakrash yoyi yo'q, 130 ms
+function katakSilj(g, x, y) { const eski = g.style.transform, yangi = katakJoy(x, y); g.style.transform = yangi; if (g.animate && eski) g.animate([{ transform: eski }, { transform: yangi }], { duration: 130, easing: 'ease-out' }) }
 // devorga turtilish: o'sha tomonga bir oz, keyin silkinib joyiga
 function katakTurtil(h, d) {
   const g = h.q, j = g.style.transform, m = j.match(/-?[\d.]+/g).map(Number), at = (k) => 'translate(' + (m[0] + d[0] * k) + 'px,' + (m[1] + d[1] * k) + 'px)'

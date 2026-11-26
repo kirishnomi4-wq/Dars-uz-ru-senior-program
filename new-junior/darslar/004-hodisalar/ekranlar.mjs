@@ -107,5 +107,5 @@ const E = {
     foot: () => fO('Dasturcha tuzing, keyin ▶ Boshlash') },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz o‘yin <em>tuzdingiz</em>!', '')}<div class="cg qg"><span class="av">${momiqYuz()}</span><p><small>Momiq</small>Tugmalar bilan boshqardingiz va o‘yinni yutdingiz.</p></div><small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({ yulduz: [0, 4] }, qahK(), { joy: [0, 4] })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda takrorlash bilan ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

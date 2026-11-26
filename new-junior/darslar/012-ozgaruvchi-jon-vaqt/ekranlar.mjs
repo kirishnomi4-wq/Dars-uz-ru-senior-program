@@ -93,5 +93,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '15-qadam. Erkin: uchala set, jon va qadam qoidasi, yutdi — «O‘yiningiz tayyor!».', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>o‘yiningiz</em>', 'Jon, qadam va olma ballini o‘zingiz tanlang.', 'B3Y', H3, TAYYOR3, { v: { ball: 0, jon: 0 } }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'O‘yiningizda jon <em>bor</em>!', '')}${qg('Jon tugasa — o‘yin tugaydi. Qoidani o‘zim tuzdim!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon(OYIN_M.B3Y, qahK(), { joy: [6, 4] })}${ozgQ({ ball: 20, jon: 3, qadam: 5 })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda tasodifiy son bilan ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

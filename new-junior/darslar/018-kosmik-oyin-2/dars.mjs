@@ -35,7 +35,7 @@ const DARS = {
   // kosmik o'yin gaplari (kosmik.js KS; N — son). 17-dars gaplari + dushman, ball, jon
   kosmikGap: {
     dasturi: 'dasturi', royxat: 'O‘yiningizda:',
-    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q urganda ball'], ['jon', 'Tekkanda jon'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
+    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q tegsa — ball +1'], ['jon', 'Dushman tegsa — jon −1'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
     oyinYz: 'O‘yin: ← → va space', dushSanoq: 'Dushman: N',
     bosh: 'Avval blokni bosing — u dasturga qo‘shiladi', boshP: 'Bu yerda hech narsa yo‘q-ku…',
     raketaKlon: 'create clone of myself — O‘q yoki Dushman dasturiga', raketaKlonP: 'Raketa ko‘payib ketdi!',
@@ -51,7 +51,7 @@ const DARS = {
     eskiBall: 'O‘yin boshida ball 0 bo‘lsin — set ball to 0', eskiBallP: 'Eski ball!',
     jonQani: 'Dushman tegdi. Raketa dasturida when touching enemy ostiga — change jon by -1', jonQaniP: 'Jon qani?',
     jonTugadi: 'Jon 0 bo‘lsa — o‘yin tugasin: if jon = 0 then → game over', jonTugadiP: 'Jon tugadi-ku!',
-    soni: 'N ta dushman tushsin', bir: 'Hammasi bir ustundan tushdi. Son o‘rniga random qo‘ying', birP: 'Yana o‘sha joy!',
+    soni: 'N ta dushman tushsin', bir: 'Hammasi bir ustundan tushdi. Nusxa boshiga go to qo‘ying, x — random', birP: 'Yana o‘sha joy!',
     urdiKam: 'Yana uring: N ta dushman', ballKam: 'Ball: N. Yana uring!', ikkiBall: 'Har dushman 2 ball bersin', ozP: 'Oz qoldi!',
     ikkinchi: 'Endi yana ▶ Boshlash — ball 0 dan boshlanadimi?', toliq: 'Yuting: kamida 3 ball, jon qolsin', kamida8: 'Kamida 8 ta dushman bo‘lsin',
     tegsin: 'Ataylab dushman ostida turing — jon kamayadimi?', toliqKam: 'Ro‘yxatga qarang: qaysi band hali ✓ emas?', tugadiYutdi: 'Jon 0 — o‘yin tugadi. Qoida ishlayapti!',
@@ -93,16 +93,17 @@ const DARS = {
     B2B: { tur: 'yol', chegara: 10, bosh: kb({ kerak: 'ball0', ozg: true }, pR, { pog: 6, perProg: tayyor({ oq: [...OQP, ...OQB()], dushman: DSP(3) }) }), maslahat: 'O‘yin boshlanganda ball nechchi bo‘lsin?' },
     B2C: { tur: 'yol', chegara: 10, bosh: kb({ kerak: 'ball2', ozg: true }, pO, { pog: 7, perProg: tayyor({ raketa: [...RPR, ...RB0], oq: [...OQP, ...OQB()], dushman: DSP(3) }) }), maslahat: 'change ball by — nechta?' },
     B2Y: { tur: 'yol', chegara: 10, bosh: kb({ kerak: 'rekord', ozg: true }, pD, { pog: 8, perProg: tayyor({ raketa: [...RPR, ...RB0], oq: [...OQP, ...OQB()], dushman: DSP() }) }), maslahat: 'Dushman ko‘p bo‘lsa — ball ham ko‘p' },
-    P10: { tur: 'yol', chegara: 10, bosh: kb({ ozg: true, chek: true }, pR, { prog: 0, perProg: tayyor({ raketa: [...RPR, ...RB0], oq: [...OQP, ...OQB()], dushman: DSP(6) }), soloPerProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP(6) }) }), gap: { boshla: ['', 'Dushman raketaga tegsa — jon kamaysin'] } },
-    B3A: { tur: 'yol', chegara: 10, bosh: kb({ kerak: 'jon', ozg: true, chek: true }, pR, { pog: 9, progYoq: ['raketa'], perProg: tayyor({ raketa: [...RPR, [['f'], ['z', 'ball:0'], ['z', 'jon:3']], [['q', 'enemy']]], oq: [...OQP, ...OQB()], dushman: DSP() }) }), maslahat: 'Dushman tegdi — jon nima bo‘lsin?' },
-    B3B: { tur: 'yol', chegara: 10, bosh: kb({ kerak: 'tugaydi', ozg: true, chek: true }, pR, { pog: 10, perProg: tayyor({ raketa: [...RPR, [['f'], ['z', 'ball:0'], ['z', 'jon:3']], [['q', 'enemy'], ['c', 'jon:-1']]], oq: [...OQP, ...OQB()], dushman: DSP(8) }) }), maslahat: 'Jon 0 bo‘lsa — qaysi shart? Ataylab tegib sinab ko‘ring' },
-    B3C: { tur: 'yol', chegara: 10, bosh: kb({ kerak: 'toliq', ozg: true, chek: true }, pR, { pog: 11, perProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP() }) }), maslahat: 'Ro‘yxatga qarang: qaysi band hali ✓ emas?' },
-    B3Y: { tur: 'yol', chegara: 10, bosh: kb({ kerak: 'oz', ozg: true, chek: true }, pD, { pog: 12, perProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP() }) }), maslahat: 'Dushman dasturida repeat soni — nechta dushman' },
-    P11: { tur: 'yol', chegara: 10, bosh: kb({ ozg: true, chek: true }, pR, { prog: 0, perProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP() }) }) },
+    // 25.11 (F-1125-13): 3-bekat — raketa dasturi jon bilan 11 blok (RPR 4 + ▶ 3 + T 4): chegara 10 da B3B yechilmasdi («Joy qolmadi!»), tayyor dasturlarda «11 / 10»; 19–20-darsdagidek 12
+    P10: { tur: 'yol', chegara: 12, bosh: kb({ ozg: true, chek: true }, pR, { prog: 0, perProg: tayyor({ raketa: [...RPR, ...RB0], oq: [...OQP, ...OQB()], dushman: DSP(6) }), soloPerProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP(6) }) }), gap: { boshla: ['', 'Dushman raketaga tegsa — jon kamaysin'] } },
+    B3A: { tur: 'yol', chegara: 12, bosh: kb({ kerak: 'jon', ozg: true, chek: true }, pR, { pog: 9, progYoq: ['raketa'], perProg: tayyor({ raketa: [...RPR, [['f'], ['z', 'ball:0'], ['z', 'jon:3']], [['q', 'enemy']]], oq: [...OQP, ...OQB()], dushman: DSP() }) }), maslahat: 'Dushman tegdi — jon nima bo‘lsin?' },
+    B3B: { tur: 'yol', chegara: 12, bosh: kb({ kerak: 'tugaydi', ozg: true, chek: true }, pR, { pog: 10, perProg: tayyor({ raketa: [...RPR, [['f'], ['z', 'ball:0'], ['z', 'jon:3']], [['q', 'enemy'], ['c', 'jon:-1']]], oq: [...OQP, ...OQB()], dushman: DSP(8) }) }), maslahat: 'Jon 0 bo‘lsa — qaysi shart? Ataylab tegib sinab ko‘ring' },
+    B3C: { tur: 'yol', chegara: 12, bosh: kb({ kerak: 'toliq', ozg: true, chek: true }, pR, { pog: 11, perProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP() }) }), maslahat: 'Ro‘yxatga qarang: qaysi band hali ✓ emas?' },
+    B3Y: { tur: 'yol', chegara: 12, bosh: kb({ kerak: 'oz', ozg: true, chek: true }, pD, { pog: 12, perProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP() }) }), maslahat: 'Dushman dasturida repeat soni — nechta dushman' },
+    P11: { tur: 'yol', chegara: 12, bosh: kb({ ozg: true, chek: true }, pR, { prog: 0, perProg: tayyor({ raketa: [...RPR, ...RJ], oq: [...OQP, ...OQB()], dushman: DSP() }) }) },
     B5: { ish: 'natija' },
   },
-  // natija: ta dushman urdi — 'U' (yutilgan o'yinlarda); ta o‘yin yutdi — 'W'; pog‘ona bajardi — 12 pog'ona
-  natija: [{ k: 'ta dushman urdi', blok: 'U' }, { k: 'ta o‘yin yutdi', blok: 'W' }, { k: 'pog‘ona bajardi', ekran: ['B1A', 'B1B', 'B1C', 'B1Y', 'B2A', 'B2B', 'B2C', 'B2Y', 'B3A', 'B3B', 'B3C', 'B3Y'] }],
+  // natija: ta dushman urildi — 'U' (yutilgan o'yinlarda); ta o‘yin yutdi — 'W'; pog‘ona bajardi — 12 pog'ona
+  natija: [{ k: 'ta dushman urildi', blok: 'U' }, { k: 'ta o‘yin yutdi', blok: 'W' }, { k: 'pog‘ona bajardi', ekran: ['B1A', 'B1B', 'B1C', 'B1Y', 'B2A', 'B2B', 'B2C', 'B2Y', 'B3A', 'B3B', 'B3C', 'B3Y'] }],
   gapStandart: 'Salom!',
 
   lms: {

@@ -66,8 +66,8 @@
   "id": "P7",
   "matn": "KO‘RAMIZ\ngo to — manzilga bor\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "5bea578b518f",
-  "uzun": 36789
+  "html": "58aa29fe6f0f",
+  "uzun": 36784
  },
  "u-11-P5G": {
   "id": "P5G",
@@ -94,8 +94,8 @@
   "id": "P8",
   "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "3cbfae1bd4cd",
-  "uzun": 36816
+  "html": "b590b14ec75b",
+  "uzun": 36811
  },
  "u-15-P5B": {
   "id": "P5B",
@@ -108,8 +108,8 @@
   "id": "P11",
   "matn": "KO‘RSATISH\nManzillarni o‘qib bering\nSiz manzilni aytasiz — men o‘sha katakka sakrayman.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "84398f9616de",
-  "uzun": 36067
+  "html": "61bc728cba8a",
+  "uzun": 36062
  },
  "u-17-P12": {
   "id": "P12",
@@ -180,8 +180,8 @@
   "bloklar": [
    "x:go to x:4y:2"
   ],
-  "html": "5ef421c146bc",
-  "uzun": 37721
+  "html": "6854ca13dc53",
+  "uzun": 37716
  },
  "u-x-P7-olma": {
   "id": "P7",
@@ -190,29 +190,29 @@
    "x:go to x:1y:3go to x:4y:2",
    "x:go to x:4y:2"
   ],
-  "html": "e482c83a2860",
-  "uzun": 37800
+  "html": "b8ef99155ab6",
+  "uzun": 37795
  },
  "u-x-P8-sanoq": {
   "id": "P8",
   "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "b8d92eca3e6e",
-  "uzun": 36825
+  "html": "911087f69faa",
+  "uzun": 36820
  },
  "u-x-P8-bayroq": {
   "id": "P8",
   "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\nBayroqcha qo‘yildi. «Tekshirish»ni bosing\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "719907023569",
-  "uzun": 37246
+  "html": "3b72ce526f38",
+  "uzun": 37241
  },
  "u-x-P8-oldindan": {
   "id": "P8",
   "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\n‹ Orqaga\nOldindan aytdingiz!\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "31654ce959c5",
-  "uzun": 38276
+  "html": "f7aaab9c6706",
+  "uzun": 38271
  },
  "u-x-P11-yol": {
   "id": "P11",
@@ -221,8 +221,8 @@
    "x:go to x:2y:1go to x:5y:3",
    "x:go to x:5y:3"
   ],
-  "html": "710b82ca0834",
-  "uzun": 37075
+  "html": "bd9be2e819a7",
+  "uzun": 37070
  },
  "u-x-yakunlandi": {
   "id": "P14",
@@ -347,29 +347,29 @@
   "id": "B2A",
   "matn": "MASHQ · 1-POG‘ONA\nYulduz (5, 3) da\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
   "bloklar": [],
-  "html": "1c8be26548de",
-  "uzun": 22355
+  "html": "6d7dccd0fbaa",
+  "uzun": 22350
  },
  "bq-11-1-B2B": {
   "id": "B2B",
   "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 1) da, yulduz (6, 4) da.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
   "bloklar": [],
-  "html": "184b9b16f0ef",
-  "uzun": 22919
+  "html": "8f991eb62ae7",
+  "uzun": 22914
  },
  "bq-11-2-B2C": {
   "id": "B2C",
   "matn": "MASHQ · 3-POG‘ONA\nUch manzil\nOlma (1, 3), olma (5, 1), yulduz (3, 4).\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
   "bloklar": [],
-  "html": "8aa4bc227024",
-  "uzun": 23485
+  "html": "bc99d33d8b83",
+  "uzun": 23480
  },
  "bq-11-3-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z yo‘lingiz\nUchta yoki ko‘proq katakni o‘zingiz tanlang.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir",
   "bloklar": [],
-  "html": "224fdebda847",
-  "uzun": 22115
+  "html": "121e131dc0aa",
+  "uzun": 22110
  },
  "bq-11-4-BK": {
   "id": "BK",
@@ -403,29 +403,29 @@
   "id": "B3A",
   "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
   "bloklar": [],
-  "html": "b5aaeab971f0",
-  "uzun": 23003
+  "html": "82564c9cc878",
+  "uzun": 22998
  },
  "bq-15-1-B3B": {
   "id": "B3B",
   "matn": "MASHQ · 2-POG‘ONA\nPastga ham\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\nmove down\nmove right\n7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
   "bloklar": [],
-  "html": "3f2ad7121c49",
-  "uzun": 23697
+  "html": "7ffde2459173",
+  "uzun": 23692
  },
  "bq-15-2-B3C": {
   "id": "B3C",
   "matn": "MASHQ · 3-POG‘ONA\ngo to bilan\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n2\ny:\n3\nmove right\nmove down\nmove right\nmove down\nmove right\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
   "bloklar": [],
-  "html": "29874839897b",
-  "uzun": 23654
+  "html": "9e1c446a6c5f",
+  "uzun": 23649
  },
  "bq-15-3-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki go to\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n5\ny:\n4\nmove left\nmove left\nmove left\nmove down\ngo to\nx:\n1\ny:\n0\nmove up\nmove up\nmove right\n9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
   "bloklar": [],
-  "html": "e1ac0c439adc",
-  "uzun": 24534
+  "html": "0f6c6ab7b08b",
+  "uzun": 24529
  },
  "bq-15-4-BK": {
   "id": "BK",
@@ -436,17 +436,17 @@
  },
  "bq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "dfea7b6c199b",
-  "uzun": 20897
+  "html": "cf45b74e0f85",
+  "uzun": 20948
  },
  "bq-18-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "dfea7b6c199b",
-  "uzun": 20897
+  "html": "cf45b74e0f85",
+  "uzun": 20948
  },
  "bx-B1A-boshqa": {
   "id": "B1A",
@@ -489,8 +489,8 @@
   "bloklar": [
    "x:go to x:3y:4"
   ],
-  "html": "9ca2cb9da2a6",
-  "uzun": 28006
+  "html": "4dfbb6cb5487",
+  "uzun": 28001
  },
  "bx-B2A-yetdi": {
   "id": "B2A",
@@ -498,8 +498,8 @@
   "bloklar": [
    "x:go to x:5y:3"
   ],
-  "html": "994fe7ffcf16",
-  "uzun": 23260
+  "html": "1184f106c2e7",
+  "uzun": 23255
  },
  "bx-B2B-olmasiz": {
   "id": "B2B",
@@ -507,8 +507,8 @@
   "bloklar": [
    "x:go to x:6y:4"
   ],
-  "html": "a69d4d47d410",
-  "uzun": 28547
+  "html": "ac4598029ecb",
+  "uzun": 28542
  },
  "bx-B2B-yetdi": {
   "id": "B2B",
@@ -517,8 +517,8 @@
    "x:go to x:2y:1go to x:6y:4",
    "x:go to x:6y:4"
   ],
-  "html": "0e5b3bce9a66",
-  "uzun": 23903
+  "html": "4c366376eeb8",
+  "uzun": 23898
  },
  "bx-B2Y-kam": {
   "id": "B2Y",
@@ -527,8 +527,8 @@
    "x:go to x:1y:4go to x:1y:4",
    "x:go to x:1y:4"
   ],
-  "html": "f9c0c46eacfc",
-  "uzun": 27795
+  "html": "c3f853bfef72",
+  "uzun": 27790
  },
  "bx-B2Y-tayyor": {
   "id": "B2Y",
@@ -539,36 +539,36 @@
    "x:go to x:6y:0go to x:3y:2",
    "x:go to x:3y:2"
   ],
-  "html": "ba1bd070bafb",
-  "uzun": 23230
+  "html": "d1a2c1a41b88",
+  "uzun": 23225
  },
  "bx-B3A-bayroqsiz": {
   "id": "B3A",
   "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish",
   "bloklar": [],
-  "html": "b5aaeab971f0",
-  "uzun": 23003
+  "html": "82564c9cc878",
+  "uzun": 22998
  },
  "bx-B3A-boshqa": {
   "id": "B3A",
   "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nBoshqa katak!\nMaslahat\nQahramon (4, 2) da to‘xtadi. Dasturni qaytadan sanang: X qancha, Y qancha\nTekshirish",
   "bloklar": [],
-  "html": "bb45782bdb69",
-  "uzun": 29229
+  "html": "3033742d63c2",
+  "uzun": 29224
  },
  "bx-B3A-oldindan": {
   "id": "B3A",
   "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 2)\nMaslahat\nOldindan aytdingiz!\nTekshirish",
   "bloklar": [],
-  "html": "46c782a918b6",
-  "uzun": 24474
+  "html": "798a335f323e",
+  "uzun": 24469
  },
  "bx-B5-natija": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n3\nkatak topdi\n7\nmanzilga bordi\n1\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n3\nkatak topdi\n7\nmanzilga bordi\n1\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 2)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "cfa38a03461b",
-  "uzun": 21184
+  "html": "387a80176f15",
+  "uzun": 21235
  },
  "bx-P2N-tanladi": {
   "id": "P2N",
@@ -689,36 +689,36 @@
    "x:go to x:1y:3go to x:4y:2",
    "x:go to x:4y:2"
   ],
-  "html": "aee0303606b9",
-  "uzun": 35533
+  "html": "6d0c199d2d06",
+  "uzun": 35528
  },
  "sq-11-0-B2A": {
   "id": "B2A",
   "matn": "MASHQ · 1-POG‘ONA\nYulduz (5, 3) da\nQahramoningizni yulduzga olib boring.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "012c838e515a",
-  "uzun": 22402
+  "html": "91ff6ec01161",
+  "uzun": 22397
  },
  "sq-11-1-B2B": {
   "id": "B2B",
   "matn": "MASHQ · 2-POG‘ONA\nOlma, keyin yulduz\nOlma (2, 1) da, yulduz (6, 4) da.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "2b861fde6bb6",
-  "uzun": 22966
+  "html": "38801b44d2fe",
+  "uzun": 22961
  },
  "sq-11-2-B2C": {
   "id": "B2C",
   "matn": "MASHQ · 3-POG‘ONA\nUch manzil\nOlma (1, 3), olma (5, 1), yulduz (3, 4).\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "3987ec2235c0",
-  "uzun": 23532
+  "html": "d574919d8956",
+  "uzun": 23527
  },
  "sq-11-3-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z yo‘lingiz\nUchta yoki ko‘proq katakni o‘zingiz tanlang.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nManzilni o‘qing: avval X, keyin Y\nIshga tushir\nKeyingi ›",
   "bloklar": [],
-  "html": "0d07df3ee138",
-  "uzun": 22162
+  "html": "75ce99c4513a",
+  "uzun": 22157
  },
  "sq-12-0-P9": {
   "id": "P9",
@@ -738,43 +738,43 @@
   "id": "P8",
   "matn": "KO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n(3, 2) katakni bosing — bayroqcha qo‘yiladi\n▶ Tekshirish\nKeyingi ›",
   "bloklar": [],
-  "html": "e4a330016dbf",
-  "uzun": 35621
+  "html": "0a3d625fe9d9",
+  "uzun": 35616
  },
  "sq-15-0-B3A": {
   "id": "B3A",
   "matn": "MASHQ · 1-POG‘ONA\nTo‘rt blok\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nmove right\nmove up\nmove right\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
   "bloklar": [],
-  "html": "d8a188a27400",
-  "uzun": 23050
+  "html": "cae421f6afb9",
+  "uzun": 23045
  },
  "sq-15-1-B3B": {
   "id": "B3B",
   "matn": "MASHQ · 2-POG‘ONA\nPastga ham\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove up\nmove up\nmove right\nmove right\nmove right\nmove down\nmove right\n7 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
   "bloklar": [],
-  "html": "798b5699b325",
-  "uzun": 23744
+  "html": "ae12e2ee2418",
+  "uzun": 23739
  },
  "sq-15-2-B3C": {
   "id": "B3C",
   "matn": "MASHQ · 3-POG‘ONA\ngo to bilan\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n2\ny:\n3\nmove right\nmove down\nmove right\nmove down\nmove right\n6 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
   "bloklar": [],
-  "html": "dfaef1c1c058",
-  "uzun": 23701
+  "html": "8556b5261d39",
+  "uzun": 23696
  },
  "sq-15-3-B3Y": {
   "id": "B3Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nIkki go to\nQahramon to‘xtaydigan katakni bosing.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\ngo to\nx:\n5\ny:\n4\nmove left\nmove left\nmove left\nmove down\ngo to\nx:\n1\ny:\n0\nmove up\nmove up\nmove right\n9 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nMaslahat\nDasturni o‘qing: qahramon qayerda to‘xtaydi?\nTekshirish\nKeyingi ›",
   "bloklar": [],
-  "html": "93e9d08ddce7",
-  "uzun": 24581
+  "html": "4a042f77a52a",
+  "uzun": 24576
  },
  "sq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz manzilni bilasiz!\n\nBulut\nKatakni topdingiz, manzilga bordingiz va oldindan aytdingiz.\n\nSiz bugun\n0\nkatak topdi\n0\nmanzilga bordi\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBulut\nKeyingi darsda hodisalar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "dfea7b6c199b",
-  "uzun": 20897
+  "html": "cf45b74e0f85",
+  "uzun": 20948
  },
  "sx-P2S-A": {
   "id": "P2S",
@@ -864,8 +864,8 @@
   "id": "P7",
   "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\ngo to — manzilga bor\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "74f996e15883",
-  "uzun": 89534
+  "html": "e0c0ff41257f",
+  "uzun": 89529
  },
  "y-11": {
   "id": "P5G",
@@ -892,8 +892,8 @@
   "id": "P8",
   "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nCoddy qayerda to‘xtaydi?\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nmove right\nX: 2\nmove right\nX: 3\nmove up\nY: 2\n3 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 1)\n‹ Orqaga\n▶ Tekshirish\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "5034a66cb801",
-  "uzun": 89561
+  "html": "0d5d15fbfa28",
+  "uzun": 89556
  },
  "y-15": {
   "id": "P5B",
@@ -906,8 +906,8 @@
   "id": "P11",
   "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nManzillarni o‘qib bering\nSiz manzilni aytasiz — men o‘sha katakka sakrayman.\nHarakat\nHarakat\ngo to\nx:\n0\ny:\n0\nmove right\nmove left\nmove up\nmove down\nDastur\nBlokni shu yerga ulang\n0 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\n▶ Ishga tushir\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol\n3 / 18 · Uch sinov\n4 / 18 · Javob: ikki son\n5 / 18 · Yangi so‘z: koordinata\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: manzilni o‘qiymiz\n8 / 18 · Manzilni o‘qiymiz\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: go to bloki\n11 / 18 · Manzilga boramiz\n12 / 18 · Xulosa: koordinata\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: oldindan aytamiz\n15 / 18 · Oldindan aytamiz\n16 / 18 · Manzillarni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "12e56b90e60b",
-  "uzun": 88812
+  "html": "fe73747edcb7",
+  "uzun": 88807
  },
  "y-17": {
   "id": "P12",

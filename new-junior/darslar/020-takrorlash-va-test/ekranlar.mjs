@@ -73,7 +73,7 @@ const E = {
     body: () => `<div class="oyna to">${world('kosmos')}<div class="gl pan">${matn('Qahramon', 'Qahramoningizni <em>tanlang</em>', 'Birini tanlang — bugun unga buyruq berasiz.')}</div>${tanlovQator('momiq')}</div>`,
     foot: () => fJim('Birini tanlang') },
   B1A: { rol: 'b', b: 1, t: 't3', nom: 'Takrorlash · 1', izoh: '7-qadam. Dushman: tayyor ▶[C] · K[…] — bola ▶[R5[C]].', ...bol('Takrorlash · 1', '<em>Beshta</em> dushman', '▶ bosilganda beshta dushman tushsin', 'B1A', H1) },
-  B1B: { rol: 'b', b: 1, t: 't3', nom: 'Takrorlash · 2', izoh: '7-qadam. O‘q: bo‘sh T — bola change ball by 1.', ...bol('Takrorlash · 2', '<em>Ball</em>', 'O‘q urganda ball oshsin', 'B1B', H1) },
+  B1B: { rol: 'b', b: 1, t: 't3', nom: 'Takrorlash · 2', izoh: '7-qadam. O‘q: bo‘sh T — bola change ball by 1.', ...bol('Takrorlash · 2', '<em>Ball</em>', 'O‘q tegsa — ball +1 oshsin', 'B1B', H1) },
   B1C: { rol: 'b', b: 1, t: 't3', nom: 'Takrorlash · 3', izoh: '7-qadam. Raketa: T[jon −1] — bola if jon = 0 then → game over.', ...bol('Takrorlash · 3', 'O‘yin <em>tugaydi</em>', 'Jon 0 bo‘lsa — o‘yin tugasin', 'B1C', H1) },
   B1Y: { rol: 'b', b: 1, t: 't3', nom: 'Takrorlash · 4', izoh: '7-qadam. Kod ochiq — belgilangan blokning qatorini bosadi (3 marta).', ...bol('Takrorlash · 4', 'Qaysi <em>qator</em>?', 'Belgilangan blokning qatorini bosing', 'B1Y', H1) },
   B2A: { rol: 'b', b: 2, t: 't3', nom: 'Test · 1', izoh: '9-qadam. Dushman dasturi noldan: ▶[R5[C]] · K[G R4[↓] D]; kamida 2 ustun.', ...bol('Test · 1', '<em>Dushmanlar</em>', 'Beshta dushman, har xil ustundan tushsin', 'B2A', H2) },
@@ -84,5 +84,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Katta test · ★', izoh: '12-qadam. Kamida 8 dushman (dushman dasturidagi repeat), yutadi.', ...bol('Katta test · ★', 'O‘z <em>o‘yiningiz</em>', 'Kamida 8 ta dushman — yuting', 'B3Y', H3) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '14–15-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Test <em>tugadi</em>!', '')}${qg('Testni o‘zim yechdim!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK(), { asl: [3, 4], dush: [[5, 2]], oq: [[1, 2]] })}${ozgQ({ ball: 9, jon: 2 })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda o‘z o‘yiningizni yasaymiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

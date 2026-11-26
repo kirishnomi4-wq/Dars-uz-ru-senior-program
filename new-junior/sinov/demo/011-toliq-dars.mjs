@@ -128,7 +128,7 @@ tek('14 · 5 kartasi, «▶ Tekshirish» — «Oldindan aytdingiz!»', (await hi
 
 // ---------- 15: oldindan aytish (9–12)
 await keyingi(); await ekrangacha(a, 'B3A'); await ekrangacha(l, 'B3A'); await kut(600)
-tek('15 · Aziz B3A: javon yopiq, dastur tayyor, «▶ Tekshirish» xira', (await a.$$('#bol .pl .mbw:not(.yopiq)')).length === 0 && (await a.$eval('#bol .hn .asos', (e) => e.classList.contains('xira'))) && (await tuzilish(a)) === '▶[=3,+1,+5]', await tuzilish(a))
+tek('15 · Aziz B3A: javon yopiq, dastur tayyor, «▶ Tekshirish» xira', (await a.$$('#bol .pl .mbw:not(.yopiq)')).length === 0 && (await a.$eval('#bol .hn .asos', (e) => e.classList.contains('tug-xira'))) && (await tuzilish(a)) === '▶[=3,+1,+5]', await tuzilish(a))
 r = await bash(a, 'B3A', 5, null); tek('15 · Aziz 5 — Kamvoy «Boshqa son!», «Ball 9 bo‘ldi. …»', r.m === 'kamvoy:Boshqa son!' && r.g === 'Ball 9 bo‘ldi. Dasturni qaytadan o‘qing: har blokdan keyin ball nechchi?', JSON.stringify(r))
 r = await bash(a, 'B3A', 9, 'B3B'); tek('15 · Aziz 9 — «Oldindan aytdingiz!» → B3B', r.g === 'Oldindan aytdingiz!' && r.o, JSON.stringify(r))
 r = await bash(a, 'B3B', 6, 'B3C'); tek('15 · 2-pog‘ona: 6 → B3C', r.o, JSON.stringify(r))

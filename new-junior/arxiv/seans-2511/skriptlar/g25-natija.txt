@@ -1,0 +1,341 @@
+== BOSHLANDI 13:27
+-- chek17 13:27
+✗ 1) bo‘sh: to‘rt band, hammasi ✓ siz  — undefined- undefined- undefined- undefined-
+✗ 2b) yakunda belgilangan uch band ✓, «hamma» — yo‘q  — undefined- undefined- undefined- undefined-
+NATIJA: 4/6
+-- karta27 13:27
+✓ dushman 3 · ball 1 · jon 3 · maqsad 2 — bot yutdi 3/3
+✓ dushman 3 · ball 1 · jon 4 · maqsad 2 — bot yutdi 3/3
+✓ dushman 3 · ball 1 · jon 5 · maqsad 2 — bot yutdi 3/3
+✓ dushman 3 · ball 2 · jon 3 · maqsad 4 — bot yutdi 3/3
+✓ dushman 3 · ball 2 · jon 4 · maqsad 4 — bot yutdi 3/3
+✓ dushman 3 · ball 2 · jon 5 · maqsad 4 — bot yutdi 3/3
+✓ dushman 3 · ball 3 · jon 3 · maqsad 6 — bot yutdi 3/3
+~ dushman 3 · ball 3 · jon 4 · maqsad 6 — bot yutdi 2/3  | B3Y ball 3 jon 4 «Yutish uchun 6 ball kerak»
+~ dushman 3 · ball 3 · jon 5 · maqsad 6 — bot yutdi 2/3  | B3Y ball 3 jon 5 «Yutish uchun 6 ball kerak»
+~ dushman 5 · ball 1 · jon 3 · maqsad 3 — bot yutdi 2/3  | B3Y ball 2 jon 3 «Yutish uchun 3 ball kerak»
+~ dushman 5 · ball 1 · jon 4 · maqsad 3 — bot yutdi 2/3  | B3Y ball 2 jon 4 «Yutish uchun 3 ball kerak»
+~ dushman 5 · ball 1 · jon 5 · maqsad 3 — bot yutdi 2/3  | B3Y ball 2 jon 5 «Yutish uchun 3 ball kerak»
+~ dushman 5 · ball 2 · jon 3 · maqsad 6 — bot yutdi 2/3  | B3Y ball 4 jon 3 «Yutish uchun 6 ball kerak»
+~ dushman 5 · ball 2 · jon 4 · maqsad 6 — bot yutdi 2/3  | B3Y ball 4 jon 4 «Yutish uchun 6 ball kerak»
+~ dushman 5 · ball 2 · jon 5 · maqsad 6 — bot yutdi 2/3  | B3Y ball 4 jon 5 «Yutish uchun 6 ball kerak»
+~ dushman 5 · ball 3 · jon 3 · maqsad 9 — bot yutdi 2/3  | B3Y ball 6 jon 3 «Yutish uchun 9 ball kerak»
+~ dushman 5 · ball 3 · jon 4 · maqsad 9 — bot yutdi 2/3  | B3Y ball 6 jon 4 «Yutish uchun 9 ball kerak»
+~ dushman 5 · ball 3 · jon 5 · maqsad 9 — bot yutdi 2/3  | B3Y ball 6 jon 5 «Yutish uchun 9 ball kerak»
+✓ dushman 8 · ball 1 · jon 3 · maqsad 4 — bot yutdi 3/3
+✓ dushman 8 · ball 1 · jon 4 · maqsad 4 — bot yutdi 3/3
+✓ dushman 8 · ball 1 · jon 5 · maqsad 4 — bot yutdi 3/3
+✓ dushman 8 · ball 2 · jon 3 · maqsad 8 — bot yutdi 3/3
+✓ dushman 8 · ball 2 · jon 4 · maqsad 8 — bot yutdi 3/3
+✓ dushman 8 · ball 2 · jon 5 · maqsad 8 — bot yutdi 3/3
+✓ dushman 8 · ball 3 · jon 3 · maqsad 12 — bot yutdi 3/3
+✓ dushman 8 · ball 3 · jon 4 · maqsad 12 — bot yutdi 3/3
+✓ dushman 8 · ball 3 · jon 5 · maqsad 12 — bot yutdi 3/3
+NATIJA: 27 kombinatsiya — bot har urug'da yutdi: 16; ba'zida: 11; hech yutmadi: 0
+-- 017 toliq-dars 13:44
+NATIJA: 45 / 45
+-- 017 solo 13:47
+NATIJA: 40 / 40
+-- 017 tovush 13:50
+NATIJA: 5 / 5
+-- 018 toliq-dars 13:50
+NATIJA: 44 / 44
+-- 018 solo 13:53
+NATIJA: 40 / 40
+-- 018 tovush 13:57
+NATIJA: 6 / 6
+-- 023 toliq-dars 13:57
+NATIJA: 23 / 23
+-- 023 solo 13:59
+NATIJA: 17 / 17
+-- 023 tovush 14:00
+NATIJA: 4 / 4
+-- 015 toliq-dars 14:00
+NATIJA: 62 / 62
+-- 015 solo 14:02
+NATIJA: 35 / 35
+-- 015 tovush 14:04
+NATIJA: 5 / 5
+-- 012 toliq-dars 14:05
+✗ 7 · javondan: kaktus → change jon −1, if jon = 0 { game over }  — when_start:[z(jon 3)] when_touch:cactus[c(jon -1),i(ball 0){g}]
+✗ 7 · ↑↑↑ — «jon: 0», «O‘yin tugadi»
+NATIJA: 52 / 54
+-- 012 solo 14:08
+NATIJA: 30 / 30
+-- 012 tovush 14:09
+NATIJA: 6 / 6
+-- 019 toliq-dars 14:10
+NATIJA: 45 / 45
+-- 019 solo 14:13
+NATIJA: 52 / 52
+-- 019 tovush 14:15
+NATIJA: 6 / 6
+-- 020 toliq-dars 14:16
+NATIJA: 35 / 35
+-- 020 solo 14:19
+NATIJA: 40 / 40
+-- 020 tovush 14:22
+NATIJA: 5 / 5
+-- 021 toliq-dars 14:23
+NATIJA: 30 / 30
+-- 021 solo 14:25
+NATIJA: 33 / 33
+-- 021 tovush 14:27
+NATIJA: 5 / 5
+-- 022 toliq-dars 14:27
+NATIJA: 25 / 25
+-- 022 solo 14:29
+NATIJA: 21 / 21
+-- 022 tovush 14:31
+NATIJA: 4 / 4
+-- 013 toliq-dars 14:31
+NATIJA: 48 / 48
+-- 013 solo 14:34
+NATIJA: 27 / 27
+-- 013 tovush 14:35
+NATIJA: 6 / 6
+-- 014 toliq-dars 14:35
+NATIJA: 66 / 66
+-- 014 solo 14:39
+NATIJA: 30 / 30
+-- 014 tovush 14:40
+NATIJA: 6 / 6
+-- 016 toliq-dars 14:41
+NATIJA: 43 / 43
+-- 016 solo 14:44
+NATIJA: 39 / 39
+-- 016 tovush 14:46
+NATIJA: 6 / 6
+-- sim raketa 14:47
+NATIJA: 30 / 30 — toza
+-- sim kosmik2 14:50
+✗ B3C tegmasdan — «Ro‘yxatga qarang…» — ishora: «Ball: 2. Yana uring!» kamvoy:Oz qoldi! ball 2 jon 3
+NATIJA: 43 / 44 — muammo bor
+-- sim xakaton 14:56
+NATIJA: 20 / 20
+-- sim klon 14:57
+NATIJA: toza
+-- sim tasodif 15:00
+-- sim xato 15:02
+-- setka 012-ozgaruvchi-jon-vaqt
+ekran: 35 — toza
+-- setka 015-xakaton-1
+  BXO: «whenany key pressed» idishidan chiqdi
+  BXO: «any key pressed» idishidan chiqdi
+  P8: «whenany key pressed» idishidan chiqdi
+  P8: «any key pressed» idishidan chiqdi
+-- setka 017-kosmik-oyin-1
+ekran: 35 — toza
+-- setka 018-kosmik-oyin-2
+ekran: 35 — toza
+-- setka 020-takrorlash-va-test
+ekran: 30 — toza
+-- setka 021-shaxsiy-oyin-1
+ekran: 25 — toza
+-- setka 022-shaxsiy-oyin-2
+ekran: 22 — toza
+-- setka 023-demo-day-1
+ekran: 20 — toza
+-- matn 017-kosmik-oyin-1
+017-kosmik-oyin-1: manbadagi gaplar 259, demo-017.html da topildi 259 (aynan 240, karta shaklida 19)
+-- matn 018-kosmik-oyin-2
+018-kosmik-oyin-2: manbadagi gaplar 288, demo-018.html da topildi 288 (aynan 271, karta shaklida 17)
+-- matn 023-demo-day-1
+023-demo-day-1: manbadagi gaplar 145, demo-023.html da topildi 145 (aynan 130, karta shaklida 15)
+-- oltin 001-tanishuv 15:03
+BIR XIL: 250 / 264
+✗ st-11-0-B2 — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ st-12-1-B3X — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ st-13-0-B2P — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ st-13-1-B2Q — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ st-13-2-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ st-20-0-B7 — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ st-22-1-B8 — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sy-11-0-B2 — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sy-12-1-B3X — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sy-13-0-B2P — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sy-13-1-B2Q — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sy-13-2-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sy-20-0-B7 — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sy-22-1-B8 — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+-- oltin 002-ketma-ketlik 15:09
+BIR XIL: 132 / 143
+✗ sq-08-0-B2 — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B3C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B4A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-1-B4B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-2-B4Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+-- oltin 003-koordinata 15:13
+BIR XIL: 123 / 131
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 107/255), joyi (1076, 760, 1090, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 107/255), joyi (1076, 760, 1090, 777)
+✗ sq-15-2-B3C — surat: 130 piksel (eng katta farq 107/255), joyi (1076, 760, 1090, 777)
+✗ sq-15-3-B3Y — surat: 130 piksel (eng katta farq 107/255), joyi (1076, 760, 1090, 777)
+-- oltin 004-hodisalar 15:16
+BIR XIL: 111 / 122
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-2-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+-- oltin 005-takrorlash 15:19
+BIR XIL: 114 / 128
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-2-B3C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-3-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ u-x-P8-juft — matn; html (35854 → 35856 belgi); surat: 2168 piksel (eng katta farq 172/255), joyi (479, 759, 709, 778)
+✗ varaq — matn; html (9563 → 9565 belgi); surat: 11123 piksel (eng katta farq 242/255), joyi (372, 3883, 1067, 3949)
+-- oltin 006-amaliyot 15:22
+BIR XIL: 120 / 132
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-2-B3C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-3-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+-- oltin 007-kostyum-tovush 15:26
+BIR XIL: 113 / 124
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-2-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+-- oltin 008-shart 15:29
+BIR XIL: 113 / 125
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-2-B3C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-3-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+-- oltin 009-labirint-oyini-1 15:34
+BIR XIL: 122 / 133
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-2-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+-- oltin 010-labirint-oyini-2 15:39
+BIR XIL: 114 / 123
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1048, 760, 1062, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1048, 760, 1062, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1048, 760, 1062, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1048, 760, 1062, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1048, 760, 1062, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1048, 760, 1062, 777)
+✗ sq-11-2-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1048, 760, 1062, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-1-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+-- oltin 011-ozgaruvchi-ball 15:43
+BIR XIL: 122 / 134
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-0-B3A — surat: 120 piksel (eng katta farq 107/255), joyi (160, 796, 174, 810)
+✗ sq-15-1-B3B — surat: 120 piksel (eng katta farq 107/255), joyi (160, 796, 174, 810)
+✗ sq-15-2-B3C — surat: 120 piksel (eng katta farq 107/255), joyi (160, 796, 174, 810)
+✗ sq-15-3-B3Y — surat: 120 piksel (eng katta farq 107/255), joyi (160, 796, 174, 810)
+-- oltin 012-ozgaruvchi-jon-vaqt 15:47
+BIR XIL: 110 / 126
+✗ bq-17-0-B5 — surat: 69993 piksel (eng katta farq 242/255), joyi (656, 110, 1408, 268)
+✗ bq-18-0-B5 — surat: 69993 piksel (eng katta farq 242/255), joyi (656, 110, 1408, 268)
+✗ bx-B5-natija — surat: 69993 piksel (eng katta farq 242/255), joyi (656, 110, 1408, 268)
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-2-B3C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-3-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-17-0-B5 — surat: 69993 piksel (eng katta farq 242/255), joyi (656, 110, 1408, 268)
+-- oltin 013-tasodifiy-son 15:50
+BIR XIL: 115 / 128
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-2-B3C — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-3-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ u-x-P6-royxat — surat: 593 piksel (eng katta farq 242/255), joyi (539, 282, 608, 494)
+-- oltin 014-xatoni-topish 15:53
+BIR XIL: 124 / 138
+✗ bx-B3B-boshla — html (24232 → 23956 belgi); surat: 13118 piksel (eng katta farq 172/255), joyi (59, 739, 858, 798)
+✗ bx-B3B-past — html (29690 → 29414 belgi); surat: 18083 piksel (eng katta farq 172/255), joyi (59, 734, 1072, 803)
+✗ sq-08-0-B1A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-1-B1B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-2-B1C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-08-3-B1Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-0-B2A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-1-B2B — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-2-B2C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-11-3-B2Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-0-B3A — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-1-B3B — surat: 130 piksel (eng katta farq 242/255), joyi (1086, 760, 1100, 777)
+✗ sq-15-2-B3C — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+✗ sq-15-3-B3Y — surat: 130 piksel (eng katta farq 242/255), joyi (1059, 760, 1073, 777)
+TAMOM 15:57

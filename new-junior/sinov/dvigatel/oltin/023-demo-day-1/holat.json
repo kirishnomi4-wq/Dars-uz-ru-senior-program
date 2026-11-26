@@ -1,0 +1,817 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "23-DARS · DEMO DAY №1\nDemo Day!\n\nCoddy\nSalom, mehmonlar! O‘yinlarimizni ko‘rsatamiz.\n\nO‘TGAN DARSDA\nDushmanlar\n5\nJon\n3\nTaqdimot\nMening o‘yinim, qanday yutiladi, eng qiyin joyi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "34f8fa522644",
+  "uzun": 32653
+ },
+ "u-02-P4": {
+  "id": "P4",
+  "matn": "23-DARS · DEMO DAY №1\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida uyga yo‘riqnoma olasiz.\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n1\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nBoshladik ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7d11341eae06",
+  "uzun": 43633
+ },
+ "u-03-P7": {
+  "id": "P7",
+  "matn": "QOIDALAR\nDemo Day qoidalari\n\nCoddy\nBolalar o‘z o‘yinini ko‘rsatadi.\n\n1\nMehmon o‘ynaydi\nstrelkalar — raketa, probel — o‘q\n2\nBola aytib beradi\nnechta dushman, qanday yutiladi\n3\nSavolga javob beradi\neng qiyin joyi qaysi edi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f472ecf76311",
+  "uzun": 32696
+ },
+ "u-04-P5": {
+  "id": "P5",
+  "matn": "O‘yinni sinab oling!\n\nCoddy\nMehmonlar kelishidan oldin — oxirgi sinov.\n\nO‘yinni yutdi\n0 / 0\nHar belgi — o‘yinni yutgan bitta bola\n1\n0\nball: 4\nOxirgi sinov\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ab7432fd509c",
+  "uzun": 28078
+ },
+ "u-05-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ko‘rsatamiz\n\nCoddy\nEndi mehmonlar o‘ynaydi!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5677df613090",
+  "uzun": 43420
+ },
+ "u-06-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nQanday o‘ynaladi\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "9f27873a4497",
+  "uzun": 34009
+ },
+ "u-07-P5G": {
+  "id": "P5G",
+  "matn": "Mehmon o‘ynaydi!\n\nCoddy\nSiz aytasiz — mehmon o‘ynaydi.\n\nO‘yin tugadi\n0 / 0\nHar belgi — mehmon o‘ynagan bitta bola\n1\n0\nball: 2\nMehmon o‘ynadi\n★\n0\nball: 6\nMehmon yutdi\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8eacaa36ab52",
+  "uzun": 32587
+ },
+ "u-08-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Uyga olib ketamiz\n\nCoddy\nEndi uyga yo‘riqnoma!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n✓\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7086e73359db",
+  "uzun": 43458
+ },
+ "u-09-P10": {
+  "id": "P10",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nScratch — bolalar uchun bepul sayt.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\n‹ Orqaga\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4eddf2ab113b",
+  "uzun": 23889
+ },
+ "u-10-P5B": {
+  "id": "P5B",
+  "matn": "Yo‘riqnomani oling!\n\nCoddy\nUyga olib ketasiz.\n\nYo‘riqnomani oldi\n0 / 0\nHar belgi — yo‘riqnomani olgan bitta bola\n1\n0\nYo‘riqnoma\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "327a3d986b38",
+  "uzun": 24420
+ },
+ "u-11-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nDemo Day tugadi!\n\nCoddy\n1-modul tugadi!\n\nBUGUN\nTayyorlandik · Ko‘rsatdik · Uyga oldik\nO‘z o‘yiningizni yasadingiz\nKeyingi dars\n24 · Sun‘iy intellekt (AI) nima\n✓\nTayyorlanamiz\n✓\nKo‘rsatamiz\n✓\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fa7b5a394d8a",
+  "uzun": 42491
+ },
+ "u-12-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f6f18667a52b",
+  "uzun": 41425
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\nDars tugadi!\nKo‘rishguncha — keyingi modulda sun‘iy intellekt!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2b1fb7058e0d",
+  "uzun": 41567
+ },
+ "bk-01-0-B0": {
+  "id": "B0",
+  "matn": "23-DARS · DEMO DAY №1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "55cfe4aece03",
+  "uzun": 26287
+ },
+ "bk-01-1-BK": {
+  "id": "BK",
+  "matn": "23-DARS · DEMO DAY №1\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "1de2f6c5348b",
+  "uzun": 17899
+ },
+ "bk-02-0-BK": {
+  "id": "BK",
+  "matn": "23-DARS · DEMO DAY №1\n↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "1b8ba3ef76e2",
+  "uzun": 17896
+ },
+ "bk-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz qoidalarni aytyapti",
+  "bloklar": [],
+  "html": "0f7cb73d6429",
+  "uzun": 17903
+ },
+ "bk-04-0-B1A": {
+  "id": "B1A",
+  "matn": "OXIRGI SINOV\nOxirgi sinov\nKartadagidek yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n4\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\noilam\nDushmanlar\n5\nHar dushman — ball\n3\nJon\n4\nYutish uchun\n9\nMaslahat\nKartadagidek yuting\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto4setballto0when ▶ clicked",
+   "z:setjonto4setballto0",
+   "z:setjonto4",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "02f6bf712b64",
+  "uzun": 27048
+ },
+ "bk-04-1-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "3f9ee3a3957f",
+  "uzun": 17894
+ },
+ "bk-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: ko‘rsatamiz",
+  "bloklar": [],
+  "html": "b5af4155f24e",
+  "uzun": 17898
+ },
+ "bk-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "8d4c239c7169",
+  "uzun": 17915
+ },
+ "bk-07-0-B2A": {
+  "id": "B2A",
+  "matn": "MEHMON · 1\nMehmon o‘ynaydi\nMehmon o‘yinni o‘ynasin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n4\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\noilam\nDushmanlar\n5\nHar dushman — ball\n3\nJon\n4\nYutish uchun\n9\nMaslahat\nMehmon o‘ynasin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto4setballto0when ▶ clicked",
+   "z:setjonto4setballto0",
+   "z:setjonto4",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "b6d91c453a24",
+  "uzun": 27049
+ },
+ "bk-07-1-B2Y": {
+  "id": "B2Y",
+  "matn": "MEHMON · ★\nMehmon yutdi\nMehmon yutsin — kartadagidek\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n4\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\noilam\nDushmanlar\n5\nHar dushman — ball\n3\nJon\n4\nYutish uchun\n9\nMaslahat\nMehmon o‘ynasin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto4setballto0when ▶ clicked",
+   "z:setjonto4setballto0",
+   "z:setjonto4",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "4039191085ff",
+  "uzun": 27051
+ },
+ "bk-07-2-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "842f9fe54dd5",
+  "uzun": 17909
+ },
+ "bk-08-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: uyga olib ketamiz",
+  "bloklar": [],
+  "html": "ea9c8fff3e57",
+  "uzun": 17904
+ },
+ "bk-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘riqnomani ko‘rsatyapti",
+  "bloklar": [],
+  "html": "41d6391f7a06",
+  "uzun": 17909
+ },
+ "bk-10-0-Y1": {
+  "id": "Y1",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nYo‘riqnoma kartasini o‘qing.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\nUyda ota-onangiz bilan davom etasiz\nYo‘riqnoma tayyor",
+  "bloklar": [],
+  "html": "7787dda26e32",
+  "uzun": 23282
+ },
+ "bk-10-1-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nKarta tayyor bo‘lsa — tugmani bosing",
+  "bloklar": [],
+  "html": "533a2666f990",
+  "uzun": 17914
+ },
+ "bk-11-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nDemo Day tugadi!\n\nBulut\nMening o‘yinim bor!\n\nSiz bugun\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n3\nBulut\nKeyingi darsda sun‘iy intellektni o‘rganamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "9b71c4455532",
+  "uzun": 19479
+ },
+ "bk-12-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nDemo Day tugadi!\n\nBulut\nMening o‘yinim bor!\n\nSiz bugun\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n3\nBulut\nKeyingi darsda sun‘iy intellektni o‘rganamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "9b71c4455532",
+  "uzun": 19479
+ },
+ "bn-01-0-B0": {
+  "id": "B0",
+  "matn": "23-DARS · DEMO DAY №1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "55cfe4aece03",
+  "uzun": 26287
+ },
+ "bn-01-1-BK": {
+  "id": "BK",
+  "matn": "23-DARS · DEMO DAY №1\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "1de2f6c5348b",
+  "uzun": 17899
+ },
+ "bn-02-0-BK": {
+  "id": "BK",
+  "matn": "23-DARS · DEMO DAY №1\n↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "1b8ba3ef76e2",
+  "uzun": 17896
+ },
+ "bn-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz qoidalarni aytyapti",
+  "bloklar": [],
+  "html": "0f7cb73d6429",
+  "uzun": 17903
+ },
+ "bn-04-0-B1A": {
+  "id": "B1A",
+  "matn": "OXIRGI SINOV\nOxirgi sinov\nKartadagidek yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\nMaslahat\nKartadagidek yuting\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "a217cbb3054a",
+  "uzun": 27050
+ },
+ "bn-04-1-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "3f9ee3a3957f",
+  "uzun": 17894
+ },
+ "bn-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: ko‘rsatamiz",
+  "bloklar": [],
+  "html": "b5af4155f24e",
+  "uzun": 17898
+ },
+ "bn-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "8d4c239c7169",
+  "uzun": 17915
+ },
+ "bn-07-0-B2A": {
+  "id": "B2A",
+  "matn": "MEHMON · 1\nMehmon o‘ynaydi\nMehmon o‘yinni o‘ynasin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\nMaslahat\nMehmon o‘ynasin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "013982d52dc8",
+  "uzun": 27051
+ },
+ "bn-07-1-B2Y": {
+  "id": "B2Y",
+  "matn": "MEHMON · ★\nMehmon yutdi\nMehmon yutsin — kartadagidek\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\nMaslahat\nMehmon o‘ynasin\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "97ea45c76a9a",
+  "uzun": 27053
+ },
+ "bn-07-2-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "842f9fe54dd5",
+  "uzun": 17909
+ },
+ "bn-08-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: uyga olib ketamiz",
+  "bloklar": [],
+  "html": "ea9c8fff3e57",
+  "uzun": 17904
+ },
+ "bn-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yo‘riqnomani ko‘rsatyapti",
+  "bloklar": [],
+  "html": "41d6391f7a06",
+  "uzun": 17909
+ },
+ "bn-10-0-Y1": {
+  "id": "Y1",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nYo‘riqnoma kartasini o‘qing.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\nUyda ota-onangiz bilan davom etasiz\nYo‘riqnoma tayyor",
+  "bloklar": [],
+  "html": "54f109b6fd9d",
+  "uzun": 23284
+ },
+ "bn-10-1-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nKarta tayyor bo‘lsa — tugmani bosing",
+  "bloklar": [],
+  "html": "533a2666f990",
+  "uzun": 17914
+ },
+ "bn-11-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nDemo Day tugadi!\n\nBulut\nMening o‘yinim bor!\n\nSiz bugun\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n3\nBulut\nKeyingi darsda sun‘iy intellektni o‘rganamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "9b71c4455532",
+  "uzun": 19479
+ },
+ "bn-12-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nDemo Day tugadi!\n\nBulut\nMening o‘yinim bor!\n\nSiz bugun\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n3\nBulut\nKeyingi darsda sun‘iy intellektni o‘rganamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "9b71c4455532",
+  "uzun": 19479
+ },
+ "bx-Y1-tayyor": {
+  "id": "Y1",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nYo‘riqnoma kartasini o‘qing.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\nKarta tayyor!\nYo‘riqnoma tayyor",
+  "bloklar": [],
+  "html": "19f9c09d5ac4",
+  "uzun": 23260
+ },
+ "sk-01-0-B0": {
+  "id": "B0",
+  "matn": "23-DARS · DEMO DAY №1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "55cfe4aece03",
+  "uzun": 26287
+ },
+ "sk-01-1-P1": {
+  "id": "P1",
+  "matn": "23-DARS · DEMO DAY №1\nDemo Day!\n\nCoddy\nSalom, mehmonlar! O‘yinlarimizni ko‘rsatamiz.\n\nO‘TGAN DARSDA\nDushmanlar\n5\nJon\n3\nTaqdimot\nMening o‘yinim, qanday yutiladi, eng qiyin joyi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "3725f4c5343c",
+  "uzun": 31682
+ },
+ "sk-02-0-P4": {
+  "id": "P4",
+  "matn": "23-DARS · DEMO DAY №1\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida uyga yo‘riqnoma olasiz.\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n1\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "a3af1b26849b",
+  "uzun": 42670
+ },
+ "sk-03-0-P7": {
+  "id": "P7",
+  "matn": "QOIDALAR\nDemo Day qoidalari\n\nCoddy\nBolalar o‘z o‘yinini ko‘rsatadi.\n\n1\nMehmon o‘ynaydi\nstrelkalar — raketa, probel — o‘q\n2\nBola aytib beradi\nnechta dushman, qanday yutiladi\n3\nSavolga javob beradi\neng qiyin joyi qaysi edi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "5687f616f372",
+  "uzun": 31733
+ },
+ "sk-04-0-B1A": {
+  "id": "B1A",
+  "matn": "OXIRGI SINOV\nOxirgi sinov\nKartadagidek yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n4\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\noilam\nDushmanlar\n5\nHar dushman — ball\n3\nJon\n4\nYutish uchun\n9\nMaslahat\nKartadagidek yuting\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto4setballto0when ▶ clicked",
+   "z:setjonto4setballto0",
+   "z:setjonto4",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "3015f46682d3",
+  "uzun": 27095
+ },
+ "sk-05-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ko‘rsatamiz\n\nCoddy\nEndi mehmonlar o‘ynaydi!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "49793a7b0494",
+  "uzun": 42457
+ },
+ "sk-06-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nQanday o‘ynaladi\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n4\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\noilam\nDushmanlar\n5\nHar dushman — ball\n3\nJon\n4\nYutish uchun\n9\n‹ Orqaga\nStrelkalar — raketa, probel — o‘q\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto4setballto0when ▶ clicked",
+   "z:setjonto4setballto0",
+   "z:setjonto4",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "75e2c17af169",
+  "uzun": 33077
+ },
+ "sk-07-0-B2A": {
+  "id": "B2A",
+  "matn": "MEHMON · 1\nMehmon o‘ynaydi\nMehmon o‘yinni o‘ynasin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n4\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\noilam\nDushmanlar\n5\nHar dushman — ball\n3\nJon\n4\nYutish uchun\n9\nMaslahat\nMehmon o‘ynasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto4setballto0when ▶ clicked",
+   "z:setjonto4setballto0",
+   "z:setjonto4",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "8db5ebe16b51",
+  "uzun": 27096
+ },
+ "sk-07-1-B2Y": {
+  "id": "B2Y",
+  "matn": "MEHMON · ★\nMehmon yutdi\nMehmon yutsin — kartadagidek\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n4\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\noilam\nDushmanlar\n5\nHar dushman — ball\n3\nJon\n4\nYutish uchun\n9\nMaslahat\nMehmon o‘ynasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto4setballto0when ▶ clicked",
+   "z:setjonto4setballto0",
+   "z:setjonto4",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "4316337eaea8",
+  "uzun": 27098
+ },
+ "sk-08-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Uyga olib ketamiz\n\nCoddy\nEndi uyga yo‘riqnoma!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n✓\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "4b2dfe64fb52",
+  "uzun": 42495
+ },
+ "sk-09-0-P10": {
+  "id": "P10",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nScratch — bolalar uchun bepul sayt.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "46a7269740b6",
+  "uzun": 22926
+ },
+ "sk-10-0-Y1": {
+  "id": "Y1",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nYo‘riqnoma kartasini o‘qing.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\nUyda ota-onangiz bilan davom etasiz\nYo‘riqnoma tayyor",
+  "bloklar": [],
+  "html": "7787dda26e32",
+  "uzun": 23282
+ },
+ "sk-11-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nDemo Day tugadi!\n\nBulut\nMening o‘yinim bor!\n\nSiz bugun\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n3\nBulut\nKeyingi darsda sun‘iy intellektni o‘rganamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "9b71c4455532",
+  "uzun": 19479
+ },
+ "sn-01-0-B0": {
+  "id": "B0",
+  "matn": "23-DARS · DEMO DAY №1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "55cfe4aece03",
+  "uzun": 26287
+ },
+ "sn-01-1-P1": {
+  "id": "P1",
+  "matn": "23-DARS · DEMO DAY №1\nDemo Day!\n\nCoddy\nSalom, mehmonlar! O‘yinlarimizni ko‘rsatamiz.\n\nO‘TGAN DARSDA\nDushmanlar\n5\nJon\n3\nTaqdimot\nMening o‘yinim, qanday yutiladi, eng qiyin joyi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "3725f4c5343c",
+  "uzun": 31682
+ },
+ "sn-02-0-P4": {
+  "id": "P4",
+  "matn": "23-DARS · DEMO DAY №1\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida uyga yo‘riqnoma olasiz.\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n1\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "a3af1b26849b",
+  "uzun": 42670
+ },
+ "sn-03-0-P7": {
+  "id": "P7",
+  "matn": "QOIDALAR\nDemo Day qoidalari\n\nCoddy\nBolalar o‘z o‘yinini ko‘rsatadi.\n\n1\nMehmon o‘ynaydi\nstrelkalar — raketa, probel — o‘q\n2\nBola aytib beradi\nnechta dushman, qanday yutiladi\n3\nSavolga javob beradi\neng qiyin joyi qaysi edi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "5687f616f372",
+  "uzun": 31733
+ },
+ "sn-04-0-B1A": {
+  "id": "B1A",
+  "matn": "OXIRGI SINOV\nOxirgi sinov\nKartadagidek yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\nMaslahat\nKartadagidek yuting\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "bbc924ad50e7",
+  "uzun": 27097
+ },
+ "sn-05-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Ko‘rsatamiz\n\nCoddy\nEndi mehmonlar o‘ynaydi!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "49793a7b0494",
+  "uzun": 42457
+ },
+ "sn-06-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nQanday o‘ynaladi\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\n‹ Orqaga\nStrelkalar — raketa, probel — o‘q\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "e9b122746984",
+  "uzun": 33079
+ },
+ "sn-07-0-B2A": {
+  "id": "B2A",
+  "matn": "MEHMON · 1\nMehmon o‘ynaydi\nMehmon o‘yinni o‘ynasin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\nMaslahat\nMehmon o‘ynasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "1c59919217e1",
+  "uzun": 27098
+ },
+ "sn-07-1-B2Y": {
+  "id": "B2Y",
+  "matn": "MEHMON · ★\nMehmon yutdi\nMehmon yutsin — kartadagidek\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\nMaslahat\nMehmon o‘ynasin\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "8e07628644e0",
+  "uzun": 27100
+ },
+ "sn-08-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Uyga olib ketamiz\n\nCoddy\nEndi uyga yo‘riqnoma!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n✓\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "4b2dfe64fb52",
+  "uzun": 42495
+ },
+ "sn-09-0-P10": {
+  "id": "P10",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nScratch — bolalar uchun bepul sayt.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "46a7269740b6",
+  "uzun": 22926
+ },
+ "sn-10-0-Y1": {
+  "id": "Y1",
+  "matn": "UYGA\nUyda davom eting\n\nCoddy\nYo‘riqnoma kartasini o‘qing.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\nUyda ota-onangiz bilan davom etasiz\nYo‘riqnoma tayyor",
+  "bloklar": [],
+  "html": "54f109b6fd9d",
+  "uzun": 23284
+ },
+ "sn-11-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nDemo Day tugadi!\n\nBulut\nMening o‘yinim bor!\n\nSiz bugun\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n3\nBulut\nKeyingi darsda sun‘iy intellektni o‘rganamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "9b71c4455532",
+  "uzun": 19479
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n23-DARS · DEMO DAY №1\nDemo Day!\n\nCoddy\nSalom, mehmonlar! O‘yinlarimizni ko‘rsatamiz.\n\nO‘TGAN DARSDA\nDushmanlar\n5\nJon\n3\nTaqdimot\nMening o‘yinim, qanday yutiladi, eng qiyin joyi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n23-DARS · DEMO DAY №1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7a0370d021b4",
+  "uzun": 87210
+ },
+ "y-02": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\n23-DARS · DEMO DAY №1\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida uyga yo‘riqnoma olasiz.\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n1\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\n23-DARS · DEMO DAY №1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "81e46ff58059",
+  "uzun": 98190
+ },
+ "y-03": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nQOIDALAR\nDemo Day qoidalari\n\nCoddy\nBolalar o‘z o‘yinini ko‘rsatadi.\n\n1\nMehmon o‘ynaydi\nstrelkalar — raketa, probel — o‘q\n2\nBola aytib beradi\nnechta dushman, qanday yutiladi\n3\nSavolga javob beradi\neng qiyin joyi qaysi edi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a8ef09f27cf0",
+  "uzun": 87253
+ },
+ "y-04": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nO‘yinni sinab oling!\n\nCoddy\nMehmonlar kelishidan oldin — oxirgi sinov.\n\nO‘yinni yutdi\n0 / 1\nHar belgi — o‘yinni yutgan bitta bola\n1\n0\nball: 4\nOxirgi sinov\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2444cff66845",
+  "uzun": 82635
+ },
+ "y-05": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Ko‘rsatamiz\n\nCoddy\nEndi mehmonlar o‘ynaydi!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n2\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "f395d16966c0",
+  "uzun": 97977
+ },
+ "y-06": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nQanday o‘ynaladi\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKim o‘ynaydi\ndo‘stim\nDushmanlar\n5\nHar dushman — ball\n2\nJon\n3\nYutish uchun\n6\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "ab2bf9520b6c",
+  "uzun": 88566
+ },
+ "y-07": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMehmon o‘ynaydi!\n\nCoddy\nSiz aytasiz — mehmon o‘ynaydi.\n\nO‘yin tugadi\n0 / 1\nHar belgi — mehmon o‘ynagan bitta bola\n1\n0\nball: 2\nMehmon o‘ynadi\n★\n0\nball: 6\nMehmon yutdi\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cb2b4f9b7e48",
+  "uzun": 87144
+ },
+ "y-08": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Uyga olib ketamiz\n\nCoddy\nEndi uyga yo‘riqnoma!\n\nDars oxirida · uy yo‘riqnomasi\nball: 3\nUyda davom eting\n✓\nTayyorlanamiz\n✓\nKo‘rsatamiz\n3\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a6babd449bc5",
+  "uzun": 98015
+ },
+ "y-09": {
+  "id": "P10",
+  "matn": "USTOZ · PROYEKTOR\nUYGA\nUyda davom eting\n\nCoddy\nScratch — bolalar uchun bepul sayt.\n\n1\nScratch saytiga kiring\nota-onangizdan ruxsat so‘rang: scratch.mit.edu\n2\nYangi loyiha oching\nbloklar tanish\n3\nO‘yiningizni o‘zingiz yasang\nkarta bo‘yicha\nBlok studiya → Scratch\nwhen ▶ clicked\n→\nwhen green flag clicked\ncreate clone of myself\n→\ncreate clone of myself\nchange ball by 1\n→\nchange score by 1\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b94db158d41f",
+  "uzun": 78446
+ },
+ "y-10": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nYo‘riqnomani oling!\n\nCoddy\nUyga olib ketasiz.\n\nYo‘riqnomani oldi\n0 / 1\nHar belgi — yo‘riqnomani olgan bitta bola\n1\n0\nYo‘riqnoma\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "078c6c9e9f09",
+  "uzun": 78977
+ },
+ "y-11": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nDemo Day tugadi!\n\nCoddy\n1-modul tugadi!\n\nBUGUN\nTayyorlandik · Ko‘rsatdik · Uyga oldik\nO‘z o‘yiningizni yasadingiz\nKeyingi dars\n24 · Sun‘iy intellekt (AI) nima\n✓\nTayyorlanamiz\n✓\nKo‘rsatamiz\n✓\nUyga olib ketamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "16f27925edeb",
+  "uzun": 97048
+ },
+ "y-12": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin tugadi\n0\nta mehmon yutdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 12 · Kirish\n2 / 12 · Reja\n3 / 12 · Ko‘ramiz: Demo Day qoidalari\n4 / 12 · O‘zingiz: oxirgi sinov\n5 / 12 · 2-bekat\n6 / 12 · Ko‘ramiz: mehmon qanday o‘ynaydi\n7 / 12 · O‘zingiz: mehmon o‘ynaydi\n8 / 12 · 3-bekat\n9 / 12 · Ko‘ramiz: uy yo‘riqnomasi\n10 / 12 · O‘zingiz: yo‘riqnoma kartasi\n11 / 12 · Yakun\n12 / 12 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "90524e70c21a",
+  "uzun": 95982
+ },
+ "varaq": {
+  "id": "",
+  "matn": "23-dars · Demo Day №1 — ustoz varag‘i\n\nAsosiy fikr: bola o‘z ishini ko‘rsatadi, mehmon o‘ynaydi. Ota-ona bolaning mehnatini ko‘radi.\n\nYo‘l: reja → qoidalar → 1-bekat «Tayyorlanamiz» (oxirgi sinov) → 2-bekat «Ko‘rsatamiz» (mehmon o‘ynaydi) → 3-bekat «Uyga olib ketamiz» (yo‘riqnoma kartasi) → yakun.\n\nMehmonlar bilan: noutbuklar tayyor, o‘yinlar saqlangan bo‘lishi kerak (21–22-dars). Mehmon yutmasa — bola «yana urining» deydi. «Mehmon» pog‘onalarida o‘yinni faqat mehmon o‘ynaydi — bola aytib beradi (natijadagi «ta mehmon yutdi» shu o‘yinlar). Ism proyektorga chiqmaydi.\n\nUy yo‘riqnomasi: Scratch — bepul sayt (scratch.mit.edu); bolalar ota-ona ruxsati bilan kiradi. Blok nomlari deyarli bir xil, lekin o‘zgaruvchi nomi «score» bo‘lishi mumkin.\n\nHimoya: har bolani tinglang — nechta dushman, qanday yutiladi, eng qiyin joyi. «Noto‘g‘ri» deb aytilmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«23-dars · Demo Day №1» — «Demo Day!» Kosmos maydoni: raketa, o‘q, dushman; pastda «O‘tgan darsda» — taqdimot.\n\nSIZ\n«Hurmatli mehmonlar, xush kelibsiz! Bugun bolalar o‘z o‘yinlarini ko‘rsatadi.» «O‘tgan darsda o‘yinimiz haqida gapirishni mashq qildik.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nDarsga kiradi, mehmonlarni salomlaydi.\n\n2\nReja\n\nEKRANDA\nReja: tepalik — tayyorlanamiz → ko‘rsatamiz → uyga olib ketamiz; cho‘qqida «Dars oxirida · uy yo‘riqnomasi».\n\nSIZ\n«Bugun uchta bekat: tayyorlanamiz, ko‘rsatamiz, uyga olib ketamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n3\nKo‘ramiz: Demo Day qoidalari\n\nEKRANDA\nQoidalar: «Demo Day qoidalari». Uch qator: mehmon o‘ynaydi · bola aytib beradi · savolga javob beradi.\n\nSIZ\n«Mehmon o‘ynaydi, bola aytib beradi: nechta dushman, qanday yutiladi, eng qiyin joyi.» «Mehmon yutmasa ham yaxshi: yana urinadi.»\n\nBOLA O‘RGANADI\nDemo Day qoidalarini eshitadi.\n\n4\nO‘zingiz: oxirgi sinov\n\nEKRANDA\nMashq: «O‘yinni sinab oling!» — pog‘ona: oxirgi sinov.\n\nSIZ\n«O‘yiningiz ishlayaptimi? Kartadagidek yuting.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘yinini oxirgi marta sinaydi.\n\n5\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Ko‘rsatamiz».\n\nSIZ\n«Hurmatli mehmonlar, noutbuklarga marhamat.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n6\nKo‘ramiz: mehmon qanday o‘ynaydi\n\nEKRANDA\nKo‘ramiz: mehmon qanday o‘ynaydi. O‘yinni ← → va probel bilan o‘ynaysiz.\n\nSIZ\n«O‘ynash oson: strelkalar — raketa, probel — o‘q. Dushman tegsa — jon kamayadi.»\n\nBOLA O‘RGANADI\nMehmonga qanday tushuntirishni ko‘radi.\n\n7\nO‘zingiz: mehmon o‘ynaydi\n\nEKRANDA\nDemo Day: «Mehmon o‘ynaydi!» — zinapoya: 1 mehmon o‘ynadi · ★ mehmon yutdi.\n\nSIZ\n«Mehmon o‘ynasin. Siz aytib bering: nechta dushman, qanday yutiladi, eng qiyin joyi.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘yinini mehmonga ko‘rsatadi va tushuntiradi.\n\n8\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Uyga olib ketamiz».\n\nSIZ\n«Oxirgi bekat: uyda davom ettirishni o‘rganamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n9\nKo‘ramiz: uy yo‘riqnomasi\n\nEKRANDA\nKo‘ramiz: uy yo‘riqnomasi. «Uyda davom eting» — uch qadam va jadval «Blok studiya → Scratch».\n\nSIZ\n«Scratch — bolalar uchun bepul dasturlash sayti. Bloklar bizniki bilan deyarli bir xil.» «Saytga kirishdan oldin ota-onangizdan ruxsat so‘rang.»\n\nBOLA O‘RGANADI\nUyda davom ettirish yo‘lini biladi.\n\n10\nO‘zingiz: yo‘riqnoma kartasi\n\nEKRANDA\nMashq: «Yo‘riqnomani oling!» — pog‘ona: yo‘riqnoma kartasi.\n\nSIZ\n«Yo‘riqnoma kartasini o‘qing. Uyda ota-onangiz bilan davom etasiz.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nYo‘riqnomani o‘qiydi.\n\n11\nYakun\n\nEKRANDA\nYakun: «Demo Day tugadi!» «1-modul tugadi!» Keyingi dars — 24 · Sun‘iy intellekt (AI) nima.\n\nSIZ\n«Uchala bekatdan o‘tdik. Birinchi modul tugadi — o‘z o‘yiningizni yasadingiz!» «Keyingi modulda sun‘iy intellekt bilan tanishamiz.»\n\nBOLA O‘RGANADI\nModul yakunlanganini biladi.\n\n12\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta o‘yin tugadi, nechta mehmon yutdi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi; mehmonlarga minnatdorchilik)\n\nBOLA O‘RGANADI\nSinf natijasini ko‘radi.",
+  "bloklar": [],
+  "html": "1250a3ed08ea",
+  "uzun": 5382
+ },
+ "eshik": {
+  "id": "",
+  "matn": "23-dars · Demo Day №1\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "eb188d52ec22",
+  "uzun": 767
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

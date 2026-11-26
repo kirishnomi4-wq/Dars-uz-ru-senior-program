@@ -162,7 +162,7 @@ tek('change sonini ro‘yxatdan tanlash: 5 (ro‘yxat 1, 2, 3, 4, 5, 10)', await
 for (const [id, k] of [['B3A', 'B3A'], ['B3B', 'B3B'], ['B3C', 'B3C'], ['B3Y', 'B3Y']]) {
   const q = BASH[k]
   await och(id); r = await korin()
-  tek(id + ': «ball: ?», «▶ Tekshirish» xira, ishora', r.ball === '?' && await p.evaluate(() => document.querySelector('#ilova .hn .asos').classList.contains('xira')) && r.ishora === 'Dasturni o‘qing: oxirida ball nechchi bo‘ladi?', JSON.stringify(r))
+  tek(id + ': «ball: ?», «▶ Tekshirish» xira, ishora', r.ball === '?' && await p.evaluate(() => document.querySelector('#ilova .hn .asos').classList.contains('tug-xira')) && r.ishora === 'Dasturni o‘qing: oxirida ball nechchi bo‘ladi?', JSON.stringify(r))
   tek(id + ': kartalar ' + q.k.join(' '), JSON.stringify(await p.evaluate(() => [...document.querySelectorAll('#ilova .bsh-q .sk')].map((x) => +x.dataset.v))) === JSON.stringify(q.k))
   if (id === 'B3A') {
     await boshla(); r = await korin(); tek('B3A: karta tanlanmagan — «Avval sonni tanlang», tekshirilmaydi', r.ishora === 'Avval sonni tanlang' && r.ball === '?', JSON.stringify(r))
@@ -173,7 +173,7 @@ for (const [id, k] of [['B3A', 'B3A'], ['B3B', 'B3B'], ['B3C', 'B3C'], ['B3Y', '
     await p.click(`#ilova .bsh-q .sk[data-v="${xatoK}"]`); await boshla(); await p.waitForTimeout(200); r = await korin()
     tek(`B3A: ${xatoK} — Kamvoy «Boshqa son!», «Ball ${q.j} bo‘ldi. …», kapsula ${q.j}`, r.muam === 'kamvoy:Boshqa son!' && r.ishora === `Ball ${q.j} bo‘ldi. Dasturni qaytadan o‘qing: har blokdan keyin ball nechchi?` && r.ball === String(q.j), JSON.stringify(r))
   }
-  await p.click(`#ilova .bsh-q .sk[data-v="${q.j}"]`); r = await korin(); tek(id + ': karta tanlandi — kapsula yana «?», tugma ochiq', r.ball === '?' && !r.muam && await p.evaluate(() => !document.querySelector('#ilova .hn .asos').classList.contains('xira')), JSON.stringify(r))
+  await p.click(`#ilova .bsh-q .sk[data-v="${q.j}"]`); r = await korin(); tek(id + ': karta tanlandi — kapsula yana «?», tugma ochiq', r.ball === '?' && !r.muam && await p.evaluate(() => !document.querySelector('#ilova .hn .asos').classList.contains('tug-xira')), JSON.stringify(r))
   await p.evaluate(() => { window.__iz = []; window.__blsAsl = window.__blsAsl || blSanoq; blSanoq = (el, i) => { window.__iz.push(String(i)); return window.__blsAsl(el, i) } })
   await boshla(); await p.waitForTimeout(200); r = await korin()
   const iz = await p.evaluate(() => window.__iz.filter((x) => x.startsWith('ball')))

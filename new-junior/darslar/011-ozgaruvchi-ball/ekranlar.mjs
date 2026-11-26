@@ -94,5 +94,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '15-qadam. set 4, repeat 2 [+3, +2] — javob 14.', ...bash('Mashq · ★ qo‘shimcha', 'Ichida ikki <em>blok</em>', 'B3Y') },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son; kapsulada eng katta ball.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz ball <em>sanadingiz</em>!', '')}${qg('Olmalarni terdim — kompyuter ballni eslab qoldi.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({ yulduz: [5, 0] }, qahK(), { joy: [5, 0] })}${ballK(31)}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda jon bilan ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

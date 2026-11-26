@@ -113,7 +113,7 @@ await keyingi(); tek('12 · xulosa «Uch personaj — uch ish»', (await matn(u,
 await keyingi(); await keyingi(); await kut(500)
 tek('14 · P10: «Raketa dasturi», ro‘yxat besh band (0 ✓)', (await matn(u, '#ust .dsb b')) === 'Raketa dasturi' && (await u.$$('#ust .pl .chek .ch-r')).length === 5 && (await u.$$('#ust .pl .chek .ch-r.ok')).length === 0)
 await qur(u, { raketa: [...RPR, ...RJ] }); await boshla(u); await bot(u, 'teg')
-tek('14 · ataylab tegdi — jon 0, «O‘yin tugadi»; «Tekkanda jon» va «Jon tugasa…» ✓', !!(await u.$('#ust .oyin-tugadi')) && (await vol(u, 'jon')) === 0 && (await u.$$('#ust .pl .chek .ch-r.ok')).length >= 2, (await u.$$('#ust .pl .chek .ch-r.ok')).length + ' ✓')
+tek('14 · ataylab tegdi — jon 0, «O‘yin tugadi»; «Dushman tegsa — jon −1» va «Jon tugasa…» ✓', !!(await u.$('#ust .oyin-tugadi')) && (await vol(u, 'jon')) === 0 && (await u.$$('#ust .pl .chek .ch-r.ok')).length >= 2, (await u.$$('#ust .pl .chek .ch-r.ok')).length + ' ✓')
 // ---------- 15
 await keyingi(); await ekrangacha(a, 'B3A'); await ekrangacha(l, 'B3A'); await kut(600)
 tek('15 · B3A: Aziz — o‘q dasturi 2-bekatdan (when touching enemy bor)', await a.evaluate(() => JSON.stringify(document.querySelector('#bol .ekran').__per.json.oq || {}).includes('enemy')))
@@ -125,7 +125,7 @@ tek('15 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1', (await pogSon()) === '1
 await keyingi(); await kut(1200)
 tek('16 · Aziz — oxirgi pog‘onasi (B3Y); Lola — B3A', (await id(a)) === 'B3Y' && (await id(l)) === 'B3A', (await id(a)) + ' ' + (await id(l)))
 await keyingi(); await ekrangacha(a, 'B5'); await kut(800)
-const K3 = ['ta dushman urdi', 'ta o‘yin yutdi', 'pog‘ona bajardi']
+const K3 = ['ta dushman urildi', 'ta o‘yin yutdi', 'pog‘ona bajardi']
 const nat = (p, r2 = '#bol') => p.evaluate(({ K3, r2 }) => K3.map((k) => +document.querySelector(r2 + ' .sn-t[data-k="' + k + '"] b').textContent), { K3, r2 })
 const na = await nat(a), nl = await nat(l)
 tek('17 · Aziz: dushman urdi ≥ 12, o‘yin yutdi ≥ 12, pog‘ona 12', na[0] >= 12 && na[1] >= 12 && na[2] === 12, na.join(','))

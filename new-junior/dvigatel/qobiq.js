@@ -209,6 +209,7 @@ document.addEventListener('click', (e) => {
   if (a) { const k = a.dataset.a; if (k === 'orq') ot(qadam - 1); if (k === 'keyingi') ot(qadam + 1); if (k === 'toliq') document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); if (k === 'ovoz') { const y = ovozAlmashtir(); a.textContent = y ? 'Ovoz yoqiq' : 'Ovoz o‘chiq'; a.setAttribute('aria-pressed', String(y)); if (y) chal('bos') } return }
   if (studiyaBosish(e) || ismBosish(e)) return
   const ust = e.target.closest('#ust'), bol = e.target.closest('#bol')
+  const kou = ust && DARS.ustozKarta && e.target.closest('.kc-o'); if (kou && typeof kartaUstozTanla === 'function') { const ue = ust.querySelector('.ekran'); if (ue && ue.dataset.id === DARS.ustozKarta) { kartaUstozTanla(ue, kou); return } } // 21-dars (Q17-A): ustoz kartani bosib to'ldiradi
   if (ust && SOLO) { if (e.target.closest('.asos')) soloKeyingi(); else if (e.target.closest('.orq')) soloOrqaga(); return }
   if (ust) { if (e.target.closest('.asos')) { if (qadam === QADAM.length - 1) tugat(); else ot(qadam + 1) } else if (e.target.closest('.orq')) ot(qadam - 1); return }
   if (!bol) return

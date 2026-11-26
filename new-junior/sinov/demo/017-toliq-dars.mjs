@@ -116,7 +116,7 @@ tek('15 · doska: «1 / 2»; zinapoya 2 · 1 · 1 · 1', (await pogSon()) === '1
 await keyingi(); await kut(1200)
 tek('16 · Aziz — oxirgi pog‘onasi (B3Y); Lola — B3A', (await id(a)) === 'B3Y' && (await id(l)) === 'B3A', (await id(a)) + ' ' + (await id(l)))
 await keyingi(); await ekrangacha(a, 'B5'); await kut(800)
-const K3 = ['ta o‘q otdi', 'ta nishon urdi', 'pog‘ona bajardi']
+const K3 = ['ta o‘q otdi', 'ta nishon urildi', 'pog‘ona bajardi']
 const nat = (p, r2 = '#bol') => p.evaluate(({ K3, r2 }) => K3.map((k) => +document.querySelector(r2 + ' .sn-t[data-k="' + k + '"] b').textContent), { K3, r2 })
 const na = await nat(a), nl = await nat(l)
 tek('17 · Aziz: o‘q ≥ 17, nishon 17, pog‘ona 12', na[0] >= 17 && na[1] === 17 && na[2] === 12, na.join(','))

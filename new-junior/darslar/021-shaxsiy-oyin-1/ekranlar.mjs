@@ -31,8 +31,8 @@ const E = {
   P4: { rol: 'p', b: 0, t: 't2', nom: 'Reja', izoh: '5-qadam.',
     body: () => `<div class="oyna to">${world('kosmos')}<div class="gl pan">${matn('Reja', 'Bugun nima <em>qilamiz</em>?', 'Uchta bekat. Oxirida o‘yiningiz boshlanadi.')}</div>${darsOxiri()}${tepalik({ otdi: 0, joy: 0 })}</div>`,
     foot: () => fU('', 'Boshladik ›') },
-  P7: { rol: 'p', b: 1, t: 't1', nom: 'Ko‘ramiz: karta', izoh: '6-qadam. Ustoz kartani to‘ldiradi: to‘rt qator va pastda «Mening o‘yinim» (namuna: do‘stim · 5 · 2 · 3).',
-    body: () => `<div class="chap">${matn('Ko‘ramiz', '<em>Karta</em>ni to‘ldiramiz', 'Har qatorda bitta tanlov.')}${kartaEkran(KARTA_N)}</div><div class="oyna">${maydon({}, coddyK(), { asl: [3, 4] })}</div>`,
+  P7: { rol: 'p', b: 1, t: 't1', nom: 'Ko‘ramiz: karta', izoh: '6-qadam. Ustoz kartani sinf oldida bosib to‘ldiradi (25.11, Q17-A): to‘rt qator bo‘sh, pastda «Mening o‘yinim» — tanlangani o‘zi chiqadi, «Yutish uchun» o‘zi hisoblanadi.',
+    body: () => `<div class="chap">${matn('Ko‘ramiz', '<em>Kartani</em> to‘ldiramiz', 'Har qatorda bitta tanlov.')}${kartaEkran({})}</div><div class="oyna">${maydon({}, coddyK(), { asl: [3, 4] })}</div>`,
     foot: () => fU('', 'Keyingi ›') },
   P5: { rol: 'p', b: 1, t: 't1', nom: 'Sinf doskasi: karta', izoh: '7-qadam.',
     body: () => doska('Kartangizni <em>to‘ldiring</em>!', 'O‘z o‘yiningiz qoidalarini tanlang.', 4, POG.karta, 'Kartani to‘ldirdi', 'Har belgi — kartani to‘ldirgan bitta bola'),
@@ -81,5 +81,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Ball va jon · ★', izoh: '13-qadam. To‘liq o‘yin: yutadi — kartadagi maqsadga yetadi, jon qoladi.', ...bol('Ball va jon · ★', 'To‘liq <em>o‘yin</em>', 'Yuting: kartadagi maqsadga yeting, jon qolsin', 'B3Y', H2) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '14–15-qadam. «Siz bugun» — haqiqiy son; pastda «Mening o‘yinim» kartasi.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'O‘yinning <em>boshi</em> tayyor!', '')}${qg('Mening o‘yinim bor!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}<div class="kc-mini kc-b"></div></div><div class="oyna">${maydon({}, qahK(), { asl: [3, 4], dush: [[5, 2]], oq: [[1, 2]] })}${ozgQ({ ball: 6, jon: 3 })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda o‘yinni tugatamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

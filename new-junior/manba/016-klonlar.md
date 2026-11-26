@@ -475,6 +475,8 @@ Ishora (muammochasiz): nusxalar harakatda — sahnadagi sanoq o'sadi; hammasi to
 
 ## Savollar (tavsiya — A)
 
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.**
+
 1. **Sahna — A: «Kosmos» maydoni (3-darsdagi maydon, kosmos rangida), qahramon pastda, dushmanlar tepadan; 17–18-darsda o'sha sahna** (raketa va o'q shu yerda). Sabab: dasturdagi natija «osmondan dushman tushadi» va keyingi ikki dars «kosmik o‘yin»; X va Y bola uchun tanish. **B** — bog' maydoni (11–13-darsdagi): **−** 17-darsda sahna almashadi.
 2. **Dastur kimniki — A: dushmanniki («Dushman dasturi»), qahramon 1–2-bekatda kuzatadi** (13-dars «Olma dasturi» usuli). Sabab: nusxa — dushmanning nusxasi; qahramonning dasturi bilan aralashmaydi. **B** — qahramon dasturi ichida «dushman yasash»: **−** Scratch'dagi «har personajning o'z dasturi» fikri buziladi.
 3. **«Klon» oilasining rangi — A: to'q sariq (Scratch'dagi «Control» rangiga yaqin), Hodisa sariq va Takrorlash yashildan farqli.** **B** — Hodisa oilasiga qo'shish (`when I start as a clone` — shapka): **−** «create clone» hodisa emas, bola adashadi.

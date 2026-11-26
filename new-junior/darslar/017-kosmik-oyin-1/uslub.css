@@ -116,6 +116,11 @@
 .e-B5 .sn-t b,.e-P14 .sn-t b{font-size:4.2cqw}
 .e-B5 .sn-t small,.e-P14 .sn-t small{font-size:1.7cqw}
 .e-B5 .oyna{background:linear-gradient(#A9DE86,#86CB6C)}
+/* 25.11 (K1): ro'yxat «O‘yiningizda:» sahna tepasida chapda (9-darsdagidek); xabar kartasi o'ngda, ro'yxatni yopmaydi */
+.chek-y{position:absolute;left:1.2cqw;top:1.2cqw;z-index:3;padding:.8cqw 1cqw;border-radius:1cqw}
+.e-B5 .oyna > .gl.kd2.a-tr{max-width:44%}
+/* yashil osmon chizig'i 9-darsdagidan pastroq — ro'yxat ixchamroq, chiziq ichida qoladi */
+.e-B5 .chek-y{top:.8cqw;padding:.55cqw .75cqw}.e-B5 .chek-y .chek{gap:.3cqw;padding:.55cqw .75cqw}
 .e-B5 .oyna > .katak{top:26%}
 /* bola ekranidagi pufak: bolaning qahramoni (Coddy emas) */
 .qg .av{background:#F1ECFF;display:grid;place-items:center}

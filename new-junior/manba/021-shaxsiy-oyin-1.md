@@ -166,7 +166,7 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorida «xato», «noto‘g‘ri�
 - **Bekat:** 1 · Karta
 - **Ekran:** proyektor — loyiha kartasi (ustoz to'ldiradi) · bola «Ustoz ekraniga qarang» («Ustoz kartani to‘ldiryapti — kuzating»)
 - **Qadamlar:**
-  1. Proyektorda: yorliq «Ko‘ramiz», sarlavha «<em>Karta</em>ni to‘ldiramiz». To'rt qator (kim · dushmanlar · ball · jon) va pastda «Mening o‘yinim» kartasi. Ustoz o'z variantlarini tanlaydi — pastdagi karta to'ladi: «Yutish uchun» o'zi hisoblanadi.
+  1. Proyektorda: yorliq «Ko‘ramiz», sarlavha «<em>Kartani</em> to‘ldiramiz». To'rt qator (kim · dushmanlar · ball · jon) va pastda «Mening o‘yinim» kartasi. Ustoz o'z variantlarini tanlaydi — pastdagi karta to'ladi: «Yutish uchun» o'zi hisoblanadi.
 - **Tayanch gaplar:**
   1. «Har qatorda bitta tanlov. Pastdagi karta o‘zi to‘ladi.»
   2. «Yutish uchun kerak ball ham o‘zi hisoblanadi: dushmanlarning yarmini ursangiz — yutasiz.»
@@ -343,6 +343,8 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorida «xato», «noto‘g‘ri�
 
 ## Savollar (tavsiya — A)
 
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.** Karta qiymatlari shunday; 27 kombinatsiya bot bilan tekshiriladi (K4).
+
 1. **Shaxsiy o'yin — A: kosmik o'yinning o'z varianti** (karta bo'yicha: dushmanlar soni, ball, jon). **B** — bola yangi o'yin turini tanlaydi (labirint / olma / kosmik): **−** uchta o'yin uchun shoxlanuvchi dars kerak.
 2. **Yangi so'z — A: «loyiha kartasi».** **B** — «reja»: **−** ta'rifsiz, so'z oddiy; karta (qo'lga ushlanadigan narsa) — aniqroq.
 3. **Karta — A: to'rt tanlov** (kim, dushman, ball, jon); maqsad o'zi hisoblanadi. **B** — erkin yozuv: **−** 9–10 yoshga qiyin, nazorat qilib bo'lmaydi.
@@ -354,5 +356,5 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorida «xato», «noto‘g‘ri�
 
 ## Tekshirilmagan joylar
 
-1. Karta kombinatsiyalari (3 · 5 · 8 dushman × ball 1–3 × jon 3–5): hammasi yutiladigan o'yin ekanligi — bot bilan o'lchanadi (`shaxsiy.mjs`).
+1. ~~Karta kombinatsiyalari — bot bilan o'lchanadi~~ **O'lchandi (25.11, K4, `sinov/dvigatel/karta27.mjs`, 27 × 3 urug', 021-solo boti):** imkonsiz kombinatsiya yo'q — har biri kamida 2/3 yutildi; 16 tasi 3/3. Yutilmagan 11 o'yin — hammasi bitta urug'da, asosan 5 dushman (3 tasini urish kerak, 60%), hammasida bitta urish yetmagan, jon tugamagan. Qiymatlar o'zgarmadi (K4-A).
 2. Ruscha matn hali yo'q.

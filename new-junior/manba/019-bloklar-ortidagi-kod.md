@@ -126,7 +126,7 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorda «xato» so'zi yo'q (98-qar
 - **Bekat:** hali yo'q
 - **Ekran:** proyektor — kirish · bola — kirish → «Ustoz ekraniga qarang»
 - **Qadamlar:**
-  1. Proyektorda: «19-dars · Bloklar ortidagi kod», sarlavha «Bloklar <em>ortida</em> nima bor?». Coddy: «Salom! Bugun bloklar ortiga qaraymiz.» O'ngda «Kosmos» maydoni: raketa, o'q, dushman. Pastda kichik karta «O‘tgan darsda»: uch personaj kartasi — «Kosmik o‘yin tayyor bo‘ldi». Panelda: «Kirdi: 12 / 14».
+  1. Proyektorda: «19-dars · Bloklar ortidagi kod», sarlavha «Bloklar <em>ortida</em> nima bor?». Coddy: «Salom! Bugun bloklar ortiga qaraymiz.» O'ngda «Kosmos» maydoni: raketa, o'q, dushman. Pastda kichik karta «O‘tgan darsda»: uch personaj kartasi — «Raketa, o‘q va dushman — har birining o‘z dasturi». Panelda: «Kirdi: 12 / 14».
 - **Tayanch gaplar:**
   1. «O‘tgan darsda kosmik o‘yinimiz to‘liq bo‘ldi.»
   2. «Bugun o‘yinimizning ichiga qaraymiz: bloklar ortida nima bor?»
@@ -439,6 +439,8 @@ Muammocha raketani yopmaydi (91-qaror). Xato qatorda «xato» so'zi yo'q (98-qar
 8. **Natija** — «ta qatorni topdi», «ta sonni o‘zgartirdi».
 
 ## Savollar (tavsiya — A)
+
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.**
 
 1. **Kod ko'rinishi — A: haqiqiy JavaScript** (Code.org «Show code» kabi): `moveRight();`, `for (let i = 0; i < 4; i++) {`, `ball = ball + 1;`, `if (jon === 0) {`. 3-modulda xuddi shu yozuv. **B** — soddalashtirilgan (`repeat(4) {`, `if (jon = 0) {`): **−** 3-modulda boshqa yozuvni qayta o'rganadi.
 2. **Yangi so'z — A: bitta, «kod».** «JavaScript» — tilning nomi (yordamchi). **B** — ikki so'z: kod va JavaScript.

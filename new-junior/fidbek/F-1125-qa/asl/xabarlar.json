@@ -1,0 +1,254 @@
+[
+ {
+  "n": 1,
+  "update_id": 369791085,
+  "kim": "",
+  "vaqt": "25.11 15:26",
+  "matn": "/start",
+  "fayllar": [],
+  "guruh": null
+ },
+ {
+  "n": 2,
+  "update_id": 369791086,
+  "kim": "Ollobergan",
+  "vaqt": "21.11 11:36",
+  "matn": "overflow of elelments from its card(div)",
+  "fayllar": [
+   "02.jpg"
+  ],
+  "guruh": "14364819436766954"
+ },
+ {
+  "n": 3,
+  "update_id": 369791087,
+  "kim": "Ollobergan",
+  "vaqt": "21.11 11:36",
+  "matn": "",
+  "fayllar": [
+   "03.jpg"
+  ],
+  "guruh": "14364819436766954"
+ },
+ {
+  "n": 4,
+  "update_id": 369791088,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 16:34",
+  "matn": "mobileda, centered masmi diman seciton, onga siqlib qolgan",
+  "fayllar": [
+   "04.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 5,
+  "update_id": 369791089,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 16:35",
+  "matn": "@Khayrullayev_Azizbek Azizbek, telefonda korganda, rotate qisa bo'ladimi?",
+  "fayllar": [],
+  "guruh": null
+ },
+ {
+  "n": 6,
+  "update_id": 369791090,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 16:35",
+  "matn": "agar rotate bosa yaxshi bolardi (suggestion)",
+  "fayllar": [],
+  "guruh": null
+ },
+ {
+  "n": 7,
+  "update_id": 369791091,
+  "kim": "Azizbek Xayrullayev",
+  "vaqt": "23.11 17:17",
+  "matn": "Qabull",
+  "fayllar": [],
+  "guruh": null
+ },
+ {
+  "n": 8,
+  "update_id": 369791092,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 17:17",
+  "matn": "qaysinidir bosish kerakmi diman lekin bosilmadi hech qaysi: https://coddycamp-junior-dars1.vercel.app/demo-004.html?rol=ustoz",
+  "fayllar": [
+   "08.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 9,
+  "update_id": 369791093,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 17:22",
+  "matn": "agar, functionlar kopaysa, scoll qib qoysa bolarkan, ustiga usti bo'p ketyabti : https://coddycamp-junior-dars1.vercel.app/demo-004.html?rol=yonma",
+  "fayllar": [
+   "09.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 10,
+  "update_id": 369791094,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 17:47",
+  "matn": "not critical\n\nlekin sal yarashmabti, shu element: https://coddycamp-junior-dars1.vercel.app/demo-006.html?rol=ustoz",
+  "fayllar": [
+   "10.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 11,
+  "update_id": 369791095,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 17:58",
+  "matn": "shunday intro pagelarda global",
+  "fayllar": [],
+  "guruh": null
+ },
+ {
+  "n": 12,
+  "update_id": 369791096,
+  "kim": "Ollobergan",
+  "vaqt": "23.11 18:28",
+  "matn": "elementlar sal chiqib qolibdi carddan: https://coddycamp-junior-dars1.vercel.app/demo-010.html?rol=ustoz",
+  "fayllar": [
+   "12.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 13,
+  "update_id": 369791097,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 11:15",
+  "matn": "harakatni(,move right etc) repeatni tepasiga qoysa keyin ajratib yani olib boshqa joyga sudrab bomas ekan:  \n\nexample: https://coddycamp-junior-dars1.vercel.app/demo-014.html?rol=ustoz",
+  "fayllar": [
+   "13.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 14,
+  "update_id": 369791098,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 11:28",
+  "matn": "shularni ustima-ust turishi sa tushunarsiz: \n\n\nexample: https://coddycamp-junior-dars1.vercel.app/demo-015.html?rol=ustoz\n\nglobal bosa #global",
+  "fayllar": [
+   "14.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 15,
+  "update_id": 369791099,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 12:12",
+  "matn": "1) agar elementlarda text sigmasa, cut bop qomasin, \n\n2) bazi fixed insturctionlar, sal aniqroq, direct berilsa yaxshiroq bolardi: \n\n#global audit",
+  "fayllar": [
+   "15.jpg"
+  ],
+  "guruh": "14364819436767050"
+ },
+ {
+  "n": 16,
+  "update_id": 369791100,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 12:12",
+  "matn": "",
+  "fayllar": [
+   "16.jpg"
+  ],
+  "guruh": "14364819436767050"
+ },
+ {
+  "n": 17,
+  "update_id": 369791101,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 12:12",
+  "matn": "",
+  "fayllar": [
+   "17.jpg"
+  ],
+  "guruh": "14364819436767050"
+ },
+ {
+  "n": 18,
+  "update_id": 369791102,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 14:27",
+  "matn": "Azizbek, click qilib raketalarni bosganda sal tezroq trigger bop, tezroq yuradigan qilsa bolarmikan? ulgurib bo'mayabti kelyatgan botlarga qarsh,  \n\nexample: https://coddycamp-junior-dars1.vercel.app/demo-018.html?rol=solo \n\nleveli qiyin oyinlarda, raketa movementini sal tezlatish\n\n@Khayrullayev_Azizbek",
+  "fayllar": [
+   "18.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 19,
+  "update_id": 369791103,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 14:30",
+  "matn": "18 darsda: https://coddycamp-junior-dars1.vercel.app/demo-018.html?rol=solo \n\nshu pagedan keyin nimani bosib chiqib ketiladi? yo orqaga qaytadi?",
+  "fayllar": [
+   "19.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 20,
+  "update_id": 369791104,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 14:33",
+  "matn": "presentaion sal logically xato\n\npage: https://coddycamp-junior-dars1.vercel.app/demo-019.html?rol=solo\n\nnot critical",
+  "fayllar": [
+   "20.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 21,
+  "update_id": 369791105,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 15:12",
+  "matn": "overlap from card: \n\nlink: https://coddycamp-junior-dars1.vercel.app/demo-019.html?rol=solo",
+  "fayllar": [
+   "21.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 22,
+  "update_id": 369791106,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 15:48",
+  "matn": "xuddi shu 20 darsda ham bor,",
+  "fayllar": [],
+  "guruh": null
+ },
+ {
+  "n": 23,
+  "update_id": 369791107,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 15:56",
+  "matn": "bu fixedmi yo user tanlasa bolishi kerakmi? : https://coddycamp-junior-dars1.vercel.app/demo-021.html?rol=ustoz",
+  "fayllar": [
+   "23.jpg"
+  ],
+  "guruh": null
+ },
+ {
+  "n": 24,
+  "update_id": 369791108,
+  "kim": "Ollobergan",
+  "vaqt": "24.11 16:22",
+  "matn": "sigmasa yo scroll qoyib qoyish kerakmi diman: https://coddycamp-junior-dars1.vercel.app/demo-023.html?rol=ustozv",
+  "fayllar": [
+   "24.jpg"
+  ],
+  "guruh": null
+ }
+]

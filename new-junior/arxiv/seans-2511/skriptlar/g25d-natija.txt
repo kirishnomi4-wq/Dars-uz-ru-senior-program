@@ -1,0 +1,121 @@
+== BOSHLANDI 17:49
+-- qa25
+NATIJA: 13 / 13
+-- javon-qirq 17:50
+009: 1 TOPILMA
+   ✗ play soundqadam (+16 px)  [P6 B1A B1B B1C B1Y P7 B2A B2B …]
+010: 1 TOPILMA
+   ✗ play soundqadam (+16 px)  [P6 B1A B1B B1C B1Y P7 B2A B2B …]
+015: 2 TOPILMA
+   ✗ switch costume toxursand (+51 px)  [BXO P8 BSO]
+   ✗ play soundjiring (+19 px)  [BXO P8 BSO]
+017: 2 TOPILMA
+   ✗ play soundqadam (+10 px)  [P7 B1A B1B B1C B1Y]
+   ✗ play soundsakrash (+29 px)  [P8 B2A B2B B2C B2Y P10 B3A B3B …]
+-- qutiden 18:20
+JAMI TOPILMA: 0
+-- ustma 18:52
+JAMI TOPILMA: 0
+== DARSLAR 19:09
+-- 001 toliq-dars
+NATIJA: 35 / 35
+-- 001 solo
+NATIJA: 12 / 12
+-- 001 tovush
+NATIJA: 7 / 7
+-- 002 toliq-dars 19:11
+NATIJA: 66 / 66
+-- 002 solo 19:15
+NATIJA: 34 / 34
+-- 002 tovush 19:17
+NATIJA: 7 / 7
+-- 003 toliq-dars 19:17
+NATIJA: 68 / 68
+-- 003 solo 19:20
+NATIJA: 31 / 31
+-- 003 tovush 19:21
+NATIJA: 7 / 7
+-- 004 toliq-dars 19:22
+NATIJA: 61 / 61
+-- 004 solo 19:25
+NATIJA: 29 / 29
+-- 004 tovush 19:26
+NATIJA: 6 / 6
+-- 005 toliq-dars 19:27
+NATIJA: 47 / 47
+-- 005 solo 19:31
+NATIJA: 27 / 27
+-- 005 tovush 19:32
+NATIJA: 5 / 5
+-- 006 toliq-dars 19:33
+NATIJA: 51 / 51
+-- 006 solo 19:35
+NATIJA: 29 / 29
+-- 006 tovush 19:36
+NATIJA: 5 / 5
+-- 007 toliq-dars 19:37
+NATIJA: 41 / 41
+-- 007 solo 19:40
+NATIJA: 28 / 28
+-- 007 tovush 19:41
+NATIJA: 5 / 5
+-- 008 toliq-dars 19:41
+NATIJA: 45 / 45
+-- 008 solo 19:49
+NATIJA: 30 / 30
+-- 008 tovush 19:51
+NATIJA: 4 / 4
+-- 009 toliq-dars 19:52
+NATIJA: 68 / 68
+-- 009 solo 19:55
+NATIJA: 34 / 34
+-- 009 tovush 19:56
+NATIJA: 9 / 9
+-- 010 toliq-dars 19:57
+NATIJA: 53 / 53
+-- 010 solo 20:02
+NATIJA: 33 / 33
+-- 010 tovush 20:05
+NATIJA: 7 / 7
+-- 011 toliq-dars 20:05
+NATIJA: 61 / 61
+-- 011 solo 20:08
+NATIJA: 33 / 33
+-- 011 tovush 20:09
+NATIJA: 8 / 8
+-- 012 toliq-dars 20:10
+NATIJA: 54 / 54
+-- 012 solo 20:13
+NATIJA: 30 / 30
+-- 012 tovush 20:14
+NATIJA: 6 / 6
+-- 013 toliq-dars 20:14
+NATIJA: 48 / 48
+-- 013 solo 20:17
+NATIJA: 27 / 27
+-- 013 tovush 20:18
+NATIJA: 6 / 6
+-- 014 toliq-dars 20:18
+NATIJA: 66 / 66
+-- 014 solo 20:22
+NATIJA: 30 / 30
+-- 014 tovush 20:23
+NATIJA: 6 / 6
+-- 015 toliq-dars 20:24
+NATIJA: 62 / 62
+-- 015 solo 20:26
+NATIJA: 35 / 35
+-- 015 tovush 20:28
+NATIJA: 5 / 5
+-- 016 toliq-dars 20:29
+NATIJA: 43 / 43
+-- 016 solo 20:32
+NATIJA: 39 / 39
+-- 016 tovush 20:35
+NATIJA: 6 / 6
+-- 017 toliq-dars 20:35
+NATIJA: 45 / 45
+-- 017 solo 20:38
+NATIJA: 40 / 40
+-- 017 tovush 20:40
+NATIJA: 5 / 5

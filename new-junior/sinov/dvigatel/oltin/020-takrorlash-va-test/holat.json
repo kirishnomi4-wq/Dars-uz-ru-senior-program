@@ -1,0 +1,875 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nBugun test!\n\nCoddy\nSalom! Bugun o‘zingizni sinaymiz.\n\nO‘TGAN DARSDA\nmoveRight();\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "892a4235c51f",
+  "uzun": 32778
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nSAVOL\nQaysi mavzu sizga qiyin?\n\nCoddy\nHalol javob bering — shu bo‘yicha takrorlaymiz.\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nJavob berdi: 0 / 0\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4a4b3a2457ac",
+  "uzun": 35578
+ },
+ "u-03-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nSinf tanlovi\n\nCoddy\nAvval shuni takrorlaymiz.\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fec9dc561c5b",
+  "uzun": 35532
+ },
+ "u-04-P3": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nBugungi test shulardan\n\nCoddy\nUchta mavzu — bitta o‘yin.\n\nKlon — dushmanlar\nball:\n0\njon:\n3\nO‘zgaruvchi — ball va jon\nif\njon\n=\n0\nthen\nO‘yin tugadi\nShart — o‘yin tugaydi\nBUGUN TEST\nKlon · O‘zgaruvchi · Shart\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b69da197ea06",
+  "uzun": 25806
+ },
+ "u-05-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida natijangizni ko‘rasiz.\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n1\nTakrorlaymiz\n2\nTest\n3\nKatta test\n‹ Orqaga\nBoshladik ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "536a2250eacb",
+  "uzun": 43972
+ },
+ "u-06-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nSizning o‘yiningiz\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "ad3b56fc6086",
+  "uzun": 33820
+ },
+ "u-07-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nTezkor takrorlash!\n\nCoddy\nMaslahat bor — foydalaning.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBeshta dushman\n2\n0\nball: 1\nBall\n3\n0\njon: 0\nO‘yin tugaydi\n4\n0\nQaysi qator?\n1\n2\n3\n4\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8b865913e1c0",
+  "uzun": 37961
+ },
+ "u-08-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Test\n\nCoddy\nEndi maslahatsiz — o‘zingiz!\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n✓\nTakrorlaymiz\n2\nTest\n3\nKatta test\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0e08066d512c",
+  "uzun": 43701
+ },
+ "u-09-P5G": {
+  "id": "P5G",
+  "matn": "O‘zingiz yeching!\n\nCoddy\nMaslahatsiz — o‘zingiz.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nDushmanlar\n2\n0\nball: 2\nBall\n3\n0\njon: 0\nJon\n4\n0\nKodda son\n1\n2\n3\n4\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "64cc9684948e",
+  "uzun": 37977
+ },
+ "u-10-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Katta test\n\nCoddy\nOxirgi bekat: butun o‘yin!\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n✓\nTakrorlaymiz\n✓\nTest\n3\nKatta test\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9f338655fcfb",
+  "uzun": 43808
+ },
+ "u-11-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nRo‘yxat\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "f10439c6d1e5",
+  "uzun": 34126
+ },
+ "u-12-P5B": {
+  "id": "P5B",
+  "matn": "O‘yinni yuting!\n\nCoddy\nHammasi birga ishlasin.\n\nO‘yinni yutdi\n0 / 0\nHar belgi — o‘yinni yutgan bitta bola\n1\n0\nball: 3\nTo‘liq o‘yin\n★\n0\nO‘z o‘yiningiz\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "809ba6d04e6d",
+  "uzun": 33086
+ },
+ "u-13-P13": {
+  "id": "P13",
+  "matn": "Qiyin topshiriq\n\nCoddy\nShuni qayta ko‘ramiz.\n\nTest topshiriqlarini yechdi\n0 / 0\nHar belgi — shu topshiriqni yechgan bitta bola\n1\n0\nDushmanlar\n2\n0\nball: 2\nBall\n3\n0\njon: 0\nJon\n4\n0\nKodda son\n1\n2\n3\n4\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c8a836c155a9",
+  "uzun": 37980
+ },
+ "u-14-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nTest tugadi!\nBUGUN\nTakrorlash · Test · Katta test\nSiz nimani bilishingizni ko‘rdingiz\nKeyingi dars\n21 · Shaxsiy o‘yin 1\n✓\nTakrorlaymiz\n✓\nTest\n✓\nKatta test\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bda2bcf7ee6b",
+  "uzun": 31760
+ },
+ "u-15-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta topshiriq yechdi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "794c2f9fe0a1",
+  "uzun": 41663
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nBugungi test shulardan\n\nCoddy\nUchta mavzu — bitta o‘yin.\n\nKlon — dushmanlar\nball:\n0\njon:\n3\nO‘zgaruvchi — ball va jon\nif\njon\n=\n0\nthen\nO‘yin tugadi\nShart — o‘yin tugaydi\nBUGUN TEST\nKlon · O‘zgaruvchi · Shart\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e338bc223a03",
+  "uzun": 25809
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nBugungi test shulardan\n\nCoddy\nUchta mavzu — bitta o‘yin.\n\nKlon — dushmanlar\nball:\n0\njon:\n3\nO‘zgaruvchi — ball va jon\nif\njon\n=\n0\nthen\nO‘yin tugadi\nShart — o‘yin tugaydi\nBUGUN TEST\nKlon · O‘zgaruvchi · Shart\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "cfc7a134d2f7",
+  "uzun": 25812
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nBugungi test shulardan\n\nCoddy\nUchta mavzu — bitta o‘yin.\n\nKlon — dushmanlar\nball:\n0\njon:\n3\nO‘zgaruvchi — ball va jon\nif\njon\n=\n0\nthen\nO‘yin tugadi\nShart — o‘yin tugaydi\nBUGUN TEST\nKlon · O‘zgaruvchi · Shart\n‹ Orqaga\nKeyingi ›\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e4e95821b115",
+  "uzun": 25818
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta topshiriq yechdi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\nDars tugadi!\nKo‘rishguncha — keyingi darsda o‘z o‘yiningizni yasaymiz!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "513fbbf37df0",
+  "uzun": 41813
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "2cfde3be453b",
+  "uzun": 26294
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "20-DARS · TAKRORLASH VA TEST\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "3b46be443170",
+  "uzun": 17906
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nSAVOL\nQaysi mavzu sizga qiyin?\n\nCoddy\nQaysi mavzu qiyinroq?\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "adf0c6b56804",
+  "uzun": 33527
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "20-DARS · TAKRORLASH VA TEST\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "b01127acc0a0",
+  "uzun": 17909
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "8dc16b9525ed",
+  "uzun": 17901
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nEslaymiz: uch mavzu",
+  "bloklar": [],
+  "html": "2ff740f40a8a",
+  "uzun": 17904
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "18c0018718e0",
+  "uzun": 17903
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "47589326ed33",
+  "uzun": 17922
+ },
+ "bq-07-0-B1A": {
+  "id": "B1A",
+  "matn": "TAKRORLASH · 1\nBeshta dushman\n▶ bosilganda beshta dushman tushsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\ncreate clone of myself\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n8 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nMaslahat bor — foydalaning\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfwhen ▶ clicked",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "4f3494bc1451",
+  "uzun": 26418
+ },
+ "bq-07-1-B1B": {
+  "id": "B1B",
+  "matn": "TAKRORLASH · 2\nBall\nO‘q tegsa — ball +1 oshsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n3 ta dasturcha\n7 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nMaslahat bor — foydalaning\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone",
+   "q:when touchingenemy"
+  ],
+  "html": "70260236bd2a",
+  "uzun": 26395
+ },
+ "bq-07-2-B1C": {
+  "id": "B1C",
+  "matn": "TAKRORLASH · 3\nO‘yin tugaydi\nJon 0 bo‘lsa — o‘yin tugasin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nMaslahat bor — foydalaning\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changejonby−1when touchingenemy",
+   "c:changejonby−1"
+  ],
+  "html": "290632b2c7dd",
+  "uzun": 26724
+ },
+ "bq-07-3-B1Y": {
+  "id": "B1Y",
+  "matn": "TAKRORLASH · 4\nQaysi qator?\nBelgilangan blokning qatorini bosing\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nTopildi: 0 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan blokning qatorini bosing\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "3d2c91436e18",
+  "uzun": 28261
+ },
+ "bq-07-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "c895216c96aa",
+  "uzun": 17916
+ },
+ "bq-08-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: test",
+  "bloklar": [],
+  "html": "46ac0e0ee8ff",
+  "uzun": 17898
+ },
+ "bq-09-0-B2A": {
+  "id": "B2A",
+  "matn": "TEST · 1\nDushmanlar\nBeshta dushman, har xil ustundan tushsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\nDushman\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nTest: o‘zingiz yeching\nBoshlash",
+  "bloklar": [],
+  "html": "1b8f8ea833db",
+  "uzun": 26418
+ },
+ "bq-09-1-B2B": {
+  "id": "B2B",
+  "matn": "TEST · 2\nBall\nHar urilgan dushman 2 ball bersin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n6 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nTest: o‘zingiz yeching\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "f9d2539d802b",
+  "uzun": 26392
+ },
+ "bq-09-2-B2C": {
+  "id": "B2C",
+  "matn": "TEST · 3\nJon\nJon 0 bo‘lsa — o‘yin tugasin. Sinab ko‘ring\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nDushman: 0\nMaslahat\nTest: o‘zingiz yeching\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "2a66de86e446",
+  "uzun": 26699
+ },
+ "bq-09-3-B2Y": {
+  "id": "B2Y",
+  "matn": "TEST · 4\nKodda son\nKodda dushmanlar sonini 8 qiling\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nTest: o‘zingiz yeching\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "468eeebe4d39",
+  "uzun": 28242
+ },
+ "bq-09-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "c895216c96aa",
+  "uzun": 17916
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: katta test",
+  "bloklar": [],
+  "html": "5fada22f8ebe",
+  "uzun": 17904
+ },
+ "bq-11-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz ro‘yxatni ko‘rsatyapti — kuzating",
+  "bloklar": [],
+  "html": "6d13e5294475",
+  "uzun": 17924
+ },
+ "bq-12-0-B3A": {
+  "id": "B3A",
+  "matn": "KATTA TEST · 1\nTo‘liq o‘yin\nYuting: kamida 3 ball, jon qolsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nDushman: 0\nMaslahat\nRo‘yxatga qarang\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "1f0989207dc2",
+  "uzun": 26698
+ },
+ "bq-12-1-B3Y": {
+  "id": "B3Y",
+  "matn": "KATTA TEST · ★\nO‘z o‘yiningiz\nKamida 8 ta dushman — yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nRo‘yxatga qarang\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "da7b3efe79da",
+  "uzun": 26716
+ },
+ "bq-12-2-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "c895216c96aa",
+  "uzun": 17916
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz qiyin mavzuni ko‘rsatyapti",
+  "bloklar": [],
+  "html": "368a210431a6",
+  "uzun": 17917
+ },
+ "bq-14-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nTest tugadi!\n\nBulut\nTestni o‘zim yechdim!\n\nSiz bugun\n0\nta topshiriq yechdi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n2\nBulut\nKeyingi darsda o‘z o‘yiningizni yasaymiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "5653a34d6cff",
+  "uzun": 19558
+ },
+ "bq-15-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nTest tugadi!\n\nBulut\nTestni o‘zim yechdim!\n\nSiz bugun\n0\nta topshiriq yechdi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n2\nBulut\nKeyingi darsda o‘z o‘yiningizni yasaymiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "5653a34d6cff",
+  "uzun": 19558
+ },
+ "bx-B1Y-nishon": {
+  "id": "B1Y",
+  "matn": "TAKRORLASH · 4\nQaysi qator?\nBelgilangan blokning qatorini bosing\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nTopildi: 0 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan blokning qatorini bosing\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "48fbb8164e4f",
+  "uzun": 28261
+ },
+ "bx-B1Y-topdi": {
+  "id": "B1Y",
+  "matn": "TAKRORLASH · 4\nQaysi qator?\nBelgilangan blokning qatorini bosing\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nTopildi: 1 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan blokning qatorini bosing\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "c72a46c97f4c",
+  "uzun": 28264
+ },
+ "bx-B2Y-sakkiz": {
+  "id": "B2Y",
+  "matn": "TEST · 4\nKodda son\nKodda dushmanlar sonini 8 qiling\nDushman dasturi\ncreate clone of myself\nrepeat\n8\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 8; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 1\nMaslahat\n</>\nKodni yopish\nTest: o‘zingiz yeching\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat8when ▶ clicked",
+   "p:create clone of myselfrepeat8",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "59be9d9aa79c",
+  "uzun": 28245
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nSAVOL\nQaysi mavzu sizga qiyin?\n\nCoddy\nQaysi mavzu qiyinroq?\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "476d6c10c135",
+  "uzun": 33536
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "2cfde3be453b",
+  "uzun": 26294
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nBugun test!\n\nCoddy\nSalom! Bugun o‘zingizni sinaymiz.\n\nO‘TGAN DARSDA\nmoveRight();\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "411ca31e868d",
+  "uzun": 31654
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "20-DARS · TAKRORLASH VA TEST\nSAVOL\nQaysi mavzu sizga qiyin?\n\nCoddy\nQaysi mavzu qiyinroq?\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "adf0c6b56804",
+  "uzun": 33527
+ },
+ "sq-03-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nSinf tanlovi\n\nCoddy\nAvval shuni takrorlaymiz.\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "87539cef1b9f",
+  "uzun": 34416
+ },
+ "sq-04-0-P3": {
+  "id": "P3",
+  "matn": "ESLAYMIZ\nBugungi test shulardan\n\nCoddy\nUchta mavzu — bitta o‘yin.\n\nKlon — dushmanlar\nball:\n0\njon:\n3\nO‘zgaruvchi — ball va jon\nif\njon\n=\n0\nthen\nO‘yin tugadi\nShart — o‘yin tugaydi\nBUGUN TEST\nKlon · O‘zgaruvchi · Shart\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "f9b9f44f1947",
+  "uzun": 24690
+ },
+ "sq-05-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida natijangizni ko‘rasiz.\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n1\nTakrorlaymiz\n2\nTest\n3\nKatta test\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "f5b6418af26c",
+  "uzun": 42856
+ },
+ "sq-06-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nSizning o‘yiningiz\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n«▶ Boshlash»ni bosing — o‘yin ishlaydi\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "1b78b246e942",
+  "uzun": 32742
+ },
+ "sq-07-0-B1A": {
+  "id": "B1A",
+  "matn": "TAKRORLASH · 1\nBeshta dushman\n▶ bosilganda beshta dushman tushsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\ncreate clone of myself\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n8 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nMaslahat bor — foydalaning\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfwhen ▶ clicked",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "03e3aba8367e",
+  "uzun": 26465
+ },
+ "sq-07-1-B1B": {
+  "id": "B1B",
+  "matn": "TAKRORLASH · 2\nBall\nO‘q tegsa — ball +1 oshsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n3 ta dasturcha\n7 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nMaslahat bor — foydalaning\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone",
+   "q:when touchingenemy"
+  ],
+  "html": "01261852436a",
+  "uzun": 26442
+ },
+ "sq-07-2-B1C": {
+  "id": "B1C",
+  "matn": "TAKRORLASH · 3\nO‘yin tugaydi\nJon 0 bo‘lsa — o‘yin tugasin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nMaslahat bor — foydalaning\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changejonby−1when touchingenemy",
+   "c:changejonby−1"
+  ],
+  "html": "3a228ce2d227",
+  "uzun": 26771
+ },
+ "sq-07-3-B1Y": {
+  "id": "B1Y",
+  "matn": "TAKRORLASH · 4\nQaysi qator?\nBelgilangan blokning qatorini bosing\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nTopildi: 0 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan blokning qatorini bosing\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "b652f153b42f",
+  "uzun": 28308
+ },
+ "sq-08-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Test\n\nCoddy\nEndi maslahatsiz — o‘zingiz!\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n✓\nTakrorlaymiz\n2\nTest\n3\nKatta test\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "9aeb638e8b88",
+  "uzun": 42585
+ },
+ "sq-09-0-B2A": {
+  "id": "B2A",
+  "matn": "TEST · 1\nDushmanlar\nBeshta dushman, har xil ustundan tushsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nDushman dasturi\nBlokni shu yerga ulang\nRaketa\nO‘q\nDushman\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nTest: o‘zingiz yeching\nBoshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "590d9b463d0d",
+  "uzun": 26465
+ },
+ "sq-09-1-B2B": {
+  "id": "B2B",
+  "matn": "TEST · 2\nBall\nHar urilgan dushman 2 ball bersin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n6 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nTest: o‘zingiz yeching\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone"
+  ],
+  "html": "e3aa45f64cd1",
+  "uzun": 26439
+ },
+ "sq-09-2-B2C": {
+  "id": "B2C",
+  "matn": "TEST · 3\nJon\nJon 0 bo‘lsa — o‘yin tugasin. Sinab ko‘ring\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nDushman: 0\nMaslahat\nTest: o‘zingiz yeching\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "2c2c6dfafc7d",
+  "uzun": 26746
+ },
+ "sq-09-3-B2Y": {
+  "id": "B2Y",
+  "matn": "TEST · 4\nKodda son\nKodda dushmanlar sonini 8 qiling\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nTest: o‘zingiz yeching\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "913f88309b0b",
+  "uzun": 28289
+ },
+ "sq-10-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Katta test\n\nCoddy\nOxirgi bekat: butun o‘yin!\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n✓\nTakrorlaymiz\n✓\nTest\n3\nKatta test\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "61df1faf6692",
+  "uzun": 42692
+ },
+ "sq-11-0-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nRo‘yxat\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\nRo‘yxat o‘yin bajargani sari ✓ bo‘ladi\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "39b48efad7bb",
+  "uzun": 33048
+ },
+ "sq-12-0-B3A": {
+  "id": "B3A",
+  "matn": "KATTA TEST · 1\nTo‘liq o‘yin\nYuting: kamida 3 ball, jon qolsin\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n4 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nDushman: 0\nMaslahat\nRo‘yxatga qarang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left"
+  ],
+  "html": "03ace2b00b79",
+  "uzun": 26745
+ },
+ "sq-12-1-B3Y": {
+  "id": "B3Y",
+  "matn": "KATTA TEST · ★\nO‘z o‘yiningiz\nKamida 8 ta dushman — yuting\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\nRo‘yxatga qarang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "5d22c7d2d003",
+  "uzun": 26763
+ },
+ "sq-14-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nTest tugadi!\n\nBulut\nTestni o‘zim yechdim!\n\nSiz bugun\n0\nta topshiriq yechdi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n2\nBulut\nKeyingi darsda o‘z o‘yiningizni yasaymiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "5653a34d6cff",
+  "uzun": 19558
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n20-DARS · TAKRORLASH VA TEST\nBugun test!\n\nCoddy\nSalom! Bugun o‘zingizni sinaymiz.\n\nO‘TGAN DARSDA\nmoveRight();\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n20-DARS · TAKRORLASH VA TEST\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d196dc3784f2",
+  "uzun": 87342
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n20-DARS · TAKRORLASH VA TEST\nSAVOL\nQaysi mavzu sizga qiyin?\n\nCoddy\nHalol javob bering — shu bo‘yicha takrorlaymiz.\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nJavob berdi: 0 / 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n20-DARS · TAKRORLASH VA TEST\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "610cc6c6ef5e",
+  "uzun": 90142
+ },
+ "y-03": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nSinf tanlovi\n\nCoddy\nAvval shuni takrorlaymiz.\n\nA\nKlon\ndushmanlar\nB\nO‘zgaruvchi\nball:\n0\njon:\n3\nball va jon\nC\nShart\nif\njon\n=\n0\nthen\no‘yin tugaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c9474da5e4f7",
+  "uzun": 90096
+ },
+ "y-04": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nESLAYMIZ\nBugungi test shulardan\n\nCoddy\nUchta mavzu — bitta o‘yin.\n\nKlon — dushmanlar\nball:\n0\njon:\n3\nO‘zgaruvchi — ball va jon\nif\njon\n=\n0\nthen\nO‘yin tugadi\nShart — o‘yin tugaydi\nBUGUN TEST\nKlon · O‘zgaruvchi · Shart\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a711b0cd0966",
+  "uzun": 80370
+ },
+ "y-05": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida natijangizni ko‘rasiz.\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n1\nTakrorlaymiz\n2\nTest\n3\nKatta test\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "eec8824ed5eb",
+  "uzun": 98536
+ },
+ "y-06": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nSizning o‘yiningiz\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "e46cd8805cab",
+  "uzun": 88384
+ },
+ "y-07": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nTezkor takrorlash!\n\nCoddy\nMaslahat bor — foydalaning.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nBeshta dushman\n2\n0\nball: 1\nBall\n3\n0\njon: 0\nO‘yin tugaydi\n4\n0\nQaysi qator?\n1\n2\n3\n4\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bedf50bb1448",
+  "uzun": 92525
+ },
+ "y-08": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Test\n\nCoddy\nEndi maslahatsiz — o‘zingiz!\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n✓\nTakrorlaymiz\n2\nTest\n3\nKatta test\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "7dcbde8dc1fc",
+  "uzun": 98265
+ },
+ "y-09": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nO‘zingiz yeching!\n\nCoddy\nMaslahatsiz — o‘zingiz.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nDushmanlar\n2\n0\nball: 2\nBall\n3\n0\njon: 0\nJon\n4\n0\nKodda son\n1\n2\n3\n4\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "781e7a26976e",
+  "uzun": 92541
+ },
+ "y-10": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Katta test\n\nCoddy\nOxirgi bekat: butun o‘yin!\n\nDars oxirida · test natijasi\nball: 3\nSiz nimani bilasiz\n✓\nTakrorlaymiz\n✓\nTest\n3\nKatta test\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9320286a1371",
+  "uzun": 98372
+ },
+ "y-11": {
+  "id": "P10",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nRo‘yxat\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nO‘yiningizda:\nDushmanlar tushadi\nO‘q tegsa — ball +1\nDushman tegsa — jon −1\nJon tugasa — o‘yin tugaydi\nO‘yin yutildi\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "29e3b12c03f2",
+  "uzun": 88690
+ },
+ "y-12": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nO‘yinni yuting!\n\nCoddy\nHammasi birga ishlasin.\n\nO‘yinni yutdi\n0 / 1\nHar belgi — o‘yinni yutgan bitta bola\n1\n0\nball: 3\nTo‘liq o‘yin\n★\n0\nO‘z o‘yiningiz\n1\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "04a0d38e4001",
+  "uzun": 87650
+ },
+ "y-13": {
+  "id": "P13",
+  "matn": "USTOZ · PROYEKTOR\nQiyin topshiriq\n\nCoddy\nShuni qayta ko‘ramiz.\n\nTest topshiriqlarini yechdi\n0 / 1\nHar belgi — shu topshiriqni yechgan bitta bola\n1\n0\nDushmanlar\n2\n0\nball: 2\nBall\n3\n0\njon: 0\nJon\n4\n0\nKodda son\n1\n2\n3\n4\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c75369ee1d56",
+  "uzun": 92544
+ },
+ "y-14": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nTest tugadi!\nBUGUN\nTakrorlash · Test · Katta test\nSiz nimani bilishingizni ko‘rdingiz\nKeyingi dars\n21 · Shaxsiy o‘yin 1\n✓\nTakrorlaymiz\n✓\nTest\n✓\nKatta test\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "105e5fc8961c",
+  "uzun": 86324
+ },
+ "y-15": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta topshiriq yechdi\n0\nta o‘yin yutdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 15 · Kirish\n2 / 15 · Savol: qaysi mavzu qiyin?\n3 / 15 · Javob: sinf tanlovi\n4 / 15 · Eslaymiz: klon, o‘zgaruvchi, shart\n5 / 15 · Reja\n6 / 15 · Ko‘ramiz: o‘yin\n7 / 15 · O‘zingiz: takrorlaymiz\n8 / 15 · 2-bekat: test\n9 / 15 · Test\n10 / 15 · 3-bekat\n11 / 15 · Ko‘ramiz: ro‘yxat\n12 / 15 · O‘zingiz: katta test\n13 / 15 · Qiyin mavzu — qayta ko‘ramiz\n14 / 15 · O‘z natijangiz\n15 / 15 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1fc724bffaed",
+  "uzun": 96227
+ },
+ "varaq": {
+  "id": "",
+  "matn": "20-dars · Takrorlash va test — ustoz varag‘i\n\nAsosiy fikr: test baho emas — u nimani takrorlash kerakligini ko‘rsatadi. Qiyin bo‘lsa — bu xato emas.\n\nYo‘l: huk (qaysi mavzu qiyin) → «Eslaymiz» → reja → o‘yinni ko‘ramiz → 1-bekat «Takrorlaymiz» (maslahat bor) → 2-bekat «Test» (maslahatsiz, noldan) → 3-bekat «Katta test» (to‘liq o‘yin) → qiyin mavzuni qayta ko‘ramiz → yakun.\n\nTest paytida maslahat yo‘q; bola qiynalsa — yoniga boring: «Qaysi blok kerak? O‘q qaysi personajda? Jon 0 bo‘lsa nima bo‘lishi kerak?» Yechimni aytmang.\n\n13-qadam: doskada eng kam yechilgan topshiriqni topasiz va qayta tushuntirasiz. Mentor bo‘shliqlarni shaxsiy o‘yindan (21–22-dars) oldin shu natija bo‘yicha yopadi.\n\n18-darsda o‘yini saqlanmagan bola uchun o‘yin tayyor keladi — bu xato emas. «Noto‘g‘ri» deb aytilmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«20-dars · Takrorlash va test» — «Bugun test!» Kosmos maydoni: raketa, o‘q, dushman; pastda «O‘tgan darsda» — kod.\n\nSIZ\n«O‘tgan darsda bloklar ortidagi kodni ko‘rdik.» «Bugun modulni takrorlaymiz va kichik test yechamiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nDarsga kiradi.\n\n2\nSavol: qaysi mavzu qiyin?\n\nEKRANDA\nSavol: «Qaysi mavzu sizga qiyin?» Uchta karta: A «Klon» · B «O‘zgaruvchi» · C «Shart».\n\nSIZ\n«Qaysi mavzu sizga qiyin? Halol javob bering.» «Har kim noutbukida bitta kartani tanlasin.»\n\nBOLA O‘RGANADI\nO‘z bilimini baholaydi (baho emas).\n\n3\nJavob: sinf tanlovi\n\nEKRANDA\nJavob: «Sinf tanlovi». Uchala karta, nechta bola tanlagani; eng ko‘p tanlangani oltin hoshiyada.\n\nSIZ\n«Qiyin bo‘lsa — yaxshi: shuni takrorlaymiz. Hamma bir xil narsada qiynalmaydi.»\n\nBOLA O‘RGANADI\nQiyin bo‘lish normal ekanini eshitadi.\n\n4\nEslaymiz: klon, o‘zgaruvchi, shart\n\nEKRANDA\nEslaymiz: «Bugungi test shulardan». «Keyingi» — birma-bir: klon, o‘zgaruvchi, shart.\n\nSIZ\n«Klon — ko‘p dushman. O‘zgaruvchi — ball va jon. Shart — jon tugasa, o‘yin tugaydi.» «Bularni bilasiz. Hozir tezkor takrorlaymiz, keyin test.»\n\nBOLA O‘RGANADI\nUch mavzuni eslaydi.\n\n5\nReja\n\nEKRANDA\nReja: tepalik — takrorlaymiz → test → katta test; cho‘qqida «Dars oxirida · test natijasi».\n\nSIZ\n«Bugun uchta bekat: takrorlash, test, katta test.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n6\nKo‘ramiz: o‘yin\n\nEKRANDA\nKo‘ramiz: o‘yin. 18-dars o‘yini tayyor; «▶ Boshlash»ni bosasiz — o‘yin ishlaydi.\n\nSIZ\n«Bu — sizning o‘yiningiz. Hozir uning bo‘laklarini takrorlaymiz.»\n\nBOLA O‘RGANADI\nO‘z o‘yinini ko‘radi.\n\n7\nO‘zingiz: takrorlaymiz\n\nEKRANDA\nMashq: «Tezkor takrorlash!» — zinapoya: 1 beshta dushman · 2 ball · 3 o‘yin tugaydi · 4 qaysi qator?\n\nSIZ\n«Qiyin bo‘lsa — Maslahat tugmasini bosing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nMavzularni qayta bajaradi.\n\n8\n2-bekat: test\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Test».\n\nSIZ\n«Test: maslahat yo‘q, dastur noldan. O‘zingiz yeching — qiyin bo‘lsa, yoningizga kelaman.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n9\nTest\n\nEKRANDA\nTest: «O‘zingiz yeching!» — zinapoya: 1 dushmanlar · 2 ball · 3 jon · 4 kodda son.\n\nSIZ\n«Test paytida maslahat yo‘q. O‘zingiz yeching.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nNoldan, maslahatsiz yechadi.\n\n10\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Katta test».\n\nSIZ\n«Oxirgi bekat: hammasini bitta o‘yinga yig‘amiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n11\nKo‘ramiz: ro‘yxat\n\nEKRANDA\nKo‘ramiz: ro‘yxat. To‘liq o‘yin; sahna yonida «O‘yiningizda:» — besh band, o‘yin bajargani sari ✓.\n\nSIZ\n«Ro‘yxatdagi besh band — hammasi ✓ bo‘lsin.»\n\nBOLA O‘RGANADI\nRo‘yxatning ma’nosini tushunadi.\n\n12\nO‘zingiz: katta test\n\nEKRANDA\nKatta test: «O‘yinni yuting!» — zinapoya: 1 to‘liq o‘yin · ★ o‘z o‘yiningiz.\n\nSIZ\n«Ro‘yxatga qarang: qaysi band hali ✓ emas?» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nButun o‘yinni o‘zi tuzadi.\n\n13\nQiyin mavzu — qayta ko‘ramiz\n\nEKRANDA\nNatija: «Qiyin topshiriq» Test topshiriqlari, nechta bola yechgani.\n\nSIZ\n«Eng kam yechilgan topshiriq qaysi? Shuni birga takrorlaymiz.»\n\nBOLA O‘RGANADI\nQiyin mavzuni qayta ko‘radi.\n\n14\nO‘z natijangiz\n\nEKRANDA\nYakun: «Test tugadi!» Keyingi dars — 21 · Shaxsiy o‘yin 1.\n\nSIZ\n«Uchala bekatdan o‘tdik: takrorlash, test, katta test.» «Keyingi darsda o‘z o‘yiningizni yasashni boshlaymiz.»\n\nBOLA O‘RGANADI\nBugungi natijani biladi.\n\n15\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta topshiriq yechildi, nechta o‘yin yutildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)\n\nBOLA O‘RGANADI\nSinf natijasini ko‘radi.",
+  "bloklar": [],
+  "html": "9dd6aef39df6",
+  "uzun": 6028
+ },
+ "eshik": {
+  "id": "",
+  "matn": "20-dars · Takrorlash va test\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "74dea9333ca2",
+  "uzun": 774
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

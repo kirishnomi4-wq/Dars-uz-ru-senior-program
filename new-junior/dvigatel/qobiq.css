@@ -3,6 +3,8 @@ body{display:grid;place-items:center;font-family:var(--f-matn)}
 .sahna-q{position:relative;width:min(100vw,calc(100vh * 16 / 9));aspect-ratio:16/9}
 .sahna-q .ekran{width:100%;max-width:none;border-radius:0;border:0;box-shadow:none;cursor:default}
 .yonma .sahna-q{width:min(48.5vw,calc((100vh - 120px) * 16 / 9))}
+/* 25.11 (QA F-1125-02, Q02-A): telefon tik turganda dars o'qib bo'lmaydigan darajada kichrayardi — «Telefonni yotqizing»; yotiq holatda .sahna-q bo'yga qarab to'liq sig'adi. 26.11: ustoz varag'i (.vq) telefonda tik o'qiladi — unga qo'yilmaydi */
+@media (orientation:portrait) and (max-width:600px){#ilova:not(:has(> .vq))::after{content:"↻\A Telefonni yotqizing\A Dars yotiq ekranda to‘liq ko‘rinadi";white-space:pre-line;position:fixed;inset:0;z-index:200;display:grid;place-content:center;gap:12px;text-align:center;padding:24px;background:#0D2137;color:#fff;font:700 22px/1.45 var(--f-matn)}}
 .yonma{display:flex;gap:1.5vw;align-items:center;justify-content:center;width:100vw}
 .yonma figure{margin:0;display:flex;flex-direction:column;gap:8px}
 .yonma figcaption{color:#E7E6BE;font:700 13px var(--f-kod);letter-spacing:.04em}
@@ -19,6 +21,8 @@ body.r-ustoz,body.r-bola{background:#F6F4EF}
 .ekran .pl .mbw:not(.yopiq) .mb,.ekran .dst .mb,.ekran .sin3,.ekran .hn .mas,.ekran .rng i,.ekran .asos,.ekran .orq,.ekran .jk,.ekran .tq-o,.ekran .jy,.ekran .yur-b,.ekran .rd,.ekran .ism-t{cursor:pointer}
 .nomsiz .ekran .hb .hl{visibility:hidden}
 .hn .ishga{white-space:nowrap;margin-left:auto}.hn .ishga + .asos,.hn .ishga ~ .k-ust{margin-left:1cqw}
+/* 25.11 (QA oldidan): solo'da asosiy tugma oq tugmaga tushadi (qobiq.js soloTugma), ichidagi uchburchak oq edi — oq fonda ko'rinmasdi, tugma chapi bo'sh; o'yin to'xtaganda tugma saqlangan nusxadan tiklanadi, shuning uchun belgi uslub bilan bo'yaladi — tugma matni rangida */
+.hn .mas svg [fill="#fff"]{fill:currentColor}.hn .mas svg [stroke="#fff"]{stroke:currentColor}
 /* 21.11: Blockly ro'yxati qatorlari OQ FONDA OQ edi (zelos chizuvchisi ro'yxat foni blok rangida deb matnni oq qiladi, bizda fon oq) — bola sonlarni ko'rmasdi; hamma darsda */
 html .blocklyDropDownDiv.junior-renderer .blocklyMenuItem .blocklyMenuItemContent{color:#0D2137}
 /* 21.11 (U-3): Blockly ro'yxatidagi tanlangan son oldidagi belgi — Blockly uni /sprites.svg dan olardi (saytda yo'q, LMS'da boshqa domen) — endi shu yerda, rasm qatorda */
@@ -67,6 +71,8 @@ html .blocklyDropDownDiv.junior-renderer .blocklyMenuItem .blocklyMenuItemConten
 .vq-k p{margin:4px 0}
 .vq-k i{display:block;font:700 12px/1.4 var(--f-kod);font-style:normal;color:#5A5A60;letter-spacing:.04em;text-transform:uppercase}
 .jr-bl{position:relative;flex:1 1 auto;min-height:0}
+/* 25.11 (QA F-1125-04, Q04-A): eng kichik masshtabda ham sig'magan dastur — maydon dastur bo'yiga cho'ziladi (blockly.js blMasshtab), ustun pastga aylanadi */
+.jr-bl.aylan{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#B9C3D2 transparent}.jr-bl.aylan > .jr-bl-ws{bottom:auto}
 .jr-bl-ws{position:absolute;inset:0}
 .jr-bl > .bosh{position:absolute;left:0;right:0;top:0;display:none}
 .jr-bl.bosh-bor > .bosh{display:block}
@@ -178,6 +184,12 @@ html .blocklyDropDownDiv.junior-renderer .blocklyMenuItem .blocklyMenuItemConten
 .c-ich{margin-left:1.4cqw;padding-left:0;border-left:1.4cqw solid #13A58A;margin-left:0;padding-block:.2cqw}
 .c-ich .mb + .mb{margin-top:-.45cqw}
 .c-tub{display:block;width:8cqw;height:1.4cqw;background:#13A58A;border-radius:0 0 .5cqw .5cqw}
+/* 25.11 (F-1125-05): C-blok bir butun — sarlavha va tub ichki blokning eniga cho'ziladi (Blockly'dagidek); avval tub 8 cqw, sarlavha o'z matnicha edi, ichki blok ikkalasidan chiqib turardi */
+.c-blok > .mb:first-child{min-width:100%;box-sizing:border-box}.c-blok > .c-tub{width:auto;align-self:stretch}
+/* 25.11 (F-1125-09): javondagi blok eniga sig'masa (matni qirqilardi: 4-dars go to, 18-dars when … key pressed) — faqat o'sha blokda (.sigmas, studiya.js javonSigdir) matn ikkinchi qatorga o'tadi; sig'adigan bloklar o'zgarmaydi (hammasiga qo'llansa «move right», «when ▶ clicked» ham sababsiz o'ralardi) */
+.pl .mb.sigmas > span{white-space:normal}.pl .mb.sigmas .xy{flex-wrap:wrap;row-gap:.2cqw}
+/* 25.11 kech (javon-qirq: 9, 10, 15, 17-dars «play sound», «switch costume to»): yorliq (.xy) blok oxirida bo'lsa va blok sig'masa — ikona va matn birinchi qatorda, yorliq keyingi qatorda (::after — qator bo'luvchi; .mb gap ikki marta qo'shilmasin — row-gap 0) */
+.pl .mb.sigmas:has(> .xy:last-child){flex-wrap:wrap;row-gap:0}.pl .mb.sigmas:has(> .xy:last-child) > span:not(.xy){flex:1 1 0}.pl .mb.sigmas:has(> .xy:last-child)::after{content:"";flex-basis:100%;height:0;order:1}.pl .mb.sigmas:has(> .xy:last-child) > .xy{order:2;margin-top:.6cqw}
 /* 5-dars: rasm topshirig'i — chiziladigan kataklar kulrang, qahramon o'tgani oltin; takrorlash sanog'i */
 .katak .kt-c.md-rasm{fill:#C9CDD3}
 .katak .kt-c.md-rasm.iz{fill:#F8D877}
@@ -189,6 +201,8 @@ html .blocklyDropDownDiv.junior-renderer .blocklyMenuItem .blocklyMenuItemConten
 .mb.f-b .xy i{color:#2C8A50}
 .c-ich{border-left-color:#3FAE6A}
 .c-tub{background:#3FAE6A}
+/* 26.11: statik «if path» C-bloki (qismlar.mjs shart, data-yon) — yon va tubi ham Shart oilasi rangida, Blockly'dagidek (avval repeat yashili edi; 12, 15-darsdagi if = .sv shunday) */
+.c-blok[data-yon] > .c-ich{border-left-color:#5B80A5}.c-blok[data-yon] > .c-tub{background:#5B80A5}
 .jr-bl .bl-juft > .blocklyPath{stroke-width:3.5}
 .jr-bl .bl-juft-0 > .blocklyPath{stroke:#FF4F28}
 .jr-bl .bl-juft-1 > .blocklyPath{stroke:#F5B82E}
@@ -273,11 +287,14 @@ html .blocklyDropDownDiv.junior-renderer .blocklyMenuItem .blocklyMenuItemConten
 .oyna .bsh-q .sk.tan{border-color:#FF4F28;box-shadow:0 0 0 .25cqw rgba(255,79,40,.25)}
 .oyna .bsh-q .sk.ok{border-color:#2C8A50;background:#E3F6EA}
 .oyna .bsh .bsh-qh{position:absolute;left:3%;bottom:6%;width:20%}
-.hn .ishga.xira{opacity:.45;filter:saturate(.6)}
+/* 25.11 (F-1125-19): «Avval sonni tanlang» holatidagi tugma — avval .xira edi, u shablon.html dagi absolut qoplama .xira bilan to'qnashib, tugmani qatordan chiqarib yuborardi */
+.hn .tug-xira{opacity:.45;filter:saturate(.6)}
 .jr-bl .bl-son.bl-ball{background:#A86B32}
 /* 12-dars (21.11, manba 012): bir nechta o'zgaruvchi — kapsulalar ostma-ost (.ball-q), faqat dasturda ishlatilgani; «O‘yin tugadi» taxtasi */
 .oyna .ball-q{left:5.6cqw;top:1.2cqw;display:flex;flex-direction:column;align-items:flex-start;gap:.5cqw;padding:0;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 .oyna .ball-q .ball-k{position:static}
+/* 25.11 (K8): sahna tepasida kapsulalar ustuni bo'lsa (bola yakuni — 12, 18, 20–23-dars), xabar kartasi undan o'ngda boshlanadi — avval «ball», «jon» karta ortida qolardi */
+.oyna:has(> .ball-q) > .gl.kd2.a-tr{left:15.5cqw}
 .oyna .ball-k.yoq{display:none}
 .oyna .ball-k[data-v="jon"]{background:#C0392B;border-color:#8E2A1F}
 .oyna .ball-k[data-v="qadam"]{background:#2C6E9E;border-color:#1D4E73}

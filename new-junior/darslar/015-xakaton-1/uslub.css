@@ -404,4 +404,9 @@
 .daraja-yz[data-r].on{opacity:1}
 .daraja-otdi{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);z-index:5;padding:1.2cqw 2.6cqw;border-radius:1.4cqw;font:800 3.4cqw/1 var(--f-sar);color:#C96A12;animation:dar-otdi .4s ease-out}
 @keyframes dar-otdi{from{transform:translate(-50%,-50%) scale(.6);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+/* 25.11 (K7): studiya — dastur ustuni kengroq: dasturchalar ikki ustunda, juftlik dasturi 30 blokkacha; 17,5 cqw da ikkinchi ustun sig'masdi, Blockly uni birinchisining ustiga itarardi.
+   Javon 15 cqw da qoladi (9-darsdagi 14,6 cqw da «when any key pressed» javon kartasidan chiqardi — setka ushladi) */
+.t3 .hm{grid-template-columns:6.6cqw 15cqw 23.5cqw minmax(0,1fr)}
+/* tasma: «N ta dasturcha» va «n / 30 ta blok» — ikki qatorda */
+.dst .dsn{white-space:pre-line}
 /* == qobiq == */

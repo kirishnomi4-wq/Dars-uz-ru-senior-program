@@ -1,0 +1,1117 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "15-DARS · XAKATON №1\nBugun juftlikda o‘yin yasaymiz!\n\nCoddy\nSalom! Bugun do‘stingiz bilan birga o‘yin yasaysiz.\n\nO‘TGAN DARSDA\nBitta qadam\nXato\nTopiladigan narsa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "11818ecf63f9",
+  "uzun": 34259
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "15-DARS · XAKATON №1\nSAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6a5fa5779693",
+  "uzun": 41648
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "571a1b818bac",
+  "uzun": 41507
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nIshni bo‘lamiz, navbat bilan\n\nCoddy\nHar qismni bittangiz yasaysiz. Keyin almashasiz.\n\nA\nIkkalamiz birga bosamiz\n✕ ikkalamiz bir ishni qildik\nB\nAlohida-alohida yasaymiz\n✕ ikki yarim o‘yin\nC\nIshni bo‘lamiz, navbat bilan\n✓ bitta to‘liq o‘yin\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\nO‘yiningizda:\nTo‘rt strelka ✓\nBall ✓\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "369db7ac15e3",
+  "uzun": 40530
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nXakaton nima?\n\nCoddy\nXakaton — birga, oz vaqtda bitta narsa yasash.\n\nJuftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Ball\n✓ Jon\nRo‘yxat\nTayyor!\nO‘yin\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nBugun — juftlikda o‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "aacd8404840c",
+  "uzun": 26344
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida o‘yiningizni do‘stlar o‘ynaydi.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n1\nTanlaymiz\n2\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "9f2ebf3402b2",
+  "uzun": 42255
+ },
+ "u-07-P6": {
+  "id": "P6",
+  "matn": "QOIDA\nRul va xarita\n\nCoddy\nBiri rulda, biri xaritaga qaraydi.\n\nHaydovchi — Bloklarni qo‘yadi\nXaritachi — Kartani o‘qiydi, kuzatadi\nQism tayyor — o‘ynaymiz, keyin almashamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "378546e4ffad",
+  "uzun": 24105
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "JUFTLIK\nJuftligingizni toping\n\nCoddy\nBitta noutbuk, ikki do‘st.\n\nJuftlik bo‘ldi\n0 / 1\n‹ Orqaga\nJuftlik bo‘ldi: 0 / 1\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "eb61fc3b8ec6",
+  "uzun": 22762
+ },
+ "u-09-P5T": {
+  "id": "P5T",
+  "matn": "XAKATON\nO‘yinni tanlang!\n\nCoddy\nAvval kelishib oling: qaysi o‘yin, qaysi qismlar.\n\nTanladi\n0 / 1\nOlma terish\n0\nLabirint\n0\n‹ Orqaga\nYordam so‘radi: 0 ta noutbuk\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ef622d0c9178",
+  "uzun": 29500
+ },
+ "u-10-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Yasaymiz\n\nCoddy\nEndi navbat bilan yasaysiz.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n✓\nTanlaymiz\n2\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ba7d24c951c9",
+  "uzun": 41973
+ },
+ "u-11-P5Y": {
+  "id": "P5Y",
+  "matn": "XAKATON\nNavbat bilan yasaymiz!\n\nCoddy\nQism tayyor bo‘lsa — o‘ynab ko‘ring va almashing.\n\nUch qism tayyor\n0 / 1\nHar belgi — o‘yini tayyor bitta juftlik\n1\n0\n1-qism\n2\n0\n2-qism\n3\n0\n3-qism\n★\n0\nQo‘shimcha\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0 ta noutbuk\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "76bc1051ab9b",
+  "uzun": 26042
+ },
+ "u-12-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Sinaymiz\n\nCoddy\nEndi o‘yinni do‘stlar o‘ynashidan oldin sinaymiz.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n✓\nTanlaymiz\n✓\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "76cb011578e1",
+  "uzun": 42164
+ },
+ "u-13-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHammasini sinaymiz\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−2\nif\njon\n=\n0\nthen\ngame over\n6 ta dasturcha\n14 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nO‘yiningizda:\n✓\nTo‘rt strelka\nHar strelka o‘z tomoniga\n✓\nJon\nJon 0 da tugaydi\nO‘yin yutildi\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−2ifjon=0thengame over",
+   "c:changejonby−2ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "b720bfa62398",
+  "uzun": 47418
+ },
+ "u-14-P5S": {
+  "id": "P5S",
+  "matn": "XAKATON\nSinang va tuzating!\n\nCoddy\nRo‘yxatdagi har bandni sinang.\n\nRo‘yxati to‘liq\n0 / 1\nHar belgi — o‘yini sinalgan bitta juftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Jon\nSinash: Har strelka o‘z tomoniga\nSinash: Jon 0 da tugaydi\n‹ Orqaga\nYordam so‘radi: 0 ta noutbuk\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1d0f8b0d6abe",
+  "uzun": 22357
+ },
+ "u-15-P5D": {
+  "id": "P5D",
+  "matn": "KO‘RSATISH\nDo‘stlar o‘ynaydi\n\nCoddy\nDo‘stlaringiz yasagan o‘yinni siz yuta olasizmi?\n\nO‘ynab ko‘rildi\n0 / 1\nHar belgi — do‘stlar o‘ynagan bitta o‘yin\n‹ Orqaga\nO‘ynab ko‘rildi: 0 / 1\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "81230e48db25",
+  "uzun": 23818
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nO‘yiningiz haqida ayting\n\nCoddy\nJuftlik o‘z o‘yini haqida aytadi.\n\n1\nO‘yinda nima bor\n2\nKim qaysi qismni yasadi\n3\nEng qiyin joyi\nOlma terish\nLabirint\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "728806d87693",
+  "uzun": 29000
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nSiz o‘yin yasadingiz!\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nIshni bo‘lamiz\nNavbat bilan\nAvval o‘yin ishlasin\nKeyin qo‘shamiz\nKeyingi dars\n16 · Klonlar\n✓\nTanlaymiz\n✓\nYasaymiz\n✓\nSinaymiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a3d1895fdf8e",
+  "uzun": 28794
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin yasaldi\n0\nta qism\n0\nmarta o‘ynab ko‘rildi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c68bd748718c",
+  "uzun": 40049
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\n✕ ikkalamiz bir ishni qildik\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nball:\n0\nBu tugma uchun dasturcha yo‘q-ku…\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "08c233fdc6fb",
+  "uzun": 46887
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\n✕ ikkalamiz bir ishni qildik\nB\nAlohida-alohida yasaymiz\n✕ ikki yarim o‘yin\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ba433c3ce134",
+  "uzun": 41515
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\n✕ ikkalamiz bir ishni qildik\nB\nAlohida-alohida yasaymiz\n✕ ikki yarim o‘yin\nC\nIshni bo‘lamiz, navbat bilan\n✓ bitta to‘liq o‘yin\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "bdf17a45f755",
+  "uzun": 43616
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nXakaton nima?\n\nCoddy\nXakaton — birga, oz vaqtda bitta narsa yasash.\n\nJuftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Ball\n✓ Jon\nRo‘yxat\nTayyor!\nO‘yin\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nBugun — juftlikda o‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d8ae0c84d4d0",
+  "uzun": 26347
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nXakaton nima?\n\nCoddy\nXakaton — birga, oz vaqtda bitta narsa yasash.\n\nJuftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Ball\n✓ Jon\nRo‘yxat\nTayyor!\nO‘yin\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nBugun — juftlikda o‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "21ff01c65f90",
+  "uzun": 26350
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nXakaton nima?\n\nCoddy\nXakaton — birga, oz vaqtda bitta narsa yasash.\n\nJuftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Ball\n✓ Jon\nRo‘yxat\nTayyor!\nO‘yin\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nBugun — juftlikda o‘yin\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c0508924ebbd",
+  "uzun": 26356
+ },
+ "u-x-P6-1": {
+  "id": "P6",
+  "matn": "QOIDA\nRul va xarita\n\nCoddy\nBiri rulda, biri xaritaga qaraydi.\n\nHaydovchi — Bloklarni qo‘yadi\nXaritachi — Kartani o‘qiydi, kuzatadi\nQism tayyor — o‘ynaymiz, keyin almashamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d4b3f5e4375e",
+  "uzun": 24108
+ },
+ "u-x-P6-2": {
+  "id": "P6",
+  "matn": "QOIDA\nRul va xarita\n\nCoddy\nBiri rulda, biri xaritaga qaraydi.\n\nHaydovchi — Bloklarni qo‘yadi\nXaritachi — Kartani o‘qiydi, kuzatadi\nQism tayyor — o‘ynaymiz, keyin almashamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "39aba5e6e49b",
+  "uzun": 24111
+ },
+ "u-x-P6-3": {
+  "id": "P6",
+  "matn": "QOIDA\nRul va xarita\n\nCoddy\nBiri rulda, biri xaritaga qaraydi.\n\nHaydovchi — Bloklarni qo‘yadi\nXaritachi — Kartani o‘qiydi, kuzatadi\nQism tayyor — o‘ynaymiz, keyin almashamiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "367d66299620",
+  "uzun": 24114
+ },
+ "u-x-P8-yutdi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHammasini sinaymiz\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−2\nif\njon\n=\n0\nthen\ngame over\n6 ta dasturcha\n14 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\njon:\n3\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nHar strelka o‘z tomoniga\n✓\nJon\nJon 0 da tugaydi\n✓\nO‘yin yutildi\n‹ Orqaga\nSiz yutdingiz!\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−2ifjon=0thengame over",
+   "c:changejonby−2ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "c85083ca56d6",
+  "uzun": 49498
+ },
+ "u-x-P8-jon-2": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHammasini sinaymiz\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−2\nif\njon\n=\n0\nthen\ngame over\n6 ta dasturcha\n14 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\njon:\n−1\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nHar strelka o‘z tomoniga\n✓\nJon\nJon 0 da tugaydi\n✓\nO‘yin yutildi\nO‘yin: strelkalarni bosing\nJon tugadi-ku!\n‹ Orqaga\nJon −1 bo‘ldi, o‘yin esa davom etyapti. Jon 0 bo‘lganda o‘yin tugashi uchun shart kerak\n■ To‘xtatish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−2ifjon=0thengame over",
+   "c:changejonby−2ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "33bead70f057",
+  "uzun": 53407
+ },
+ "u-x-P8-tugadi": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHammasini sinaymiz\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n6 ta dasturcha\n14 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\njon:\n0\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nHar strelka o‘z tomoniga\n✓\nJon\n✓\nJon 0 da tugaydi\n✓\nO‘yin yutildi\nO‘yin tugadi\n‹ Orqaga\nJon tugadi. ▶ Boshlash — yana o‘ynang\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "526852179627",
+  "uzun": 47785
+ },
+ "u-x-P11-lab": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nO‘yiningiz haqida ayting\n\nCoddy\nJuftlik o‘z o‘yini haqida aytadi.\n\n1\nO‘yinda nima bor\n2\nKim qaysi qismni yasadi\n3\nEng qiyin joyi\nOlma terish\nLabirint\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e23abd7bb4ad",
+  "uzun": 29003
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin yasaldi\n0\nta qism\n0\nmarta o‘ynab ko‘rildi\nDars tugadi!\nKo‘rishguncha — keyingi darsda klonlar bilan!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "43db5aa0606c",
+  "uzun": 40187
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "15-DARS · XAKATON №1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "b0280e7ce88b",
+  "uzun": 24480
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "15-DARS · XAKATON №1\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "5e82e366c416",
+  "uzun": 16092
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "15-DARS · XAKATON №1\nSAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st bitta o‘yinni qanday yasaydi?\n\nA\nIkkalamiz birga bosamiz\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "c34f688e0310",
+  "uzun": 39425
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "15-DARS · XAKATON №1\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "990bc3dd6b9d",
+  "uzun": 16095
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz usullarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "9bdc0981674e",
+  "uzun": 16107
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "3f2dfa37f4ae",
+  "uzun": 16087
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: xakaton",
+  "bloklar": [],
+  "html": "eab73828d476",
+  "uzun": 16090
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "0208b6d96cfb",
+  "uzun": 16089
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz bugungi qoidani aytyapti",
+  "bloklar": [],
+  "html": "167beba44e47",
+  "uzun": 16101
+ },
+ "bq-08-0-BJ": {
+  "id": "BJ",
+  "matn": "JUFTLIK\nJuftligingizni toping\n\nCoddy\nBitta noutbuk, ikki do‘st.\n\nO‘yin shu noutbukda\nO‘yin do‘stimning noutbukida\nBirini tanlang",
+  "bloklar": [],
+  "html": "9f592a07d52a",
+  "uzun": 22125
+ },
+ "bq-08-1-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "3f2dfa37f4ae",
+  "uzun": 16087
+ },
+ "bq-09-0-BT": {
+  "id": "BT",
+  "matn": "XAKATON · TANLAYMIZ\nO‘yinni tanlang\n\nCoddy\nIkkalangiz kelishib oling: qaysi o‘yin, qaysi ikki qism.\n\nOlma terish\nLabirint\nAvval o‘yinni tanlang\nTanladik",
+  "bloklar": [],
+  "html": "3b2258086983",
+  "uzun": 34354
+ },
+ "bq-09-1-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yasashni ochadi",
+  "bloklar": [],
+  "html": "612bdf0b2bf2",
+  "uzun": 16092
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: yasaymiz",
+  "bloklar": [],
+  "html": "70e5458b20d6",
+  "uzun": 16088
+ },
+ "bq-11-0-BXO": {
+  "id": "BXO",
+  "matn": "XAKATON · 1-QISM\nTo‘rt strelka\nHar strelka qahramonni o‘z tomoniga yurgizsin 8 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\n1\nTo‘rt strelka\nHaydovchi\nXaritachi\nMaslahat\nXaritachi kartani o‘qisin\n▶ Boshlash",
+  "bloklar": [],
+  "html": "dbf5169d6c33",
+  "uzun": 33473
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: sinaymiz",
+  "bloklar": [],
+  "html": "88bc1db005f2",
+  "uzun": 16088
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz o‘yinni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "f2cd95d4f62f",
+  "uzun": 16105
+ },
+ "bq-14-0-BSO": {
+  "id": "BSO",
+  "matn": "XAKATON · SINAYMIZ\nHammasini sinang\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\n1\nTo‘rt strelka\ntugamagan\nO‘yin yutildi\nDo‘stlar o‘ynadi\nHamma holatni sinang\n▶ Boshlash",
+  "bloklar": [],
+  "html": "51a557719d42",
+  "uzun": 32547
+ },
+ "bq-15-0-BDO": {
+  "id": "BDO",
+  "matn": "KO‘RSATISH\nDo‘stlar o‘ynaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n▶ Do‘stingiz o‘ynaydi",
+  "bloklar": [],
+  "html": "677f793fc41c",
+  "uzun": 32478
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nBugun juftlikda o‘yin yasadingiz!\n\nBulut\nDo‘stim bilan birga yasadik!\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\nBulut\nKeyingi darsda klonlar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "3cea81ad1fd1",
+  "uzun": 24089
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nBugun juftlikda o‘yin yasadingiz!\n\nBulut\nDo‘stim bilan birga yasadik!\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\nBulut\nKeyingi darsda klonlar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "3cea81ad1fd1",
+  "uzun": 24089
+ },
+ "bx-BJ-oyin": {
+  "id": "BJ",
+  "matn": "JUFTLIK\nJuftligingizni toping\n\nCoddy\nBitta noutbuk, ikki do‘st.\n\nO‘yin shu noutbukda\nO‘yin do‘stimning noutbukida\nBirini tanlang",
+  "bloklar": [],
+  "html": "73cd12d1ce3f",
+  "uzun": 22128
+ },
+ "bx-BT-olma": {
+  "id": "BT",
+  "matn": "XAKATON · TANLAYMIZ\nOlma terish\n\nCoddy\nIkkalangiz kelishib oling: qaysi o‘yin, qaysi ikki qism.\n\n1\nTo‘rt strelka\n8 ta blok\nBu qismsiz o‘yin yurmaydi\nBall\n4 ta blok\nJon\n6 ta blok\nQadam\n6 ta blok\nQuvonch\n3 ta blok\n★\nOltin olma\n2 ta blok\nVaqt qolsa\nTanladik",
+  "bloklar": [],
+  "html": "73b204cd622e",
+  "uzun": 28287
+ },
+ "bx-BT-ikki": {
+  "id": "BT",
+  "matn": "XAKATON · TANLAYMIZ\nOlma terish\n\nCoddy\nIkkalangiz kelishib oling: qaysi o‘yin, qaysi ikki qism.\n\n1\nTo‘rt strelka\n8 ta blok\nBu qismsiz o‘yin yurmaydi\n✓\nBall\n4 ta blok\nOlma terilsa — ballga 1. O‘yin noldan boshlansin\n✓\nJon\n6 ta blok\nKaktusga tegsa — jon kamaysin. Jon 0 — o‘yin tugaydi.\nQadam\n6 ta blok\nQuvonch\n3 ta blok\n★\nOltin olma\n2 ta blok\nVaqt qolsa\nTanladik",
+  "bloklar": [],
+  "html": "6ae7f12c05f7",
+  "uzun": 28408
+ },
+ "bx-BT-tanladik": {
+  "id": "BT",
+  "matn": "XAKATON · TANLAYMIZ\nOlma terish\n\nCoddy\nIkkalangiz kelishib oling: qaysi o‘yin, qaysi ikki qism.\n\n1\nTo‘rt strelka\n8 ta blok\nBu qismsiz o‘yin yurmaydi\n✓\nBall\n4 ta blok\nOlma terilsa — ballga 1. O‘yin noldan boshlansin\n✓\nJon\n6 ta blok\nKaktusga tegsa — jon kamaysin. Jon 0 — o‘yin tugaydi.\nQadam\n6 ta blok\nQuvonch\n3 ta blok\n★\nOltin olma\n2 ta blok\nVaqt qolsa\nBirinchi haydovchi sichqonchani olsin.\nTayyormiz",
+  "bloklar": [],
+  "html": "0a94f2e55a1c",
+  "uzun": 28447
+ },
+ "bx-BXO-bosh": {
+  "id": "BXO",
+  "matn": "XAKATON · 1-QISM\nTo‘rt strelka\nHar strelka qahramonni o‘z tomoniga yurgizsin 8 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\n1\nTo‘rt strelka\nHaydovchi\nXaritachi\n2\nBall\n3\nJon\nMaslahat\nXaritachi kartani o‘qisin\n▶ Boshlash",
+  "bloklar": [],
+  "html": "38c5d72a7f53",
+  "uzun": 33582
+ },
+ "bx-BXO-bosh-muammo": {
+  "id": "BXO",
+  "matn": "XAKATON · 1-QISM\nTo‘rt strelka\nHar strelka qahramonni o‘z tomoniga yurgizsin 8 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\n1\nTo‘rt strelka\nHaydovchi\nXaritachi\n2\nBall\n3\nJon\nMen nimani kutaman?\nMaslahat\nAvval 1-qismni yasang: «To‘rt strelka»\n▶ Boshlash",
+  "bloklar": [],
+  "html": "a35bc552a43b",
+  "uzun": 38587
+ },
+ "bx-BXO-qism-tayyor": {
+  "id": "BXO",
+  "matn": "XAKATON · 1-QISM\nTo‘rt strelka\nHar strelka qahramonni o‘z tomoniga yurgizsin 8 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n8 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yiningizda:\n✓\nTo‘rt strelka\n2\nBall\nHaydovchi\nXaritachi\n3\nJon\nQism tayyor!\nMaslahat\n▶ Boshlash",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "fc58cd8b21a3",
+  "uzun": 34507
+ },
+ "bx-BXO-almash": {
+  "id": "BXO",
+  "matn": "XAKATON · 1-QISM\nTo‘rt strelka\nHar strelka qahramonni o‘z tomoniga yurgizsin 8 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n8 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yiningizda:\n✓\nTo‘rt strelka\n2\nBall\nHaydovchi\nXaritachi\n3\nJon\nMaslahat\nAlmashing: sichqoncha — do‘stingizga\nAlmashdik",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "c48159ddf5e3",
+  "uzun": 34557
+ },
+ "bx-BXO-2-qism": {
+  "id": "BXO",
+  "matn": "XAKATON · 2-QISM\nBall\nOlma terilsa — ballga 1. O‘yin noldan boshlansin 4 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n8 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yiningizda:\n✓\nTo‘rt strelka\n2\nBall\nHaydovchi\nXaritachi\n3\nJon\nMaslahat\nXaritachi kartani o‘qisin\n▶ Boshlash",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "c6f14ad2351b",
+  "uzun": 34764
+ },
+ "bx-BXO-ball-muammo": {
+  "id": "BXO",
+  "matn": "XAKATON · 2-QISM\nBall\nOlma terilsa — ballga 1. O‘yin noldan boshlansin 4 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\n4 ta dasturcha\n8 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nO‘yiningizda:\n✓\nTo‘rt strelka\n2\nBall\nHaydovchi\nXaritachi\n3\nJon\nO‘yin: strelkalarni bosing\nOlma terildi, ball-chi?\nMaslahat\nOlmaga tekkanda nima bo‘lsin? Buning uchun o‘z hodisa bloki bor\n■ To‘xtatish",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down"
+  ],
+  "html": "6d11b7d1ef98",
+  "uzun": 39016
+ },
+ "bx-BXO-tayyor": {
+  "id": "BXO",
+  "matn": "XAKATON · 3-QISM\nJon\nKaktusga tegsa — jon kamaysin. Jon 0 — o‘yin tugaydi. 6 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\nball\nto\n0\nset\njon\nto\n3\nwhen touching\napple\nchange\nball\nby\n1\nwhen touching\ncactus\nchange\njon\nby\n−1\nif\njon\n=\n0\nthen\ngame over\n7 ta dasturcha\n17 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\njon:\n3\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nBall\n✓\nJon\nMaslahat\nAlmashing: sichqoncha — do‘stingizga\nAlmashdik",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetballto0setjonto3",
+   "z:setballto0setjonto3",
+   "z:setjonto3",
+   "q:when touchingapplechangeballby1",
+   "c:changeballby1",
+   "q:when touchingcactuschangejonby−1ifjon=0thengame over",
+   "c:changejonby−1ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "47507b3a1f4f",
+  "uzun": 33575
+ },
+ "bx-BSO-bosh": {
+  "id": "BSO",
+  "matn": "XAKATON · SINAYMIZ\nHammasini sinang\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\nwhen\n↓\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\nchange\nball\nby\n1\nwhen touching\napple\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\ncactus\n7 ta dasturcha\n17 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\nO‘yiningizda:\n✓\nTo‘rt strelka\nHar strelka o‘z tomoniga\n✓\nBall\nIkki marta o‘ynadik — ball noldan boshlandi\n✓\nJon\nJon 0 da tugaydi\nO‘yin yutildi\nDo‘stlar o‘ynadi\nHamma holatni sinang\n▶ Boshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "87fd3fed6c58",
+  "uzun": 32871
+ },
+ "bx-BSO-yutdi": {
+  "id": "BSO",
+  "matn": "XAKATON · SINAYMIZ\nHammasini sinang\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\nwhen\n↓\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\nchange\nball\nby\n1\nwhen touching\napple\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\ncactus\n7 ta dasturcha\n17 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\njon:\n3\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nHar strelka o‘z tomoniga\n✓\nBall\nIkki marta o‘ynadik — ball noldan boshlandi\n✓\nJon\nJon 0 da tugaydi\n✓\nO‘yin yutildi\nDo‘stlar o‘ynadi\nSiz yutdingiz!\n▶ Boshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "95104f32f0ab",
+  "uzun": 34931
+ },
+ "bx-BSO-jon0": {
+  "id": "BSO",
+  "matn": "XAKATON · SINAYMIZ\nHammasini sinang\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\nwhen\n↓\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\nchange\nball\nby\n1\nwhen touching\napple\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\ncactus\n7 ta dasturcha\n17 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nball:\n0\njon:\n0\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nHar strelka o‘z tomoniga\n✓\nBall\nIkki marta o‘ynadik — ball noldan boshlandi\n✓\nJon\n✓\nJon 0 da tugaydi\n✓\nO‘yin yutildi\nDo‘stlar o‘ynadi\nO‘yin tugadi\nJon tugadi. ▶ Boshlash — yana o‘ynang\n▶ Boshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "06210f282e1d",
+  "uzun": 33218
+ },
+ "bx-BSO-sinaldi": {
+  "id": "BSO",
+  "matn": "XAKATON · SINAYMIZ\nHammasini sinang\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nmove up\nwhen\n↑\nkey pressed\nmove down\nwhen\n↓\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\nchange\nball\nby\n1\nwhen touching\napple\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\ncactus\n7 ta dasturcha\n17 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n1\njon:\n3\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nHar strelka o‘z tomoniga\n✓\nBall\n✓\nIkki marta o‘ynadik — ball noldan boshlandi\n✓\nJon\n✓\nJon 0 da tugaydi\n✓\nO‘yin yutildi\nDo‘stlar o‘ynadi\nEndi do‘stlar o‘ynashini kuting\n▶ Boshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "343b9c7e85eb",
+  "uzun": 34092
+ },
+ "bx-BDO-bosh": {
+  "id": "BDO",
+  "matn": "KO‘RSATISH\nDo‘stlar o‘ynaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\njon:\n0\n▶ Do‘stingiz o‘ynaydi",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "354a8ba12946",
+  "uzun": 32572
+ },
+ "bx-BDO-yoqdi": {
+  "id": "BDO",
+  "matn": "KO‘RSATISH\nDo‘stlar o‘ynaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nball:\n0\njon:\n2\nSizga yoqdi:\nQiziq\nChiroyli\nQuvnoq\nYana o‘ynayman\nTayyor\n▶ Do‘stingiz o‘ynaydi",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "2b0a6f90a7f5",
+  "uzun": 40866
+ },
+ "bx-BDO-tanladi": {
+  "id": "BDO",
+  "matn": "KO‘RSATISH\nDo‘stlar o‘ynaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nball:\n0\njon:\n2\nSizga yoqdi:\nQiziq\nChiroyli\nQuvnoq\nYana o‘ynayman\nTayyor\n▶ Do‘stingiz o‘ynaydi",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "ecd321ea4847",
+  "uzun": 40868
+ },
+ "bx-BDO-natija": {
+  "id": "BDO",
+  "matn": "KO‘RSATISH\nDo‘stlar o‘ynaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\nball:\n0\njon:\n2\nJoyingizga qayting\nDo‘stlaringiz o‘ynadi: yulduzgacha yetmadi · 1 marta kaktusga tegdi · Yoqdi: Qiziq, Quvnoq\n▶ Do‘stingiz o‘ynaydi",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "k:move upwhen↑key pressed",
+   "u:move up",
+   "k:move downwhen↓key pressed",
+   "d:move down",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:changeballby1when touchingapple",
+   "c:changeballby1",
+   "q:game overifjon=0thenchangejonby−1when touchingcactus",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "b4568040d3c1",
+  "uzun": 33004
+ },
+ "bx-B5-natija": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nSiz o‘yin yasadingiz!\n\nBulut\nDo‘stim bilan birga yasadik!\n\nIkkalangiz bugun:\n3\nta qism yasadingiz\nikkalangiz ham haydadingiz ✓\n1\nmarta o‘ynab ko‘rildi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\n✓\nTo‘rt strelka\n✓\nBall\n✓\nJon\nO‘yiningiz saqlandi.\nBulut\nKeyingi darsda klonlar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "df00685783da",
+  "uzun": 24217
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "15-DARS · XAKATON №1\nSAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st bitta o‘yinni qanday yasaydi?\n\nA\nIkkalamiz birga bosamiz\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "1aadb317ea3a",
+  "uzun": 39434
+ },
+ "bx-BQ": {
+  "id": "BQ",
+  "matn": "15-DARS · XAKATON №1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang",
+  "bloklar": [],
+  "html": "2e629aa5b08a",
+  "uzun": 52606
+ },
+ "bx-BQ-tanladi": {
+  "id": "BK",
+  "matn": "15-DARS · XAKATON №1\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "9a14654b1a7a",
+  "uzun": 15157
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "15-DARS · XAKATON №1\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "b0280e7ce88b",
+  "uzun": 24480
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "15-DARS · XAKATON №1\nBugun juftlikda o‘yin yasaymiz!\n\nCoddy\nSalom! Bugun do‘stingiz bilan birga o‘yin yasaysiz.\n\nO‘TGAN DARSDA\nBitta qadam\nXato\nTopiladigan narsa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "e74c245f87c7",
+  "uzun": 32932
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "15-DARS · XAKATON №1\nSAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st bitta o‘yinni qanday yasaydi?\n\nA\nIkkalamiz birga bosamiz\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nBirini tanlang",
+  "bloklar": [],
+  "html": "c34f688e0310",
+  "uzun": 39425
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\n▶ Sinab ko‘rish\nB\nAlohida-alohida yasaymiz\n▶ Sinab ko‘rish\nC\nIshni bo‘lamiz, navbat bilan\n▶ Sinab ko‘rish\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c64da2be494d",
+  "uzun": 40269
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nIshni bo‘lamiz, navbat bilan\n\nCoddy\nHar qismni bittangiz yasaysiz. Keyin almashasiz.\n\nA\nIkkalamiz birga bosamiz\n✕ ikkalamiz bir ishni qildik\nB\nAlohida-alohida yasaymiz\n✕ ikki yarim o‘yin\nC\nIshni bo‘lamiz, navbat bilan\n✓ bitta to‘liq o‘yin\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\nO‘yiningizda:\nTo‘rt strelka ✓\nBall ✓\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "2d18a2b311a5",
+  "uzun": 39211
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nXakaton nima?\n\nCoddy\nXakaton — birga, oz vaqtda bitta narsa yasash.\n\nJuftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Ball\n✓ Jon\nRo‘yxat\nTayyor!\nO‘yin\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nBugun — juftlikda o‘yin\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "71c808dfc832",
+  "uzun": 25025
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida o‘yiningizni do‘stlar o‘ynaydi.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n1\nTanlaymiz\n2\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "ff98bc61d5c4",
+  "uzun": 40936
+ },
+ "sq-07-0-P6": {
+  "id": "P6",
+  "matn": "QOIDA\nRul va xarita\n\nCoddy\nBiri rulda, biri xaritaga qaraydi.\n\nHaydovchi — Bloklarni qo‘yadi\nXaritachi — Kartani o‘qiydi, kuzatadi\nQism tayyor — o‘ynaymiz, keyin almashamiz\nBugun siz bir o‘zingiz: haydovchi ham, xaritachi ham — siz. Avval kartani o‘qing, keyin yasang.\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "48228bc22dcd",
+  "uzun": 22776
+ },
+ "sq-09-0-BT": {
+  "id": "BT",
+  "matn": "XAKATON · TANLAYMIZ\nO‘yinni tanlang\n\nCoddy\nIkkalangiz kelishib oling: qaysi o‘yin, qaysi ikki qism.\n\nOlma terish\nLabirint\nAvval o‘yinni tanlang\nTanladik",
+  "bloklar": [],
+  "html": "3b2258086983",
+  "uzun": 34354
+ },
+ "sq-10-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Yasaymiz\n\nCoddy\nEndi navbat bilan yasaysiz.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n✓\nTanlaymiz\n2\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "be13125c282e",
+  "uzun": 40654
+ },
+ "sq-11-0-BXO": {
+  "id": "BXO",
+  "matn": "XAKATON · 1-QISM\nTo‘rt strelka\nHar strelka qahramonni o‘z tomoniga yurgizsin 8 ta blok\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\n1\nTo‘rt strelka\nMaslahat\nXaritachi kartani o‘qisin\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "292827f52964",
+  "uzun": 32797
+ },
+ "sq-12-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Sinaymiz\n\nCoddy\nEndi o‘yinni do‘stlar o‘ynashidan oldin sinaymiz.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n✓\nTanlaymiz\n✓\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "c1a1fa9bb99a",
+  "uzun": 40845
+ },
+ "sq-13-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHammasini sinaymiz\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−2\nif\njon\n=\n0\nthen\ngame over\n6 ta dasturcha\n14 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nO‘yiningizda:\n✓\nTo‘rt strelka\nHar strelka o‘z tomoniga\n✓\nJon\nJon 0 da tugaydi\nO‘yin yutildi\n‹ Orqaga\nKaktusga ataylab tegib ko‘ring — jon 0 da tugaydimi?\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−2ifjon=0thengame over",
+   "c:changejonby−2ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "7b2cbce05ab3",
+  "uzun": 46151
+ },
+ "sq-14-0-BSO": {
+  "id": "BSO",
+  "matn": "XAKATON · SINAYMIZ\nHammasini sinang\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\n1\nTo‘rt strelka\ntugamagan\nO‘yin yutildi\nDo‘stlar o‘ynadi\nHamma holatni sinang\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [],
+  "html": "3b575983e266",
+  "uzun": 32594
+ },
+ "sq-15-0-BDO": {
+  "id": "BDO",
+  "matn": "KO‘RSATISH\nDo‘stlar o‘ynaydi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nKimgadir o‘ynating — uydagilardan biri o‘ynasa bo‘ladi\n▶ Do‘stingiz o‘ynaydi\nKeyingi ›",
+  "bloklar": [],
+  "html": "4b537e0af40b",
+  "uzun": 32579
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nBugun juftlikda o‘yin yasadingiz!\n\nBulut\nO‘yinni o‘zim yasadim!\n\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nO‘yiningizda:\nBulut\nKeyingi darsda klonlar bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "1dfc0f71fd78",
+  "uzun": 24076
+ },
+ "sx-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\n▶ Sinab ko‘rish\nB\nAlohida-alohida yasaymiz\n▶ Sinab ko‘rish\nC\nIshni bo‘lamiz, navbat bilan\n✓ bitta to‘liq o‘yin\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "965f6f81f098",
+  "uzun": 42364
+ },
+ "sx-P6-solo": {
+  "id": "P6",
+  "matn": "QOIDA\nRul va xarita\n\nCoddy\nBiri rulda, biri xaritaga qaraydi.\n\nHaydovchi — Bloklarni qo‘yadi\nXaritachi — Kartani o‘qiydi, kuzatadi\nQism tayyor — o‘ynaymiz, keyin almashamiz\nBugun siz bir o‘zingiz: haydovchi ham, xaritachi ham — siz. Avval kartani o‘qing, keyin yasang.\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "48228bc22dcd",
+  "uzun": 22776
+ },
+ "sx-P8-tayyor": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nHammasini sinaymiz\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−2\nif\njon\n=\n0\nthen\ngame over\n6 ta dasturcha\n14 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nO‘yiningizda:\n✓\nTo‘rt strelka\nHar strelka o‘z tomoniga\n✓\nJon\nJon 0 da tugaydi\nO‘yin yutildi\n‹ Orqaga\nKaktusga ataylab tegib ko‘ring — jon 0 da tugaydimi?\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−2ifjon=0thengame over",
+   "c:changejonby−2ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "7b2cbce05ab3",
+  "uzun": 46151
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n15-DARS · XAKATON №1\nBugun juftlikda o‘yin yasaymiz!\n\nCoddy\nSalom! Bugun do‘stingiz bilan birga o‘yin yasaysiz.\n\nO‘TGAN DARSDA\nBitta qadam\nXato\nTopiladigan narsa\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n15-DARS · XAKATON №1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "1cb830698f16",
+  "uzun": 87009
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n15-DARS · XAKATON №1\nSAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n15-DARS · XAKATON №1\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ed9dcbc67c4f",
+  "uzun": 94398
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nBitta o‘yinni qanday yasaymiz?\n\nCoddy\nIkki do‘st, o‘yin esa bitta.\n\nA\nIkkalamiz birga bosamiz\nB\nAlohida-alohida yasaymiz\nC\nIshni bo‘lamiz, navbat bilan\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "349433a033fa",
+  "uzun": 94257
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nIshni bo‘lamiz, navbat bilan\n\nCoddy\nHar qismni bittangiz yasaysiz. Keyin almashasiz.\n\nA\nIkkalamiz birga bosamiz\n✕ ikkalamiz bir ishni qildik\nB\nAlohida-alohida yasaymiz\n✕ ikki yarim o‘yin\nC\nIshni bo‘lamiz, navbat bilan\n✓ bitta to‘liq o‘yin\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n3\nO‘yiningizda:\nTo‘rt strelka ✓\nBall ✓\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6a7de8f4fc7e",
+  "uzun": 93280
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nXakaton nima?\n\nCoddy\nXakaton — birga, oz vaqtda bitta narsa yasash.\n\nJuftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Ball\n✓ Jon\nRo‘yxat\nTayyor!\nO‘yin\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nBugun — juftlikda o‘yin\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d856f0a94770",
+  "uzun": 79094
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida o‘yiningizni do‘stlar o‘ynaydi.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n1\nTanlaymiz\n2\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "fac21faaa254",
+  "uzun": 95005
+ },
+ "y-07": {
+  "id": "P6",
+  "matn": "USTOZ · PROYEKTOR\nQOIDA\nRul va xarita\n\nCoddy\nBiri rulda, biri xaritaga qaraydi.\n\nHaydovchi — Bloklarni qo‘yadi\nXaritachi — Kartani o‘qiydi, kuzatadi\nQism tayyor — o‘ynaymiz, keyin almashamiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "336c782ccc94",
+  "uzun": 76855
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nJUFTLIK\nJuftligingizni toping\n\nCoddy\nBitta noutbuk, ikki do‘st.\n\nJuftlik bo‘ldi\n0 / 1\n‹ Orqaga\nJuftlik bo‘ldi: 0 / 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "076247bac649",
+  "uzun": 75512
+ },
+ "y-09": {
+  "id": "P5T",
+  "matn": "USTOZ · PROYEKTOR\nXAKATON\nO‘yinni tanlang!\n\nCoddy\nAvval kelishib oling: qaysi o‘yin, qaysi qismlar.\n\nTanladi\n0 / 1\nOlma terish\n0\nLabirint\n0\n‹ Orqaga\nYordam so‘radi: 0 ta noutbuk\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "55c65063eb4d",
+  "uzun": 82250
+ },
+ "y-10": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Yasaymiz\n\nCoddy\nEndi navbat bilan yasaysiz.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n✓\nTanlaymiz\n2\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a2bfe15ea9c5",
+  "uzun": 94723
+ },
+ "y-11": {
+  "id": "P5Y",
+  "matn": "USTOZ · PROYEKTOR\nXAKATON\nNavbat bilan yasaymiz!\n\nCoddy\nQism tayyor bo‘lsa — o‘ynab ko‘ring va almashing.\n\nUch qism tayyor\n0 / 1\nHar belgi — o‘yini tayyor bitta juftlik\n1\n0\n1-qism\n2\n0\n2-qism\n3\n0\n3-qism\n★\n0\nQo‘shimcha\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0 ta noutbuk\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "a42f04745048",
+  "uzun": 78792
+ },
+ "y-12": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Sinaymiz\n\nCoddy\nEndi o‘yinni do‘stlar o‘ynashidan oldin sinaymiz.\n\nDars oxirida · do‘stlar o‘ynaydi\nO‘yiningiz\n✓\nTanlaymiz\n✓\nYasaymiz\n3\nSinaymiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d4eafff2231b",
+  "uzun": 94914
+ },
+ "y-13": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nHammasini sinaymiz\nHodisa\nHarakat\nShart\nO‘zgaruvchi\nKo‘rinish\nTovush\nHodisa\nwhen\n→\nkey pressed\nwhen ▶ clicked\nwhen touching\napple\nwhen\nany\nkey pressed\ngame over\nDastur\nwhen\n→\nkey pressed\nmove right\nwhen\n←\nkey pressed\nmove left\nwhen\n↑\nkey pressed\nmove up\nwhen\n↓\nkey pressed\nmove down\nwhen ▶ clicked\nset\njon\nto\n3\nwhen touching\ncactus\nchange\njon\nby\n−2\nif\njon\n=\n0\nthen\ngame over\n6 ta dasturcha\n14 / 30 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\njon:\n0\nO‘yiningizda:\n✓\nTo‘rt strelka\nHar strelka o‘z tomoniga\n✓\nJon\nJon 0 da tugaydi\nO‘yin yutildi\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:when→key pressedmove right",
+   "r:move right",
+   "k:when←key pressedmove left",
+   "l:move left",
+   "k:when↑key pressedmove up",
+   "u:move up",
+   "k:when↓key pressedmove down",
+   "d:move down",
+   "f:when ▶ clickedsetjonto3",
+   "z:setjonto3",
+   "q:when touchingcactuschangejonby−2ifjon=0thengame over",
+   "c:changejonby−2ifjon=0thengame over",
+   "i:ifjon=0thengame over",
+   "g:game over"
+  ],
+  "html": "a6c0b380dfb8",
+  "uzun": 100168
+ },
+ "y-14": {
+  "id": "P5S",
+  "matn": "USTOZ · PROYEKTOR\nXAKATON\nSinang va tuzating!\n\nCoddy\nRo‘yxatdagi har bandni sinang.\n\nRo‘yxati to‘liq\n0 / 1\nHar belgi — o‘yini sinalgan bitta juftlik\nO‘yiningizda:\n✓ To‘rt strelka\n✓ Jon\nSinash: Har strelka o‘z tomoniga\nSinash: Jon 0 da tugaydi\n‹ Orqaga\nYordam so‘radi: 0 ta noutbuk\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2d6a562dfb66",
+  "uzun": 75107
+ },
+ "y-15": {
+  "id": "P5D",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDo‘stlar o‘ynaydi\n\nCoddy\nDo‘stlaringiz yasagan o‘yinni siz yuta olasizmi?\n\nO‘ynab ko‘rildi\n0 / 1\nHar belgi — do‘stlar o‘ynagan bitta o‘yin\n‹ Orqaga\nO‘ynab ko‘rildi: 0 / 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "66df277a69fe",
+  "uzun": 76568
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nO‘yiningiz haqida ayting\n\nCoddy\nJuftlik o‘z o‘yini haqida aytadi.\n\n1\nO‘yinda nima bor\n2\nKim qaysi qismni yasadi\n3\nEng qiyin joyi\nOlma terish\nLabirint\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "5bb340c0bc92",
+  "uzun": 81750
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nSiz o‘yin yasadingiz!\nBUGUNGI SO‘Z\nXakaton\nBirga, oz vaqtda bitta narsa yasash\nIshni bo‘lamiz\nNavbat bilan\nAvval o‘yin ishlasin\nKeyin qo‘shamiz\nKeyingi dars\n16 · Klonlar\n✓\nTanlaymiz\n✓\nYasaymiz\n✓\nSinaymiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6b58eb8774e5",
+  "uzun": 81544
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta o‘yin yasaldi\n0\nta qism\n0\nmarta o‘ynab ko‘rildi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: bitta o‘yinni qanday yasaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: ishni bo‘lamiz, navbat bilan\n5 / 18 · Yangi so‘z: xakaton\n6 / 18 · Reja\n7 / 18 · Bugungi qoida: rul va xarita\n8 / 18 · Juftligingizni toping\n9 / 18 · Tanlaymiz: o‘yin va qismlar\n10 / 18 · 2-bekat\n11 / 18 · Yasaymiz: navbat bilan\n12 / 18 · 3-bekat\n13 / 18 · Ko‘ramiz: hamma holatni sinaymiz\n14 / 18 · Sinaymiz: ro‘yxat\n15 / 18 · Do‘stlar o‘ynaydi\n16 / 18 · O‘yiningiz haqida ayting\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "dbb09d547852",
+  "uzun": 92799
+ },
+ "varaq": {
+  "id": "",
+  "matn": "15-dars · Xakaton №1 — ustoz varag‘i\n\nAsosiy fikr: ishni bo‘lamiz, navbat bilan; avval o‘yin ishlasin — keyin qo‘shamiz. Hukda, javobda, 10-qadamda va yakunda chiqadi.\n\nBu — xakaton: yangi blok yo‘q, siz o‘yin yasab bermaysiz. Ko‘rsatuv bitta — 13-qadam (sinash). Qolgan vaqt juftliklar ishlaydi, siz aylanasiz.\n\nJuftliklarni oldindan tuzing: yoningizdagi do‘st asosida, lekin kuchi juda farq qiladigan ikki bolani birga qo‘ymang. Toq bo‘lsa — bitta uchtalik. Ism proyektorga chiqmaydi — juftlarni og‘zaki ayting.\n\nVaqt ekranda yo‘q — bekatni siz «Keyingi» bilan almashtirasiz. Mo‘ljal: 47-daqiqada «Yasaymiz» tugaydi, 58:30 da sinash ro‘yxati tugaydi. 11-qadam o‘rtasida bir marta: «Yarmidan o‘tdik. 1-qism tayyor bo‘lmasa — hozir faqat shuni tugating. Tayyor bo‘lsa — keyingisi.»\n\nAylanganda — rolga qarang, dasturga emas: «Kim haydovchi? Xaritachi, kartada nima deyilgan?». Xaritachi sichqonchaga tegmaydi. Yechimni aytmang — qaysi darsda o‘tilganini ayting: to‘rt strelka — 4-dars; qoida, qadam tovushi, startga qaytish — 9-dars; 2-daraja, kalit va eshik, uzun daraja — 10-dars; ball, oltin olma — 11-dars; jon, qadam — 12-dars; kostyum va tovush — 7-dars.\n\n«Sizga yoqdi:» da yomon belgi yo‘q — har o‘yin kamida bitta «yoqdi» oladi. «Eng yaxshi o‘yin», «kim yutdi» demang; o‘yinlarni solishtirmang.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«15-dars · Xakaton №1» — «Bugun juftlikda o‘yin yasaymiz!» Maydon, Coddy (0, 0) da; pastda «O‘tgan darsda» — «Bitta qadam».\n\nSIZ\n«O‘tgan darsda xatolarni topib tuzatdik.» «Bugun yangi blok yo‘q. Do‘stingiz bilan bitta o‘yin yasaysiz.» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nBugun juftlikda o‘yin yasashini biladi.\n\n2\nSavol: bitta o‘yinni qanday yasaymiz?\n\nEKRANDA\nSavol: «Bitta o‘yinni qanday yasaymiz?» Uchta karta: A «Ikkalamiz birga bosamiz» · B «Alohida-alohida yasaymiz» · C «Ishni bo‘lamiz, navbat bilan».\n\nSIZ\n«Bugun har o‘yinni ikki do‘st yasaydi. Qanday qilib?» «Har kim noutbukida bitta kartani tanlasin.»\n\nBOLA O‘RGANADI\nBirga ishlash usuli haqida o‘ylaydi.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A — ikki bir xil dasturcha, → — ikki katak, ↑ — Bo‘shvoy («✕ ikkalamiz bir ishni qildik»). «Keyingi» — B: ikki yarim o‘yin («✕ ikki yarim o‘yin»). «Keyingi» — C: ro‘yxat, almashish, «Siz yutdingiz!» («✓ bitta to‘liq o‘yin»).\n\nSIZ\n«Birga bossak — bir ishni ikki marta qilamiz. Alohida-alohida yasasak — ikki yarim o‘yin.» «Ishni bo‘ldik: biri yasaydi, biri yordam beradi. Keyin almashadi.»\n\nBOLA O‘RGANADI\nUch usulning natijasini ko‘radi.\n\n4\nJavob: ishni bo‘lamiz, navbat bilan\n\nEKRANDA\nJavob: «Ishni bo‘lamiz, navbat bilan». A va B xira, C oltin; ro‘yxatda ikki qism ✓, har birining yonida boshqa rul.\n\nSIZ\n«Ishni bo‘lamiz, navbat bilan. Avval o‘yin ishlasin — keyin qo‘shamiz.»\n\nBOLA O‘RGANADI\nBugungi asosiy fikrni eshitadi.\n\n5\nYangi so‘z: xakaton\n\nEKRANDA\nYangi so‘z: «Xakaton nima?» «Keyingi» — birma-bir: juftlik, ro‘yxat, tayyor o‘yin «Tayyor!».\n\nSIZ\n«Xakaton — birga, oz vaqtda bitta narsa yasash.» «Dasturchilar ham shunday qiladi: bir necha kishi bitta narsani birga yasaydi.»\n\nBOLA O‘RGANADI\n«Xakaton» so‘zini biladi.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — tanlaymiz → yasaymiz → sinaymiz; cho‘qqida «Dars oxirida · do‘stlar o‘ynaydi».\n\nSIZ\n«Bugun uchta bekat: tanlaymiz, yasaymiz, sinaymiz.» «Dars oxirida o‘yiningizni boshqa juftlik o‘ynaydi.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nBugungi qoida: rul va xarita\n\nEKRANDA\nQoida: «Rul va xarita». «Keyingi» — birma-bir: haydovchi, xaritachi, qism tayyor — almashamiz.\n\nSIZ\n«Haydovchi — sichqoncha qo‘lida. Xaritachi — kartani o‘qiydi, nima kerakligini aytadi.» «Qism tayyor bo‘lsa — almashasiz. Ikkalangiz ham haydaysiz.» «Xaritachi sichqonchaga tegmaydi — gapirib yordam beradi.»\n\nBOLA O‘RGANADI\nIkki rolni biladi.\n\n8\nJuftligingizni toping\n\nEKRANDA\nJuftlik: «Juftligingizni toping» — «Juftlik bo‘ldi: N / M». Bola noutbukida ikki karta.\n\nSIZ\n«Juftligingiz bilan bitta noutbuk oldiga o‘tiring.» «Bitta noutbukda «O‘yin shu noutbukda»ni bosing, ikkinchisida — «O‘yin do‘stimning noutbukida».»\n\nBOLA O‘RGANADI\nJuftligi bilan bitta noutbukda o‘tiradi.\n\n9\nTanlaymiz: o‘yin va qismlar\n\nEKRANDA\nDoska: «O‘yinni tanlang!» — «Tanladi: N / M», ikki o‘yin kartasi va son.\n\nSIZ\n«Ikkalangiz kelishib oling: qaysi o‘yin, qaysi ikki qism.» «Birinchi qism hammada bir xil — usiz o‘yin yurmaydi.»\n\nBOLA O‘RGANADI\nJuftligi bilan kelishib tanlaydi.\n\n10\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Yasaymiz».\n\nSIZ\n«Avval o‘yin ishlasin: birinchi qism — strelkalar. Tayyor bo‘lsa — o‘ynab ko‘ring va almashing.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n11\nYasaymiz: navbat bilan\n\nEKRANDA\nDoska: «Navbat bilan yasaymiz!» — zinapoya 1-qism · 2-qism · 3-qism · ★; «Uch qism tayyor: N / M». Taxminan 30-daqiqada bir marta og‘zaki eslatma.\n\nSIZ\n«Haydovchi bloklarni qo‘yadi, xaritachi kartani o‘qiydi.» «Har qismdan keyin o‘ynab ko‘ring. O‘yin ishlasa — almashing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nNavbat bilan qism yasaydi va almashadi.\n\n12\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Sinaymiz».\n\nSIZ\n«Yangi qism boshlamaymiz. Endi bor o‘yinni sinaymiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n13\nKo‘ramiz: hamma holatni sinaymiz\n\nEKRANDA\nKo‘ramiz: «Hammasini sinaymiz». Tayyor o‘yin: to‘rt strelka va jon (change jon by −2). ▶ — yutasiz; kaktusga ikki marta tegasiz — jon −1, o‘yin tugamaydi; −2 ni −1 ga o‘zgartirib, uch marta — «O‘yin tugadi».\n\nSIZ\n«Yutdik — lekin bu hali hammasi emas. Kaktusga ataylab tegib ko‘ramiz.» «Xato — topiladigan narsa. Tuzatdik — yana sinaymiz.» «Endi o‘zingiz.»\n\nBOLA O‘RGANADI\nHamma holatni sinash kerakligini ko‘radi.\n\n14\nSinaymiz: ro‘yxat\n\nEKRANDA\nDoska: «Sinang va tuzating!» — «Ro‘yxati to‘liq: N / M».\n\nSIZ\n«Xaritachi ro‘yxatni o‘qiydi, haydovchi sinaydi. Bitta band — bitta haydovchi, keyin almashing.» «Tugamagan qism o‘yinni buzmasin: tugating yoki olib tashlang.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nO‘yinini hamma holatda sinaydi.\n\n15\nDo‘stlar o‘ynaydi\n\nEKRANDA\nDoska: «Do‘stlar o‘ynaydi» — «O‘ynab ko‘rildi: N / M»; stollar aylanasi.\n\nSIZ\n«Keyingi stolga o‘tamiz. O‘yinni o‘ynang — dasturiga tegmang.» «O‘ynab bo‘lgach — sizga nima yoqdi, belgilang.» «Joyingizga qayting: do‘stlar qanday o‘ynaganini ko‘ring.»\n\nBOLA O‘RGANADI\nDo‘stlarning o‘yinini o‘ynaydi va belgilaydi.\n\n16\nO‘yiningiz haqida ayting\n\nEKRANDA\n«O‘yiningiz haqida ayting»: uch qator va ikki o‘yin kartasi — aytayotgan juftlik o‘yini turini bosasiz. Ism yo‘q.\n\nSIZ\n«Qaysi juftlik o‘yini haqida aytadi? Ikkalangiz ham gapiring.» «Har juftlik o‘z qismlarini tanladi — shuning uchun o‘yinlar har xil.»\n\nBOLA O‘RGANADI\nO‘yini haqida gapirib beradi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Siz o‘yin yasadingiz!» Bugungi so‘z — «Xakaton»; to‘rt belgi; keyingi dars — 16 · Klonlar.\n\nSIZ\n«Uchala bekatdan o‘tdik: tanladik, navbat bilan yasadik, sinadik.» «Ishni bo‘ldik, navbat bilan. Avval o‘yin ishladi — keyin qo‘shdik.» «Keyingi darsda bitta qahramondan ko‘p nusxa yasaymiz.»\n\nBOLA O‘RGANADI\nBugun nima qilganini biladi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta o‘yin yasaldi, nechta qism, do‘stlar necha marta o‘ynadi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi) «Bugun 7 ta o‘yin yasaldi — har biri boshqacha.» (haqiqiy son bilan)\n\nBOLA O‘RGANADI\nSinf natijasini ko‘radi.",
+  "bloklar": [],
+  "html": "0d1eff466213",
+  "uzun": 9088
+ },
+ "eshik": {
+  "id": "",
+  "matn": "15-dars · Xakaton №1\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "52052bc34bc8",
+  "uzun": 766
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

@@ -72,5 +72,5 @@ const E = {
     foot: () => fKid('Uchta gapni aytib bering', 'Tayyorman') },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '12–13-qadam. «Siz bugun» — haqiqiy son; pastda «Mening o‘yinim» kartasi.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'O‘yinim <em>tayyor</em>!', '')}${qg('Mening o‘yinim tayyor!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}<div class="kc-mini kc-b"></div></div><div class="oyna">${maydon({}, qahK(), { asl: [3, 4], dush: [[5, 2]], oq: [[1, 2]] })}${ozgQ({ ball: 6, jon: 3 })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda ota-onam o‘ynaydi!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

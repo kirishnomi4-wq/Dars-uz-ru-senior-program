@@ -1,0 +1,1198 @@
+{
+ "u-01-P1": {
+  "id": "P1",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nBloklar ortida nima bor?\n\nCoddy\nSalom! Bugun bloklar ortiga qaraymiz.\n\nO‘TGAN DARSDA\nKosmik o‘yin\nRaketa, o‘q va dushman — har birining o‘z dasturi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b97d890ac4ca",
+  "uzun": 47811
+ },
+ "u-02-P2": {
+  "id": "P2",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nSAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nwhen\n→\nkey pressed\nmove right\n‹ Orqaga\nJavob berdi: 0 / 0\nSinab ko‘ramiz ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "8bd345815918",
+  "uzun": 34288
+ },
+ "u-03-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nKod\no‘ngga yur\n→\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6cea420b6fc3",
+  "uzun": 33882
+ },
+ "u-04-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nHar blok — bitta qator\n\nCoddy\nBloklar ortida kod turadi.\n\nA\no‘ngga yur\n✕ kompyuter bu so‘zni bilmaydi\no‘ngga yur\no‘zbekcha gap\nB\n→\n✕ belgi — buyruq emas\n→\nstrelka belgisi\nC\nmoveRight();\n✓ raketa yurdi\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nmove right\n=\nmoveRight();\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "6a97e40a7983",
+  "uzun": 34115
+ },
+ "u-05-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKod nima?\n\nCoddy\nKod — dastur yozuv ko‘rinishida.\n\nmove right\nBlok\nmoveRight();\nQator\nwhen\n→\nkey pressed\nmove right\nonKey(\"right\", () => {\nmoveRight();\n});\nBitta dastur — ikki ko‘rinish\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0fbb6d7e0473",
+  "uzun": 25213
+ },
+ "u-06-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida kodni o‘qiysiz.\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n1\nBlok va qator\n5\n2\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nBoshladik ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "665bb4f479a9",
+  "uzun": 40511
+ },
+ "u-07-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKodini ko‘rsat\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n</>\nKodini ko‘rsat\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "1b167fbbd85b",
+  "uzun": 36260
+ },
+ "u-08-P5": {
+  "id": "P5",
+  "matn": "MASHQ\nQatorni toping!\n\nCoddy\nBlok va qatorni moslang.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nKodni oching\n2\n0\nQaysi qator?\n3\n0\nQaysi blok?\n★\n0\nYangi qator\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4aba7f4d5eaf",
+  "uzun": 28095
+ },
+ "u-09-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Kodda son\n\nCoddy\nEndi kodda sonni o‘zgartiramiz.\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n✓\nBlok va qator\n2\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "190476051c28",
+  "uzun": 40269
+ },
+ "u-10-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKodda son\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "4275b52f0dca",
+  "uzun": 35849
+ },
+ "u-11-P5G": {
+  "id": "P5G",
+  "matn": "MASHQ\nKodni o‘zgartiring!\n\nCoddy\nKodda sonni o‘zgartiring — o‘ynang.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nKo‘p dushman\n2\n0\nball: 2\nIkki ball\n3\n0\njon: 5\nKo‘proq jon\n★\n0\nO‘z sonlaringiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3e07513a418d",
+  "uzun": 38190
+ },
+ "u-12-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKod\n\nCoddy\nBitta dastur — ikki ko‘rinish.\n\nwhen\n→\nkey pressed\nBloklar\nsudrab ulaymiz\nmoveRight();\nKod\nkompyuter shuni bajaradi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "62493f3e37d2",
+  "uzun": 33073
+ },
+ "u-13-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Kodni o‘qiymiz\n\nCoddy\nEndi bloksiz — faqat kod!\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n✓\nBlok va qator\n5\n✓\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "63cd2d34dcbe",
+  "uzun": 40318
+ },
+ "u-14-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nKodni o‘qiymiz\nHar qator — bitta qadam.\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nKod\nJavaScript\n1\ngoTo(1, 0);\n2\nmoveRight();\n3\nmoveRight();\nMaslahat\nO‘qing — keyin tekshiring\n▶ Tekshirish\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "x:go to x:1y:0move rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "a480fd941293",
+  "uzun": 32680
+ },
+ "u-15-P5B": {
+  "id": "P5B",
+  "matn": "MASHQ\nKodni o‘qing!\n\nCoddy\nO‘qing — keyin tekshiring.\n\nUch pog‘onani tugatdi\n0 / 0\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nIkki qadam\n2\n0\nTakrorlash\n3\n0\nOrqaga\n★\n0\n★ (5, 1)\nNishonga\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "959dfc595c98",
+  "uzun": 31146
+ },
+ "u-16-P11": {
+  "id": "P11",
+  "matn": "KO‘RSATISH\nKodingizni o‘qib bering\nBitta qatorni o‘qing — men blokini topaman.\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 3;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "9ff12f20a3f3",
+  "uzun": 36349
+ },
+ "u-17-P12": {
+  "id": "P12",
+  "matn": "YAKUN\nBloklar ortida — kod!\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\nKeyingi dars\n20 · Takrorlash va test\n✓\nBlok va qator\n5\n✓\nKodda son\n✓\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "148ef8eef7d8",
+  "uzun": 31822
+ },
+ "u-18-P14": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta qatorni topdi\n5\n0\nta sonni o‘zgartirdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "d68c70e58ea6",
+  "uzun": 41823
+ },
+ "u-x-P2S-A": {
+  "id": "P2S",
+  "matn": "SAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\n✕ kompyuter bu so‘zni bilmaydi\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nKod\no‘ngga yur\n→\nTushunmadim…\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4b8912c787dc",
+  "uzun": 39191
+ },
+ "u-x-P2S-B": {
+  "id": "P2S",
+  "matn": "SAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\n✕ kompyuter bu so‘zni bilmaydi\no‘ngga yur\no‘zbekcha gap\nB\n→\n✕ belgi — buyruq emas\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nKod\n→\n→\nTushunmadim…\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "45eee18df4ab",
+  "uzun": 39235
+ },
+ "u-x-P2S-C": {
+  "id": "P2S",
+  "matn": "SAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\n✕ kompyuter bu so‘zni bilmaydi\no‘ngga yur\no‘zbekcha gap\nB\n→\n✕ belgi — buyruq emas\n→\nstrelka belgisi\nC\nmoveRight();\n✓ raketa yurdi\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nKod\nmoveRight();\n→\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "35c243056f18",
+  "uzun": 34883
+ },
+ "u-x-P3-1": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKod nima?\n\nCoddy\nKod — dastur yozuv ko‘rinishida.\n\nmove right\nBlok\nmoveRight();\nQator\nwhen\n→\nkey pressed\nmove right\nonKey(\"right\", () => {\nmoveRight();\n});\nBitta dastur — ikki ko‘rinish\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4724206768ef",
+  "uzun": 25216
+ },
+ "u-x-P3-2": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKod nima?\n\nCoddy\nKod — dastur yozuv ko‘rinishida.\n\nmove right\nBlok\nmoveRight();\nQator\nwhen\n→\nkey pressed\nmove right\nonKey(\"right\", () => {\nmoveRight();\n});\nBitta dastur — ikki ko‘rinish\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e12c7e640497",
+  "uzun": 25219
+ },
+ "u-x-P3-3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKod nima?\n\nCoddy\nKod — dastur yozuv ko‘rinishida.\n\nmove right\nBlok\nmoveRight();\nQator\nwhen\n→\nkey pressed\nmove right\nonKey(\"right\", () => {\nmoveRight();\n});\nBitta dastur — ikki ko‘rinish\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "02a789632373",
+  "uzun": 25225
+ },
+ "u-x-P7-kod": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKodini ko‘rsat\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 3;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "25cf0211b858",
+  "uzun": 36266
+ },
+ "u-x-P7-qator": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKodini ko‘rsat\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 3;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "fdd5ca920d44",
+  "uzun": 36269
+ },
+ "u-x-P7-dushman": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKodini ko‘rsat\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "19a4258fec85",
+  "uzun": 35851
+ },
+ "u-x-P8-bosh": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKodda son\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "015812d28606",
+  "uzun": 35849
+ },
+ "u-x-P8-sakkiz": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKodda son\nDushman dasturi\ncreate clone of myself\nrepeat\n8\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 8; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:create clone of myselfrepeat8when ▶ clicked",
+   "p:create clone of myselfrepeat8",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "704be6211489",
+  "uzun": 35852
+ },
+ "u-x-yakunlandi": {
+  "id": "P14",
+  "matn": "SINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta qatorni topdi\n5\n0\nta sonni o‘zgartirdi\n0\npog‘ona bajardi\nDars tugadi!\nKo‘rishguncha — keyingi darsda takrorlaymiz!\n‹ Orqaga\nDarsni yakunlash\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e1d38af4d35d",
+  "uzun": 41960
+ },
+ "bq-01-0-B0": {
+  "id": "B0",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "c3928c0edfd7",
+  "uzun": 26296
+ },
+ "bq-01-1-BK": {
+  "id": "BK",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\n↑\nUstoz ekraniga qarang\nDars hozir boshlanadi",
+  "bloklar": [],
+  "html": "0da5cfb47388",
+  "uzun": 17908
+ },
+ "bq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nSAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nQaysi yozuvni kompyuter bajaradi?\n\nA\no‘ngga yur\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nwhen\n→\nkey pressed\nmove right\nBirini tanlang",
+  "bloklar": [],
+  "html": "3e9158a148db",
+  "uzun": 32033
+ },
+ "bq-02-1-BK": {
+  "id": "BK",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\n↑\nUstoz ekraniga qarang\nJavobingiz qabul qilindi",
+  "bloklar": [],
+  "html": "09c00e23a5f1",
+  "uzun": 17911
+ },
+ "bq-03-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz yozuvlarni sinayapti — kuzating",
+  "bloklar": [],
+  "html": "dbce970c17e6",
+  "uzun": 17924
+ },
+ "bq-04-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstozni tinglang",
+  "bloklar": [],
+  "html": "d51bae91d673",
+  "uzun": 17903
+ },
+ "bq-05-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nYangi so‘z: kod",
+  "bloklar": [],
+  "html": "56fcb1387a93",
+  "uzun": 17902
+ },
+ "bq-06-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nBugun: uchta bekat",
+  "bloklar": [],
+  "html": "374aec9d3776",
+  "uzun": 17905
+ },
+ "bq-07-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz kodni ochyapti — kuzating",
+  "bloklar": [],
+  "html": "d5c2d5ab80ca",
+  "uzun": 17918
+ },
+ "bq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nKodni oching\nUchala personajning kodini oching\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\n</>\nKodini ko‘rsat\nBlok va qatorni moslang\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "76479f2997ca",
+  "uzun": 28656
+ },
+ "bq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nQaysi qator?\nBelgilangan blokning qatorini bosing\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nTopildi: 0 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan blokning qatorini bosing\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "40b89a09d9f9",
+  "uzun": 28266
+ },
+ "bq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nQaysi blok?\nBelgilangan qatorning blokini bosing\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nchange\nball\nby\n1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n3 ta dasturcha\n8 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"space\", () => {\n2\ncreateClone();\n3\n});\n4\n5\nonClone(() => {\n6\nfor (let i = 0; i < 4; i++) {\n7\nmoveUp();\n8\n}\n9\ndeleteClone();\n10\n});\n11\n12\nonTouch(\"enemy\", () => {\n13\nball = ball + 1;\n14\n});\nTopildi: 0 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan qatorning blokini bosing\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone",
+   "q:changeballby1when touchingenemy",
+   "c:changeballby1"
+  ],
+  "html": "f3940858022c",
+  "uzun": 28141
+ },
+ "bq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nYangi qator\nRaketa dasturiga play sound qo‘shing — kodda nima paydo bo‘ladi?\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\n</>\nKodini ko‘rsat\nBlok va qatorni moslang\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "dacb8ee00201",
+  "uzun": 28685
+ },
+ "bq-08-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "bd1db666c1a3",
+  "uzun": 17918
+ },
+ "bq-09-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n2-bekat: kodda son",
+  "bloklar": [],
+  "html": "74df473bbd74",
+  "uzun": 17905
+ },
+ "bq-10-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz kodni o‘zgartiryapti — kuzating",
+  "bloklar": [],
+  "html": "b4531478cd64",
+  "uzun": 17924
+ },
+ "bq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKo‘p dushman\nKodda dushmanlar sonini 8 qiling va o‘ynang\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "752a79da7899",
+  "uzun": 28279
+ },
+ "bq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nIkki ball\nHar dushman 2 ball bersin — kodda o‘zgartiring\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nchange\nball\nby\n1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n3 ta dasturcha\n8 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"space\", () => {\n2\ncreateClone();\n3\n});\n4\n5\nonClone(() => {\n6\nfor (let i = 0; i < 4; i++) {\n7\nmoveUp();\n8\n}\n9\ndeleteClone();\n10\n});\n11\n12\nonTouch(\"enemy\", () => {\n13\nball = ball + 1;\n14\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone",
+   "q:changeballby1when touchingenemy",
+   "c:changeballby1"
+  ],
+  "html": "a2ec5c183390",
+  "uzun": 28148
+ },
+ "bq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nKo‘proq jon\nO‘yin 5 jon bilan boshlansin\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 3;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "1140080578e4",
+  "uzun": 28678
+ },
+ "bq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z sonlaringiz\nKodda yana ikki sonni o‘zgartiring va yuting\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "8a427c2a0bd9",
+  "uzun": 28286
+ },
+ "bq-11-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "bd1db666c1a3",
+  "uzun": 17918
+ },
+ "bq-12-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nXulosa: kod",
+  "bloklar": [],
+  "html": "96346f3a7e69",
+  "uzun": 17898
+ },
+ "bq-13-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\n3-bekat: kodni o‘qiymiz",
+  "bloklar": [],
+  "html": "21a781063f39",
+  "uzun": 17910
+ },
+ "bq-14-0-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nUstoz kodni o‘qiyapti — kuzating",
+  "bloklar": [],
+  "html": "a307650d6500",
+  "uzun": 17919
+ },
+ "bq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki qadam\nRaketa qayerda to‘xtaydi? Katakni bosing\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nKod\nJavaScript\n1\ngoTo(0, 0);\n2\nmoveRight();\n3\nmoveRight();\n4\nmoveUp();\nMaslahat\nO‘qing — keyin tekshiring\nTekshirish",
+  "bloklar": [
+   "x:go to x:0y:0move rightmove rightmove up",
+   "r:move rightmove rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "3a831dd064ec",
+  "uzun": 24738
+ },
+ "bq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nTakrorlash\nRaketa qayerda to‘xtaydi? Katakni bosing\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nKod\nJavaScript\n1\ngoTo(1, 0);\n2\nfor (let i = 0; i < 4; i++) {\n3\nmoveRight();\n4\n}\nMaslahat\nO‘qing — keyin tekshiring\nTekshirish",
+  "bloklar": [
+   "x:go to x:1y:0repeat4move right",
+   "p:repeat4move right",
+   "r:move right"
+  ],
+  "html": "c1bacaf6c99e",
+  "uzun": 24783
+ },
+ "bq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nOrqaga\nRaketa qayerda to‘xtaydi? Katakni bosing\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\nKod\nJavaScript\n1\ngoTo(6, 2);\n2\nfor (let i = 0; i < 3; i++) {\n3\nmoveLeft();\n4\n}\n5\nmoveUp();\nMaslahat\nO‘qing — keyin tekshiring\nTekshirish",
+  "bloklar": [
+   "x:go to x:6y:2repeat3move leftmove up",
+   "p:repeat3move leftmove up",
+   "l:move left",
+   "u:move up"
+  ],
+  "html": "719dd8480132",
+  "uzun": 24883
+ },
+ "bq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nNishonga\nKodda sonni o‘zgartiring — raketa yulduzga borsin\nRaketa dasturi\ngo to x:\n0\ny:\n0\nrepeat\n2\nmove right\nmove up\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nKod\nJavaScript\n1\ngoTo(0, 0);\n2\nfor (let i = 0; i < 2; i++) {\n3\nmoveRight();\n4\n}\n5\nmoveUp();\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring\nIshga tushir",
+  "bloklar": [
+   "x:go to x:0y:0repeat2move rightmove up",
+   "p:repeat2move rightmove up",
+   "r:move right",
+   "u:move up"
+  ],
+  "html": "fbe0b2d32458",
+  "uzun": 25149
+ },
+ "bq-15-4-BK": {
+  "id": "BK",
+  "matn": "↑\nUstoz ekraniga qarang\nHamma pog‘onalarni bajardingiz!",
+  "bloklar": [],
+  "html": "bd1db666c1a3",
+  "uzun": 17918
+ },
+ "bq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nKodni o‘qidim!\n\nBulut\nBloklarim ortida kod bor!\n\nSiz bugun\n0\nta qatorni topdi\n5\n0\nta sonni o‘zgartirdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBulut\nKeyingi darsda takrorlaymiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "8cb96eeba20f",
+  "uzun": 18764
+ },
+ "bq-18-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nKodni o‘qidim!\n\nBulut\nBloklarim ortida kod bor!\n\nSiz bugun\n0\nta qatorni topdi\n5\n0\nta sonni o‘zgartirdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBulut\nKeyingi darsda takrorlaymiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "8cb96eeba20f",
+  "uzun": 18764
+ },
+ "bx-B1A-kod": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nKodni oching\nUchala personajning kodini oching\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 3;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\nOchildi: 1 / 3\nMaslahat\n</>\nKodni yopish\nEndi boshqa personaj kartasini bosing\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "7604d523c047",
+  "uzun": 28676
+ },
+ "bx-B1A-oq": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nKodni oching\nUchala personajning kodini oching\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nchange\nball\nby\n1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n3 ta dasturcha\n8 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"space\", () => {\n2\ncreateClone();\n3\n});\n4\n5\nonClone(() => {\n6\nfor (let i = 0; i < 4; i++) {\n7\nmoveUp();\n8\n}\n9\ndeleteClone();\n10\n});\n11\n12\nonTouch(\"enemy\", () => {\n13\nball = ball + 1;\n14\n});\nOchildi: 2 / 3\nMaslahat\n</>\nKodni yopish\nEndi boshqa personaj kartasini bosing\nBoshlash",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone",
+   "q:changeballby1when touchingenemy",
+   "c:changeballby1"
+  ],
+  "html": "cce315e1aa7f",
+  "uzun": 28130
+ },
+ "bx-B2A-sakkiz": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKo‘p dushman\nKodda dushmanlar sonini 8 qiling va o‘ynang\nDushman dasturi\ncreate clone of myself\nrepeat\n8\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 8; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 1\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash",
+  "bloklar": [
+   "f:create clone of myselfrepeat8when ▶ clicked",
+   "p:create clone of myselfrepeat8",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "3090a7ea9b1b",
+  "uzun": 28282
+ },
+ "bx-B2C-jon": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nKo‘proq jon\nO‘yin 5 jon bilan boshlansin\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n5\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 5;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\nKodda o‘zgargan son: 1\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto5setballto0when ▶ clicked",
+   "z:setjonto5setballto0",
+   "z:setjonto5",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "0a7434b60011",
+  "uzun": 28681
+ },
+ "bx-P2N-tanladi": {
+  "id": "P2N",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nSAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nQaysi yozuvni kompyuter bajaradi?\n\nA\no‘ngga yur\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nwhen\n→\nkey pressed\nmove right\nBirini tanlang",
+  "bloklar": [],
+  "html": "817f606aecb7",
+  "uzun": 32042
+ },
+ "sq-01-0-B0": {
+  "id": "B0",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nSalom, Aziz!\nTayyor bo‘lsangiz — tugmani bosing\nTayyorman",
+  "bloklar": [],
+  "html": "c3928c0edfd7",
+  "uzun": 26296
+ },
+ "sq-01-1-P1": {
+  "id": "P1",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nBloklar ortida nima bor?\n\nCoddy\nSalom! Bugun bloklar ortiga qaraymiz.\n\nO‘TGAN DARSDA\nKosmik o‘yin\nRaketa, o‘q va dushman — har birining o‘z dasturi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "472391dc81ac",
+  "uzun": 46481
+ },
+ "sq-02-0-P2N": {
+  "id": "P2N",
+  "matn": "19-DARS · BLOKLAR ORTIDAGI KOD\nSAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nQaysi yozuvni kompyuter bajaradi?\n\nA\no‘ngga yur\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nwhen\n→\nkey pressed\nmove right\nBirini tanlang",
+  "bloklar": [],
+  "html": "3e9158a148db",
+  "uzun": 32033
+ },
+ "sq-03-0-P2S": {
+  "id": "P2S",
+  "matn": "SAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\n▶ Sinab ko‘rish\no‘ngga yur\no‘zbekcha gap\nB\n→\n▶ Sinab ko‘rish\n→\nstrelka belgisi\nC\nmoveRight();\n▶ Sinab ko‘rish\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "621fd743cd6d",
+  "uzun": 32614
+ },
+ "sq-04-0-P2C": {
+  "id": "P2C",
+  "matn": "JAVOB\nHar blok — bitta qator\n\nCoddy\nBloklar ortida kod turadi.\n\nA\no‘ngga yur\n✕ kompyuter bu so‘zni bilmaydi\no‘ngga yur\no‘zbekcha gap\nB\n→\n✕ belgi — buyruq emas\n→\nstrelka belgisi\nC\nmoveRight();\n✓ raketa yurdi\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nmove right\n=\nmoveRight();\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "99bcf6e494d9",
+  "uzun": 32793
+ },
+ "sq-05-0-P3": {
+  "id": "P3",
+  "matn": "YANGI SO‘Z\nKod nima?\n\nCoddy\nKod — dastur yozuv ko‘rinishida.\n\nmove right\nBlok\nmoveRight();\nQator\nwhen\n→\nkey pressed\nmove right\nonKey(\"right\", () => {\nmoveRight();\n});\nBitta dastur — ikki ko‘rinish\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "2192849d7e88",
+  "uzun": 23891
+ },
+ "sq-06-0-P4": {
+  "id": "P4",
+  "matn": "REJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida kodni o‘qiysiz.\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n1\nBlok va qator\n5\n2\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nBoshladik ›",
+  "bloklar": [],
+  "html": "daf6e982b0c3",
+  "uzun": 39189
+ },
+ "sq-07-0-P7": {
+  "id": "P7",
+  "matn": "KO‘RAMIZ\nKodini ko‘rsat\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n</>\nKodini ko‘rsat\n«Kodini ko‘rsat»ni bosing\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "e7ed31c9fc69",
+  "uzun": 34963
+ },
+ "sq-08-0-B1A": {
+  "id": "B1A",
+  "matn": "MASHQ · 1-POG‘ONA\nKodni oching\nUchala personajning kodini oching\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\n</>\nKodini ko‘rsat\nBlok va qatorni moslang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "6fe82ed1fdbc",
+  "uzun": 28703
+ },
+ "sq-08-1-B1B": {
+  "id": "B1B",
+  "matn": "MASHQ · 2-POG‘ONA\nQaysi qator?\nBelgilangan blokning qatorini bosing\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nTopildi: 0 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan blokning qatorini bosing\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "7373d67f83f1",
+  "uzun": 28313
+ },
+ "sq-08-2-B1C": {
+  "id": "B1C",
+  "matn": "MASHQ · 3-POG‘ONA\nQaysi blok?\nBelgilangan qatorning blokini bosing\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nchange\nball\nby\n1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n3 ta dasturcha\n8 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"space\", () => {\n2\ncreateClone();\n3\n});\n4\n5\nonClone(() => {\n6\nfor (let i = 0; i < 4; i++) {\n7\nmoveUp();\n8\n}\n9\ndeleteClone();\n10\n});\n11\n12\nonTouch(\"enemy\", () => {\n13\nball = ball + 1;\n14\n});\nTopildi: 0 / 3\nMaslahat\n</>\nKodni yopish\nBelgilangan qatorning blokini bosing\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone",
+   "q:changeballby1when touchingenemy",
+   "c:changeballby1"
+  ],
+  "html": "351feb86abe7",
+  "uzun": 28188
+ },
+ "sq-08-3-B1Y": {
+  "id": "B1Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nYangi qator\nRaketa dasturiga play sound qo‘shing — kodda nima paydo bo‘ladi?\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nMaslahat\n</>\nKodini ko‘rsat\nBlok va qatorni moslang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "f3e0ab73500d",
+  "uzun": 28732
+ },
+ "sq-09-0-P4B": {
+  "id": "P4B",
+  "matn": "REJA · 2-BEKAT\n2 · Kodda son\n\nCoddy\nEndi kodda sonni o‘zgartiramiz.\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n✓\nBlok va qator\n2\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "ff24acc0f5a4",
+  "uzun": 38947
+ },
+ "sq-10-0-P8": {
+  "id": "P8",
+  "matn": "KO‘RAMIZ\nKodda son\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\n‹ Orqaga\n</>\nKodni yopish\nQatordagi 5 ni bosing\n▶ Boshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "37f9d765edbc",
+  "uzun": 34548
+ },
+ "sq-11-0-B2A": {
+  "id": "B2A",
+  "matn": "MASHQ · 1-POG‘ONA\nKo‘p dushman\nKodda dushmanlar sonini 8 qiling va o‘ynang\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "505f591207b9",
+  "uzun": 28326
+ },
+ "sq-11-1-B2B": {
+  "id": "B2B",
+  "matn": "MASHQ · 2-POG‘ONA\nIkki ball\nHar dushman 2 ball bersin — kodda o‘zgartiring\nO‘q dasturi\ncreate clone of myself\nwhen\nspace\nkey pressed\nmove up\ndelete this clone\nrepeat\n4\nwhen I start as a clone\nchange\nball\nby\n1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n3 ta dasturcha\n8 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"space\", () => {\n2\ncreateClone();\n3\n});\n4\n5\nonClone(() => {\n6\nfor (let i = 0; i < 4; i++) {\n7\nmoveUp();\n8\n}\n9\ndeleteClone();\n10\n});\n11\n12\nonTouch(\"enemy\", () => {\n13\nball = ball + 1;\n14\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:create clone of myselfwhenspacekey pressed",
+   "C:create clone of myself",
+   "H:move updelete this clonerepeat4when I start as a clone",
+   "p:move updelete this clonerepeat4",
+   "u:move up",
+   "D:delete this clone",
+   "q:changeballby1when touchingenemy",
+   "c:changeballby1"
+  ],
+  "html": "a2be4e50f6cf",
+  "uzun": 28195
+ },
+ "sq-11-2-B2C": {
+  "id": "B2C",
+  "matn": "MASHQ · 3-POG‘ONA\nKo‘proq jon\nO‘yin 5 jon bilan boshlansin\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 3;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "133e0a5e36a4",
+  "uzun": 28725
+ },
+ "sq-11-3-B2Y": {
+  "id": "B2Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z sonlaringiz\nKodda yana ikki sonni o‘zgartiring va yuting\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\nKodda o‘zgargan son: 0\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring — o‘ynang\nBoshlash\nKeyingi ›",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "692f967062fc",
+  "uzun": 28333
+ },
+ "sq-12-0-P9": {
+  "id": "P9",
+  "matn": "XULOSA\nKod\n\nCoddy\nBitta dastur — ikki ko‘rinish.\n\nwhen\n→\nkey pressed\nBloklar\nsudrab ulaymiz\nmoveRight();\nKod\nkompyuter shuni bajaradi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "688451e7a6de",
+  "uzun": 31751
+ },
+ "sq-13-0-P4C": {
+  "id": "P4C",
+  "matn": "REJA · 3-BEKAT\n3 · Kodni o‘qiymiz\n\nCoddy\nEndi bloksiz — faqat kod!\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n✓\nBlok va qator\n5\n✓\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›",
+  "bloklar": [],
+  "html": "02ef5425e5d9",
+  "uzun": 38996
+ },
+ "sq-14-0-P10": {
+  "id": "P10",
+  "matn": "KO‘RAMIZ\nKodni o‘qiymiz\nHar qator — bitta qadam.\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nKod\nJavaScript\n1\ngoTo(1, 0);\n2\nmoveRight();\n3\nmoveRight();\nMaslahat\n(3, 0) katakni bosing — bayroqcha qo‘yiladi\n▶ Tekshirish\nKeyingi ›",
+  "bloklar": [
+   "x:go to x:1y:0move rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "4040a0bf5a2b",
+  "uzun": 31376
+ },
+ "sq-15-0-B3A": {
+  "id": "B3A",
+  "matn": "MASHQ · 1-POG‘ONA\nIkki qadam\nRaketa qayerda to‘xtaydi? Katakni bosing\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nKod\nJavaScript\n1\ngoTo(0, 0);\n2\nmoveRight();\n3\nmoveRight();\n4\nmoveUp();\nMaslahat\nO‘qing — keyin tekshiring\nTekshirish\nKeyingi ›",
+  "bloklar": [
+   "x:go to x:0y:0move rightmove rightmove up",
+   "r:move rightmove rightmove up",
+   "r:move rightmove up",
+   "u:move up"
+  ],
+  "html": "4560a2eee0f1",
+  "uzun": 24785
+ },
+ "sq-15-1-B3B": {
+  "id": "B3B",
+  "matn": "MASHQ · 2-POG‘ONA\nTakrorlash\nRaketa qayerda to‘xtaydi? Katakni bosing\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nKod\nJavaScript\n1\ngoTo(1, 0);\n2\nfor (let i = 0; i < 4; i++) {\n3\nmoveRight();\n4\n}\nMaslahat\nO‘qing — keyin tekshiring\nTekshirish\nKeyingi ›",
+  "bloklar": [
+   "x:go to x:1y:0repeat4move right",
+   "p:repeat4move right",
+   "r:move right"
+  ],
+  "html": "bf600de8ae3c",
+  "uzun": 24830
+ },
+ "sq-15-2-B3C": {
+  "id": "B3C",
+  "matn": "MASHQ · 3-POG‘ONA\nOrqaga\nRaketa qayerda to‘xtaydi? Katakni bosing\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 2)\nKod\nJavaScript\n1\ngoTo(6, 2);\n2\nfor (let i = 0; i < 3; i++) {\n3\nmoveLeft();\n4\n}\n5\nmoveUp();\nMaslahat\nO‘qing — keyin tekshiring\nTekshirish\nKeyingi ›",
+  "bloklar": [
+   "x:go to x:6y:2repeat3move leftmove up",
+   "p:repeat3move leftmove up",
+   "l:move left",
+   "u:move up"
+  ],
+  "html": "d9758dccbce1",
+  "uzun": 24930
+ },
+ "sq-15-3-B3Y": {
+  "id": "B3Y",
+  "matn": "MASHQ · ★ QO‘SHIMCHA\nNishonga\nKodda sonni o‘zgartiring — raketa yulduzga borsin\nRaketa dasturi\ngo to x:\n0\ny:\n0\nrepeat\n2\nmove right\nmove up\n4 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nKod\nJavaScript\n1\ngoTo(0, 0);\n2\nfor (let i = 0; i < 2; i++) {\n3\nmoveRight();\n4\n}\n5\nmoveUp();\nMaslahat\n</>\nKodni yopish\nKodda sonni o‘zgartiring\nIshga tushir\nKeyingi ›",
+  "bloklar": [
+   "x:go to x:0y:0repeat2move rightmove up",
+   "p:repeat2move rightmove up",
+   "r:move right",
+   "u:move up"
+  ],
+  "html": "4f02fefce2dd",
+  "uzun": 25196
+ },
+ "sq-17-0-B5": {
+  "id": "B5",
+  "matn": "SIZNING NATIJANGIZ\nKodni o‘qidim!\n\nBulut\nBloklarim ortida kod bor!\n\nSiz bugun\n0\nta qatorni topdi\n5\n0\nta sonni o‘zgartirdi\n0\npog‘ona bajardi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nBulut\nKeyingi darsda takrorlaymiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
+  "bloklar": [],
+  "html": "8cb96eeba20f",
+  "uzun": 18764
+ },
+ "y-01": {
+  "id": "P1",
+  "matn": "USTOZ · PROYEKTOR\n19-DARS · BLOKLAR ORTIDAGI KOD\nBloklar ortida nima bor?\n\nCoddy\nSalom! Bugun bloklar ortiga qaraymiz.\n\nO‘TGAN DARSDA\nKosmik o‘yin\nRaketa, o‘q va dushman — har birining o‘z dasturi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\n‹ Orqaga\nKirdi: 1\nKeyingi ›\nO‘QUVCHI · NOUTBUK\n19-DARS · BLOKLAR ORTIDAGI KOD\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c204927e7b65",
+  "uzun": 102377
+ },
+ "y-02": {
+  "id": "P2",
+  "matn": "USTOZ · PROYEKTOR\n19-DARS · BLOKLAR ORTIDAGI KOD\nSAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nwhen\n→\nkey pressed\nmove right\n‹ Orqaga\nJavob berdi: 0 / 1\nSinab ko‘ramiz ›\nO‘QUVCHI · NOUTBUK\n19-DARS · BLOKLAR ORTIDAGI KOD\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "3aded54eafa8",
+  "uzun": 88854
+ },
+ "y-03": {
+  "id": "P2S",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nDasturni yozuv bilan qanday yozamiz?\n\nCoddy\nShu bloklarni yozuv bilan yozsak — qanday bo‘ladi?\n\nA\no‘ngga yur\no‘ngga yur\no‘zbekcha gap\nB\n→\n→\nstrelka belgisi\nC\nmoveRight();\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(2, 0)\nKod\no‘ngga yur\n→\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "b34d5fac4813",
+  "uzun": 88448
+ },
+ "y-04": {
+  "id": "P2C",
+  "matn": "USTOZ · PROYEKTOR\nJAVOB\nHar blok — bitta qator\n\nCoddy\nBloklar ortida kod turadi.\n\nA\no‘ngga yur\n✕ kompyuter bu so‘zni bilmaydi\no‘ngga yur\no‘zbekcha gap\nB\n→\n✕ belgi — buyruq emas\n→\nstrelka belgisi\nC\nmoveRight();\n✓ raketa yurdi\nmoveRight();\nJavaScript qatori\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nmove right\n=\nmoveRight();\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "4df2c5cec284",
+  "uzun": 88681
+ },
+ "y-05": {
+  "id": "P3",
+  "matn": "USTOZ · PROYEKTOR\nYANGI SO‘Z\nKod nima?\n\nCoddy\nKod — dastur yozuv ko‘rinishida.\n\nmove right\nBlok\nmoveRight();\nQator\nwhen\n→\nkey pressed\nmove right\nonKey(\"right\", () => {\nmoveRight();\n});\nBitta dastur — ikki ko‘rinish\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c701690c2dfa",
+  "uzun": 79779
+ },
+ "y-06": {
+  "id": "P4",
+  "matn": "USTOZ · PROYEKTOR\nREJA\nBugun nima qilamiz?\n\nCoddy\nUchta bekat. Oxirida kodni o‘qiysiz.\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n1\nBlok va qator\n5\n2\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nBoshladik ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "2e0bbda72efc",
+  "uzun": 95077
+ },
+ "y-07": {
+  "id": "P7",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nKodini ko‘rsat\nHodisa\nHarakat\nTakrorlash\nKlon\nO‘zgaruvchi\nShart\nTovush\nKlon\ncreate clone of myself\nwhen I start as a clone\ndelete this clone\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\n‹ Orqaga\n</>\nKodini ko‘rsat\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "9a1181afefe8",
+  "uzun": 90826
+ },
+ "y-08": {
+  "id": "P5",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nQatorni toping!\n\nCoddy\nBlok va qatorni moslang.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nKodni oching\n2\n0\nQaysi qator?\n3\n0\nQaysi blok?\n★\n0\nYangi qator\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "09032f20a875",
+  "uzun": 82661
+ },
+ "y-09": {
+  "id": "P4B",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 2-BEKAT\n2 · Kodda son\n\nCoddy\nEndi kodda sonni o‘zgartiramiz.\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n✓\nBlok va qator\n2\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "245cce835ab8",
+  "uzun": 94835
+ },
+ "y-10": {
+  "id": "P8",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nKodda son\nDushman dasturi\ncreate clone of myself\nrepeat\n5\nwhen ▶ clicked\nrandom\n0\nto\n6\n4\nmove down\ndelete this clone\nrepeat\n4\ngo to x:\ny:\nwhen I start as a clone\nRaketa\nO‘q\nDushman\n2 ta dasturcha\n9 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonStart(() => {\n2\nfor (let i = 0; i < 5; i++) {\n3\ncreateClone();\n4\n}\n5\n});\n6\n7\nonClone(() => {\n8\ngoTo(random(0, 6), 4);\n9\nfor (let i = 0; i < 4; i++) {\n10\nmoveDown();\n11\n}\n12\ndeleteClone();\n13\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "f:create clone of myselfrepeat5when ▶ clicked",
+   "p:create clone of myselfrepeat5",
+   "C:create clone of myself",
+   "H:random0to64move downdelete this clonerepeat4go to x:y:when I start as a clone",
+   "y:random0to64move downdelete this clonerepeat4go to x:y:",
+   "m:random0to6",
+   "p:move downdelete this clonerepeat4",
+   "d:move down",
+   "D:delete this clone"
+  ],
+  "html": "2ed8578edd60",
+  "uzun": 90415
+ },
+ "y-11": {
+  "id": "P5G",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nKodni o‘zgartiring!\n\nCoddy\nKodda sonni o‘zgartiring — o‘ynang.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nKo‘p dushman\n2\n0\nball: 2\nIkki ball\n3\n0\njon: 5\nKo‘proq jon\n★\n0\nO‘z sonlaringiz\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "0fc98d4d3741",
+  "uzun": 92756
+ },
+ "y-12": {
+  "id": "P9",
+  "matn": "USTOZ · PROYEKTOR\nXULOSA\nKod\n\nCoddy\nBitta dastur — ikki ko‘rinish.\n\nwhen\n→\nkey pressed\nBloklar\nsudrab ulaymiz\nmoveRight();\nKod\nkompyuter shuni bajaradi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(4, 0)\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "76882e5a9de0",
+  "uzun": 87639
+ },
+ "y-13": {
+  "id": "P4C",
+  "matn": "USTOZ · PROYEKTOR\nREJA · 3-BEKAT\n3 · Kodni o‘qiymiz\n\nCoddy\nEndi bloksiz — faqat kod!\n\nDars oxirida · kodni o‘qiysiz\nBloklar ortida — kod\n✓\nBlok va qator\n5\n✓\nKodda son\n3\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "de034cf94ffd",
+  "uzun": 94884
+ },
+ "y-14": {
+  "id": "P10",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nKodni o‘qiymiz\nHar qator — bitta qadam.\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nKod\nJavaScript\n1\ngoTo(1, 0);\n2\nmoveRight();\n3\nmoveRight();\nMaslahat\nO‘qing — keyin tekshiring\n▶ Tekshirish\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "x:go to x:1y:0move rightmove right",
+   "r:move rightmove right",
+   "r:move right"
+  ],
+  "html": "9de1606f8a0d",
+  "uzun": 87245
+ },
+ "y-15": {
+  "id": "P5B",
+  "matn": "USTOZ · PROYEKTOR\nMASHQ\nKodni o‘qing!\n\nCoddy\nO‘qing — keyin tekshiring.\n\nUch pog‘onani tugatdi\n0 / 1\nHar belgi — uch pog‘onani tugatgan bitta bola\n1\n0\nIkki qadam\n2\n0\nTakrorlash\n3\n0\nOrqaga\n★\n0\n★ (5, 1)\nNishonga\n1\n2\n3\n‹ Orqaga\nYordam so‘radi: 0\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "e678a2db98bb",
+  "uzun": 85712
+ },
+ "y-16": {
+  "id": "P11",
+  "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nKodingizni o‘qib bering\nBitta qatorni o‘qing — men blokini topaman.\nRaketa dasturi\nmove right\nwhen\n→\nkey pressed\nmove left\nwhen\n←\nkey pressed\nset\njon\nto\n3\nset\nball\nto\n0\nwhen ▶ clicked\ngame over\nif\njon\n=\n0\nthen\nchange\njon\nby\n−1\nwhen touching\nenemy\nRaketa\nO‘q\nDushman\n4 ta dasturcha\n11 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\njon:\n0\nDushman: 0\nKod\nJavaScript\n1\nonKey(\"right\", () => {\n2\nmoveRight();\n3\n});\n4\n5\nonKey(\"left\", () => {\n6\nmoveLeft();\n7\n});\n8\n9\nonStart(() => {\n10\nball = 0;\n11\njon = 3;\n12\n});\n13\n14\nonTouch(\"enemy\", () => {\n15\njon = jon - 1;\n16\nif (jon === 0) {\n17\ngameOver();\n18\n}\n19\n});\n‹ Orqaga\n</>\nKodni yopish\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [
+   "k:move rightwhen→key pressed",
+   "r:move right",
+   "k:move leftwhen←key pressed",
+   "l:move left",
+   "f:setjonto3setballto0when ▶ clicked",
+   "z:setjonto3setballto0",
+   "z:setjonto3",
+   "q:game overifjon=0thenchangejonby−1when touchingenemy",
+   "c:game overifjon=0thenchangejonby−1",
+   "i:game overifjon=0then",
+   "g:game over"
+  ],
+  "html": "f331ddeddab4",
+  "uzun": 90915
+ },
+ "y-17": {
+  "id": "P12",
+  "matn": "USTOZ · PROYEKTOR\nYAKUN\nBloklar ortida — kod!\nBUGUNGI SO‘Z\nKod\nDastur yozuv ko‘rinishida: har blok — bitta qator\nKeyingi dars\n20 · Takrorlash va test\n✓\nBlok va qator\n5\n✓\nKodda son\n✓\nKodni o‘qiymiz\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "ebac7c37c759",
+  "uzun": 86388
+ },
+ "y-18": {
+  "id": "P14",
+  "matn": "USTOZ · PROYEKTOR\nSINF NATIJASI\nSinfimiz bugun\n\nCoddy\nHammangiz zo‘r ishladingiz!\n\n0\nta qatorni topdi\n5\n0\nta sonni o‘zgartirdi\n0\npog‘ona bajardi\n‹ Orqaga\nDarsni yakunlash\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: dasturni yozuv bilan qanday yozamiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: har blok — bitta qator\n5 / 18 · Yangi so‘z: kod\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: «Kodini ko‘rsat»\n8 / 18 · O‘zingiz: blok va qator\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: kodda son\n11 / 18 · O‘zingiz: kodda son\n12 / 18 · Xulosa: bitta dastur — ikki ko‘rinish\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: kodni o‘qiymiz\n15 / 18 · O‘zingiz: kodni o‘qiymiz\n16 / 18 · Kodingizni o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "bloklar": [],
+  "html": "c61fcda89c1c",
+  "uzun": 96389
+ },
+ "varaq": {
+  "id": "",
+  "matn": "19-dars · Bloklar ortidagi kod — ustoz varag‘i\n\nAsosiy fikr: bloklar va kod — bitta dastur, ikki ko‘rinish. Har blok — bitta qator; kompyuter kodni bajaradi.\n\nYo‘l: huk (dasturni yozuv bilan qanday yozamiz — uch sinov) → yangi so‘z «kod» → reja → 1-bekat «Blok va qator» → 2-bekat «Kodda son» → 3-bekat «Kodni o‘qiymiz» → kodni o‘qib berish → yakun.\n\n«Kodini ko‘rsat» — dastur ustunidagi tugma: kod javon o‘rnida, bloklar yonida chiqadi. Kodda sonni bosib o‘zgartirsa bo‘ladi — blok ham o‘zgaradi.\n\nTinish belgilari: qavs, nuqtali vergul nomlanmaydi — «kodning tinish belgilari, kompyuterga kerak». for, let, === tushuntirilmaydi: «bu qatordagi 5 — necha marta».\n\nYechimni aytmang: «Blokning so‘zi qatorda qanday yozilgan? Qaysi qatorda son bor? Raketa birinchi qatordan keyin qayerda?»\n\n18-darsda o‘yini saqlanmagan bola uchun o‘yin tayyor keladi — bu xato emas. 16-qadamda proyektorga ism chiqmaydi.\n\nBoshqaruv: → yoki «Keyingi» — oldinga, ← — orqaga, F — to‘liq ekran. O‘ng tepada (sichqoncha olib borilsa) — qadam ro‘yxati va «aloqa» belgisi (yashil — ulangan).\n\n1\nKirish\n\nEKRANDA\n«19-dars · Bloklar ortidagi kod» — «Bloklar ortida nima bor?» Kosmos maydoni: raketa, o‘q, dushman; pastda «O‘tgan darsda» — kosmik o‘yin tayyor.\n\nSIZ\n«O‘tgan darsda kosmik o‘yinimiz to‘liq bo‘ldi.» «Bugun o‘yinimizning ichiga qaraymiz: bloklar ortida nima bor?» «Noutbukda «Tayyorman» tugmasini bosing.»\n\nBOLA O‘RGANADI\nDarsga kiradi.\n\n2\nSavol: dasturni yozuv bilan qanday yozamiz?\n\nEKRANDA\nSavol: «Dasturni yozuv bilan qanday yozamiz?» Blok when → key pressed [move right]; uchta karta: A «o‘ngga yur» · B «→» · C moveRight();.\n\nSIZ\n«Bloklarni yozuv bilan yozsak — qanday bo‘ladi?» «Har kim noutbukida bitta kartani tanlasin.»\n\nBOLA O‘RGANADI\nTaxmin qiladi.\n\n3\nUch sinov\n\nEKRANDA\nUch sinov: A — «o‘ngga yur», raketa joyida («✕ kompyuter bu so‘zni bilmaydi»). «Keyingi» — B: «→», raketa joyida («✕ belgi — buyruq emas»). «Keyingi» — C: moveRight(); — raketa yurdi («✓ raketa yurdi»).\n\nSIZ\n«Kompyuter faqat o‘z so‘zlarini biladi. Bu so‘zlar — JavaScript tilida.» «moveRight — «o‘ngga yur» degani. Kompyuter shuni bajaradi.»\n\nBOLA O‘RGANADI\nKod — kompyuter tushunadigan yozuv ekanini ko‘radi.\n\n4\nJavob: har blok — bitta qator\n\nEKRANDA\nJavob: «Har blok — bitta qator». A va B xira, C oltin; blok va qator yonma-yon.\n\nSIZ\n«Har blok ortida bitta qator bor. Kompyuter aslida shu qatorlarni bajaradi.»\n\nBOLA O‘RGANADI\nBugungi asosiy fikrni eshitadi.\n\n5\nYangi so‘z: kod\n\nEKRANDA\nYangi so‘z: «Kod nima?» «Keyingi» — birma-bir: blok, qator, bitta dastur ikki ko‘rinishda. Ta’rif: «Kod — Dastur yozuv ko‘rinishida: har blok — bitta qator».\n\nSIZ\n«Kod — dastur yozuv ko‘rinishida. Har blok — bitta qator.» «Bloklar — kodning rasmli ko‘rinishi. Katta dasturchilar kodni o‘zi yozadi.»\n\nBOLA O‘RGANADI\nYangi so‘z: kod.\n\n6\nReja\n\nEKRANDA\nReja: tepalik — blok va qator → kodda son → kodni o‘qiymiz; cho‘qqida «Dars oxirida · kodni o‘qiysiz».\n\nSIZ\n«Bugun uchta bekat: blok va qator, kodda son, kodni o‘qish.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n7\nKo‘ramiz: «Kodini ko‘rsat»\n\nEKRANDA\nKo‘ramiz: «Kodini ko‘rsat». Raketa tanlangan; tugmani bosasiz — kod bloklar yonida; blokni bosasiz — qatori yonadi, qatorni bosasiz — bloki; «Dushman» kartasi — kod ham almashadi.\n\nSIZ\n«Kodini ko‘rsat — dasturning yozuvi chiqadi.» «Blokni bosaman — uning qatori yonadi. Qatorni bosaman — bloki yonadi.»\n\nBOLA O‘RGANADI\nBlok va qator bog‘langanini ko‘radi.\n\n8\nO‘zingiz: blok va qator\n\nEKRANDA\nMashq: «Qatorni toping!» — zinapoya: 1 kodni oching · 2 qaysi qator? · 3 qaysi blok? · ★ yangi qator.\n\nSIZ\n«Blokning so‘zi qatorda ham bor: move right — moveRight.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nBlok va qatorni moslaydi.\n\n9\n2-bekat\n\nEKRANDA\nTepalik: 1-bekat ✓ — «Kodda son».\n\nSIZ\n«Blok va qatorni moslay olamiz. Endi kodning o‘zini o‘zgartiramiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n10\nKo‘ramiz: kodda son\n\nEKRANDA\nKo‘ramiz: «Kodda son». Dushman, kod ochiq; for qatoridagi 5 ni bosasiz, 8 ni tanlaysiz — repeat blokida ham 8; «▶ Boshlash» — sakkizta dushman.\n\nSIZ\n«Kodda sonni o‘zgartirdim — blokda ham o‘zgardi. Bu bitta dastur.» «Bu qatordagi 5 — repeat ning soni: necha marta.»\n\nBOLA O‘RGANADI\nKod va blok bitta dastur ekanini ko‘radi.\n\n11\nO‘zingiz: kodda son\n\nEKRANDA\nMashq: «Kodni o‘zgartiring!» — zinapoya: 1 ko‘p dushman · 2 ikki ball · 3 ko‘proq jon · ★ o‘z sonlaringiz.\n\nSIZ\n«Sonni kodda o‘zgartiring, blokda emas.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nKodda 2 ta sonni o‘zgartiradi.\n\n12\nXulosa: bitta dastur — ikki ko‘rinish\n\nEKRANDA\nXulosa: «Kod». Ikki karta: bloklar — sudrab ulaymiz; kod — kompyuter shuni bajaradi.\n\nSIZ\n«Bloklar va kod — bitta dastur. Bittasi o‘zgarsa, ikkinchisi ham o‘zgaradi.»\n\nBOLA O‘RGANADI\nBloklar va kodni bog‘laydi.\n\n13\n3-bekat\n\nEKRANDA\nTepalik: 1, 2 ✓ — «Kodni o‘qiymiz».\n\nSIZ\n«Oxirgi bekat: bloklar yo‘q, faqat kod. Raketa qayerga borishini kodni o‘qib aytamiz.»\n\nBOLA O‘RGANADI\nDarsda qayerda turganini biladi.\n\n14\nKo‘ramiz: kodni o‘qiymiz\n\nEKRANDA\nKo‘ramiz: faqat kod — goTo(1, 0); moveRight(); moveRight();. Qatorlarni o‘qiysiz, (3, 0) ga bayroqcha, «Tekshirish» — raketa yuradi, bloklar ham ko‘rinadi.\n\nSIZ\n«Kodni o‘qiymiz: har qator — bitta qadam.» «Avval o‘ylaymiz, keyin tekshiramiz.»\n\nBOLA O‘RGANADI\nKodni o‘qishni ko‘radi.\n\n15\nO‘zingiz: kodni o‘qiymiz\n\nEKRANDA\nMashq: «Kodni o‘qing!» — zinapoya: 1 ikki qadam · 2 takrorlash · 3 orqaga · ★ nishonga.\n\nSIZ\n«Barmog‘ingiz bilan qatorlarni bittadan o‘qing.» Oxirida: «To‘xtadik. Qo‘llar klaviaturadan.»\n\nBOLA O‘RGANADI\nKodni o‘qib, natijani oldindan aytadi.\n\n16\nKodingizni o‘qib bering\n\nEKRANDA\n«Kodingizni o‘qib bering». Kosmik o‘yin, kod ochiq; bola bitta qatorni o‘qiydi, siz blokini topasiz. Proyektorda ism yo‘q.\n\nSIZ\n«Kim kodidan bitta qatorni o‘qib beradi? Qaysi blok ekan?»\n\nBOLA O‘RGANADI\nKodni ovoz chiqarib o‘qiydi.\n\n17\nYakun\n\nEKRANDA\nYakun: «Bloklar ortida — kod!» Bugungi so‘z — kod; keyingi dars — 20 · Takrorlash va test.\n\nSIZ\n«Uchala bekatdan o‘tdik: blok va qator, kodda son, kodni o‘qish.» «Keyingi darsda modulni takrorlaymiz — kichik test bo‘ladi.»\n\nBOLA O‘RGANADI\nBugungi so‘zni eslaydi.\n\n18\nSinfimiz bugun\n\nEKRANDA\nSinfimiz bugun: nechta qator topildi, nechta son o‘zgartirildi, nechta pog‘ona bajarildi (haqiqiy son, ismsiz).\n\nSIZ\n«Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o‘qiydi)\n\nBOLA O‘RGANADI\nSinf natijasini ko‘radi.",
+  "bloklar": [],
+  "html": "0bfc5ab40560",
+  "uzun": 8032
+ },
+ "eshik": {
+  "id": "",
+  "matn": "19-dars · Bloklar ortidagi kod\n\nQaysi oynani ochamiz?\n\nO‘quvchi oynasi\nUstoz oynasi (proyektor)\nO‘quvchi — o‘zi (ustozsiz)\nIkkalasi yonma-yon (ko‘rik)\nUstoz varag‘i",
+  "bloklar": [],
+  "html": "82066cd8ad81",
+  "uzun": 776
+ },
+ "kirish-ismsiz": {
+  "id": "",
+  "matn": "Darsga kirish\n\nIsmingizni yozing\n\nKirish",
+  "bloklar": [],
+  "html": "bb43a0750caa",
+  "uzun": 213
+ }
+}

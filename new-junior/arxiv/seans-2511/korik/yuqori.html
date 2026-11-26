@@ -1,0 +1,183 @@
+<title>Junior 9–15-dars ko'rigi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@500;700;800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@600;800&display=swap">
+<style>
+/* Layout: bitta ustun, har qaror — haqiqiy dars suratlari + variantlar; pastda qotib turgan «Javobni nusxalash» paneli */
+:root {
+  --bg: #F6F4EF; --surface: #FFFFFF; --ink: #0D2137; --muted: #5B6476; --line: #E3DED3;
+  --coral: #E5482A; --coral-soft: #FFE9E2; --ok: #1E8E5A; --ok-soft: #E3F4EA; --gold: #C98A0E; --gold-soft: #FFF4D6;
+  --bar-bg: #0D2137; --bar-fg: #F6F4EF;
+  --f-sar: "Geologica", system-ui, sans-serif; --f-matn: "Onest", system-ui, sans-serif; --f-kod: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121820; --surface: #1B2330; --ink: #ECEFF4; --muted: #A3ADBD; --line: #2C3646;
+  --coral: #FF7A5C; --coral-soft: #3A2320; --ok: #4CC38A; --ok-soft: #173326; --gold: #F0B43C; --gold-soft: #33290F;
+  --bar-bg: #ECEFF4; --bar-fg: #121820; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121820; --surface: #1B2330; --ink: #ECEFF4; --muted: #A3ADBD; --line: #2C3646;
+  --coral: #FF7A5C; --coral-soft: #3A2320; --ok: #4CC38A; --ok-soft: #173326; --gold: #F0B43C; --gold-soft: #33290F;
+  --bar-bg: #ECEFF4; --bar-fg: #121820; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--f-matn); margin: 0 }
+.w { max-width: 1040px; margin: 0 auto; padding-block: 28px 150px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 28px }
+h1, h2, h3 { font-family: var(--f-sar); margin: 0; text-wrap: balance; line-height: 1.15 }
+h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800 }
+h1 em, h2 em { font-style: normal; color: var(--coral) }
+h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 800 }
+h3 { font-size: 18px; font-weight: 700 }
+h3 .son { font: 600 13px/1 var(--f-kod); color: var(--muted); margin-left: 6px }
+.yorliq { font: 800 12px/1 var(--f-kod); letter-spacing: .08em; text-transform: uppercase; color: var(--coral); background: var(--coral-soft); padding: 6px 9px; border-radius: 6px; width: max-content; max-width: 100% }
+.lid { color: var(--muted); max-width: 72ch; margin: 0 }
+.lid b { color: var(--ink) }
+.holat { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px }
+.h-k { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+.h-k b { font: 700 15px/1.3 var(--f-sar) }
+.h-k span { color: var(--muted); font-size: 14px }
+.pill { display: inline-block; font: 700 12px/1 var(--f-kod); padding: 5px 8px; border-radius: 999px; width: max-content }
+.pill.ok { color: var(--ok); background: var(--ok-soft) } .pill.kut { color: var(--gold); background: var(--gold-soft) }
+section.dars { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 18px; min-width: 0 }
+.darvoza { display: flex; flex-wrap: wrap; gap: 8px }
+.darvoza span { font: 600 13px/1 var(--f-kod); padding: 7px 10px; border-radius: 8px; background: var(--ok-soft); color: var(--ok) }
+.suratlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+figure img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block }
+figure.kichik img { width: auto; max-width: 100% }
+figcaption { font-size: 14px; color: var(--muted) }
+figcaption b { color: var(--ink) }
+.savol { border-top: 1px solid var(--line); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+.savol p { margin: 0; max-width: 72ch }
+.tanlov { display: flex; flex-direction: column; gap: 8px }
+.tanlov.yon { flex-direction: row; flex-wrap: wrap }
+.tanlov.yon label { flex: 1 1 260px }
+.tanlov label { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; background: var(--bg) }
+.tanlov input { margin-top: 4px; accent-color: var(--coral) }
+.tanlov label:has(input:checked) { border-color: var(--coral); box-shadow: 0 0 0 1px var(--coral) }
+.tanlov .t { font-weight: 600 }
+.tanlov small { display: block; color: var(--muted); font-size: 14px }
+.tav { font: 700 11px/1 var(--f-kod); color: var(--ok); background: var(--ok-soft); padding: 3px 6px; border-radius: 5px; margin-left: 6px; vertical-align: 2px }
+code { font: 600 .92em var(--f-kod); background: var(--bg); padding: 1px 5px; border-radius: 4px }
+ul.qisqa, ol.qisqa { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; max-width: 76ch }
+ol.qisqa { list-style: none; padding-left: 0 }
+details.royxat summary { cursor: pointer; color: var(--coral); font-weight: 600; font-size: 15px }
+details.royxat[open] summary { margin-bottom: 8px }
+details.eski { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 22px; display: flex; flex-direction: column; gap: 20px }
+details.eski summary { cursor: pointer; font: 700 16px/1.3 var(--f-sar) }
+details.eski[open] > summary { margin-bottom: 16px }
+details.eski > section + section { margin-top: 20px }
+.javob { position: fixed; left: 0; right: 0; bottom: 0; background: var(--bar-bg); color: var(--bar-fg); padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); z-index: 5 }
+.javob .ic { max-width: 1040px; margin: 0 auto; display: flex; gap: 12px; align-items: center; flex-wrap: wrap }
+#javobMatn { flex: 1; min-width: 0; font: 600 14px/1.4 var(--f-kod); overflow-wrap: anywhere }
+button { font: 700 15px/1 var(--f-matn); padding: 12px 18px; border-radius: 10px; border: 0; background: var(--coral); color: #fff; cursor: pointer }
+button:focus-visible, .tanlov label:focus-within, summary:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px }
+textarea { width: 100%; min-height: 70px; border: 1px solid var(--line); border-radius: 10px; padding: 10px; font: 400 15px/1.4 var(--f-matn); background: var(--bg); color: var(--ink) }
+</style>
+
+<div class="w">
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <span class="yorliq">Junior · 1-modul · 25.11</span>
+    <h1>QA fidbekidan oldin: <em>to‘rt kamchilik</em> yopilmoqda</h1>
+    <p class="lid"><b>10-versiya.</b> 1–23-dars QA saytida. QA javobi kelguncha o‘zimiz bilgan kamchiliklarni yopayapmiz: ikkitasi tuzatildi (pastda, suratda), ikkitasi uchun sizning qaroringiz kerak. Tekshiruv paytida yana ikkita kamchilik topildi — ular ham shu yerda.</p>
+    <p class="lid" style="opacity:.8">Har savolda tavsiya belgilangan. Rozi bo‘lsangiz, hech narsa bosmasdan pastdagi «Javobni nusxalash» ni bosing va matnni chatga tashlang.</p>
+  </header>
+
+  <div class="holat">
+    <div class="h-k"><span class="pill ok">✓ tuzatildi</span><b>▶ belgisi ko‘rinmasdi</b><span>Solo’da, 23 darsning hammasida. Tekshiruv: 23 dars — 0 topilma.</span></div>
+    <div class="h-k"><span class="pill ok">✓ tuzatildi</span><b>qa.html: «23 ta dars»</b><span>Edi «14 ta dars». QA saytiga keyingi chiqarishda boradi.</span></div>
+    <div class="h-k"><span class="pill kut">javob kerak</span><b>8 qaror + 16–23-dars savollari</b><span>Oltin namunalar shu javoblar va QA tuzatishlaridan keyin yoziladi.</span></div>
+  </div>
+
+  <section class="dars" id="tugma">
+    <span class="yorliq">Hamma dars · tuzatildi</span>
+    <h2>Solo’da ▶ belgisi <em>oq fonda oq</em> edi</h2>
+    <p class="lid">Bola darsni ustozsiz o‘tganda topshiriq ekranida «Keyingi ›» qo‘shiladi, asosiy tugma («Boshlash», «Ishga tushir», «Tekshirish», «Sinab ko‘rish») oq tugmaga aylanadi. Ichidagi ▶ esa oq qolib, ko‘rinmay qolardi — tugmaning chap tomoni bo‘sh. Endi belgi tugma matni rangida. O‘yin to‘xtaganda tugma eski nusxasidan tiklanadi, shuning uchun tuzatish uslubda (kodda almashtirilsa, to‘xtagach yana oq bo‘lardi).</p>
+    <div class="suratlar"><figure class="kichik"><img src="img/k25-tugma.jpg" alt="9-dars solo: oldin — Boshlash tugmasida belgi yo‘q; keyin — ▶ Boshlash"><figcaption><b>9-dars, solo, 1-pog‘ona.</b> Tepada — oldin, pastda — keyin.</figcaption></figure></div>
+    <div class="darvoza"><span>23 dars × (solo, o‘yin paytida, to‘xtagach, ustoz) — 0 topilma</span><span>tekshiruv eski nusxada 33 ta topdi</span><span>9-dars oltin: faqat 11 solo surat</span></div>
+  </section>
+
+  <section class="dars" id="qarorlar">
+    <span class="yorliq">Qaror kerak</span>
+    <h2>Manbalardagi <em>ochiq savollar</em></h2>
+
+    <div class="savol" data-s="K1"><h3>1. 17-dars yakuni: «O‘yiningizda:» ro‘yxati</h3>
+      <p>Manbada bola yakun ekranida ro‘yxat bor («Raketa yuradi · O‘q otiladi · O‘q o‘chadi · Hamma nishon urildi»), darsda yo‘q. 9- va 10-darsda shu ro‘yxat yakunda turadi.</p>
+      <div class="suratlar">
+        <figure><img src="img/k25-d17-b5.jpg" alt="17-dars bola yakuni: ro‘yxat yo‘q"><figcaption><b>17-dars, hozir.</b> Natija kartalari bor, ro‘yxat yo‘q.</figcaption></figure>
+        <figure><img src="img/k25-d9-b5.jpg" alt="9-dars bola yakuni: O‘yiningizda ro‘yxati"><figcaption><b>9-dars — A shunday bo‘ladi.</b> Sahna tepasida chapda ro‘yxat, bajarilgan band ✓.</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K1" value="A" checked><span><span class="t">A — ro‘yxatni qo‘shaman (9-darsdagidek)</span><span class="tav">tavsiya</span><small>Manba bilan bir xil bo‘ladi; o‘yin darslari yakuni bir qolipda.</small></span></label>
+        <label><input type="radio" name="K1" value="B"><span><span class="t">B — manbadan olib tashlayman</span><small>Ekran hozirgidek qoladi.</small></span></label></div></div>
+
+    <div class="savol" data-s="K2"><h3>2. 18-dars, «Har xil ustun» pog‘onasi: maslahat matni</h3>
+      <p>Dushmanlar bitta ustundan tushsa, «Son o‘rniga random qo‘ying» chiqadi. Lekin bu pog‘onada tayyor dasturda <code>go to</code> yo‘q — almashtiradigan son ham yo‘q, bola nima qilishni bilmaydi. Javondagi <code>go to</code> bloki «x: 3, y: 4» bilan turadi, ya’ni y ni o‘zgartirish shart emas.</p>
+      <div class="suratlar">
+        <figure><img src="img/k25-d18-hozir.jpg" alt="18-dars: hozirgi maslahat"><figcaption><b>Hozir:</b> «Hammasi bir ustundan tushdi. Son o‘rniga random qo‘ying».</figcaption></figure>
+        <figure><img src="img/k25-d18-taklif.jpg" alt="18-dars: taklif qilingan maslahat"><figcaption><b>A:</b> «Hammasi bir ustundan tushdi. Nusxa boshiga go to qo‘ying, x — random».</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K2" value="A" checked><span><span class="t">A — yangi matn</span><span class="tav">tavsiya</span><small>Bola qaysi blokni, qayerga qo‘yishni va qaysi sonni o‘zgartirishni biladi.</small></span></label>
+        <label><input type="radio" name="K2" value="B"><span><span class="t">B — boshqa matn</span><small>Izohga yozing.</small></span></label></div></div>
+
+    <div class="savol" data-s="K3"><h3>3. 20-dars: test qanday bo‘ladi?</h3>
+      <p>Hozir test — amaliy topshiriq: o‘sha kosmik o‘yinda bola dasturni noldan tuzadi, maslahat yopiq («Test: o‘zingiz yeching»). Savol-javob testi (rasm va 3 variant) 59-qarorga zid — dars ichida test savoli yo‘q — va yangi mexanika talab qiladi.</p>
+      <div class="suratlar">
+        <figure><img src="img/k25-d20-b2a.jpg" alt="20-dars test: dushman dasturi noldan"><figcaption><b>Hozir (A): Test · 1.</b> Dushman dasturi bo‘sh, maslahat qulfda.</figcaption></figure>
+        <figure><img src="img/k25-d20-p2n.jpg" alt="20-dars savol ekrani — uch karta"><figcaption><b>B shunga o‘xshaydi:</b> darsdagi savol ekrani (uch karta) — testda har savol shunday bo‘lardi.</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K3" value="A" checked><span><span class="t">A — amaliy topshiriq (hozirgidek)</span><span class="tav">tavsiya</span><small>Bola bilishini emas, qila olishini ko‘rsatadi; sinf doskasida eng kam yechilgan topshiriq — ustoz qayta tushuntiradi.</small></span></label>
+        <label><input type="radio" name="K3" value="B"><span><span class="t">B — savol-javob testi</span><small>Yangi ekran turi va qoidadan istisno; dars 1–2 kun kechikadi.</small></span></label></div></div>
+
+    <div class="savol" data-s="K4"><h3>4. 21-dars: loyiha kartasidagi qiymatlar</h3>
+      <p>Bola to‘rt qatorni tanlaydi: kim o‘ynaydi · dushmanlar 3 / 5 / 8 · har dushman 1 / 2 / 3 ball · jon 3 / 4 / 5. Yutish uchun ball o‘zi hisoblanadi (ball × dushmanlarning yarmi, yuqoriga yaxlitlab: 5 dushman × 2 ball → 6). <b>Halol aytaman:</b> 27 kombinatsiyaning hammasi yutiladigan ekani bot bilan hali o‘lchanmagan.</p>
+      <div class="suratlar"><figure><img src="img/k25-d21-k1.jpg" alt="21-dars loyiha kartasi"><figcaption><b>21-dars, «Kartangizni to‘ldiring».</b></figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="K4" value="A" checked><span><span class="t">A — qiymatlar shunday; 27 kombinatsiyani bot bilan o‘ynatib tekshiraman</span><span class="tav">tavsiya</span><small>Yutib bo‘lmaydigani chiqsa — o‘sha qiymatni o‘zgartirishni taklif qilaman.</small></span></label>
+        <label><input type="radio" name="K4" value="B"><span><span class="t">B — boshqa qiymatlar</span><small>Izohga yozing.</small></span></label></div></div>
+
+    <div class="savol" data-s="K5"><h3>5. 23-dars: «ta mehmon yutdi» soni</h3>
+      <p>«Mehmon yutdi» ekranida o‘yinni mehmon (ota-ona) o‘ynaydi, bola aytib beradi. Dvigatel kim o‘ynayotganini bilmaydi: bola o‘zi o‘ynab yutsa ham son «mehmon yutdi» bo‘lib sanaladi.</p>
+      <div class="suratlar"><figure><img src="img/k25-d23-b5.jpg" alt="23-dars bola yakuni"><figcaption><b>23-dars yakuni.</b> «ta o‘yin tugadi · ta mehmon yutdi · pog‘ona bajardi».</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="K5" value="A" checked><span><span class="t">A — qoldiraman; ustoz varag‘iga «bu ekranda faqat mehmon o‘ynaydi» qatori</span><span class="tav">tavsiya</span><small>Ekran nomi va maslahat allaqachon «Mehmon o‘ynasin» deydi; yangi tugma kerak emas.</small></span></label>
+        <label><input type="radio" name="K5" value="B"><span><span class="t">B — nomini «ta o‘yin yutildi» ga almashtiraman</span><small>Son halol, lekin «mehmon» ma’nosi yo‘qoladi.</small></span></label></div></div>
+
+    <div class="savol" data-s="K6"><h3>6. 23-dars: Scratch’ga o‘tish yo‘riqnomasi</h3>
+      <p>Bola noutbukida uch qadam («Scratch saytiga kiring — ota-onangizdan ruxsat so‘rang» · «Yangi loyiha oching» · «O‘yiningizni o‘zingiz yasang»), ustoz ekranida jadval «Blok studiya → Scratch» (hodisa, klon, o‘zgaruvchi). Dars ichida Scratch ochilmaydi: sinfda internet kafolatlanmagan, 13 yoshdan kichiklarga ota-ona ruxsati kerak.</p>
+      <div class="suratlar"><figure><img src="img/k25-d23-y1.jpg" alt="23-dars Uyda davom eting"><figcaption><b>23-dars, «Uyda davom eting».</b></figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="K6" value="A" checked><span><span class="t">A — shunday</span><span class="tav">tavsiya</span></span></label>
+        <label><input type="radio" name="K6" value="B"><span><span class="t">B — boshqacha</span><small>Izohga yozing.</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="topilma">
+    <span class="yorliq">Tekshiruvda topildi · tuzatishga ruxsat</span>
+    <h2>Yana ikki <em>kamchilik</em></h2>
+    <p class="lid">Qaror suratlarini olayotganda ko‘rindi. Ikkalasini ham avtomatik tekshiruv bilan 23 darsda qidirdim.</p>
+
+    <div class="savol" data-s="K7"><h3>7. Dasturchalar bir-birining ustiga tushadi</h3>
+      <p>{USTMA_MATN}</p>
+      <div class="suratlar">
+        <figure><img src="img/k25-d23-b2y.jpg" alt="23-dars: raketa dasturi"><figcaption><b>23-dars, «Mehmon yutdi».</b> Raketa dasturi.</figcaption></figure>
+        <figure class="kichik"><img src="img/k25-ustma.jpg" alt="Yaqindan: set jon bloki when touching enemy ostida"><figcaption><b>Yaqindan.</b> <code>set ball to 0</code> ostidagi <code>set jon to 3</code> — «when touching enemy» tagida.</figcaption></figure>
+      </div>
+      <div class="tanlov">
+        <label><input type="radio" name="K7" value="A" checked><span><span class="t">{USTMA_A}</span><span class="tav">tavsiya</span><small>{USTMA_A_IZOH}</small></span></label>
+        <label><input type="radio" name="K7" value="B"><span><span class="t">{USTMA_B}</span><small>{USTMA_B_IZOH}</small></span></label></div></div>
+
+    <div class="savol" data-s="K8"><h3>8. Yakun ekranida o‘zgaruvchilar karta ortida</h3>
+      <p>{KAPS_MATN}</p>
+      <div class="suratlar"><figure class="kichik"><img src="img/k25-kapsula.jpg" alt="23-dars yakuni: ball va jon kapsulalari karta ortida"><figcaption><b>23-dars yakuni, sahna tepasi.</b> Jigarrang «ball» va qizil «jon» kartaning orqasidan chiqib turibdi.</figcaption></figure></div>
+      <div class="tanlov">
+        <label><input type="radio" name="K8" value="A" checked><span><span class="t">{KAPS_A}</span><span class="tav">tavsiya</span><small>{KAPS_A_IZOH}</small></span></label>
+        <label><input type="radio" name="K8" value="B"><span><span class="t">{KAPS_B}</span><small>{KAPS_B_IZOH}</small></span></label></div></div>
+  </section>
+
+  <section class="dars" id="qolgan">
+    <span class="yorliq">16–23-dars · qurilgan javoblar</span>
+    <h2>Qolgan <em>71 savol</em> — tavsiya bo‘yicha qurilgan</h2>
+    <p class="lid">Har dars manbasidagi savollar. Hammasi A (tavsiya) bo‘yicha qurilgan va sinovdan o‘tgan, siz hali tasdiqlamagansiz. Ro‘yxatni ochib ko‘ring; e’tirozingiz bo‘lsa, B ni tanlab raqamini izohga yozing. Yuqoridagi 3–6-qaror shu ro‘yxatdagi 20·1, 21·3–5, 23·2–3 ning batafsilidir.</p>
+{QOLGAN}
+    <label for="izoh" style="font-weight:600">Izoh (ixtiyoriy)</label>
+    <textarea id="izoh" placeholder="Masalan: 17·4 — B, nishonlar ham qimirlasin…"></textarea>
+  </section>

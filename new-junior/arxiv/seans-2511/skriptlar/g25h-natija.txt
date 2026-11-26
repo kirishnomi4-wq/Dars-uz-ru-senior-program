@@ -1,0 +1,22 @@
+== BOSHLANDI 04:52
+-- oltin sol 008-shart 04:52
+BIR XIL: 68 / 125
+-- oltin sol 009-labirint-oyini-1 04:57
+BIR XIL: 71 / 133
+-- oltin sol 010-labirint-oyini-2 05:01
+BIR XIL: 81 / 123
+-- oltin sol 014-xatoni-topish 05:06
+BIR XIL: 76 / 138
+-- oltin yoz 016-klonlar 05:10
+== 016-klonlar: namuna yozildi: 126 holat → /home/kali/Desktop/internetLesson/new-junior/sinov/dvigatel/oltin/016-klonlar
+-- oltin sol 016-klonlar 05:14
+== 016-klonlar: suratlar olindi: 126 holat → /home/kali/Desktop/internetLesson/new-junior/sinov/dvigatel/.yangi/016-klonlar
+BIR XIL: 126 / 126
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+-- oltin yoz 017-kosmik-oyin-1 (uchyapti → uchdi) 05:18
+== 017-kosmik-oyin-1: namuna yozildi: 126 holat → /home/kali/Desktop/internetLesson/new-junior/sinov/dvigatel/oltin/017-kosmik-oyin-1
+-- oltin sol 017-kosmik-oyin-1 05:21
+== 017-kosmik-oyin-1: suratlar olindi: 126 holat → /home/kali/Desktop/internetLesson/new-junior/sinov/dvigatel/.yangi/017-kosmik-oyin-1
+BIR XIL: 126 / 126
+FARQ YO‘Q — 0 piksel, matn va HTML bir xil
+TAMOM 05:24

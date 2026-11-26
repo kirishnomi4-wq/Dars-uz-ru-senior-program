@@ -97,5 +97,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '15-qadam. goTo(0, 0); for 2 [moveRight();] moveUp(); — kodda 2 → 5, raketa ★ (5, 1) ga.', ...oqi('Mashq · ★ qo‘shimcha', '<em>Nishonga</em>', 'Kodda sonni o‘zgartiring — raketa yulduzga borsin', [0, 0], { yulduz: [5, 1], hint: 'Kodda sonni o‘zgartiring' }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Kodni <em>o‘qidim</em>!', '')}${qg('Bloklarim ortida kod bor!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK(), { asl: [3, 4], oq: [[3, 2]] })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda takrorlaymiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

@@ -1,0 +1,72 @@
+012: 26 holat — 1 TOPILMA
+   ✗ solo B5: kapsula «ball:0» ostida: gl kd2 a-tr (5/5 nuqta); kapsula «jon:3» ostida: B (5/5 nuqta)
+023: 21 holat — 6 TOPILMA
+   ✗ solo B1A [raketa]: when_start × when_touch (238×50)
+   ✗ solo P8 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2A [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2Y [raketa]: when_start × when_touch (238×50)
+   ✗ solo B5: kapsula «ball:0» ostida: gl kd2 a-tr (5/5 nuqta); kapsula «jon:3» ostida: B (5/5 nuqta)
+   ✗ ustoz 6-qadam P8: when_start × when_touch (206×107)
+022: 26 holat — 8 TOPILMA
+   ✗ solo P7 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1A [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1Y [raketa]: when_start × when_touch (238×50)
+   ✗ solo P8 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2Y [raketa]: when_start × when_touch (238×50)
+   ✗ ustoz 3-qadam P7: when_start × when_touch (203×104)
+   ✗ ustoz 6-qadam P8: when_start × when_touch (238×50)
+   ✗ ustoz 11-qadam P11: when_start × when_touch (238×50)
+021: 29 holat — 5 TOPILMA
+   ✗ solo P8 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2A [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2Y [raketa]: when_start × when_touch (238×50)
+   ✗ solo P10 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B3Y [raketa]: when_start × when_touch (238×50)
+020: 45 holat — 12 TOPILMA
+   ✗ solo P7 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1A [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1B [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1Y [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2A [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2B [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2Y [raketa]: when_start × when_touch (238×50)
+   ✗ solo P10 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B3Y [raketa]: when_start × when_touch (238×50)
+   ✗ solo B5: kapsula «ball:0» ostida: gl kd2 a-tr (1/5 nuqta); kapsula «jon:2» ostida: gl kd2 a-tr (1/5 nuqta)
+   ✗ ustoz 6-qadam P7: when_start × when_touch (205×105)
+   ✗ ustoz 11-qadam P10: when_start × when_touch (238×50)
+019: 46 holat — 12 TOPILMA
+   ✗ solo P7 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1A [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1B [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1C [raketa]: when_start × when_touch (238×50)
+   ✗ solo B1Y [raketa]: when_start × when_touch (238×70)
+   ✗ solo P8 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2A [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2B [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2C [raketa]: when_start × when_touch (238×50)
+   ✗ solo B2Y [raketa]: when_start × when_touch (238×50)
+   ✗ ustoz 7-qadam P7: when_start × when_touch (209×106)
+   ✗ ustoz 16-qadam P11: when_start × when_touch (238×50)
+018: 56 holat — 5 TOPILMA
+   ✗ solo P10 [raketa]: when_start × when_touch (238×50)
+   ✗ solo B3C [raketa]: when_start × when_touch (238×50)
+   ✗ solo B3Y [raketa]: when_start × when_touch (238×50)
+   ✗ solo B5: kapsula «ball:0» ostida: gl kd2 a-tr (5/5 nuqta); kapsula «jon:2» ostida: B (5/5 nuqta)
+   ✗ ustoz 16-qadam P11: when_start × when_touch (238×50)
+017: 37 holat — toza
+016: 26 holat — toza
+015: 16 holat — 2 TOPILMA
+   ✗ solo P8: when_key × when_key (156×125); when_key × when_key (156×125); when_start × when_touch (128×125)
+   ✗ ustoz 13-qadam P8: when_key × when_key (156×125); when_key × when_key (156×125); when_start × when_touch (128×125)
+004: 25 holat — toza
+005: 26 holat — toza
+006: 26 holat — toza
+007: 25 holat — toza
+008: 26 holat — toza
+009: 25 holat — toza
+010: 24 holat — toza
+011: 26 holat — toza
+013: 26 holat — toza
+014: 26 holat — toza
+JAMI TOPILMA: 51

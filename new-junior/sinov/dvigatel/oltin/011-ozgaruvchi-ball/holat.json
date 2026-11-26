@@ -15,10 +15,10 @@
  },
  "u-03-P2S": {
   "id": "P2S",
-  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\nHar olma — 1 ball\n→\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "SAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\nHar olma — 1 ball\n‹ Orqaga\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "48fcef3085b8",
-  "uzun": 39850
+  "html": "c49aa5bb34bd",
+  "uzun": 39816
  },
  "u-04-P2C": {
   "id": "P2C",
@@ -45,8 +45,8 @@
   "id": "P6",
   "matn": "KO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "7d14aba6123a",
-  "uzun": 40510
+  "html": "ecf39aa22e6a",
+  "uzun": 40508
  },
  "u-08-P5": {
   "id": "P5",
@@ -69,8 +69,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "bacad7ede191",
-  "uzun": 40492
+  "html": "7751233356f7",
+  "uzun": 40490
  },
  "u-11-P5G": {
   "id": "P5G",
@@ -103,8 +103,8 @@
    "c:changeballby2changeballby1",
    "c:changeballby1"
   ],
-  "html": "66a9d35360bc",
-  "uzun": 37438
+  "html": "5236dc994621",
+  "uzun": 37440
  },
  "u-15-P5B": {
   "id": "P5B",
@@ -117,8 +117,8 @@
   "id": "P11",
   "matn": "KO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "2230f3884d71",
-  "uzun": 40566
+  "html": "35bd88a5ea41",
+  "uzun": 40564
  },
  "u-17-P12": {
   "id": "P12",
@@ -183,8 +183,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "7f5727c39cb0",
-  "uzun": 41635
+  "html": "ea39f13f074a",
+  "uzun": 41638
  },
  "u-x-P6-boshqaruv": {
   "id": "P6",
@@ -193,8 +193,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "fb24319268a1",
-  "uzun": 41641
+  "html": "1e007dec0e54",
+  "uzun": 41644
  },
  "u-x-P6-ball1": {
   "id": "P6",
@@ -203,8 +203,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "dec2ffa5c3e7",
-  "uzun": 41863
+  "html": "ec95cdf48e48",
+  "uzun": 41866
  },
  "u-x-P6-yutdi": {
   "id": "P6",
@@ -213,8 +213,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "329442e41453",
-  "uzun": 43156
+  "html": "c8c5aef43a7f",
+  "uzun": 43159
  },
  "u-x-P7-6": {
   "id": "P7",
@@ -223,8 +223,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "8bc280941171",
-  "uzun": 42070
+  "html": "09b2ab619708",
+  "uzun": 42068
  },
  "u-x-P7-set": {
   "id": "P7",
@@ -235,8 +235,8 @@
    "f:when ▶ clickedsetballto0",
    "z:setballto0"
   ],
-  "html": "f4c470de6688",
-  "uzun": 43184
+  "html": "f6e124a12bdf",
+  "uzun": 43187
  },
  "u-x-P7-yutdi": {
   "id": "P7",
@@ -247,8 +247,8 @@
    "f:when ▶ clickedsetballto0",
    "z:setballto0"
   ],
-  "html": "9c4ff8a51ec3",
-  "uzun": 43141
+  "html": "2a90e0fccc16",
+  "uzun": 43144
  },
  "u-x-P8-oqildi": {
   "id": "P8",
@@ -260,8 +260,8 @@
    "c:changeballby2changeballby1",
    "c:changeballby1"
   ],
-  "html": "909bbcabb8d9",
-  "uzun": 37821
+  "html": "3776a28c3456",
+  "uzun": 37823
  },
  "u-x-P8-karta": {
   "id": "P8",
@@ -273,8 +273,8 @@
    "c:changeballby2changeballby1",
    "c:changeballby1"
   ],
-  "html": "587b7a49d03e",
-  "uzun": 37840
+  "html": "be72ca56f4bb",
+  "uzun": 37838
  },
  "u-x-P8-aytdi": {
   "id": "P8",
@@ -286,8 +286,8 @@
    "c:changeballby2changeballby1",
    "c:changeballby1"
   ],
-  "html": "6c89c32b4d04",
-  "uzun": 38330
+  "html": "ce1a0aafa8fc",
+  "uzun": 38328
  },
  "u-x-yakunlandi": {
   "id": "P14",
@@ -363,29 +363,29 @@
   "id": "B1A",
   "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
   "bloklar": [],
-  "html": "23bd0a685e9b",
-  "uzun": 26042
+  "html": "425dd3294b9d",
+  "uzun": 26040
  },
  "bq-08-1-B1B": {
   "id": "B1B",
   "matn": "MASHQ · 2-POG‘ONA\nIkki ball\nHar olma — 2 ball. Ball 8 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
   "bloklar": [],
-  "html": "152e18d52652",
-  "uzun": 26609
+  "html": "4e4a12a618bf",
+  "uzun": 26607
  },
  "bq-08-2-B1C": {
   "id": "B1C",
   "matn": "MASHQ · 3-POG‘ONA\nOltin olma\nOlma — 1 ball, oltin olma — 5 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
   "bloklar": [],
-  "html": "74d990dfa72e",
-  "uzun": 26176
+  "html": "0ab18ed8bf1d",
+  "uzun": 26174
  },
  "bq-08-3-B1Y": {
   "id": "B1Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nOltin — 10\nOlma — 2 ball, oltin olma — 10 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
   "bloklar": [],
-  "html": "4ad3ca692713",
-  "uzun": 27312
+  "html": "a74e9b22010c",
+  "uzun": 27310
  },
  "bq-08-4-BK": {
   "id": "BK",
@@ -412,29 +412,29 @@
   "id": "B2A",
   "matn": "MASHQ · 1-POG‘ONA\nNoldan\nO‘yin 0 dan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
   "bloklar": [],
-  "html": "e4a0b9e32e73",
-  "uzun": 26669
+  "html": "7f23a1f9c942",
+  "uzun": 26667
  },
  "bq-11-1-B2B": {
   "id": "B2B",
   "matn": "MASHQ · 2-POG‘ONA\nSovg‘a\nO‘yin 10 balldan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
   "bloklar": [],
-  "html": "7db64a6febad",
-  "uzun": 26107
+  "html": "da89c3172d15",
+  "uzun": 26105
  },
  "bq-11-2-B2C": {
   "id": "B2C",
   "matn": "MASHQ · 3-POG‘ONA\nUch va oltin\nO‘yin 3 balldan. Olma — 2, oltin olma — 4 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
   "bloklar": [],
-  "html": "f8497b537063",
-  "uzun": 26244
+  "html": "172a4e430c31",
+  "uzun": 26242
  },
  "bq-11-3-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nBoshidagi ballni va olmalar necha ball berishini o‘zingiz tanlang.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash",
   "bloklar": [],
-  "html": "8cf55397e0bb",
-  "uzun": 26965
+  "html": "5a435cee94f5",
+  "uzun": 26963
  },
  "bq-11-4-BK": {
   "id": "BK",
@@ -473,8 +473,8 @@
    "c:changeballby1changeballby5",
    "c:changeballby5"
   ],
-  "html": "b8c013129c9e",
-  "uzun": 22761
+  "html": "37a8d50fceec",
+  "uzun": 22763
  },
  "bq-15-1-B3B": {
   "id": "B3B",
@@ -485,8 +485,8 @@
    "p:repeat3changeballby2",
    "c:changeballby2"
   ],
-  "html": "6940bc37db75",
-  "uzun": 22763
+  "html": "06e8e36aeb36",
+  "uzun": 22765
  },
  "bq-15-2-B3C": {
   "id": "B3C",
@@ -498,8 +498,8 @@
    "z:setballto1changeballby1",
    "c:changeballby1"
   ],
-  "html": "81389a31bfec",
-  "uzun": 22761
+  "html": "6bae17eede4f",
+  "uzun": 22763
  },
  "bq-15-3-B3Y": {
   "id": "B3Y",
@@ -511,8 +511,8 @@
    "c:changeballby3changeballby2",
    "c:changeballby2"
   ],
-  "html": "09276b3ed6d9",
-  "uzun": 22782
+  "html": "6e846e65666c",
+  "uzun": 22784
  },
  "bq-15-4-BK": {
   "id": "BK",
@@ -523,38 +523,38 @@
  },
  "bq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "16661a4ebbd4",
-  "uzun": 20599
+  "html": "ad34449799e1",
+  "uzun": 20650
  },
  "bq-18-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "16661a4ebbd4",
-  "uzun": 20599
+  "html": "ad34449799e1",
+  "uzun": 20650
  },
  "bx-B1A-bosh": {
   "id": "B1A",
   "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash",
   "bloklar": [],
-  "html": "23bd0a685e9b",
-  "uzun": 26042
+  "html": "425dd3294b9d",
+  "uzun": 26040
  },
  "bx-B1A-ballchi": {
   "id": "B1A",
   "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 2)\nball:\n0\nO‘yin: strelkalarni bosing\nOlma terildi, ball-chi?\nMaslahat\nOlmaga tekkanda nima bo‘lsin? Buning uchun o‘z hodisa bloki bor\n■ To‘xtatish",
   "bloklar": [],
-  "html": "55bafd8460e9",
-  "uzun": 31466
+  "html": "d21a25e983d8",
+  "uzun": 31464
  },
  "bx-B1A-kam": {
   "id": "B1A",
   "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n0\nBall kam!\nMaslahat\nBall 0 — 3 bo‘lishi kerak. Har olma necha ball?\nBoshlash",
   "bloklar": [],
-  "html": "3e99e26e5bee",
-  "uzun": 32313
+  "html": "1a2d8c0699e8",
+  "uzun": 32311
  },
  "bx-B1A-yutdi": {
   "id": "B1A",
@@ -563,8 +563,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "cbdc0e009d8f",
-  "uzun": 27574
+  "html": "df29709e59b6",
+  "uzun": 27572
  },
  "bx-B1C-oltin": {
   "id": "B1C",
@@ -573,8 +573,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "aeb4e193be28",
-  "uzun": 31794
+  "html": "7977b7301a46",
+  "uzun": 31792
  },
  "bx-B2A-bosh": {
   "id": "B2A",
@@ -583,8 +583,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "b4a1e4aa6993",
-  "uzun": 26660
+  "html": "5c4b1b138d5f",
+  "uzun": 26658
  },
  "bx-B2A-kop": {
   "id": "B2A",
@@ -593,8 +593,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "3a2d07bfef83",
-  "uzun": 33326
+  "html": "614713b8d936",
+  "uzun": 33324
  },
  "bx-B2A-yutdi": {
   "id": "B2A",
@@ -605,8 +605,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "6f78dd55597e",
-  "uzun": 28744
+  "html": "159886fc9148",
+  "uzun": 28742
  },
  "bx-B2Y-tayyor": {
   "id": "B2Y",
@@ -619,8 +619,8 @@
    "q:when touchinggold applechangeballby10",
    "c:changeballby10"
   ],
-  "html": "5768c09a45be",
-  "uzun": 29040
+  "html": "129a82c8a6de",
+  "uzun": 29067
  },
  "bx-B3A-bosh": {
   "id": "B3A",
@@ -631,8 +631,8 @@
    "c:changeballby1changeballby5",
    "c:changeballby5"
   ],
-  "html": "b8c013129c9e",
-  "uzun": 22761
+  "html": "37a8d50fceec",
+  "uzun": 22763
  },
  "bx-B3A-karta": {
   "id": "B3A",
@@ -643,8 +643,8 @@
    "c:changeballby1changeballby5",
    "c:changeballby5"
   ],
-  "html": "3eedf21f261c",
-  "uzun": 22734
+  "html": "01171eea2474",
+  "uzun": 22732
  },
  "bx-B3A-boshqa": {
   "id": "B3A",
@@ -655,8 +655,8 @@
    "c:changeballby1changeballby5",
    "c:changeballby5"
   ],
-  "html": "12d586a24043",
-  "uzun": 28343
+  "html": "cb1e816db197",
+  "uzun": 28341
  },
  "bx-B3A-aytdi": {
   "id": "B3A",
@@ -667,8 +667,8 @@
    "c:changeballby1changeballby5",
    "c:changeballby5"
   ],
-  "html": "87c2b0ba089c",
-  "uzun": 23606
+  "html": "b6605d923f24",
+  "uzun": 23604
  },
  "bx-B3B-bosh": {
   "id": "B3B",
@@ -679,15 +679,15 @@
    "p:repeat3changeballby2",
    "c:changeballby2"
   ],
-  "html": "6940bc37db75",
-  "uzun": 22763
+  "html": "06e8e36aeb36",
+  "uzun": 22765
  },
  "bx-B5-natija": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n11\nta olma terdi\n31\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n31\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n11\nta olma terdi\n31\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n31\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "5a31f8d4b698",
-  "uzun": 20602
+  "html": "bf4b7578dad1",
+  "uzun": 20653
  },
  "bx-P2N-tanladi": {
   "id": "P2N",
@@ -766,36 +766,36 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "b182391482eb",
-  "uzun": 39169
+  "html": "48d1b0f6eac6",
+  "uzun": 39167
  },
  "sq-08-0-B1A": {
   "id": "B1A",
   "matn": "MASHQ · 1-POG‘ONA\nUch olma\nHar olma — 1 ball. Ball 3 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "dda3713504b8",
-  "uzun": 26089
+  "html": "de9588592192",
+  "uzun": 26087
  },
  "sq-08-1-B1B": {
   "id": "B1B",
   "matn": "MASHQ · 2-POG‘ONA\nIkki ball\nHar olma — 2 ball. Ball 8 bo‘lsin.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "e11dd3e2f178",
-  "uzun": 26656
+  "html": "ad4022fc9783",
+  "uzun": 26654
  },
  "sq-08-2-B1C": {
   "id": "B1C",
   "matn": "MASHQ · 3-POG‘ONA\nOltin olma\nOlma — 1 ball, oltin olma — 5 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 4)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "8a2a16a1e469",
-  "uzun": 26223
+  "html": "9c8e94551a54",
+  "uzun": 26221
  },
  "sq-08-3-B1Y": {
   "id": "B1Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nOltin — 10\nOlma — 2 ball, oltin olma — 10 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(3, 0)\nball:\n0\nMaslahat\nOlmaga tekkanda ballga qancha qo‘shilsin?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "a89c4db40ed2",
-  "uzun": 27359
+  "html": "a45cc12e7f18",
+  "uzun": 27357
  },
  "sq-09-0-P4B": {
   "id": "P4B",
@@ -811,36 +811,36 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "be6ad86e439c",
-  "uzun": 39200
+  "html": "8189bde4778f",
+  "uzun": 39198
  },
  "sq-11-0-B2A": {
   "id": "B2A",
   "matn": "MASHQ · 1-POG‘ONA\nNoldan\nO‘yin 0 dan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "65457b9620ff",
-  "uzun": 26716
+  "html": "a7a0d6306972",
+  "uzun": 26714
  },
  "sq-11-1-B2B": {
   "id": "B2B",
   "matn": "MASHQ · 2-POG‘ONA\nSovg‘a\nO‘yin 10 balldan boshlansin. Har olma — 1 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(6, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "35143c3f1d98",
-  "uzun": 26154
+  "html": "25b31d565d2a",
+  "uzun": 26152
  },
  "sq-11-2-B2C": {
   "id": "B2C",
   "matn": "MASHQ · 3-POG‘ONA\nUch va oltin\nO‘yin 3 balldan. Olma — 2, oltin olma — 4 ball.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "81b8b99f214d",
-  "uzun": 26291
+  "html": "d0db5deb5dcb",
+  "uzun": 26289
  },
  "sq-11-3-B2Y": {
   "id": "B2Y",
   "matn": "MASHQ · ★ QO‘SHIMCHA\nO‘z o‘yiningiz\nBoshidagi ballni va olmalar necha ball berishini o‘zingiz tanlang.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n5\nO‘tgan o‘yindan qolgan ball\nMaslahat\nO‘yin boshida ball nechchi bo‘lishi kerak?\nBoshlash\nKeyingi ›",
   "bloklar": [],
-  "html": "63058ad03dac",
-  "uzun": 27012
+  "html": "dd4cef1bf2bb",
+  "uzun": 27010
  },
  "sq-12-0-P9": {
   "id": "P9",
@@ -866,8 +866,8 @@
    "c:changeballby2changeballby1",
    "c:changeballby1"
   ],
-  "html": "4bcc6ac21018",
-  "uzun": 36144
+  "html": "0a3068a87445",
+  "uzun": 36146
  },
  "sq-15-0-B3A": {
   "id": "B3A",
@@ -878,8 +878,8 @@
    "c:changeballby1changeballby5",
    "c:changeballby5"
   ],
-  "html": "8d79c1be7913",
-  "uzun": 22808
+  "html": "73f12dca4f60",
+  "uzun": 22810
  },
  "sq-15-1-B3B": {
   "id": "B3B",
@@ -890,8 +890,8 @@
    "p:repeat3changeballby2",
    "c:changeballby2"
   ],
-  "html": "64e19a4478c1",
-  "uzun": 22810
+  "html": "7ce101f387c3",
+  "uzun": 22812
  },
  "sq-15-2-B3C": {
   "id": "B3C",
@@ -903,8 +903,8 @@
    "z:setballto1changeballby1",
    "c:changeballby1"
   ],
-  "html": "c9afd3aa4575",
-  "uzun": 22808
+  "html": "5e4e3317fa16",
+  "uzun": 22810
  },
  "sq-15-3-B3Y": {
   "id": "B3Y",
@@ -916,15 +916,15 @@
    "c:changeballby3changeballby2",
    "c:changeballby2"
   ],
-  "html": "7d40debefecc",
-  "uzun": 22829
+  "html": "db0df7376dae",
+  "uzun": 22831
  },
  "sq-17-0-B5": {
   "id": "B5",
-  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\nDars tugadi",
+  "matn": "SIZNING NATIJANGIZ\nSiz ball sanadingiz!\n\nBulut\nOlmalarni terdim — kompyuter ballni eslab qoldi.\n\nSiz bugun\n0\nta olma terdi\n0\neng katta ball\n0\nmarta oldindan aytdi\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(5, 0)\nball:\n0\nBulut\nKeyingi darsda jon bilan ko‘rishamiz!\n✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin",
   "bloklar": [],
-  "html": "16661a4ebbd4",
-  "uzun": 20599
+  "html": "ad34449799e1",
+  "uzun": 20650
  },
  "sx-P2S-C": {
   "id": "P2S",
@@ -940,8 +940,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "b182391482eb",
-  "uzun": 39169
+  "html": "48d1b0f6eac6",
+  "uzun": 39167
  },
  "sx-P8-ishora": {
   "id": "P8",
@@ -953,8 +953,8 @@
    "c:changeballby2changeballby1",
    "c:changeballby1"
   ],
-  "html": "4bcc6ac21018",
-  "uzun": 36144
+  "html": "0a3068a87445",
+  "uzun": 36146
  },
  "y-01": {
   "id": "P1",
@@ -972,10 +972,10 @@
  },
  "y-03": {
   "id": "P2S",
-  "matn": "USTOZ · PROYEKTOR\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\nHar olma — 1 ball\n→\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
+  "matn": "USTOZ · PROYEKTOR\nSAVOL\nBallni qanday sanaymiz?\n\nCoddy\nUch olma teraman. Ekranda ball chiqsin.\n\nA\nCoddy «1» desin\nwhen touching\napple\nsay\n1\nB\nBir, ikki, uch desin\nwhen touching\napple\nsay\n1\nsay\n2\nsay\n3\nC\nKompyuter sonni eslab qolsin\nwhen touching\napple\nchange\nball\nby\n1\nball:\n0\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(1, 0)\nball:\n0\nHar olma — 1 ball\n‹ Orqaga\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "88f20755c7be",
-  "uzun": 92607
+  "html": "36badc49a4fe",
+  "uzun": 92573
  },
  "y-04": {
   "id": "P2C",
@@ -1002,8 +1002,8 @@
   "id": "P6",
   "matn": "USTOZ · PROYEKTOR\nKO‘RAMIZ\nchange — ballga qo‘sh\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "9ccfd1de519c",
-  "uzun": 93267
+  "html": "637494e72c6d",
+  "uzun": 93265
  },
  "y-08": {
   "id": "P5",
@@ -1026,8 +1026,8 @@
    "q:when touchingapplechangeballby1",
    "c:changeballby1"
   ],
-  "html": "0f7cba42ce49",
-  "uzun": 93249
+  "html": "7e904eb7e23b",
+  "uzun": 93247
  },
  "y-11": {
   "id": "P5G",
@@ -1060,8 +1060,8 @@
    "c:changeballby2changeballby1",
    "c:changeballby1"
   ],
-  "html": "6c89c44ba940",
-  "uzun": 90195
+  "html": "86020fcff0c8",
+  "uzun": 90197
  },
  "y-15": {
   "id": "P5B",
@@ -1074,8 +1074,8 @@
   "id": "P11",
   "matn": "USTOZ · PROYEKTOR\nKO‘RSATISH\nDasturingizni o‘qib bering\nSiz o‘qiysiz — men o‘ynayman.\nHodisa\nO‘zgaruvchi\nHodisa\nwhen touching\napple\nwhen ▶ clicked\nDastur\nBoshqaruv:\n→\n←\n↑\n↓\n▾\nBlokni shu yerga ulang\n0 ta dasturcha\n0 / 12 ta blok\n0\n1\n2\n3\n4\n5\n6\n0\n1\n2\n3\n4\nX →\nY ↑\n(0, 0)\nball:\n0\n‹ Orqaga\n▶ Boshlash\nKeyingi ›\nO‘QUVCHI · NOUTBUK\nQAHRAMON\nQahramoningizni tanlang\n\nCoddy\nBirini tanlang — bugun unga buyruq berasiz.\n\nMomiq\nJele\nKatak\nZippi\nNihol\nBirini tanlang\n‹\n1 / 18 · Kirish\n2 / 18 · Savol: ballni qanday sanaymiz?\n3 / 18 · Uch sinov\n4 / 18 · Javob: kompyuter sonni eslab qoladi\n5 / 18 · Yangi so‘z: o‘zgaruvchi\n6 / 18 · Reja\n7 / 18 · Ko‘ramiz: change bloki\n8 / 18 · Ball: pog‘onalar\n9 / 18 · 2-bekat\n10 / 18 · Ko‘ramiz: set bloki\n11 / 18 · Noldan: pog‘onalar\n12 / 18 · Xulosa: o‘zgaruvchi\n13 / 18 · 3-bekat\n14 / 18 · Ko‘ramiz: dasturni o‘qib, ballni oldindan aytamiz\n15 / 18 · Oldindan aytamiz: pog‘onalar\n16 / 18 · O‘yiningiz dasturini o‘qib bering\n17 / 18 · Yakun\n18 / 18 · Sinfimiz bugun\n›\nOvoz yoqiq\nTo‘liq ekran\naloqa",
   "bloklar": [],
-  "html": "e314f6276857",
-  "uzun": 93323
+  "html": "68cdaa6fee31",
+  "uzun": 93321
  },
  "y-17": {
   "id": "P12",

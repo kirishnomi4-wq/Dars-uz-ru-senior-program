@@ -1,0 +1,39 @@
+== BOSHLANDI 15:57
+-- webkit 012-ozgaruvchi-jon-vaqt
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 122 element — qahramon ochiq, hech narsa oshmadi
+-- webkit 017-kosmik-oyin-1
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 35 element — qahramon ochiq, hech narsa oshmadi
+-- webkit 018-kosmik-oyin-2
+[WebKit] labirintli ekran: 23; ichidan oshish tekshirildi: 49 element — qahramon ochiq, hech narsa oshmadi
+-- webkit 020-takrorlash-va-test
+[WebKit] labirintli ekran: 17; ichidan oshish tekshirildi: 40 element — qahramon ochiq, hech narsa oshmadi
+-- webkit 021-shaxsiy-oyin-1
+[WebKit] labirintli ekran: 13; ichidan oshish tekshirildi: 18 element — qahramon ochiq, hech narsa oshmadi
+-- webkit 022-shaxsiy-oyin-2
+[WebKit] labirintli ekran: 11; ichidan oshish tekshirildi: 21 element — qahramon ochiq, hech narsa oshmadi
+-- webkit 023-demo-day-1
+[WebKit] labirintli ekran: 7; ichidan oshish tekshirildi: 12 element — qahramon ochiq, hech narsa oshmadi
+-- kosmik2 #1 15:58
+✗ B2Y +2 — rekord (ball ≥ 8) — ishora: «Ball: 4. Yana uring!» kamvoy:Oz qoldi! ball 4 jon 0
+✗ B2Y ball ≥ 8 — 4
+✗ B3C tegmasdan — «Ro‘yxatga qarang…» — ishora: «Ball: 2. Yana uring!» kamvoy:Oz qoldi! ball 2 jon 3
+NATIJA: 41 / 44 — muammo bor
+-- kosmik2 #2 16:04
+✗ B2Y +2 — rekord (ball ≥ 8) — ishora: «Ball: 4. Yana uring!» kamvoy:Oz qoldi! ball 4 jon 0
+✗ B2Y ball ≥ 8 — 4
+✗ B3C tegmasdan — «Ro‘yxatga qarang…» — ishora: «Ball: 2. Yana uring!» kamvoy:Oz qoldi! ball 2 jon 3
+NATIJA: 41 / 44 — muammo bor
+-- sim tasodif
+125 / 125
+-- sim xato
+76 / 76
+-- ustma 015 (olma)
+015: 16 holat — toza
+JAMI TOPILMA: 0
+-- 015 toliq-dars
+NATIJA: 62 / 62
+-- 015 solo
+NATIJA: 35 / 35
+-- matn 021
+021-shaxsiy-oyin-1: manbadagi gaplar 209, demo-021.html da topildi 209 (aynan 192, karta shaklida 17)
+TAMOM 16:16

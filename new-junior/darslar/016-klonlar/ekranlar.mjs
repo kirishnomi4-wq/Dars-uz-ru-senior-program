@@ -103,5 +103,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'O‘yin · ★ qo‘shimcha', izoh: '15-qadam. Dastur bo‘sh: kamida 5 nusxa, random, delete this clone, o‘yin yutildi.', ...bol('Mashq · ★ qo‘shimcha', 'O‘z <em>o‘yiningiz</em>', 'Kamida beshta dushman — o‘yinni o‘zingiz tuzing', 'B3Y', H3, { r: [], oyin: true }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz nusxa <em>yasadingiz</em>!', '')}${qg('Bitta dushmandan ko‘p nusxa yasadim!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydonK({ start: [3, 0] }, qahK(), { nus: [[1, 2], [5, 1]] })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda kosmik o‘yinda ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

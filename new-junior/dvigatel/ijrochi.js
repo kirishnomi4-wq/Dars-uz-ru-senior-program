@@ -20,7 +20,7 @@ function dasturDaraxti(ek) {
 function* ijroTartibi(daraxt, belgi = false) { for (const t of daraxt) { if (t.tur === 'a' || t.tur === 'i') { yield t; if (!belgi || t.ha) yield* ijroTartibi(t.ichki, belgi); continue } /* 12-dars: 'i' — o'zgaruvchi sharti */ if (t.tur === 'p') { for (let i = 0; i < (t.n || 0); i++) { if (belgi) yield { belgi: true, el: t.el, i: i + 1 }; yield* ijroTartibi(t.ichki, belgi) } } else { yield t; if (t.ichki.length) yield* ijroTartibi(t.ichki, belgi) } } }
 // 14-dars («Bitta qadam»): oldin(t) — ixtiyoriy; har harakat blokidan oldin kutiladi (shart tekshiruvi va takrorlash sanog'i kutmaydi — ular
 // o'sha bosishda ko'rinadi); 'bekor' qaytarsa — dastur shu yerda to'xtaydi, blok belgisiz (dastur o'zgardi). Berilmasa — avvalgidek.
-async function ijro(daraxt, bajar, { kut = 700, oldin = null } = {}) {
+async function ijro(daraxt, bajar, { kut = 700, oldin = null, oxir = 150 } = {}) { // 25.11 (Q12): oxir — dastur tugagach kutish (kosmik raketa — qisqa)
   const otdi = []
   let toxtadi = false, bekor = false
   for (const t of ijroTartibi(daraxt, true)) {
@@ -33,7 +33,7 @@ async function ijro(daraxt, bajar, { kut = 700, oldin = null } = {}) {
     t.el.classList.remove('hozir'); t.el.classList.add('yon'); otdi.push(t)
     if (r === 'toxta') { toxtadi = true; t.el.classList.add('urildi'); break }
   }
-  await KUT(150)
+  await KUT(oxir)
   otdi.forEach((t) => t.el.classList.remove('yon'))
   if (typeof blSanoqOl === 'function' && daraxt[0] && daraxt[0].el) { const ek = daraxt[0].el.closest && daraxt[0].el.closest('.ekran'); if (ek) setTimeout(() => blSanoqOl(ek), 900) }
   return { bajarildi: otdi.length, toxtadi, bekor }

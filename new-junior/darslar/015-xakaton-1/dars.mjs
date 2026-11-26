@@ -18,6 +18,7 @@ const DARS = {
   dasturchalar: true,
   dasturchaBlok: true,
   dasturchaUstun: 2,
+  masshtabMin: 0.5, // 25.11 (K7): olti dasturchali dastur ikki ustunda sig'sin (blockly.js blMasshtab)
   blokChegara: 30,
   maslahatKeyin: true, // «Maslahat» bir urinishdan keyin (o'yinni boshlash ham urinish); qulf har qismda yangidan
   joyQolmadi: 'Dasturga N ta blok sig‘adi',

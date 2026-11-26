@@ -49,7 +49,7 @@ const E = {
     foot: () => fU('', 'Keyingi ›') }, // 18.11 (1A): «Ustozga: «Noutbukingizga qarang» deb ayting» — proyektorda sinf ham o'qirdi; ustoz varag'ida bor
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z ma’lumoti', fid: 'F-1115-08 · 07', izoh: 'Qabul qilingan. v3.3: faqat o‘lcham — bloklar kattalashib, chap ustundagi bo‘sh joyni to‘ldirdi.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Birinchi <em>dasturingiz</em> tayyor!', 'Qahramoningizni harakatlantirdingiz, gapirtirdingiz va o‘z sahnangizni yaratdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${world('kosmos')}<div class="qq"><span class="m2">${hero({ k: globalThis.QAH || 'yulduz', mood: 'xursand', mv: 'sakraydi' })}</span></div><div class="gl kd2 a-tr"><small>Zippi</small><b>Keyingi darsda labirintda ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }
 
 

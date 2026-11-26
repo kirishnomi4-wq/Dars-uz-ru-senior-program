@@ -66,9 +66,12 @@ function muammoOl(ek) { ek.querySelectorAll('.dv-muam').forEach((x) => x.remove(
 function sarlavha(ek, h, iz) { const s = ek.querySelector('.ust .sar'); if (s) s.innerHTML = h; let z = ek.querySelector('.ust .iz'); if (!z && iz) { ek.querySelector('.ust').insertAdjacentHTML('beforeend', '<span class="iz"></span>'); z = ek.querySelector('.ust .iz') } if (z) z.textContent = iz || '' }
 // bola ekranidan ustozga xabar (ustoz «yonma» rejimida — to'g'ridan-to'g'ri)
 function bildirB(ek, m) { const ildiz = ek && ek.parentNode && ek.parentNode.closest('#ust,#bol'); if (ildiz && ildiz.id === 'bol' && typeof bildir === 'function') bildir(m) }
+// 25.11 (F-1125-09): javon bloki eniga sig'masa — .sigmas (qobiq.css: faqat shu blokda matn o'raladi). O'lchov cqw — en ahamiyatsiz; yashirin javon (0 en) tashlanadi
+function javonSigdir(ek) { if (!ek) return; ek.querySelectorAll('.pl .mb').forEach((m) => { if (!m.getBoundingClientRect().width) return; m.classList.remove('sigmas'); if (m.scrollWidth > m.clientWidth + 1) m.classList.add('sigmas') }) }
 function studiyaTayyorla(ildiz) {
   if (!ildiz) return
   const ek = ildiz.querySelector('.ekran'); if (!ek) return
+  requestAnimationFrame(() => javonSigdir(ek)); if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => javonSigdir(ek))
   const id = ek.dataset.id
   if (typeof DARS !== 'undefined' && DARS.bola && typeof kartaChiz === 'function' && ((ildiz.id === 'bol' && (DARS.bola.karta === id || ek.querySelector('.kc-mini'))) || (ildiz.id === 'ust' && DARS.kartaNamuna && ek.querySelector('.kc-mini')))) kartaChiz(ek) // 21–23-dars: loyiha kartasi (kod.js); ustozda — namuna karta (22–23)
   if (ildiz.id === 'ust') { const fo = ek.querySelector('.hn'); if (fo && !fo.querySelector('.orq') && !fo.querySelector('.k-ust')) { const a = fo.querySelector('.asos'); if (a) { a.className = 'mas ishga'; a.textContent = '▶ Ishga tushir' } fo.insertAdjacentHTML('beforeend', '<span class="asos k-ust">Keyingi ›</span>') } }
@@ -328,6 +331,8 @@ function hukTayyorla(ek) {
 function hukBosish(e, ek, ildiz) {
   const kartalar = Array.from(ek.querySelectorAll('.jk'))
   const sb = e.target.closest('.hk-sinab'); if (sb) { hukSina(ek, kartalar.indexOf(sb.closest('.jk'))); return true }
+  // 25.11 (F-1125-03, 4-dars): o'yin kartasidagi strelka rasmlari ham tugma — bosilsa klaviatura strelkasi kabi (QA kartani bosib, hech narsa bo'lmagan)
+  const st = ek.dataset.oyin === 'huk' && e.target.closest('.jk.sinov .kt-t'); if (st) { const k = { u: 'up', l: 'left', d: 'down', r: 'right' }[['u', 'l', 'd', 'r'].find((c) => st.classList.contains(c))]; if (k) oyinTugmaBos(ek, k); return true }
   if (ildiz.id !== 'ust' || (typeof SOLO !== 'undefined' && SOLO) || !e.target.closest('.hn .asos')) return false
   if (ek.dataset.yuryapti) return true
   const i = +(ek.dataset.huk || 0); if (i >= kartalar.length) return false
@@ -430,6 +435,7 @@ function studiyaBosish(e) {
   // ranglar: doiracha bosilsa — o'sha oila bloklari (Ranglar qadamida hali o'rgatilmagan bloklar yopiq)
   const rd = e.target.closest('.rg .rd')
   if (rd && ek.querySelector('.pl')) {
+    requestAnimationFrame(() => javonSigdir(ek)) // F-1125-09: yangi oila javoni
     const f = (rd.className.match(/\bf-(\w)\b/) || [])[1] || 'h' // oila: h, g (1-dars), e (4-dars: Hodisa)
     ek.querySelectorAll('.rg .rd').forEach((r) => r.classList.toggle('on', r === rd))
     rd.classList.remove('puls'); rd.classList.add('ok')
@@ -861,7 +867,7 @@ function oqishYukla(ek) {
   ek.dataset.oqish = '1'
   const ws = typeof BL_WS !== 'undefined' && BL_WS.get(ek)
   if (ws && x.bl) { ws.clear(); Blockly.serialization.workspaces.load(x.bl, ws); ws.getAllBlocks(false).forEach(blBelgila); blTartib(ws); blMasshtab(ek, ws); blTartibKeyin(ws); sanoq(ek) }
-  if (x.bayroq && x.bayroq.indexOf('son:') === 0) { if (typeof sonBashTayyorla === 'function') sonBashTayyorla(ek); const sk = ek.querySelector('.bsh-q .sk[data-v="' + x.bayroq.slice(4) + '"]'); if (sk) { sk.classList.add('tan'); ek.dataset.bayroq = x.bayroq; const ish = ek.querySelector('.hn .ishga') || ek.querySelector('.hn .asos'); if (ish) ish.classList.remove('xira') } } // 11-dars
+  if (x.bayroq && x.bayroq.indexOf('son:') === 0) { if (typeof sonBashTayyorla === 'function') sonBashTayyorla(ek); const sk = ek.querySelector('.bsh-q .sk[data-v="' + x.bayroq.slice(4) + '"]'); if (sk) { sk.classList.add('tan'); ek.dataset.bayroq = x.bayroq; const ish = ek.querySelector('.hn .ishga') || ek.querySelector('.hn .asos'); if (ish) ish.classList.remove('tug-xira') } } // 11-dars
   else if (x.bayroq) { const [a, c] = x.bayroq.split(',').map(Number); mdBayroqQoy(ek, a, c) }
   ishora(ek, DARS.oqishGap || 'Dasturingizni ustozga o‘qib bering')
 }
@@ -887,6 +893,7 @@ async function hukOyin(ek, k, i) {
   const h = await SAHNA.katak.boshla(ek, {})
   OYIN.set(ek, { h, huk: { k, i, qoch: hukQoch(k), n: 0 } }); ek.dataset.oyin = 'huk'
   ek.querySelector('.oyna').insertAdjacentHTML('beforeend', '<span class="gl oyin-yz">O‘yin: strelkalarni bosing</span>')
+  ishora(ek, 'Strelkani bosing — klaviaturada yoki kartada') // 25.11 (F-1125-03)
 }
 async function hukOyinBos(ek, key, o) {
   const tur = { right: 'r', left: 'l', up: 'u', down: 'd' }[key]; if (!tur) return
@@ -1077,7 +1084,7 @@ function labChekYangila(ek, o) {
 }
 // yakun ekrani (natijaYoz): chek-list va «O‘yiningiz saqlandi» (faqat haqiqatan saqlangan bo'lsa)
 function labNatija(ek) {
-  const c = ek.querySelector('.chek-y'); if (c) c.innerHTML = chekHtml(chekSaqlangan())
+  const c = ek.querySelector('.chek-y'); if (c && !c.querySelector('[data-ch]')) c.innerHTML = chekHtml(chekSaqlangan()) // 25.11: o'z bandlari bilan kelgan ro'yxat (17-dars, kosmikNatija) — labirint ro'yxati bilan almashtirilmaydi
   const s = ek.querySelector('.saqlandi'); if (s) s.hidden = !(DARS.chekStatik ? labD2() : labOyinSaqlandi())
   // 10-dars: bolaning 2-darajasi, qahramon yulduzda; do'stining natijasi
   if (DARS.chekStatik && ek.querySelector('.katak.maydon')) {
@@ -1634,13 +1641,13 @@ function sonBashTayyorla(ek) {
   ek.querySelectorAll('.bsh-q .sk').forEach((x) => x.classList.remove('tan', 'ok'))
   if (typeof blSanoqOl === 'function') blSanoqOl(ek)
   ek.__v = {}; ballKor(ek, null); delete ek.dataset.bayroq
-  const ish = sonBashTugma(ek); if (ish) { if (ish.classList.contains('ishga')) ish.textContent = '▶ Tekshirish'; ish.classList.add('xira') }
+  const ish = sonBashTugma(ek); if (ish) { if (ish.classList.contains('ishga')) ish.textContent = '▶ Tekshirish'; ish.classList.add('tug-xira') }
   const g = TOP(ek.dataset.id).gap || {}
   const gb = g.boshla && GAPT(g.boshla); if (gb) ishora(ek, gb) // aks holda tasmadagi ishora («Dasturni o‘qing…»); xira tugma bosilsa — «Avval sonni tanlang»
 }
 function sonBashBosish(e, ek, ildiz) {
   const sk = e.target.closest('.bsh-q .sk')
-  if (sk) { if (ek.dataset.yuryapti) return true; ek.querySelectorAll('.bsh-q .sk').forEach((x) => x.classList.toggle('tan', x === sk)); x0(ek); chal('bos'); ek.dataset.bayroq = 'son:' + sk.dataset.v; const ish = sonBashTugma(ek); if (ish) ish.classList.remove('xira'); ishora(ek, ''); return true }
+  if (sk) { if (ek.dataset.yuryapti) return true; ek.querySelectorAll('.bsh-q .sk').forEach((x) => x.classList.toggle('tan', x === sk)); x0(ek); chal('bos'); ek.dataset.bayroq = 'son:' + sk.dataset.v; const ish = sonBashTugma(ek); if (ish) ish.classList.remove('tug-xira'); ishora(ek, ''); return true }
   const tb = sonBashTugma(ek); if (tb && e.target.closest('.hn .ishga, .hn .asos') === tb) { sonBashTekshir(ek); return true }
   // 14-qadam (ustoz): «Keyingi» — avval har blok yonidagi yozuv birma-bir («ball: 0», «ball: 2»…), keyin odatdagidek keyingi qadam
   const solo = typeof SOLO !== 'undefined' && SOLO

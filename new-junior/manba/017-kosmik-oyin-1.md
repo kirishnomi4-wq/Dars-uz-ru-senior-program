@@ -371,7 +371,7 @@ Muammocha qahramonni (raketani) yopmaydi (91-qaror).
 - **Tayanch gaplar:**
   1. «Uchala bekatdan o‘tdik: raketa, o‘q, nishonlar.»
   2. «Keyingi darsda osmondan dushmanlar tushadi — ball va jon ham bo‘ladi.»
-- **Parta:** yorliq «Sizning natijangiz», sarlavha «Raketa uchdi!»; «Siz bugun»: «ta o‘q otdi» · «ta nishon urdi» · «pog‘ona bajardi»; ro'yxat «O‘yiningizda:»; «O‘yiningiz saqlandi.» (faqat saqlansa); «Keyingi darsda dushmanlar bilan ko‘rishamiz!».
+- **Parta:** yorliq «Sizning natijangiz», sarlavha «Raketa uchdi!»; «Siz bugun»: «ta o‘q otdi» · «ta nishon urildi» · «pog‘ona bajardi»; ro'yxat «O‘yiningizda:»; «O‘yiningiz saqlandi.» (faqat saqlansa); «Keyingi darsda dushmanlar bilan ko‘rishamiz!».
 - **Bola qiladi:** o'z natijasini ko'radi.
 - **Tekshiruv:** dars tugadi deb belgilanadi.
 
@@ -381,7 +381,7 @@ Muammocha qahramonni (raketani) yopmaydi (91-qaror).
 - **Bekat:** uchalasi ✓
 - **Ekran:** proyektor — sinf natijasi · bola — o'z natijasi
 - **Qadamlar:**
-  1. Proyektorda: yorliq «Sinf natijasi», sarlavha «Sinfimiz <em>bugun</em>». Coddy: «Hammangiz zo‘r ishladingiz!» Jami (ismsiz): «ta o‘q otdi» · «ta nishon urdi» · «pog‘ona bajardi». Panelda «Darsni yakunlash».
+  1. Proyektorda: yorliq «Sinf natijasi», sarlavha «Sinfimiz <em>bugun</em>». Coddy: «Hammangiz zo‘r ishladingiz!» Jami (ismsiz): «ta o‘q otdi» · «ta nishon urildi» · «pog‘ona bajardi». Panelda «Darsni yakunlash».
   2. «Darsni yakunlash» — «Dars tugadi!», ostida «Ko‘rishguncha — keyingi darsda dushmanlar bilan!».
 - **Tayanch gaplar:**
   1. «Hammangiz zo‘r ishladingiz!» (keyin raqamlarni o'qiydi)
@@ -425,6 +425,8 @@ Muammocha qahramonni (raketani) yopmaydi (91-qaror).
 
 ## Savollar (tavsiya — A)
 
+**Qabul (25.11, foydalanuvchi — ko‘rik sahifasi 10-versiya): hammasi A.** 17-dars yakuniga «O‘yiningizda:» ro‘yxati qo‘shildi (K1).
+
 1. **Ikki personaj — A: «Raketa» va «O‘q», har biri o'z dasturi bilan (personaj kartalari).** Sabab: dasturdagi «katta o‘yinni qismlarga bo‘lib yasaydi» va Scratch'dagi «har spraytning o‘z dasturi». **B** — bitta dastur (raketa ichida o'q bloklari): **−** «nusxa» raketaning nusxasi bo'lib qoladi (16-dars mantig'i buziladi).
 2. **Yangi so'z — A: «personaj»** (DASTUR'da bor: «bitta personajdan ko‘p nusxa»). **B** — yangi so'z yo'q.
 3. **O'qning asli — A: raketa ichida, ko'rinmaydi; nusxa raketa turgan joyda paydo bo'ladi** (yangi blok kerak emas). **B** — `go to raketa` bloki: **−** yangi blok.
@@ -449,5 +451,5 @@ Muammocha qahramonni (raketani) yopmaydi (91-qaror).
 4. **Xato gaplari:** space bosilganda o'q paydo bo'lmasa — Bo'shvoy «O‘q qani?» («O‘qni create clone of myself yasaydi — O‘q dasturida»); o'q tepaga yetmay o'chsa — Kamvoy «Oz qoldi!» («O‘q tepaga yetmay o‘chdi. move up necha marta?»). Qolganlari — «Yordam va xato» jadvalidagidek.
 5. **15 · ★:** bo'sh katakni bosish — nishon qo'yiladi, nishonni bosish — olinadi; pastki ikki qator (y 0–1) ga qo'yilmaydi («Nishon tepada bo‘ladi — 2-qatordan yuqori»); ishora «Nishon: N ta. ▶ Boshlash — o‘ynang». To'rttadan kam bo'lsa — «Kamida 4 ta nishon qo‘ying — katakni bosing».
 6. **Saqlash:** har yutilgan pog'onadan keyin ikkala dastur saqlanadi (3-bekat pog'onalari shu bilan ochiladi — 9-darsdagidek); «O‘yiningiz saqlandi.» yakun ekranida faqat 3-bekatda kamida bitta o'yin yutilgan bo'lsa.
-7. **Natija sonlari:** «ta o‘q otdi» — yutilgan o'yinlardagi o'qlar; «ta nishon urdi» — yutilgan o'yinlardagi nishonlar; «pog‘ona bajardi» — 12 pog'ona.
+7. **Natija sonlari:** «ta o‘q otdi» — yutilgan o'yinlardagi o'qlar; «ta nishon urildi» — yutilgan o'yinlardagi nishonlar; «pog‘ona bajardi» — 12 pog'ona.
 8. **Raketa rasmi:** oq raketa, coral qanotlar, oynachasida qahramon (ustozda — Coddy); o'q — sariq nur; nishon — kulrang tosh, ustida sariq yulduz.

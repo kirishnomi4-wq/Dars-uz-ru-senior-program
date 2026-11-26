@@ -113,5 +113,5 @@ const E = {
     foot: () => fB({ hint: 'Dasturni o‘qing: qahramon qayerda to‘xtaydi?', label: `${PLAY}Tekshirish` }) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — bolaning o‘z muvaffaqiyatli topshiriqlaridan (haqiqiy son); maydonda ★ yo‘li (bo‘lsa) oltin iz bilan.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz manzilni <em>bilasiz</em>!', '')}${qg('Katakni topdingiz, manzilga bordingiz va oldindan aytdingiz.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK())}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda hodisalar bilan ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

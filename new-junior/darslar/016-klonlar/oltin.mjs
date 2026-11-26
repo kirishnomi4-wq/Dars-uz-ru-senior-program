@@ -6,6 +6,9 @@ export const DEMO = 'demo-016.html'
 export const LMS = null // modul tugagach (93-qaror)
 export const PROFIL = { qahramonli: { 'demo-ism': 'Aziz', 'demo-qah': 'momiq', 'demo-qism': 'Bulut', 'demo-qrang': '2' } }
 export const ISH_PROFIL = 'qahramonli', TANLOV_PROFIL = 'qahramonli', SOLO_ISH_PROFIL = 'qahramonli'
+// 26.11: huk sinovida (P2S) dushman o'rni tasodifiy — birinchi «yoz»dan keyingi «sol»da 3 holat boshqa joyda chiqdi (u-03-P2S, P2S-A, P2S-C).
+// Sahifa ochilishidan qotiriladi (18–23-darsdagidek); quyidagi urug(p) — ayrim ishlardan oldin qayta qotirish, o'zgarmaydi.
+export const URUG = 16
 
 const kut = (p, f, arg, ms = 30000) => p.waitForFunction(f, arg, { timeout: ms, polling: 100 }).catch(() => {})
 const tinch = (p) => kut(p, () => { const e = document.querySelector('#ilova .ekran'); return e && !e.dataset.yuryapti }, null, 90000)

@@ -75,7 +75,8 @@ tek('4 · «Loyiha kartasi nima?» — uch bo‘lak va ta’rif', (await u.$$('#
 await keyingi(); tek('5 · reja', (await id(u)) === 'P4')
 // ---------- 6: ustoz kartani to'ldiradi
 await keyingi(); await kut(500)
-tek('6 · P7: ustoz kartasi — to‘rt qator, pastda karta; bolada «Ustoz kartani to‘ldiryapti»', (await u.$$('#ust .kc-o.on')).length === 4 && (await matn(a, '#bol .qarang')).includes('Ustoz kartani to‘ldiryapti'), await matn(a, '#bol .qarang'))
+const bos0 = (await u.$$('#ust .kc-o.on')).length; for (const [g, v] of [['kim', 'do‘stim'], ['dush', '5'], ['ball', '2'], ['jon', '3']]) { await u.click('#ust .kc-o[data-g="' + g + '"][data-v="' + v + '"]'); await u.waitForTimeout(150) } // 25.11 (Q17-A): ustoz bosib to'ldiradi
+tek('6 · P7: ustoz kartasi — bo‘sh, ustoz to‘rt qatorni bosib to‘ldirdi, «Yutish uchun» 6; bolada «Ustoz kartani to‘ldiryapti»', bos0 === 0 && (await u.$$('#ust .kc-o.on')).length === 4 && (await u.$eval('#ust .kc-xul', (e) => e.textContent)).includes('6') && (await matn(a, '#bol .qarang')).includes('Ustoz kartani to‘ldiryapti'), await matn(a, '#bol .qarang'))
 // ---------- 7: har bola o'z kartasini to'ldiradi
 await keyingi(); await ekrangacha(a, 'K1'); await ekrangacha(l, 'K1'); await kut(600)
 tek('7 · K1: karta bo‘sh, «Karta tayyor» tugmasi', (await a.$$('#bol .kc-o.on')).length === 0 && (await matn(a, '#bol .hn .asos')) === 'Karta tayyor')

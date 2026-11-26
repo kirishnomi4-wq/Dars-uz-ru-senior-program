@@ -109,7 +109,7 @@ const E = {
     body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Juftlik', 'Do‘stingizning <em>qahramoni</em>', 'O‘yin do‘stingizning noutbukida. Uning qahramonini toping.')}</div><div class="tq jq"></div></div>`,
     foot: () => fJim('Do‘stingizning qahramonini bosing') },
   BJD: { rol: 'b', b: 1, t: 't2', nom: 'Juftlikdasiz', izoh: '8–16-qadam, ikkinchi noutbuk: do‘stining qahramoni, rul va xarita.',
-    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Juftlik', 'Juftlik<em>dasiz</em>', 'Siz do‘stingizning noutbukida ishlaysiz. Dars oxirida natija shu yerda ham chiqadi.')}</div><div class="jd"><span class="aktyor jd-q">${qahK()}</span><span class="jd-r">${rol(RUL, 'k-rul')}${rol(XARITA, 'k-xar')}</span></div></div>`,
+    body: () => `<div class="oyna to">${world('hovli')}<div class="gl pan">${matn('Juftlik', '<em>Juftlikdasiz</em>', 'Siz do‘stingizning noutbukida ishlaysiz. Dars oxirida natija shu yerda ham chiqadi.')}</div><div class="jd"><span class="aktyor jd-q">${qahK()}</span><span class="jd-r">${rol(RUL, 'k-rul')}${rol(XARITA, 'k-xar')}</span></div></div>`,
     foot: () => fJim('') },
   BT: { rol: 'b', b: 1, t: 't1', nom: 'Tanlaymiz', izoh: '9-qadam. O‘yin kartasi → qismlar (1-qism qotgan, to‘rttadan ikkitasi, ★ alohida) → «Tanladik» → «Tayyormiz» (studiya.js xkTanlov).',
     body: () => `<div class="chap">${matn('Xakaton · Tanlaymiz', 'O‘yinni <em>tanlang</em>', 'Ikkalangiz kelishib oling: qaysi o‘yin, qaysi ikki qism.')}<div class="xk-t">${oyinKartalar()}</div></div><div class="oyna">${world('hovli')}<div class="gl xk-pr"><span data-o="olma">${miniOlma('xk-pm')}</span><span data-o="lab">${miniLab('xk-pm')}</span></div></div>`,
@@ -122,5 +122,5 @@ const E = {
   BDL: { rol: 'b', b: 3, t: 't3', nom: 'Do‘stlar o‘ynaydi · Labirint', izoh: '15-qadam.', ...xkL('Ko‘rsatish', 'Do‘stlar <em>o‘ynaydi</em>', '', DARAJA) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Ikkalangiz bugun» — haqiqiy son (studiya.js xkNatija).',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz o‘yin <em>yasadingiz</em>!', '')}${qg('Do‘stim bilan birga yasadik!')}<small class="st-s">Ikkalangiz bugun:</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon(OLMA_M, qahK())}<div class="xk-roy xk-nr"><small>O‘yiningizda:</small><div class="xk-rq"></div><span class="saqlandi">O‘yiningiz saqlandi.</span></div><div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda klonlar bilan ko‘rishamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

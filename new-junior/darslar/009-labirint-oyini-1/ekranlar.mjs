@@ -89,5 +89,5 @@ const E = {
   B3Y: { rol: 'b', b: 3, t: 't3', nom: 'Mashq · ★ qo‘shimcha', izoh: '15-qadam. D1: bo‘sh tugma — go to x: 0 y: 0, kamida bir marta startga.', ...bol('Mashq · ★ qo‘shimcha', 'Startga <em>qaytish</em>', 'Bitta tugma qahramonni startga qaytarsin.', 'D1', H3) },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '17–18-qadam. «Siz bugun» — haqiqiy son; chek-list; «O‘yiningiz saqlandi» faqat saqlangan bo‘lsa.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Siz labirint o‘yini <em>yasadingiz</em>!', '')}${qg('Strelkalar, qoida va kalit — o‘yinim tayyor.')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${lab('D1', qahK(), { joy: [6, 4] })}${chekY()}<div class="gl kd2 a-tr saqlandi"><small>Momiq</small><b>O‘yiningiz saqlandi — keyingi darsda davom etamiz.</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }

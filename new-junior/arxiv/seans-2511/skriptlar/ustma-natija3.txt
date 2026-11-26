@@ -1,0 +1,11 @@
+   ! bor xato: qadam 17 i 0 B5 (ekran B5): page.evaluate: TypeError: Cannot read properties of undefined (reading 'filter')
+015: 15 holat — toza
+012: 26 holat — toza
+017: 37 holat — toza
+018: 56 holat — toza
+019: 46 holat — toza
+020: 45 holat — toza
+021: 29 holat — toza
+022: 26 holat — toza
+023: 21 holat — toza
+JAMI TOPILMA: 0

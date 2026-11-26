@@ -79,5 +79,5 @@ const keyingiDars = () => `<div class="gl kd3" data-z="keyingi dars"><small>Keyi
 const otganDars = () => `<div class="otd"><small>O‘tgan darsda</small><div class="tf-l"><div class="tf"><div class="tf-r">${RAK()}</div><div class="tf-t"><b>Personaj</b><span>O‘yindagi har bir qatnashchi: o‘z rasmi va o‘z dasturi bor</span></div></div></div></div>`
 
 // natija (17, 18-qadam): sonlar kartaning boshida (natijaSon)
-const SINF_T = [['h', DUSH_OQ, 'ta dushman urdi', 318], ['g', BALL_OQ, 'ta o‘yin yutdi', 41], ['y', JON_OQ, 'pog‘ona bajardi', 117]]
-const BOLA_T = [['h', DUSH_OQ, 'ta dushman urdi', 27], ['g', BALL_OQ, 'ta o‘yin yutdi', 4], ['y', JON_OQ, 'pog‘ona bajardi', 9]]
+const SINF_T = [['h', DUSH_OQ, 'ta dushman urildi', 318], ['g', BALL_OQ, 'ta o‘yin yutdi', 41], ['y', JON_OQ, 'pog‘ona bajardi', 117]]
+const BOLA_T = [['h', DUSH_OQ, 'ta dushman urildi', 27], ['g', BALL_OQ, 'ta o‘yin yutdi', 4], ['y', JON_OQ, 'pog‘ona bajardi', 9]]

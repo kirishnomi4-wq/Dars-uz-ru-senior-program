@@ -24,6 +24,8 @@ const kartalar = (arr, cls = '') => `<div class="jv ${cls}">` + arr.map(([l, t, 
 const qahramonlar = () => `<div class="qq"><span class="m1">${hero({ k: 'momiq', mood: 'xursand' })}</span><span class="m2">${robot({ pose: 'quvonadi' })}</span><span class="m3">${hero({ k: 'katak', mood: 'xursand' })}</span></div>`
 
 const fJim = (t) => `<footer class="hn jim"><span class="hint">${t}</span></footer>`
+// 25.11 (QA F-1125-14, Q14-A): bola yakuni — keyin nima qilish aniq (avval faqat «Dars tugadi» — QA: «keyin nimani bosib chiqiladi?»)
+const TUGADI_YOZUV = '✓ Dars tugadi. Natijangiz saqlandi — oynani yopishingiz mumkin'
 
 
 // 23-dars e'loni (22.11): «Demo Day №1». Manba: new-junior/manba/023-demo-day-1.md (v1 — «Savollar» 1–8 tavsiya A bo'yicha qurildi; foydalanuvchi javobi kutilmoqda).
@@ -70,7 +72,7 @@ const DARS = {
   // kosmik o'yin gaplari (kosmik.js KS) — 18-dars bilan bir xil (chek-list — 3-bekat)
   kosmikGap: {
     dasturi: 'dasturi', royxat: 'O‘yiningizda:',
-    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q urganda ball'], ['jon', 'Tekkanda jon'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
+    chek: [['tushadi', 'Dushmanlar tushadi'], ['ball', 'O‘q tegsa — ball +1'], ['jon', 'Dushman tegsa — jon −1'], ['tugaydi', 'Jon tugasa — o‘yin tugaydi'], ['yutdi', 'O‘yin yutildi']],
     oyinYz: 'O‘yin: ← → va space', dushSanoq: 'Dushman: N',
     bosh: 'Avval blokni bosing — u dasturga qo‘shiladi', boshP: 'Bu yerda hech narsa yo‘q-ku…',
     raketaKlon: 'create clone of myself — O‘q yoki Dushman dasturiga', raketaKlonP: 'Raketa ko‘payib ketdi!',
@@ -150,7 +152,7 @@ const DARS = {
   varaq: [
     '<b>Asosiy fikr:</b> bola o‘z ishini ko‘rsatadi, mehmon o‘ynaydi. Ota-ona bolaning mehnatini ko‘radi.',
     '<b>Yo‘l:</b> reja → qoidalar → 1-bekat «Tayyorlanamiz» (oxirgi sinov) → 2-bekat «Ko‘rsatamiz» (mehmon o‘ynaydi) → 3-bekat «Uyga olib ketamiz» (yo‘riqnoma kartasi) → yakun.',
-    '<b>Mehmonlar bilan:</b> noutbuklar tayyor, o‘yinlar saqlangan bo‘lishi kerak (21–22-dars). Mehmon yutmasa — bola «yana urining» deydi. Ism proyektorga chiqmaydi.',
+    '<b>Mehmonlar bilan:</b> noutbuklar tayyor, o‘yinlar saqlangan bo‘lishi kerak (21–22-dars). Mehmon yutmasa — bola «yana urining» deydi. «Mehmon» pog‘onalarida o‘yinni faqat mehmon o‘ynaydi — bola aytib beradi (natijadagi «ta mehmon yutdi» shu o‘yinlar). Ism proyektorga chiqmaydi.',
     '<b>Uy yo‘riqnomasi:</b> Scratch — bepul sayt (scratch.mit.edu); bolalar ota-ona ruxsati bilan kiradi. Blok nomlari deyarli bir xil, lekin o‘zgaruvchi nomi «score» bo‘lishi mumkin.',
     '<b>Himoya:</b> har bolani tinglang — nechta dushman, qanday yutiladi, eng qiyin joyi. «Noto‘g‘ri» deb aytilmaydi.',
   ],
@@ -641,7 +643,7 @@ const E = {
     foot: () => fKid('Uyda ota-onangiz bilan davom etasiz', 'Yo‘riqnoma tayyor') },
   B5: { rol: 'b', b: 4, t: 't1', nom: 'O‘z natijasi', izoh: '11–12-qadam. «Siz bugun» — haqiqiy son.',
     body: () => `<div class="chap">${matn('Sizning natijangiz', 'Demo Day <em>tugadi</em>!', '')}${qg('Mening o‘yinim bor!')}<small class="st-s">Siz bugun</small>${sinfNatija(BOLA_T)}</div><div class="oyna">${maydon({}, qahK(), { asl: [3, 4], dush: [[5, 2]], oq: [[1, 2]] })}${ozgQ({ ball: 6, jon: 3 })}<div class="gl kd2 a-tr"><small>Momiq</small><b>Keyingi darsda sun‘iy intellektni o‘rganamiz!</b></div></div>`,
-    foot: () => fJim('Dars tugadi') },
+    foot: () => fJim(TUGADI_YOZUV) },
 }
 
 // 23-dars «Demo Day №1» qadamlari (QADAM) va ustoz varag'i (VARAQ) — 22.11. Manba: new-junior/manba/023-demo-day-1.md v1, 12 qadam.

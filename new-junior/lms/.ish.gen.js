@@ -316,8 +316,19 @@ function blMasshtab(ek, ws) {
   ws.setScale(asos)
   const t = ws.getTopBlocks(false); if (!t.length) return
   blMahkam(ws)
-  const bb = ws.getBlocksBoundingBox(), h = bb.bottom - bb.top, joy = ws.getParentSvg().getBoundingClientRect().height
-  if (h * asos > joy - 2) { ws.setScale(Math.max(asos * 0.6, (joy - 2) / h)); blMahkam(ws) }
+  // 25.11 (Q04-A): ko'rinadigan joy — .jr-bl ning o'zi (maydon cho'zilib aylanganda ham o'zgarmaydi; svg bo'yi bilan o'lchansa «sig'di» deb tebranardi)
+  const box = ek.querySelector('.jr-bl'), wsd = box && box.querySelector('.jr-bl-ws')
+  const bb = ws.getBlocksBoundingBox(), h = bb.bottom - bb.top, joy = box && box.clientHeight ? box.clientHeight : ws.getParentSvg().getBoundingClientRect().height
+  // 25.11 (K7, Q04-A): bo'yi bo'yicha pastki chegara — darsning masshtabMin, bo'lmasa hamma darsda 0,5 (avval 0,6: sig'magan dasturni Blockly
+  // qo'zg'almas maydonda yuqoriga itarib, pastki dasturchani ustidagisiga mindirardi — 18–23-dars raketa dasturi, 4-darsda bola qo'shgan 7 dasturcha)
+  const mn = (typeof DARS !== 'undefined' && DARS.masshtabMin) || 0.5
+  if (h * asos > joy - 2) { ws.setScale(Math.max(asos * mn, (joy - 2) / h)); blMahkam(ws) }
+  // Q04-A: eng kichik masshtabda ham sig'masa — maydon dastur bo'yiga cho'ziladi, ustun ichida pastga aylanadi (Blockly hech narsani itarmaydi)
+  if (box && wsd) {
+    const kerak = Math.ceil(h * ws.scale + 24)
+    if (kerak > joy - 2) { if (!box.classList.contains('aylan') || wsd.style.height !== kerak + 'px') { box.classList.add('aylan'); wsd.style.height = kerak + 'px'; Blockly.svgResize(ws) } }
+    else if (box.classList.contains('aylan')) { box.classList.remove('aylan'); wsd.style.height = ''; box.scrollTop = 0; Blockly.svgResize(ws) }
+  }
   // 3-dars: keng blok (go to x: y:) dastur ustunidan chiqmasin — kengligi bo'yicha ham kichrayadi. Faqat maydonli darslarda (DARS.maydon):
   // chegara qutisiga tishcha va soya ham kiradi — 1-darsning P11 ekranida sig'ib turgan say bloki ham «keng» chiqib, dastur kichrayib qolardi (oltin ushladi)
   const en = bb.right - bb.left, jEn = ws.getParentSvg().getBoundingClientRect().width
@@ -473,7 +484,7 @@ function blTanlovOl(ek) {
 function blXJoy(ek) {
   const b = blTanlov(ek), x = ek.querySelector('.jr-bl .bl-x'), joy = ek.querySelector('.jr-bl'); if (!b || !x || !joy) return
   const r = b.getSvgRoot().querySelector(':scope > .blocklyPath').getBoundingClientRect(), j = joy.getBoundingClientRect()
-  x.style.left = (r.right - j.left) + 'px'; x.style.top = (r.top - j.top + r.height / 2) + 'px'
+  x.style.left = (r.right - j.left + joy.scrollLeft) + 'px'; x.style.top = (r.top - j.top + joy.scrollTop + r.height / 2) + 'px' // scroll — Q04-A (aylanadigan ustun)
 }
 function blTanla(ek, b) {
   blTanlovOl(ek); BL_TANLOV.set(ek, b.id)
@@ -488,11 +499,11 @@ function blTanlaBos(ek, ws, b) {
   if (Blockly.DropDownDiv && Blockly.DropDownDiv.isVisible && Blockly.DropDownDiv.isVisible()) return
   const t = blTanlov(ek)
   if (typeof chal === 'function') chal('bos')
-  if (!t) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return }
+  if (!t) { blTanla(ek, b); ishora(ek, 'Tanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi'); return }
   blTanlovOl(ek)
   if (t === b) { ishora(ek, ''); return }
-  if (t.outputConnection || b.outputConnection) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return } // 13-dars: random (son bloki) joy almashtirmaydi
-  if (!blAlmashtir(ws, t, b)) { blTanla(ek, b); ishora(ek, 'Tanlandi: boshqa blokni bosing yoki ✕'); return } // almashmasa — «almashdi» demaymiz (21.11)
+  if (t.outputConnection || b.outputConnection) { blTanla(ek, b); ishora(ek, 'Tanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi'); return } // 13-dars: random (son bloki) joy almashtirmaydi
+  if (!blAlmashtir(ws, t, b)) { blTanla(ek, b); ishora(ek, 'Tanlandi: ✕ — olib tashlash (pastidagilar qoladi), boshqa blok — joy almashadi'); return } // almashmasa — «almashdi» demaymiz (21.11)
   sanoq(ek); ishora(ek, 'Bloklar joyi almashdi')
 }
 // ikki blokning dasturdagi joyini almashtirish: zanjir bo'laklarga ajratiladi va yangi tartibda qayta ulanadi
@@ -613,8 +624,8 @@ function blSanoq(el, i) {
   // son kapsulasining o'ng tomonida (sarlavha qatorida); kapsula topilmasa — blok sarlavhasining chap tepasida
   const b = blBlok(el), fn = b && (b.getField('N') || b.getField('YON')), fs = fn && fn.getSvgRoot(), j = joy.getBoundingClientRect()
   const r = (fs || el).getBoundingClientRect()
-  s.style.left = (fs ? r.right - j.left + 6 : r.left - j.left) + 'px'
-  s.style.top = (r.top - j.top + (fs ? 0 : 4)) + 'px'
+  s.style.left = (fs ? r.right - j.left + 6 : r.left - j.left) + joy.scrollLeft + 'px'
+  s.style.top = (r.top - j.top + joy.scrollTop + (fs ? 0 : 4)) + 'px'
   s.textContent = i; if (s.animate) s.animate([{ transform: 'scale(1.35)' }, { transform: 'scale(1)' }], { duration: 220 })
 }
 function blSanoqOl(ek) { ek.querySelectorAll('.jr-bl .bl-son').forEach((x) => x.remove()) }
@@ -658,7 +669,7 @@ function dasturDaraxti(ek) {
 function* ijroTartibi(daraxt, belgi = false) { for (const t of daraxt) { if (t.tur === 'a' || t.tur === 'i') { yield t; if (!belgi || t.ha) yield* ijroTartibi(t.ichki, belgi); continue } /* 12-dars: 'i' — o'zgaruvchi sharti */ if (t.tur === 'p') { for (let i = 0; i < (t.n || 0); i++) { if (belgi) yield { belgi: true, el: t.el, i: i + 1 }; yield* ijroTartibi(t.ichki, belgi) } } else { yield t; if (t.ichki.length) yield* ijroTartibi(t.ichki, belgi) } } }
 // 14-dars («Bitta qadam»): oldin(t) — ixtiyoriy; har harakat blokidan oldin kutiladi (shart tekshiruvi va takrorlash sanog'i kutmaydi — ular
 // o'sha bosishda ko'rinadi); 'bekor' qaytarsa — dastur shu yerda to'xtaydi, blok belgisiz (dastur o'zgardi). Berilmasa — avvalgidek.
-async function ijro(daraxt, bajar, { kut = 700, oldin = null } = {}) {
+async function ijro(daraxt, bajar, { kut = 700, oldin = null, oxir = 150 } = {}) { // 25.11 (Q12): oxir — dastur tugagach kutish (kosmik raketa — qisqa)
   const otdi = []
   let toxtadi = false, bekor = false
   for (const t of ijroTartibi(daraxt, true)) {
@@ -671,7 +682,7 @@ async function ijro(daraxt, bajar, { kut = 700, oldin = null } = {}) {
     t.el.classList.remove('hozir'); t.el.classList.add('yon'); otdi.push(t)
     if (r === 'toxta') { toxtadi = true; t.el.classList.add('urildi'); break }
   }
-  await KUT(150)
+  await KUT(oxir)
   otdi.forEach((t) => t.el.classList.remove('yon'))
   if (typeof blSanoqOl === 'function' && daraxt[0] && daraxt[0].el) { const ek = daraxt[0].el.closest && daraxt[0].el.closest('.ekran'); if (ek) setTimeout(() => blSanoqOl(ek), 900) }
   return { bajarildi: otdi.length, toxtadi, bekor }
@@ -973,7 +984,7 @@ const SAHNA = {
       if (c === '#' || (c === 'E' && !h.kalit)) { h.urildi = { eshik: c === 'E', el: tugun.el }; katakTurtil(h, d); chal('tuk'); return 'toxta' }
       if (c === 'E') { const e = h.k.querySelector('.kt-eshik[data-k="' + nx + ',' + ny + '"]'); if (e && !e.classList.contains('ochiq')) { e.classList.add('ochiq'); chal('bos'); await KUT(280) } }
       katakIz(h, h.x, h.y, nx, ny)
-      h.x = nx; h.y = ny; katakSur(h.q, nx, ny, true); chal('qadam'); h.qadamlar++
+      h.x = nx; h.y = ny; if (h.tez) katakSilj(h.q, nx, ny); else katakSur(h.q, nx, ny, true); chal('qadam'); h.qadamlar++
       if (c === 'K' && !h.kalit) { h.kalit = true; setTimeout(() => h.k.classList.add('kalitli'), 380) }
     },
     baho(h, b) {
@@ -997,6 +1008,8 @@ function katakSur(g, x, y, sakrab, baland = 0) {
   const m = eski.match(/-?[\d.]+/g).map(Number), n = yangi.match(/-?[\d.]+/g).map(Number)
   g.animate([{ transform: eski }, { transform: 'translate(' + (m[0] + n[0]) / 2 + 'px,' + ((m[1] + n[1]) / 2 - 26 - baland) + 'px)' }, { transform: yangi }], { duration: 520 + (baland ? 160 : 0), easing: 'ease-in-out' })
 }
+// 25.11 (Q12-A): tez sirpanish — kosmik raketa (h.tez): sakrash yoyi yo'q, 130 ms
+function katakSilj(g, x, y) { const eski = g.style.transform, yangi = katakJoy(x, y); g.style.transform = yangi; if (g.animate && eski) g.animate([{ transform: eski }, { transform: yangi }], { duration: 130, easing: 'ease-out' }) }
 // devorga turtilish: o'sha tomonga bir oz, keyin silkinib joyiga
 function katakTurtil(h, d) {
   const g = h.q, j = g.style.transform, m = j.match(/-?[\d.]+/g).map(Number), at = (k) => 'translate(' + (m[0] + d[0] * k) + 'px,' + (m[1] + d[1] * k) + 'px)'
@@ -1231,9 +1244,12 @@ function muammoOl(ek) { ek.querySelectorAll('.dv-muam').forEach((x) => x.remove(
 function sarlavha(ek, h, iz) { const s = ek.querySelector('.ust .sar'); if (s) s.innerHTML = h; let z = ek.querySelector('.ust .iz'); if (!z && iz) { ek.querySelector('.ust').insertAdjacentHTML('beforeend', '<span class="iz"></span>'); z = ek.querySelector('.ust .iz') } if (z) z.textContent = iz || '' }
 // bola ekranidan ustozga xabar (ustoz «yonma» rejimida — to'g'ridan-to'g'ri)
 function bildirB(ek, m) { const ildiz = ek && ek.parentNode && ek.parentNode.closest('#ust,#bol'); if (ildiz && ildiz.id === 'bol' && typeof bildir === 'function') bildir(m) }
+// 25.11 (F-1125-09): javon bloki eniga sig'masa — .sigmas (qobiq.css: faqat shu blokda matn o'raladi). O'lchov cqw — en ahamiyatsiz; yashirin javon (0 en) tashlanadi
+function javonSigdir(ek) { if (!ek) return; ek.querySelectorAll('.pl .mb').forEach((m) => { if (!m.getBoundingClientRect().width) return; m.classList.remove('sigmas'); if (m.scrollWidth > m.clientWidth + 1) m.classList.add('sigmas') }) }
 function studiyaTayyorla(ildiz) {
   if (!ildiz) return
   const ek = ildiz.querySelector('.ekran'); if (!ek) return
+  requestAnimationFrame(() => javonSigdir(ek)); if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => javonSigdir(ek))
   const id = ek.dataset.id
   if (typeof DARS !== 'undefined' && DARS.bola && typeof kartaChiz === 'function' && ((ildiz.id === 'bol' && (DARS.bola.karta === id || ek.querySelector('.kc-mini'))) || (ildiz.id === 'ust' && DARS.kartaNamuna && ek.querySelector('.kc-mini')))) kartaChiz(ek) // 21–23-dars: loyiha kartasi (kod.js); ustozda — namuna karta (22–23)
   if (ildiz.id === 'ust') { const fo = ek.querySelector('.hn'); if (fo && !fo.querySelector('.orq') && !fo.querySelector('.k-ust')) { const a = fo.querySelector('.asos'); if (a) { a.className = 'mas ishga'; a.textContent = '▶ Ishga tushir' } fo.insertAdjacentHTML('beforeend', '<span class="asos k-ust">Keyingi ›</span>') } }
@@ -1493,6 +1509,8 @@ function hukTayyorla(ek) {
 function hukBosish(e, ek, ildiz) {
   const kartalar = Array.from(ek.querySelectorAll('.jk'))
   const sb = e.target.closest('.hk-sinab'); if (sb) { hukSina(ek, kartalar.indexOf(sb.closest('.jk'))); return true }
+  // 25.11 (F-1125-03, 4-dars): o'yin kartasidagi strelka rasmlari ham tugma — bosilsa klaviatura strelkasi kabi (QA kartani bosib, hech narsa bo'lmagan)
+  const st = ek.dataset.oyin === 'huk' && e.target.closest('.jk.sinov .kt-t'); if (st) { const k = { u: 'up', l: 'left', d: 'down', r: 'right' }[['u', 'l', 'd', 'r'].find((c) => st.classList.contains(c))]; if (k) oyinTugmaBos(ek, k); return true }
   if (ildiz.id !== 'ust' || (typeof SOLO !== 'undefined' && SOLO) || !e.target.closest('.hn .asos')) return false
   if (ek.dataset.yuryapti) return true
   const i = +(ek.dataset.huk || 0); if (i >= kartalar.length) return false
@@ -1595,6 +1613,7 @@ function studiyaBosish(e) {
   // ranglar: doiracha bosilsa — o'sha oila bloklari (Ranglar qadamida hali o'rgatilmagan bloklar yopiq)
   const rd = e.target.closest('.rg .rd')
   if (rd && ek.querySelector('.pl')) {
+    requestAnimationFrame(() => javonSigdir(ek)) // F-1125-09: yangi oila javoni
     const f = (rd.className.match(/\bf-(\w)\b/) || [])[1] || 'h' // oila: h, g (1-dars), e (4-dars: Hodisa)
     ek.querySelectorAll('.rg .rd').forEach((r) => r.classList.toggle('on', r === rd))
     rd.classList.remove('puls'); rd.classList.add('ok')
@@ -2026,7 +2045,7 @@ function oqishYukla(ek) {
   ek.dataset.oqish = '1'
   const ws = typeof BL_WS !== 'undefined' && BL_WS.get(ek)
   if (ws && x.bl) { ws.clear(); Blockly.serialization.workspaces.load(x.bl, ws); ws.getAllBlocks(false).forEach(blBelgila); blTartib(ws); blMasshtab(ek, ws); blTartibKeyin(ws); sanoq(ek) }
-  if (x.bayroq && x.bayroq.indexOf('son:') === 0) { if (typeof sonBashTayyorla === 'function') sonBashTayyorla(ek); const sk = ek.querySelector('.bsh-q .sk[data-v="' + x.bayroq.slice(4) + '"]'); if (sk) { sk.classList.add('tan'); ek.dataset.bayroq = x.bayroq; const ish = ek.querySelector('.hn .ishga') || ek.querySelector('.hn .asos'); if (ish) ish.classList.remove('xira') } } // 11-dars
+  if (x.bayroq && x.bayroq.indexOf('son:') === 0) { if (typeof sonBashTayyorla === 'function') sonBashTayyorla(ek); const sk = ek.querySelector('.bsh-q .sk[data-v="' + x.bayroq.slice(4) + '"]'); if (sk) { sk.classList.add('tan'); ek.dataset.bayroq = x.bayroq; const ish = ek.querySelector('.hn .ishga') || ek.querySelector('.hn .asos'); if (ish) ish.classList.remove('tug-xira') } } // 11-dars
   else if (x.bayroq) { const [a, c] = x.bayroq.split(',').map(Number); mdBayroqQoy(ek, a, c) }
   ishora(ek, DARS.oqishGap || 'Dasturingizni ustozga o‘qib bering')
 }
@@ -2052,6 +2071,7 @@ async function hukOyin(ek, k, i) {
   const h = await SAHNA.katak.boshla(ek, {})
   OYIN.set(ek, { h, huk: { k, i, qoch: hukQoch(k), n: 0 } }); ek.dataset.oyin = 'huk'
   ek.querySelector('.oyna').insertAdjacentHTML('beforeend', '<span class="gl oyin-yz">O‘yin: strelkalarni bosing</span>')
+  ishora(ek, 'Strelkani bosing — klaviaturada yoki kartada') // 25.11 (F-1125-03)
 }
 async function hukOyinBos(ek, key, o) {
   const tur = { right: 'r', left: 'l', up: 'u', down: 'd' }[key]; if (!tur) return
@@ -2242,7 +2262,7 @@ function labChekYangila(ek, o) {
 }
 // yakun ekrani (natijaYoz): chek-list va «O‘yiningiz saqlandi» (faqat haqiqatan saqlangan bo'lsa)
 function labNatija(ek) {
-  const c = ek.querySelector('.chek-y'); if (c) c.innerHTML = chekHtml(chekSaqlangan())
+  const c = ek.querySelector('.chek-y'); if (c && !c.querySelector('[data-ch]')) c.innerHTML = chekHtml(chekSaqlangan()) // 25.11: o'z bandlari bilan kelgan ro'yxat (17-dars, kosmikNatija) — labirint ro'yxati bilan almashtirilmaydi
   const s = ek.querySelector('.saqlandi'); if (s) s.hidden = !(DARS.chekStatik ? labD2() : labOyinSaqlandi())
   // 10-dars: bolaning 2-darajasi, qahramon yulduzda; do'stining natijasi
   if (DARS.chekStatik && ek.querySelector('.katak.maydon')) {
@@ -2799,13 +2819,13 @@ function sonBashTayyorla(ek) {
   ek.querySelectorAll('.bsh-q .sk').forEach((x) => x.classList.remove('tan', 'ok'))
   if (typeof blSanoqOl === 'function') blSanoqOl(ek)
   ek.__v = {}; ballKor(ek, null); delete ek.dataset.bayroq
-  const ish = sonBashTugma(ek); if (ish) { if (ish.classList.contains('ishga')) ish.textContent = '▶ Tekshirish'; ish.classList.add('xira') }
+  const ish = sonBashTugma(ek); if (ish) { if (ish.classList.contains('ishga')) ish.textContent = '▶ Tekshirish'; ish.classList.add('tug-xira') }
   const g = TOP(ek.dataset.id).gap || {}
   const gb = g.boshla && GAPT(g.boshla); if (gb) ishora(ek, gb) // aks holda tasmadagi ishora («Dasturni o‘qing…»); xira tugma bosilsa — «Avval sonni tanlang»
 }
 function sonBashBosish(e, ek, ildiz) {
   const sk = e.target.closest('.bsh-q .sk')
-  if (sk) { if (ek.dataset.yuryapti) return true; ek.querySelectorAll('.bsh-q .sk').forEach((x) => x.classList.toggle('tan', x === sk)); x0(ek); chal('bos'); ek.dataset.bayroq = 'son:' + sk.dataset.v; const ish = sonBashTugma(ek); if (ish) ish.classList.remove('xira'); ishora(ek, ''); return true }
+  if (sk) { if (ek.dataset.yuryapti) return true; ek.querySelectorAll('.bsh-q .sk').forEach((x) => x.classList.toggle('tan', x === sk)); x0(ek); chal('bos'); ek.dataset.bayroq = 'son:' + sk.dataset.v; const ish = sonBashTugma(ek); if (ish) ish.classList.remove('tug-xira'); ishora(ek, ''); return true }
   const tb = sonBashTugma(ek); if (tb && e.target.closest('.hn .ishga, .hn .asos') === tb) { sonBashTekshir(ek); return true }
   // 14-qadam (ustoz): «Keyingi» — avval har blok yonidagi yozuv birma-bir («ball: 0», «ball: 2»…), keyin odatdagidek keyingi qadam
   const solo = typeof SOLO !== 'undefined' && SOLO
@@ -3759,7 +3779,10 @@ function perJsonD(j) {
   for (const t of bl) if (BL_HODISA.has(t.type)) { const z = zanjir(t.next && t.next.block); r.push({ tur: t.type, tugma: t.type === 'when_key' ? (t.fields || {}).KEY : '', olma: t.type === 'when_touch' ? (t.fields || {}).OLMA : '', daraxt: z, bloklar: z.map((x) => x.el), hodisa: document.createElement('span') }) }
   return r
 }
-function kosmikNatija(ek) { const s = ek.querySelector('.saqlandi'), m = perOl(); let y = null; try { y = localStorage.getItem(perKalit() + '3') } catch (e) {} if (s) s.hidden = !(y && (m.raketa || m.oq)) }
+function kosmikNatija(ek) {
+  const s = ek.querySelector('.saqlandi'), m = perOl(); let y = null; try { y = localStorage.getItem(perKalit() + '3') } catch (e) {} if (s) s.hidden = !(y && (m.raketa || m.oq))
+  const ch = ksChekOl(); ek.querySelectorAll('.chek-y .ch-r[data-ch]').forEach((r) => { const ok = !!ch[r.dataset.ch]; r.classList.toggle('ok', ok); const i = r.querySelector('i'); if (i) i.textContent = ok ? '✓' : '' }) // 25.11 (K1)
+}
 function perD(ek, id) { const s = ek.__per; if (!s) return []; return id === s.cur ? blDasturchalar(ek) : perJsonD(s.json[id]) }
 
 // ---- maydon: bayroqlar va nishonlar ----
@@ -3778,8 +3801,12 @@ function kosmikTayyorla(ek) {
   if (D18(ek)) dushTayyorla(ek)
 }
 // chek-list «O‘yiningizda:» (3-bekat) — javon ustunining pastida (9-darsdagi .chek ko'rinishi); oila almashsa ham qaytadi (studiya.js)
+// 25.11 (K1): bola o'yinlarida belgilangan bandlar dars bo'yi to'planadi — yakunda (.chek-y) ✓ bo'lib chiqadi
+const ksChekKalit = () => (typeof K !== 'undefined' ? K : 'jr-') + 'ksChek'
+function ksChekOl() { try { return JSON.parse(localStorage.getItem(ksChekKalit()) || '{}') || {} } catch (e) { return {} } }
 function kosmikChekChiz(ek, c) {
   const b = TOP(ek.dataset.id).bosh, k = b.kosmik || {}, pl = ek.querySelector('.pl'); if (!pl || !k.chek) return
+  if (c && perBola(ek)) { const s = ksChekOl(); let o = false; for (const id in c) if (c[id] && !s[id]) { s[id] = true; o = true } if (o) try { localStorage.setItem(ksChekKalit(), JSON.stringify(s)) } catch (e) {} }
   c = c || ek.__ksChek || {}; ek.__ksChek = c
   pl.querySelectorAll('.chek').forEach((x) => x.remove())
   pl.insertAdjacentHTML('beforeend', '<div class="chek"><small>' + KS('royxat') + '</small>' + (KS('chek') || []).map(([id, t]) => '<span class="ch-r' + (c[id] ? ' ok' : '') + '"><i>' + (c[id] ? '✓' : '') + '</i>' + t + '</span>').join('') + '</div>')
@@ -3796,7 +3823,7 @@ async function kosmikBoshla(ek) {
   if (k.qoy && (ek.__ksNishon || []).length < k.qoy) { chal('muammo'); ishora(ek, KS('qoyKam', k.qoy)); muammo(ek, 'kamvoy', KS('ozP')); return }
   kosmikChiz(ek)
   klonOl(ek)
-  const h = await SAHNA.katak.boshla(ek, b)
+  const h = await SAHNA.katak.boshla(ek, b); h.tez = true // 25.11 (Q12-A): raketa sakramaydi — tez sirpanadi (sahna.js)
   ek.__klon = { asl: { x: h.x, y: mdY(h.xr, h.y), asl: true }, nusxa: [], soni: 0, ishlar: [], kosmik: true, kut: k.kut || 380, nusxaD: () => perD(ek, 'oq'), sanoqYoq: D18(ek) } // 18-dars: sanoq — faqat «Dushman: N»
   const o = { h, bosish: 0, yurdi: new Set(), bayroq: new Set(), tovushYur: new Set(), oqTovush: false, urildi: 0, tepaga: 0, tepadaOchdi: 0, chek: {}, kosmik: true }
   OYIN.set(ek, o); ek.dataset.oyin = 'kosmik'
@@ -3819,7 +3846,7 @@ async function kosmikBos(ek, k, o) {
   // raketa dasturchalari — kutiladi (raketa yuradi); o'q dasturchalari — nusxa yasaydi (uchishi kutilmaydi)
   ek.dataset.yuryapti = '1'
   const bor = (z, tur) => z.some((t) => t.tur === tur || bor(t.ichki || [], tur))
-  for (const d of ds.filter((x) => x.p !== 'oq')) { d.hodisa.classList && d.hodisa.classList.add('hozir'); const x0 = o.h.x, z = turla(d.daraxt); await ijro(z, (t) => kosmikBlok(ek, o, d.p, t), { kut: 140 }); d.hodisa.classList && d.hodisa.classList.remove('hozir'); if (o.h.x !== x0 && bor(z, 'n')) o.tovushYur.add(o.h.x > x0 ? 'r' : 'l') } // ★: tovush — yurgan dasturchada
+  for (const d of ds.filter((x) => x.p !== 'oq')) { d.hodisa.classList && d.hodisa.classList.add('hozir'); const x0 = o.h.x, z = turla(d.daraxt); await ijro(z, (t) => kosmikBlok(ek, o, d.p, t), { kut: 70, oxir: 20 }) /* 25.11 (QA F-1125-12, Q12-A): raketa ~2× tez */; d.hodisa.classList && d.hodisa.classList.remove('hozir'); if (o.h.x !== x0 && bor(z, 'n')) o.tovushYur.add(o.h.x > x0 ? 'r' : 'l') } // ★: tovush — yurgan dasturchada
   delete ek.dataset.yuryapti
   const oqD = ds.filter((x) => x.p === 'oq').map((d) => ({ ...d, z: turla(d.daraxt) }))
   if (k === 'space' && !oqD.some((d) => bor(d.z, 'C')) && !ds.some((d) => d.p !== 'oq' && bor(turla(d.daraxt), 'C'))) { chal('muammo'); ishora(ek, KS('oqQani')); muammo(ek, 'boshvoy', KS('oqQaniP')) } // space — o'q paydo bo'lmaydi
@@ -4373,6 +4400,13 @@ function kartaTanla(ek, ko) {
   const g = ko.dataset.g, m = kartaOl(); m[g] = g === 'kim' ? ko.dataset.v : +ko.dataset.v; kartaYoz(m)
   if (typeof chal === 'function') chal('bos'); kartaChiz(ek)
 }
+// 25.11 (Q17-A): ustoz ekranidagi karta (DARS.ustozKarta) — sinf oldida bosib to'ldiriladi; tanlov faqat xotirada (ek.__karta): yonma-yon ko'rikda ham bolaning kartasi oldindan to'lib qolmasin
+function kartaUstozTanla(ek, ko) {
+  const m = ek.__karta || (ek.__karta = { ...KARTA0 }), g = ko.dataset.g; m[g] = g === 'kim' ? ko.dataset.v : +ko.dataset.v
+  if (typeof chal === 'function') chal('bos')
+  ek.querySelectorAll('.kc-o').forEach((x) => { const v = m[x.dataset.g]; x.classList.toggle('on', !!v && String(v) === x.dataset.v) })
+  ek.querySelectorAll('.kc-xul').forEach((s) => { s.innerHTML = kartaXulosa(m) })
+}
 // «Karta tayyor»: hamma qator tanlanganmi; shundagina keyingi ekran (qobiq.js)
 function kartaTayyor(ek) {
   const m = kartaOl()
@@ -4607,6 +4641,7 @@ document.addEventListener('click', (e) => {
   if (a) { const k = a.dataset.a; if (k === 'orq') ot(qadam - 1); if (k === 'keyingi') ot(qadam + 1); if (k === 'toliq') document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); if (k === 'ovoz') { const y = ovozAlmashtir(); a.textContent = y ? 'Ovoz yoqiq' : 'Ovoz o‘chiq'; a.setAttribute('aria-pressed', String(y)); if (y) chal('bos') } return }
   if (studiyaBosish(e) || ismBosish(e)) return
   const ust = e.target.closest('#ust'), bol = e.target.closest('#bol')
+  const kou = ust && DARS.ustozKarta && e.target.closest('.kc-o'); if (kou && typeof kartaUstozTanla === 'function') { const ue = ust.querySelector('.ekran'); if (ue && ue.dataset.id === DARS.ustozKarta) { kartaUstozTanla(ue, kou); return } } // 21-dars (Q17-A): ustoz kartani bosib to'ldiradi
   if (ust && SOLO) { if (e.target.closest('.asos')) soloKeyingi(); else if (e.target.closest('.orq')) soloOrqaga(); return }
   if (ust) { if (e.target.closest('.asos')) { if (qadam === QADAM.length - 1) tugat(); else ot(qadam + 1) } else if (e.target.closest('.orq')) ot(qadam - 1); return }
   if (!bol) return
