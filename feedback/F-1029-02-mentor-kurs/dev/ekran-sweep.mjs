@@ -8,7 +8,7 @@ const p = await b.newPage({ viewport: { width: W, height: H } });
 const errs = [];
 p.on('pageerror', (e) => errs.push('PAGE: ' + e.message.slice(0, 160)));
 p.on('console', (m) => { if (m.type() === 'error' && !/favicon|404/.test(m.text())) errs.push('CON: ' + m.text().slice(0, 160)); });
-const url = (i) => `http://localhost:5333/mentor-kurs.html?dars=${DARS}&s=${i}`;
+const url = (i) => `${process.env.BASE || "http://localhost:5333"}/mentor-kurs.html?dars=${DARS}&s=${i}`;
 await p.goto(url(0), { waitUntil: 'load' }); await p.waitForSelector('.mk-stage', { timeout: 30000 });
 const total = await p.evaluate(() => { const m = document.body.innerText.match(/\b(\d+)\s*\/\s*(\d+)\b/); return m ? Number(m[2]) : 0; });
 let bad = 0;

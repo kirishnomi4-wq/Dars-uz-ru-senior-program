@@ -1,12 +1,13 @@
 # F-1125-01 · Mentor Nest-1 darsini kuchaytirish — DAVOM
 
-## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 03:34, `date`; tungi avtopilot 09:00 gacha)
+## ▶▶▶ YANGI SEANS SHU YERDAN (26.11 08:20, `date`; tungi avtopilot natijasi)
 
-**26.11 — foydalanuvchi: «hammasi yaxshi halol ishla … realizatsiya», keyin «avtopilotda ishla, ertalab 9 gacha, har 20 minutda tekshir, hammasini so'nggi versiyaga chiqarib URL'ga yangila».**
-- To'rt dars AI bloki ko'rigi — **qabul** («hammasi yaxshi»).
-- 3-savol — **A, bajarildi va saytda**: commit **7e979174** (02:57), deploy **jggrhgbye**. CI/CD-1 20, WS-2 19, Jest-1 20 — AI'ning haqiqiy chiqishiga moslandi; qonun **M59** + tekshiruv 43. Batafsil — mentor kursi JURNAL «26.11 03:34».
-- Tungi ish (davom etmoqda): ovoz yig'uvchi tuzatildi (to'g'ri javobdan keyingi variantlar izohi ovozsiz edi — saytda 404) → 12 dars qayta yig'ish → qayta deploy; keyin jonli saytda 12 dars UZ/RU to'liq tekshiruv (sahifa xatosi, skroll, mp3, e2e). Fikr talab qiladigan joylar — qaror sahifasiga savol.
-- Push — foydalanuvchining o'zi (commitlar: … 70ccdff3 · 88e6e8e6 · 7e979174 + hujjat).
+**Foydalanuvchiga — qaror sahifasi https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX (v3): tungi natija + 2 savol, javob kutilmoqda.**
+- 3-savol A — saytda (7e979174). Ovozsiz 116 izoh — ovoz qo'shildi (36b42f95). **Saytda `passed` doim false edi (12 dars, 03.11 dan) — tuzatildi** (1bd2deea, M60). Deploy: jggrhgbye → b5wlrxdry → **klcvo8z50**.
+- Tungi jonli QA (klcvo8z50): ekran-sweep 12 × UZ/RU — xato 0 · e2e UZ 12/12 `passed: true`, sinov 8/8 · toshish 1280×720 UZ — 4 darsda kichik kesilish (avvaldan) · RU o'lchovi 08:05 dan yurgan (natija `scratchpad/qa/natija`, jadval — `scratchpad/sahifa/qur.py`).
+- **Savollar (sahifada):** 1) 1280×720 da kesilgan panellar (Nest-1 23–25, Nest-2 20, Jest-1 14, Jest-2 2/8) — tavsiya A (faqat joylashuv); 2) eski 8 dars AI bo'limini Nest-1 darajasiga (ikki xil topshiriq + AI satrini bosish; agentlar kerak) — tavsiya B (mentor fikridan keyin).
+- Push — foydalanuvchining o'zi (commitlar: … 70ccdff3 · 88e6e8e6 · 7e979174 · 36b42f95 · 1bd2deea + hujjat).
+- Batafsil — mentor kursi JURNAL «26.11 03:34» va «26.11 07:05».
 
 **26.11 00:23 — avtopilot (foydalanuvchi: «avtopilotda ishla man 1-2 soatda kelaman»):** qaror sahifasi https://claude.ai/artifact/8vFUwfw1ZNfqdneYwvU3tX — tavsiyalar bo'yicha:
 - 1-savol «Kolonka» — **A, o'quvchi darsiga tegilmadi**.
