@@ -1,0 +1,22 @@
+# Jest-1 20-ekran (LineCheck, F-1125-01 26.11): 1-AI to'plami (ai1/texts.spec.ts, keyboards.spec.ts) tgpg-done (f2eca2f) toza nusxasida
+
+## 1) buzilmagan
+Tests:       36 passed, 36 total
+## 2) texts.ts 10-satr: CANCELLED: '🆕 Yangi' (AI testi o'zgarmagan)
+Tests:       36 passed, 36 total
+## 3) 45-satr o'rniga etalon qo'lda (toEqual) — texts.ts hali buzilgan
+-    for (const s of all) expect(STATUS_UZ[s]).toBeTruthy();
++    expect(STATUS_UZ).toEqual({
++      NEW: '🆕 Yangi',
++      CONFIRMED: '✅ Tasdiqlangan',
++      DELIVERED: '🚚 Yetkazilgan',
++      CANCELLED: '❌ Bekor qilingan',
++    });
+  ● STATUS_UZ › har bir status uchun matn bor
+    - Expected  - 1
+    + Received  + 1
+    -   "CANCELLED": "❌ Bekor qilingan",
+    +   "CANCELLED": "🆕 Yangi",
+Tests:       1 failed, 35 passed, 36 total
+## 4) texts.ts tiklandi
+Tests:       36 passed, 36 total

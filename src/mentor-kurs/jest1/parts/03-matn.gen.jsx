@@ -619,27 +619,15 @@ const MDT = {
   ]
  },
  "20": {
-  "type": "MCRetry",
+  "type": "LineCheck",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "AI testi: for (const s of all) expect(STATUS_UZ[s]).toBeTruthy(). Kimdir CANCELLED matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
-  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi har bir status matnini, bekor qilinganini ham, to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
-  "ok": "To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
-  "okShort": "«Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq <code>toBe</code> buni ushlaydi.",
-  "hint": "toBeTruthy qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?",
-  "demak": "<code>toBeTruthy</code> qiymat borligini tekshiradi, to'g'riligini emas.",
-  "correct": 1,
-  "opts": [
-   "FAIL — toBeTruthy matn o'zgarganini sezadi",
-   "PASS — toBeTruthy faqat bo'sh emasmi deydi",
-   "TypeScript xato — status matni turi o'zgardi",
-   "FAIL — ikki status endi bir xil matnda"
-  ],
-  "wrong": {
-   "0": "toBeTruthy matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.",
-   "2": "Ikkalasi ham string — turi o'zgarmadi.",
-   "3": "Test matnlarni bir-biri bilan solishtirmaydi — faqat har biri bo'sh emasmi."
-  }
+  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr sezmaydi?",
+  "title": "CANCELLED «Yangi» bo'ldi, 1-AI ning 36 testi yashil qoldi. Qaysi satr sezmaydi?",
+  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan test: telegram papkasidagi texts spec ts fayli. Kimdir bekor qilingan status matnini yangi deb o'zgartirdi, lekin AI'ning o'ttiz olti testi yashil qoldi. Qaysi satr bu o'zgarishni sezmaydi? O'sha satrni bosing.",
+  "ok": "To'g'ri. Qirq beshinchi satr to be truthy bilan faqat matn bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Biz etalonni qo'lda, to equal bilan yozdik: o'sha buzilishda bitta test qizardi, expected va received farqi bilan. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
+  "okShort": "45-satr: <code>toBeTruthy</code> — «Yangi» ham bo'sh emas, 36/36 yashil. Etalon qo'lda — <code>toEqual({ … })</code> har status matni bilan → <code>1 failed</code> (sinab ko'rilgan).",
+  "hint": "Har status matni qanday tekshirilyapti: aynan qiymati bilanmi yoki faqat bo'sh emasligimi? Shuni ko'rsatadigan satrni qidiring.",
+  "task": "Kimdir <code>texts.ts</code> 10-satrda <code>CANCELLED</code> matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. 1-AI to'plami <code>npm test</code> da 36 tadan 36 yashil qoldi (sinab ko'rilgan). <b>Qaysi satr bu o'zgarishni sezmaydi? Bosing.</b>"
  },
  "21": {
   "type": "Practice",

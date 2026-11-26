@@ -175,16 +175,49 @@ function Screen19(p) {
 // ============================================================
 //  20 · Tekshiruv 4 — toBeTruthy (jest1v2-out/25)
 // ============================================================
-const BREAK20 = { 10: "  CANCELLED: '🆕 Yangi'," };
-const T20 = out('25').filter((l, i) => !/buzilmagan|^\d+:/.test(outLines('25')[i].replace(/^## \w+ /, '').trim()) || /●/.test(outLines('25')[i]));
+// 26.11 (F-1125-01, foydalanuvchi: «A — 20-ekranni satr bosishga aylantir», M56): MCRetry → LineCheck.
+// Haqiqiy kod: feedback/F-1029-02-mentor-kurs/manba/jest1v2-ai/ai1/texts.spec.ts 30–46 (aynan, dasturda ko'chirilgan); to'g'ri satr 45.
+// Tuzatish yurgizilgan: jest1v2-ai/tuzatish-lc20.txt (f2eca2f + 1-AI spec fayllari; CANCELLED «🆕 Yangi» → toEqual bilan 1 failed). Explorer yo'q (M61-3). LC20 indekslari: 0 → 30-satr, 1 → «…», 2… → 36…, 11 → 45-satr.
+const LC20_SRC = [
+  [30, "describe('som', () => {"],
+  [31, "  it.each(["],
+  [32, "    [0, \"0 so'm\"],"],
+  [33, "    [999, \"999 so'm\"],"],
+  [34, "    [120000, \"120 000 so'm\"],"],
+  [35, "    [1234567, \"1 234 567 so'm\"],"],
+  [36, "  ])('%d → %s', (n, expected) => {"],
+  [37, "    expect(norm(som(n))).toBe(expected);"],
+  [38, "  });"],
+  [39, "});"],
+  [40, ""],
+  [41, "describe('STATUS_UZ', () => {"],
+  [42, "  it('har bir status uchun matn bor', () => {"],
+  [43, "    const all: OrderStatus[] = ['NEW', 'CONFIRMED', 'DELIVERED', 'CANCELLED'];"],
+  [44, "    expect(Object.keys(STATUS_UZ).sort()).toEqual([...all].sort());"],
+  [45, "    for (const s of all) expect(STATUS_UZ[s]).toBeTruthy();"],
+  [46, "  });"],
+];
+// 1280×720 ga sig'ishi uchun (M61): som blokining it.each ro'yxati (31–35) «…» bilan; qolgan satrlar aynan
+const LC20 = LC20_SRC.filter(([n]) => n < 31 || n > 35).map(([n, s]) => ({ n, h: s ? tsLine(s) : '' }));
+LC20.splice(1, 0, { n: '', h: '<span class="cm">…</span>' });
+const LC20_FIXED = [
+  ...LC20.slice(0, 11),
+  { gone: true, n: '', h: LC20[11].h },
+  ...["    expect(STATUS_UZ).toEqual({", "      NEW: '🆕 Yangi',", "      CONFIRMED: '✅ Tasdiqlangan',", "      DELIVERED: '🚚 Yetkazilgan',", "      CANCELLED: '❌ Bekor qilingan',", "    });"].map((s) => ({ neu: true, n: '', h: tsLine(s) })),
+  ...LC20.slice(12),
+];
+// tuzatish-lc20.txt 3-bo'limi (texts.ts hali buzilgan), qisqartirilgan
+const LC20_RUN = [
+  { n: '', h: '<span class="er">● STATUS_UZ › har bir status uchun matn bor</span>' },
+  { n: '', h: '<span class="er">-   "CANCELLED": "❌ Bekor qilingan",</span>' },
+  { n: '', h: '<span class="ok">+   "CANCELLED": "🆕 Yangi",</span>' },
+  { n: '', h: 'Tests:       <span class="er">1 failed</span>, 35 passed, 36 total' },
+];
 function Screen20(p) {
-  return MC(p, 20, {
-    above: <div style={{ display: 'grid', gap: 8 }}>
-      <CodePanel file="1-AI · texts.spec.ts" lines={kod('AI1_STATUS', { 45: 't' })} focus={['t']} />
-      <CodePanel file={t("texts.ts · buzilgan", "texts.ts · сломан")} lines={kod('TX_STATUS', { 10: 'x' }, 6, 11, BREAK20)} focus={['x']} />
-    </div>,
-    after: <Term title={t("VS Code terminali · CANCELLED «🆕 Yangi» bilan", "терминал VS Code · CANCELLED с «🆕 Yangi»")} lines={T20} />,
-  });
+  const m = MDT[20];
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file={t('src/api/telegram/texts.spec.ts · 1-AI yozgan', 'src/api/telegram/texts.spec.ts · написал 1-й AI')} lines={LC20} target={11}
+    fixed={LC20_FIXED} fixedExtra={[{ file: t("VS Code terminali · etalon qo'lda, CANCELLED «🆕 Yangi» bilan (haqiqiy)", 'терминал VS Code · эталон вручную, CANCELLED с «🆕 Yangi» (настоящий)'), lines: LC20_RUN }]}
+    ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
 
 // ============================================================

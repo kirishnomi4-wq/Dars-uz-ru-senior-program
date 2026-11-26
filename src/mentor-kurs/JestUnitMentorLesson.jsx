@@ -2924,27 +2924,15 @@ const MDT = {
   ]
  },
  "20": {
-  "type": "MCRetry",
+  "type": "LineCheck",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "AI testi: for (const s of all) expect(STATUS_UZ[s]).toBeTruthy(). Kimdir CANCELLED matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?",
-  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi har bir status matnini, bekor qilinganini ham, to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.",
-  "ok": "To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
-  "okShort": "«Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq <code>toBe</code> buni ushlaydi.",
-  "hint": "toBeTruthy qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?",
-  "demak": "<code>toBeTruthy</code> qiymat borligini tekshiradi, to'g'riligini emas.",
-  "correct": 1,
-  "opts": [
-   "FAIL — toBeTruthy matn o'zgarganini sezadi",
-   "PASS — toBeTruthy faqat bo'sh emasmi deydi",
-   "TypeScript xato — status matni turi o'zgardi",
-   "FAIL — ikki status endi bir xil matnda"
-  ],
-  "wrong": {
-   "0": "toBeTruthy matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.",
-   "2": "Ikkalasi ham string — turi o'zgarmadi.",
-   "3": "Test matnlarni bir-biri bilan solishtirmaydi — faqat har biri bo'sh emasmi."
-  }
+  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr sezmaydi?",
+  "title": "CANCELLED «Yangi» bo'ldi, 1-AI ning 36 testi yashil qoldi. Qaysi satr sezmaydi?",
+  "q": "Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan test: telegram papkasidagi texts spec ts fayli. Kimdir bekor qilingan status matnini yangi deb o'zgartirdi, lekin AI'ning o'ttiz olti testi yashil qoldi. Qaysi satr bu o'zgarishni sezmaydi? O'sha satrni bosing.",
+  "ok": "To'g'ri. Qirq beshinchi satr to be truthy bilan faqat matn bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Biz etalonni qo'lda, to equal bilan yozdik: o'sha buzilishda bitta test qizardi, expected va received farqi bilan. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.",
+  "okShort": "45-satr: <code>toBeTruthy</code> — «Yangi» ham bo'sh emas, 36/36 yashil. Etalon qo'lda — <code>toEqual({ … })</code> har status matni bilan → <code>1 failed</code> (sinab ko'rilgan).",
+  "hint": "Har status matni qanday tekshirilyapti: aynan qiymati bilanmi yoki faqat bo'sh emasligimi? Shuni ko'rsatadigan satrni qidiring.",
+  "task": "Kimdir <code>texts.ts</code> 10-satrda <code>CANCELLED</code> matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. 1-AI to'plami <code>npm test</code> da 36 tadan 36 yashil qoldi (sinab ko'rilgan). <b>Qaysi satr bu o'zgarishni sezmaydi? Bosing.</b>"
  },
  "21": {
   "type": "Practice",
@@ -3893,16 +3881,49 @@ function Screen19(p) {
 // ============================================================
 //  20 · Tekshiruv 4 — toBeTruthy (jest1v2-out/25)
 // ============================================================
-const BREAK20 = { 10: "  CANCELLED: '🆕 Yangi'," };
-const T20 = out('25').filter((l, i) => !/buzilmagan|^\d+:/.test(outLines('25')[i].replace(/^## \w+ /, '').trim()) || /●/.test(outLines('25')[i]));
+// 26.11 (F-1125-01, foydalanuvchi: «A — 20-ekranni satr bosishga aylantir», M56): MCRetry → LineCheck.
+// Haqiqiy kod: feedback/F-1029-02-mentor-kurs/manba/jest1v2-ai/ai1/texts.spec.ts 30–46 (aynan, dasturda ko'chirilgan); to'g'ri satr 45.
+// Tuzatish yurgizilgan: jest1v2-ai/tuzatish-lc20.txt (f2eca2f + 1-AI spec fayllari; CANCELLED «🆕 Yangi» → toEqual bilan 1 failed). Explorer yo'q (M61-3). LC20 indekslari: 0 → 30-satr, 1 → «…», 2… → 36…, 11 → 45-satr.
+const LC20_SRC = [
+  [30, "describe('som', () => {"],
+  [31, "  it.each(["],
+  [32, "    [0, \"0 so'm\"],"],
+  [33, "    [999, \"999 so'm\"],"],
+  [34, "    [120000, \"120 000 so'm\"],"],
+  [35, "    [1234567, \"1 234 567 so'm\"],"],
+  [36, "  ])('%d → %s', (n, expected) => {"],
+  [37, "    expect(norm(som(n))).toBe(expected);"],
+  [38, "  });"],
+  [39, "});"],
+  [40, ""],
+  [41, "describe('STATUS_UZ', () => {"],
+  [42, "  it('har bir status uchun matn bor', () => {"],
+  [43, "    const all: OrderStatus[] = ['NEW', 'CONFIRMED', 'DELIVERED', 'CANCELLED'];"],
+  [44, "    expect(Object.keys(STATUS_UZ).sort()).toEqual([...all].sort());"],
+  [45, "    for (const s of all) expect(STATUS_UZ[s]).toBeTruthy();"],
+  [46, "  });"],
+];
+// 1280×720 ga sig'ishi uchun (M61): som blokining it.each ro'yxati (31–35) «…» bilan; qolgan satrlar aynan
+const LC20 = LC20_SRC.filter(([n]) => n < 31 || n > 35).map(([n, s]) => ({ n, h: s ? tsLine(s) : '' }));
+LC20.splice(1, 0, { n: '', h: '<span class="cm">…</span>' });
+const LC20_FIXED = [
+  ...LC20.slice(0, 11),
+  { gone: true, n: '', h: LC20[11].h },
+  ...["    expect(STATUS_UZ).toEqual({", "      NEW: '🆕 Yangi',", "      CONFIRMED: '✅ Tasdiqlangan',", "      DELIVERED: '🚚 Yetkazilgan',", "      CANCELLED: '❌ Bekor qilingan',", "    });"].map((s) => ({ neu: true, n: '', h: tsLine(s) })),
+  ...LC20.slice(12),
+];
+// tuzatish-lc20.txt 3-bo'limi (texts.ts hali buzilgan), qisqartirilgan
+const LC20_RUN = [
+  { n: '', h: '<span class="er">● STATUS_UZ › har bir status uchun matn bor</span>' },
+  { n: '', h: '<span class="er">-   "CANCELLED": "❌ Bekor qilingan",</span>' },
+  { n: '', h: '<span class="ok">+   "CANCELLED": "🆕 Yangi",</span>' },
+  { n: '', h: 'Tests:       <span class="er">1 failed</span>, 35 passed, 36 total' },
+];
 function Screen20(p) {
-  return MC(p, 20, {
-    above: <div style={{ display: 'grid', gap: 8 }}>
-      <CodePanel file="1-AI · texts.spec.ts" lines={kod('AI1_STATUS', { 45: 't' })} focus={['t']} />
-      <CodePanel file={t("texts.ts · buzilgan", "texts.ts · сломан")} lines={kod('TX_STATUS', { 10: 'x' }, 6, 11, BREAK20)} focus={['x']} />
-    </div>,
-    after: <Term title={t("VS Code terminali · CANCELLED «🆕 Yangi» bilan", "терминал VS Code · CANCELLED с «🆕 Yangi»")} lines={T20} />,
-  });
+  const m = MDT[20];
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file={t('src/api/telegram/texts.spec.ts · 1-AI yozgan', 'src/api/telegram/texts.spec.ts · написал 1-й AI')} lines={LC20} target={11}
+    fixed={LC20_FIXED} fixedExtra={[{ file: t("VS Code terminali · etalon qo'lda, CANCELLED «🆕 Yangi» bilan (haqiqiy)", 'терминал VS Code · эталон вручную, CANCELLED с «🆕 Yangi» (настоящий)'), lines: LC20_RUN }]}
+    ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
 
 // ============================================================
@@ -4829,24 +4850,13 @@ const RU_MDT = {
  },
  "20": {
   "kicker": "Проверка 4",
-  "eyebrow": "Проверка · 4 / 4",
-  "title": "Тест от AI: for (const s of all) expect(STATUS_UZ[s]).toBeTruthy(). Кто-то поменял текст CANCELLED с «Bekor qilingan» на «Yangi». Что скажет тест?",
-  "q": "Вы видели проверку поломкой, теперь проверим. Четвёртая проверка. Тест от AI проверяет текст каждого статуса, и «отменён» тоже, через to be truthy. Кто-то по ошибке поменял текст на «новый»: клиент видит свой отменённый заказ как новый. Что скажет тест? Выберите вариант.",
-  "ok": "Верно. To be truthy проверяет только, что значение не пустое. Текст «новый» тоже не пустой, поэтому тест зелёный. А клиент видит неверный статус. Если написать эталон точно, тест покраснеет. Значит, to be truthy проверяет, что значение есть, а не что оно верное.",
-  "okShort": "Текст «Yangi» тоже не пустой — PASS. Это ловит точный <code>toBe</code>, ожидающий полный текст статуса.",
-  "hint": "При каких значениях toBeTruthy даёт FAIL? Текст «Yangi» — одно из них?",
-  "demak": "<code>toBeTruthy</code> проверяет, что значение есть, а не что оно верное.",
-  "opts": [
-   "FAIL — toBeTruthy замечает смену текста",
-   "PASS — toBeTruthy говорит только, не пусто ли",
-   "Ошибка TypeScript — изменился тип текста статуса",
-   "FAIL — у двух статусов теперь одинаковый текст"
-  ],
-  "wrong": {
-   "0": "toBeTruthy не сравнивает текст с эталоном — только не пусто ли.",
-   "2": "Оба — string, тип не изменился.",
-   "3": "Тест не сравнивает тексты между собой — только не пуст ли каждый."
-  }
+  "eyebrow": "Проверка · 4 / 4 — какая строка не замечает?",
+  "title": "CANCELLED стал «Yangi», 36 тестов 1-го AI остались зелёными. Какая строка не замечает?",
+  "q": "Вы видели проверку поломкой, теперь проверим себя. Четвёртая проверка. Это тест, который написал первый AI: файл texts spec ts в папке telegram. Кто-то поменял текст статуса «отменён» на «новый», но тридцать шесть тестов от AI остались зелёными. Какая строка не замечает это изменение? Нажмите на неё.",
+  "ok": "Верно. Сорок пятая строка через to be truthy проверяет только то, что текст не пустой. Текст «новый» тоже не пустой, поэтому тест зелёный. Мы написали эталон вручную, через to equal: при той же поломке покраснел один тест, с разницей expected и received. Значит, to be truthy проверяет, что значение есть, а не что оно верное.",
+  "okShort": "Строка 45: <code>toBeTruthy</code> — «Yangi» тоже не пустой, 36/36 зелёные. Эталон вручную — <code>toEqual({ … })</code> с текстом каждого статуса → <code>1 failed</code> (проверено).",
+  "hint": "Как проверяется текст каждого статуса: точным значением или только тем, что он не пустой? Ищите строку, которая это показывает.",
+  "task": "Кто-то в <code>texts.ts</code> в строке 10 поменял текст <code>CANCELLED</code> с «Bekor qilingan» на «Yangi»: клиент видит отменённый заказ как новый. Набор 1-го AI в <code>npm test</code> остался зелёным — 36 из 36 (проверено). <b>Какая строка не замечает это изменение? Нажмите.</b>"
  },
  "21": {
   "kicker": "Практика 3 / 3",

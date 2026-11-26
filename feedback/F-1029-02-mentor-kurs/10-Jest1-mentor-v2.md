@@ -366,18 +366,18 @@ Loyiha: **OrderBotNest** — Telegraf+PG darsidagi aynan shu repo. Teglar (lokal
    Ovoz: «Xulosa: test soni sifat emas. O'ttiz olti test ham bitta buzilishni o'tkazib yubordi. Sifat — test qaysi buzilishni ushlashi. AI test yozgandan keyin uch to'rt joyda kodni buzib ko'ring. Qizarmagan joyga test qo'shing.»
 - Manba: `jest1v2-ai/mutatsiya.txt` (skript `jest1v2-mutatsiya.sh`, aynan), `ai1/texts.spec.ts` 41–46.
 
-## 20 · Tekshiruv 4 — `toBeTruthy`  ← `MCRetry`
-- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
-- Sarlavha: **AI testi: `for (const s of all) expect(STATUS_UZ[s]).toBeTruthy()`. Kimdir `CANCELLED` matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi. Test nima deydi?**
-- Material (`above`): kod `ai1/texts.spec.ts` 41–46 (`describe('STATUS_UZ')` · `it('har bir status uchun matn bor', …)` · `toBeTruthy()`); ostida `texts.ts` 9-satr buzilgan: `CANCELLED: '🆕 Yangi',`.
-- Ovoz: «Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. AI testi har bir status matnini, bekor qilinganini ham, to be truthy bilan tekshiradi. Kimdir matnni xato bilan yangi deb o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. Test nima deydi? Variantni tanlang.»
-- Variantlar (to'g'risi — 2): 1 FAIL — `toBeTruthy` matn o'zgarganini sezadi · 2 PASS — `toBeTruthy` faqat bo'sh emasmi deydi · 3 TypeScript xato — status matni turi o'zgardi · 4 FAIL — ikki status endi bir xil matnda
-- To'g'ri (ovoz): «To'g'ri. To be truthy faqat qiymat bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Mijoz esa noto'g'ri status ko'radi. Etalonni aniq yozsangiz, test qizaradi. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.» · qisqa: ««Yangi» matni ham bo'sh emas — PASS. Statusning to'liq matnini kutgan aniq `toBe` buni ushlaydi.»
-- Isbot (`after`): terminal `25-b5-cancelled.txt`: `CANCELLED: '🆕 Yangi'` · 1-AI to'plami `Tests: 36 passed, 36 total` · 2-AI to'plami `1 failed` (aniq etalon `toBe('❌ Bekor qilingan')`).
-- Demak: «`toBeTruthy` qiymat borligini tekshiradi, to'g'riligini emas.»
-- Xato izohlari: 1 — «`toBeTruthy` matnni etalon bilan solishtirmaydi — faqat bo'sh emasmi.» · 3 — «Ikkalasi ham `string` — turi o'zgarmadi.» · 4 — «Test matnlarni bir-biri bilan solishtirmaydi — faqat har biri bo'sh emasmi.»
-- Maslahat: «`toBeTruthy` qaysi qiymatlarda FAIL beradi? «Yangi» matni shulardan birimi?»
-- Manba: `jest1v2-ai/ai1/texts.spec.ts` 41–46, `ai2/texts.spec.ts` 53–56, `mutatsiya.txt`.
+## 20 · Tekshiruv 4 — `toBeTruthy`: qaysi satr sezmaydi  ← `LineCheck`
+- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4 — qaysi satr sezmaydi?`
+- Sarlavha: **`CANCELLED` «Yangi» bo'ldi, 1-AI ning 36 testi yashil qoldi. Qaysi satr sezmaydi?**
+- 26.11 (F-1125-01, foydalanuvchi: «A — 20-ekranni satr bosishga aylantir»): avval `MCRetry` edi («Test nima deydi?», 4 variant); endi mentor AI'ning haqiqiy satrini o'zi bosadi (M56). Yangi ekran qo'shilmadi, tekshiruvlar soni o'zgarmadi.
+- Shart (`task`): «Kimdir `texts.ts` 10-satrda `CANCELLED` matnini «Bekor qilingan» dan «Yangi» ga o'zgartirdi: mijoz bekor qilingan buyurtmasini yangi deb ko'radi. 1-AI to'plami `npm test` da 36 tadan 36 yashil qoldi (sinab ko'rilgan). **Qaysi satr bu o'zgarishni sezmaydi? Bosing.**»
+- Ovoz (`q`): «Buzib tekshirishni ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan test: telegram papkasidagi texts spec ts fayli. Kimdir bekor qilingan status matnini yangi deb o'zgartirdi, lekin AI'ning o'ttiz olti testi yashil qoldi. Qaysi satr bu o'zgarishni sezmaydi? O'sha satrni bosing.»
+- Fayl: `jest1v2-ai/ai1/texts.spec.ts` 30, 36–46 (aynan; 31–35 — `som` ning `it.each` ro'yxati «…» bilan, 1280×720 ga sig'ishi uchun), explorer daraxtisiz (M61-3); to'g'ri satr — 45 `for (const s of all) expect(STATUS_UZ[s]).toBeTruthy();`.
+- Tuzatilgan (`fixed`): 45-satr o'rniga etalon qo'lda — `expect(STATUS_UZ).toEqual({ NEW: '🆕 Yangi', CONFIRMED: '✅ Tasdiqlangan', DELIVERED: '🚚 Yetkazilgan', CANCELLED: '❌ Bekor qilingan' });` (Prettier, 6 satr); `fixedExtra` — terminal, haqiqiy (`jest1v2-ai/tuzatish-lc20.txt`): `● STATUS_UZ › har bir status uchun matn bor` · `- "CANCELLED": "❌ Bekor qilingan",` · `+ "CANCELLED": "🆕 Yangi",` · `Tests: 1 failed, 35 passed, 36 total`.
+- To'g'ri (ovoz, `ok`): «To'g'ri. Qirq beshinchi satr to be truthy bilan faqat matn bo'sh emasligini tekshiradi. Yangi degan matn ham bo'sh emas, shuning uchun test yashil. Biz etalonni qo'lda, to equal bilan yozdik: o'sha buzilishda bitta test qizardi, expected va received farqi bilan. Demak, to be truthy qiymat borligini tekshiradi, to'g'riligini emas.»
+- Qisqa (`okShort`): «45-satr: `toBeTruthy` — «Yangi» ham bo'sh emas, 36/36 yashil. Etalon qo'lda — `toEqual({ … })` har status matni bilan → `1 failed` (sinab ko'rilgan).»
+- Maslahat (`hint`): «Har status matni qanday tekshirilyapti: aynan qiymati bilanmi yoki faqat bo'sh emasligimi? Shuni ko'rsatadigan satrni qidiring.»
+- Manba: `jest1v2-ai/ai1/texts.spec.ts` 30–46, `jest1v2-ai/tuzatish-lc20.txt` (26.11, `f2eca2f` toza nusxa + 1-AI ikki spec fayli), `ai2/texts.spec.ts` 53–56, `mutatsiya.txt`.
 
 ## 21 · Amaliyot 3 — AI test yozadi, siz buzib tekshirasiz  ← `Practice`
 - Kicker: `Amaliyot 3 / 3` · Eyebrow: `Hozir o'zingizda · 20 daqiqa` · Sarlavha: **O'z AI'ingizga aniq shartli prompt bering, keyin to'rt tekshiruv va uchta buzish** · `tableAt: 3`
