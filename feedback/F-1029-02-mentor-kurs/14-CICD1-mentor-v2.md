@@ -347,18 +347,18 @@ Loyiha: **OrderBotNest** — teglar `cicd1-start` (= `jest2-done` e15a44c) · `c
    Ovoz: «Xulosa: ci yml'dagi node version mashinangizdagi node version bilan bir xil bo'lsin. Yigirma ikkini yigirma to'rtga o'zgartirdik, push, run yashil. Shuning uchun sakkizinchi ekrandagi faylda yigirma to'rt. Endi AI yozgan workflow'larni ko'ramiz: ikkalasi ham shu tuzoqqa tushdi.» · 22 → 24
 - Manba: `cicd1v2-out/10a-node22-npm-ci-qizil.txt` (run, log — aynan), `03d-npm10-lock-sinxron-emas.txt`, `00-versiyalar.txt`, `10-yashil.txt`.
 
-## 18 · AI workflow yozdi — ikki to'plam  ← `Lesson`
-- Kicker: `5-bosqich · AI` · Sarlavha: **Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — ikkalasi to'g'ri ko'rinadigan workflow yozdi; endi ularni o'qiymiz, keyin lentada sinaymiz**
-- Sahna: 1-segmentda bosqich kartasi: «1–4-bosqich · lentani siz yozdingiz» (xira) → «5-bosqich · AI yozadi, siz qabul qilasiz» (yonadi); 2-segmentdan prompt kartasi (`p1-prompt.txt`); 3-segmentda ikki AI javobi kartasi (`AiReply`): «1-AI (kuchli model)» — `.github/workflows/test.yml`, 22 satr: `name: Tests` · `on: push` · checkout@v4 · setup-node@v4 `node-version: 22`, `cache: npm` · `npm ci` · `npm test`; «2-AI (kuchsizroq model)» — `ci.yml`, 26 satr: `permissions: contents: read` · xuddi shu qadamlar; 4-segmentda ikki yml yonma-yon, `node-version: 22` satrlari qizil belgilangan, pastda «yo'q: `tsc`, `build`».
-1. **Yana AI bosqichi: ==workflow'ni AI yozadi, siz qabul qilasiz== — oddiy prompt, ishorasiz**
-   Ovoz: «Jest darslaridagi kabi oxirgi bosqich AI bilan. Prompt oddiy: bu NestJS loyihasi uchun GitHub Actions workflow yozib ber, har push'da testlar yursin. Checkout, setup node, versiya, tsc, build, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi.» · bosqich + prompt
-2. **Ikkalasi ==to'g'ri ko'rinadigan fayl== yozdi: checkout, setup-node, `npm ci`, `npm test`**
-   Ovoz: «Ikkalasi ham to'g'ri ko'rinadigan fayl yozdi. Birinchisi test yml, yigirma ikki satr: checkout, setup node, npm si ay, npm test, har qadamga o'zbekcha nom. Ikkinchisi ci yml, yigirma olti satr, xuddi shu qadamlar, qo'shimcha permissions contents read, faqat o'qish huquqi. YAML xatosi yo'q.» · AI kartalari
-3. **Lekin ikkalasida ==`node-version: 22`== — mashinangizni so'ramadi; va ==`tsc` ham, `build` ham yo'q==**
-   Ovoz: «Lekin ikki narsa. Ikkalasi ham node version yigirma ikki yozdi: sizning mashinangizda qaysi Node borligini so'ramadi, odatdagi raqamni qo'ydi. Va ikkalasida tsc ham, build ham yo'q: prompt testlar yursin dedi, AI aynan shuni qildi, ortig'ini emas.» · qizil satrlar
+## 18 · AI workflow yozdi — ikki topshiriq  ← `Lesson`
+- Kicker: `5-bosqich · AI` · Sarlavha: **Yangi ko'nikma davomi: ikki AI'ga bitta vazifa ikki xil topshiriq bilan — oddiysida versiya va tekshiruvlar tushib qoldi; endi o'qiymiz, keyin lentada sinaymiz**
+- Sahna (26.11, F-1125-01 — Nest-1 darajasi, M56): 1-segmentda bosqich kartasi: «1–4-bosqich · lentani siz yozdingiz» (xira) → «5-bosqich · AI yozadi, siz qabul qilasiz» (yonadi); 2-segmentda ikki topshiriq kartasi yonma-yon (`AiReply`): «1-topshiriq · oddiy» (`p1-prompt.txt`, 04.11) · «2-topshiriq · CI tilida» (`p2-prompt.txt`, 26.11); 3-segmentda natija jadvali 2 × 2: oddiy — `test.yml` 24 satr / `ci.yml` 28 satr (`wc -l`; 04.11 dagi «22 / 26» xato edi), `node-version: 22`, `tsc` va `build` yo'q; CI tilida — `ci.yml` 38 / 34 satr, `node-version: '24.18.0'` (`node -v` ni o'zi yurgizgan), `npm ci` · tur tekshiruvi · test · build; 4-segmentda 1-topshiriqning ikki yml'i yonma-yon, `node-version: 22` satrlari qizil + lenta rasmi (`tsc`, `build` — yo'q).
+1. **Yana AI bosqichi: ==workflow'ni AI yozadi, siz qabul qilasiz== — bitta vazifa, ikki topshiriq**
+   Ovoz: «Jest darslaridagi kabi oxirgi bosqich AI bilan. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik: OrderBotNest uchun GitHub Actions workflow. Har AI loyihaning alohida nusxasida ishladi.» · bosqich kartasi
+2. **Ikki topshiriq: ==oddiy== — «testlar yursin»; ==CI tilida== — lock bo'yicha o'rnatish, tur tekshiruvi, test, build, Node mashinadagidek**
+   Ovoz: «Birinchi topshiriq oddiy: bu NestJS loyihasi uchun GitHub Actions workflow yozib ber, har push'da testlar yursin. Ikkinchisi CI tilida: kutubxonalar lock fayl bo'yicha aynan o'rnatilsin, tur tekshiruvi, testlar, build, Node versiyasi mening mashinamdagi bilan bir xil bo'lsin. Buyruqlar nomi aytilmagan.» · ikki topshiriq
+3. **Oddiy: ==`node-version: 22`, `tsc` va `build` yo'q== · CI tilida: ==Node 24.18 — `node -v` ni o'zi yurgizdi==, to'rt bosqich**
+   Ovoz: «Natija. Oddiy topshiriqda ikkalasi to'g'ri ko'rinadigan fayl yozdi: checkout, setup node, npm si ay, npm test. Lekin node version yigirma ikki, mashinani so'ramadi, tsc ham, build ham yo'q. CI tilidagi topshiriqda ikkalasi node minus v ni o'zi yurgizib, yigirma to'rt nuqta o'n sakkiz yozdi, to'rt bosqichning hammasi bor.» · jadval
 4. **Xulosa: ==to'g'ri ko'ringan fayl hali tekshiruv emas== — lentaga qo'yib ko'ramiz**
-   Ovoz: «Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Jest'dagi yashil test kabi: fayl chiroyli, lekin sizning mashinangizni va loyihangizni bilmaydi. Ikkalasini ham OrderBotNest'ning sinov tarmog'iga push qildik. Natija ekranda.»
-- Manba: `cicd1v2-ai/00-promptlar.md`, `p1-prompt.txt`, `ai1/.github/workflows/test.yml`, `ai2/.github/workflows/ci.yml`, `ai1/diff-stat.txt`, `ai2/diff-stat.txt`.
+   Ovoz: «Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Oddiy topshiriqdagi ikkala faylni OrderBotNest'ning sinov tarmog'iga push qildik, CI tilidagilarni lokal lentada yurgizdik. Natija keyingi ekranda.» · 1-topshiriq yml'lari
+- Manba: `cicd1v2-ai/00-promptlar.md`, `p1-prompt.txt`, `p2-prompt.txt`, `ai1/.github/workflows/test.yml`, `ai2/.github/workflows/ci.yml`, `p2/ai*/.github/workflows/ci.yml`, `p2/ai*/00-javob.md`, `p2/XULOSA.md`.
 
 ## 19 · AI workflow'lari lentada: qizil → versiya → yashil, lekin…  ← `Lesson`
 - Kicker: `5-bosqich · ichida` · Sarlavha: **Ikkala AI workflow'i lentada qizil — `npm ci`, o'sha `Missing: webpack… from lock file`; faqat `node-version` tuzatilsa yashil, lekin tur xatosi baribir o'tadi**
@@ -367,24 +367,24 @@ Loyiha: **OrderBotNest** — teglar `cicd1-start` (= `jest2-done` e15a44c) · `c
    Ovoz: «Ikkala run ham qizil, ikkalasi ham npm si ay qadamida: missing webpack from lock file. O'n yettinchi ekrandagi tuzoq: node version yigirma ikki, npm o'n, lock boshqacha o'qildi. AI buni bilishi mumkin emas edi: u sizning mashinangizni ko'rmaydi.» · run 19, 20
 2. **Faqat bitta raqam: ==22 → 24 — run 21 yashil==, `npm ci` ✓, `npm test` ✓; qadam nomi hali «Node.js 22»**
    Ovoz: «Birinchi AI faylida faqat bitta raqamni o'zgartirdik: node version yigirma to'rt. Push: run yashil, npm si ay o'tdi, npm test yigirma besh passed. Qadam nomi hali Node js yigirma ikki o'rnatish deb turibdi: nom emas, raqam ishlaydi. Bitta raqam, qizildan yashilga.» · run 21
-3. **Lekin: ==`tsc` yo'q — 15-ekrandagi tur xatosi bu lentada yashil qoladi==; `build` ham yo'q**
-   Ovoz: «Lekin yashil hali to'liq emas. Bu workflow'da tsc yo'q: o'n beshinchi ekrandagi tur xatosini push qilsangiz, run yashil qoladi, yolg'on yashil. Build ham yo'q: yig'ilmaydigan kod yashil o'tadi. Prompt testlar yursin dedi, AI faqat shuni qildi.» · tur xatosi kartasi
+3. **Lekin: ==`tsc` yo'q — 15-ekrandagi tur xatosi bu lentada yashil qoladi==; CI tilidagilarda — tur tekshiruvida qizil**
+   Ovoz: «Lekin yashil hali to'liq emas. Bu workflow'da tsc yo'q: o'n beshinchi ekrandagi tur xatosini push qilsangiz, run yashil qoladi, yolg'on yashil. Build ham yo'q: yig'ilmaydigan kod yashil o'tadi. CI tilidagi ikki workflow'da tsc bor: lokal lentada shu xato tur tekshiruvida qizil bo'ldi.» · tur xatosi kartasi
 4. **Xulosa: AI workflow'ini ==to'rt savol bilan== qabul qiling: checkout · `node-version` meniki · `npm ci` · `tsc` va `build`**
    Ovoz: «Xulosa: AI yozgan workflow'ni to'rt savol bilan qabul qiling. Checkout bormi. Node version mening mashinamdagi bilan bir xilmi. Npm si ay'mi, install emasmi. Tsc va build qadamlari bormi. To'rttasiga ha bo'lsa, push qiling va run'ni ko'ring. Endi tekshirib olaylik.» · to'rt savol
 - Manba: `cicd1v2-out/19-ai1.txt`, `20-ai2.txt`, `21-ai1-node24.txt` (run'lar — aynan), `14-tsc-yoq-yashil.txt`.
 
-## 20 · Tekshiruv 4 — AI workflow'ni qabul qilish  ← `MCRetry`
-- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4`
-- Sarlavha: **1-AI yozgan workflow: `checkout@v4` · `setup-node@v4` (`node-version: 22`) · `npm ci` · `npm test`. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?**
-- Material (`above`): 1-AI fayli aynan — `ai1/.github/workflows/test.yml` qadam satrlari 12, 15–17, 21, 24 (`uses: actions/checkout@v4` … `node-version: 22`, `run: npm ci`, `run: npm test`; nom va bo'sh satrlarsiz — panel eski 6 satr balandligida); ostida `node --version` → `v24.18.0`.
-- Ovoz: «AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan fayl: checkout bor, setup node yigirma ikki, npm si ay va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.»
-- Variantlar (to'g'risi — 3): 1 Hech narsa — checkout va `npm ci` bor, qolgani ishlaydi · 2 Faqat `node-version` 24 — testlar o'tsa, yetarli · 3 `node-version` 24 va `tsc`, `build` qadamlarini qo'shish · 4 `checkout`ni olib tashlash — `setup-node` o'zi olib keladi
-- To'g'ri (ovoz): «To'g'ri. Ikki narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Checkout va npm si ay to'g'ri, ular qoladi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.» · qisqa: «`node-version` = `node --version` · `tsc` + `build` qadamlari. `checkout` va `npm ci` qoladi.»
-- Isbot (`after`): run `21` qadamlari (`node-version: 24` bilan yashil) + eslatma: «`tsc`siz — 15-ekrandagi tur xatosi yashil o'tadi (run 14)».
-- Demak: «AI workflow'i — boshlanish nuqtasi: `node-version` meniki · `tsc` va `build` qo'shiladi · `checkout` va `npm ci` qoladi.»
-- Xato izohlari: 1 — «`node-version: 22` bilan `npm ci` qizil (17-ekran); `tsc` qadamisiz tur xatosi yashil o'tadi (15-ekran).» · 2 — «Run yashil bo'ladi, lekin `tsc` va `build` yo'q: tur xatosi va yig'ilmaydigan kod ham yashil o'tadi (15-ekran).» · 4 — «`setup-node` faqat Node o'rnatadi; kodni `checkout` olib keladi (13-ekran).»
-- Maslahat: «19-ekrandagi to'rt savolni shu faylga bering: checkout? versiya? `ci`? `tsc`/`build`?»
-- Manba: `cicd1v2-ai/ai1/.github/workflows/test.yml` (aynan; 2-AI ham `npm ci`), `cicd1v2-out/21`, `14`, `10a`.
+## 20 · Tekshiruv 4 — run 19 qizil: qaysi satr sabab  ← `LineCheck`
+- Kicker: `Tekshiruv 4` · Eyebrow: `Tekshiruv · 4 / 4 — qaysi satr sabab?`
+- Sarlavha: **Run 19 qizil: `npm ci` — `Missing: webpack… from lock file`. 1-AI faylining qaysi satri sabab?**
+- 26.11 (F-1125-01, M56; Jest-1 dagi qaror kabi): avval `MCRetry` edi («Lentaga qo'yishdan oldin nimani o'zgartirasiz?», 4 variant); endi mentor AI'ning haqiqiy satrini o'zi bosadi. `tsc`/`build` haqidagi ikkinchi qism — to'g'ri javob ovozida va 19-ekrandagi to'rt savolda. Tekshiruvlar soni o'zgarmadi.
+- Shart (`task`): «1-AI yozgan `test.yml` o'zgartirilmasdan push qilindi: run 19 qizil, «Kutubxonalarni o'rnatish» qadamida `npm error Missing: webpack@5.112.2 from lock file`. Mashinangizda `node --version` → `v24.18.0`, lock shu Node'dagi npm bilan yozilgan (17-ekran). **Qaysi satr sabab? Bosing.**»
+- Ovoz (`q`): «AI workflow'larini lentada ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan test yml, github papkasidagi workflows ichida. U o'zgartirilmasdan push qilinganda run o'n to'qqiz qizil bo'ldi, npm si ay qadamida: missing webpack from lock file. Mashinangizda Node yigirma to'rt. Qaysi satr sabab? O'sha satrni bosing.»
+- Fayl: `cicd1v2-ai/ai1/.github/workflows/test.yml` 10–24 (aynan; 1–9 — `name`, `on`, `jobs`), explorer daraxtisiz (M61-3); to'g'ri satr — 17 `node-version: 22`.
+- Tuzatilgan (`fixed`): 17-satr `node-version: 24` (eski qizil, yangisi yashil); `fixedExtra` — run 21, haqiqiy (`cicd1v2-out/21-ai1-node24.txt`): `success` · «Kodni yuklab olish ✓ · Node.js 22 o'rnatish ✓ · Kutubxonalarni o'rnatish ✓ · Testlar ✓» — qadam nomi hali «Node.js 22».
+- To'g'ri (ovoz, `ok`): «To'g'ri. O'n yettinchi satr: node version yigirma ikki. Runner'da Node yigirma ikki va npm o'n, lock esa npm o'n birda yozilgan, npm si ay uni boshqacha o'qiydi. Faqat shu raqamni yigirma to'rtga o'zgartirdik: run yigirma bir yashil. Lekin tsc va build qadamlari hali yo'q, tur xatosi yashil o'tadi. Demak, versiya mashinangizdagi bilan bir xil, keyin to'rt savolning qolgani.»
+- Qisqa (`okShort`): «17-satr: `node-version: 22` — runner'da npm 10, lock npm 11 da yozilgan → `npm ci` ✗. `24` bilan run 21 yashil. `tsc` va `build` qadamlari hali yo'q (19-ekrandagi to'rt savol).»
+- Maslahat (`hint`): «Xato `npm ci` qadamida, lekin sababi undan oldin: qaysi satr runner'dagi Node'ni, demak npm'ni tanlaydi?»
+- Manba: `cicd1v2-ai/ai1/.github/workflows/test.yml` (aynan), `cicd1v2-out/19-ai1.txt`, `21-ai1-node24.txt`, `10a`.
 
 ## 21 · Amaliyot 3 — AI workflow, to'rt tekshiruv, buzib ko'rish  ← `Practice`
 - Kicker: `Amaliyot 3 / 3` · Eyebrow: `Hozir o'zingizda · 20 daqiqa` · Sarlavha: **O'z AI'ingizga workflow yozdiring, to'rt savol bilan tuzating, push — yashil; keyin tur xatosi bilan push — qizil bo'lsin** · `tableAt: 3`

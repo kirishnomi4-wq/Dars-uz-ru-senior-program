@@ -1,0 +1,11 @@
+# 2-AI (Haiku) ci.yml qadamlari, lokal lenta: 15-ekrandagi tur xatosi kiritilgan (user.service.ts: const telegram_id = from.id)
+16:    const telegram_id = from.id; // BIGINT bazadan matn bo'lib keladi — biz ham matn saqlaymiz
+$ npm run lint · chiqish kodi 2
+   > order-bot-nest@1.0.0 lint
+   > tsc --noEmit
+   src/api/user/user.service.ts(20,42): error TS2322: Type '{ telegram_id: number; }' is not assignable to type 'FindOptionsWhere<User> | FindOptionsWhere<User>[] | undefined'.
+   src/api/user/user.service.ts(22,33): error TS2769: No overload matches this call.
+npm test · yurmadi (oldingi qadam qizil)
+npm run build · yurmadi (oldingi qadam qizil)
+
+NATIJA: ✗ qizil — tur tekshiruvi qadamida

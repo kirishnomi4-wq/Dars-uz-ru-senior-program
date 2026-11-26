@@ -293,6 +293,13 @@ const CSS3 = `
 .c1-cd p{margin:0;font-size:12.5px;line-height:1.4;color:${T.ink2}}
 .c1-cd .dim{opacity:.35}
 /* Bosqich kartasi (AI) */
+.c1-res{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.c1-res th{font:700 12px ${SANS};color:${T.ink2};text-align:left;padding:4px 10px}
+.c1-res td{padding:9px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};vertical-align:top;line-height:1.45;color:${T.ink}}
+.c1-res td:first-child{border-left:1px solid ${T.line};border-radius:10px 0 0 10px;font-weight:700;white-space:nowrap}
+.c1-res td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.c1-res b{font-weight:600}.c1-res b.ok{color:${T.green}}.c1-res b.no{color:${T.accent}}
+.c1-res code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
 .c1-stage{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .c1-stage>div{border:2px solid var(--c);border-radius:14px;padding:14px;background:${T.paper};transition:opacity .35s}
 .c1-stage h4{margin:0 0 4px;font:800 14px ${SANS};color:var(--c)}

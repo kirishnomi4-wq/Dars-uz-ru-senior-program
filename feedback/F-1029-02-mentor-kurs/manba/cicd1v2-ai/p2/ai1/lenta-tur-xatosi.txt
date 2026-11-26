@@ -1,0 +1,8 @@
+# 1-AI (Opus) ci.yml qadamlari, lokal lenta: 15-ekrandagi tur xatosi kiritilgan (user.service.ts: const telegram_id = from.id)
+$ npx tsc --noEmit · chiqish kodi 2
+   src/api/user/user.service.ts(20,42): error TS2322: Type '{ telegram_id: number; }' is not assignable to type 'FindOptionsWhere<User> | FindOptionsWhere<User>[] | undefined'.
+   src/api/user/user.service.ts(22,33): error TS2769: No overload matches this call.
+npm test -- --ci · yurmadi (oldingi qadam qizil)
+npm run build · yurmadi (oldingi qadam qizil)
+
+NATIJA: ✗ qizil — tur tekshiruvi qadamida

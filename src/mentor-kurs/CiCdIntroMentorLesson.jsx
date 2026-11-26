@@ -3841,27 +3841,27 @@ const MDT = {
  "18": {
   "type": "Lesson",
   "kicker": "5-bosqich · AI",
-  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — ikkalasi to'g'ri ko'rinadigan workflow yozdi; endi ularni o'qiymiz, keyin lentada sinaymiz",
+  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta vazifa ikki xil topshiriq bilan — oddiysida versiya va tekshiruvlar tushib qoldi; endi o'qiymiz, keyin lentada sinaymiz",
   "seg": [
    [
     "a",
-    "Yana AI bosqichi: <b>workflow'ni AI yozadi, siz qabul qilasiz</b> — oddiy prompt, ishorasiz",
-    "Jest darslaridagi kabi oxirgi bosqich AI bilan. Prompt oddiy: bu NestJS loyihasi uchun GitHub Actions workflow yozib ber, har push'da testlar yursin. Checkout, setup node, versiya, tsc, build, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi."
+    "Yana AI bosqichi: <b>workflow'ni AI yozadi, siz qabul qilasiz</b> — bitta vazifa, ikki topshiriq",
+    "Jest darslaridagi kabi oxirgi bosqich AI bilan. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik: OrderBotNest uchun GitHub Actions workflow. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "b",
-    "Ikkalasi <b>to'g'ri ko'rinadigan fayl</b> yozdi: checkout, setup-node, <code>npm ci</code>, <code>npm test</code>",
-    "Ikkalasi ham to'g'ri ko'rinadigan fayl yozdi. Birinchisi test yml, yigirma ikki satr: checkout, setup node, npm si ay, npm test, har qadamga o'zbekcha nom. Ikkinchisi ci yml, yigirma olti satr, xuddi shu qadamlar, qo'shimcha permissions contents read, faqat o'qish huquqi. YAML xatosi yo'q."
+    "Ikki topshiriq: <b>oddiy</b> — «testlar yursin»; <b>CI tilida</b> — lock bo'yicha o'rnatish, tur tekshiruvi, test, build, Node mashinadagidek",
+    "Birinchi topshiriq oddiy: bu NestJS loyihasi uchun GitHub Actions workflow yozib ber, har push'da testlar yursin. Ikkinchisi CI tilida: kutubxonalar lock fayl bo'yicha aynan o'rnatilsin, tur tekshiruvi, testlar, build, Node versiyasi mening mashinamdagi bilan bir xil bo'lsin. Buyruqlar nomi aytilmagan."
    ],
    [
     "c",
-    "Lekin ikkalasida <b><code>node-version: 22</code></b> — mashinangizni so'ramadi; va <b><code>tsc</code> ham, <code>build</code> ham yo'q</b>",
-    "Lekin ikki narsa. Ikkalasi ham node version yigirma ikki yozdi: sizning mashinangizda qaysi Node borligini so'ramadi, odatdagi raqamni qo'ydi. Va ikkalasida tsc ham, build ham yo'q: prompt testlar yursin dedi, AI aynan shuni qildi, ortig'ini emas."
+    "Oddiy: <b><code>node-version: 22</code>, <code>tsc</code> va <code>build</code> yo'q</b> · CI tilida: <b>Node 24.18 — <code>node -v</code> ni o'zi yurgizdi</b>, to'rt bosqich",
+    "Natija. Oddiy topshiriqda ikkalasi to'g'ri ko'rinadigan fayl yozdi: checkout, setup node, npm si ay, npm test. Lekin node version yigirma ikki, mashinani so'ramadi, tsc ham, build ham yo'q. CI tilidagi topshiriqda ikkalasi node minus v ni o'zi yurgizib, yigirma to'rt nuqta o'n sakkiz yozdi, to'rt bosqichning hammasi bor."
    ],
    [
     "d",
     "Xulosa: <b>to'g'ri ko'ringan fayl hali tekshiruv emas</b> — lentaga qo'yib ko'ramiz",
-    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Jest'dagi yashil test kabi: fayl chiroyli, lekin sizning mashinangizni va loyihangizni bilmaydi. Ikkalasini ham OrderBotNest'ning sinov tarmog'iga push qildik. Natija ekranda."
+    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Oddiy topshiriqdagi ikkala faylni OrderBotNest'ning sinov tarmog'iga push qildik, CI tilidagilarni lokal lentada yurgizdik. Natija keyingi ekranda."
    ]
   ]
  },
@@ -3882,8 +3882,8 @@ const MDT = {
    ],
    [
     "c",
-    "Lekin: <b><code>tsc</code> yo'q — 15-ekrandagi tur xatosi bu lentada yashil qoladi</b>; <code>build</code> ham yo'q",
-    "Lekin yashil hali to'liq emas. Bu workflow'da tsc yo'q: o'n beshinchi ekrandagi tur xatosini push qilsangiz, run yashil qoladi, yolg'on yashil. Build ham yo'q: yig'ilmaydigan kod yashil o'tadi. Prompt testlar yursin dedi, AI faqat shuni qildi."
+    "Lekin: <b><code>tsc</code> yo'q — 15-ekrandagi tur xatosi bu lentada yashil qoladi</b>; CI tilidagilarda — tur tekshiruvida qizil",
+    "Lekin yashil hali to'liq emas. Bu workflow'da tsc yo'q: o'n beshinchi ekrandagi tur xatosini push qilsangiz, run yashil qoladi, yolg'on yashil. Build ham yo'q: yig'ilmaydigan kod yashil o'tadi. CI tilidagi ikki workflow'da tsc bor: lokal lentada shu xato tur tekshiruvida qizil bo'ldi."
    ],
    [
     "d",
@@ -3893,27 +3893,15 @@ const MDT = {
   ]
  },
  "20": {
-  "type": "MCRetry",
+  "type": "LineCheck",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "1-AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm ci · npm test. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?",
-  "q": "AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan fayl: checkout bor, setup node yigirma ikki, npm si ay va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.",
-  "ok": "To'g'ri. Ikki narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Checkout va npm si ay to'g'ri, ular qoladi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.",
-  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>tsc</code> + <code>build</code> qadamlari. <code>checkout</code> va <code>npm ci</code> qoladi.",
-  "hint": "19-ekrandagi to'rt savolni shu faylga bering: checkout? versiya? ci? tsc/build?",
-  "demak": "AI workflow'i — boshlanish nuqtasi: <code>node-version</code> meniki · <code>tsc</code> va <code>build</code> qo'shiladi · <code>checkout</code> va <code>npm ci</code> qoladi.",
-  "correct": 2,
-  "opts": [
-   "Hech narsa — checkout va npm ci bor, qolgani ishlaydi",
-   "Faqat node-version 24 — testlar o'tsa, yetarli",
-   "node-version 24 va tsc, build qadamlarini qo'shish",
-   "checkoutni olib tashlash — setup-node o'zi olib keladi"
-  ],
-  "wrong": {
-   "0": "node-version: 22 bilan npm ci qizil (17-ekran); tsc qadamisiz tur xatosi yashil o'tadi (15-ekran).",
-   "1": "Run yashil bo'ladi, lekin tsc va build yo'q: tur xatosi va yig'ilmaydigan kod ham yashil o'tadi (15-ekran).",
-   "3": "setup-node faqat Node o'rnatadi; kodni checkout olib keladi (13-ekran)."
-  }
+  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr sabab?",
+  "title": "Run 19 qizil: npm ci — Missing: webpack… from lock file. 1-AI faylining qaysi satri sabab?",
+  "q": "AI workflow'larini lentada ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan test yml, github papkasidagi workflows ichida. U o'zgartirilmasdan push qilinganda run o'n to'qqiz qizil bo'ldi, npm si ay qadamida: missing webpack from lock file. Mashinangizda Node yigirma to'rt. Qaysi satr sabab? O'sha satrni bosing.",
+  "ok": "To'g'ri. O'n yettinchi satr: node version yigirma ikki. Runner'da Node yigirma ikki va npm o'n, lock esa npm o'n birda yozilgan, npm si ay uni boshqacha o'qiydi. Faqat shu raqamni yigirma to'rtga o'zgartirdik: run yigirma bir yashil. Lekin tsc va build qadamlari hali yo'q, tur xatosi yashil o'tadi. Demak, versiya mashinangizdagi bilan bir xil, keyin to'rt savolning qolgani.",
+  "okShort": "17-satr: <code>node-version: 22</code> — runner'da npm 10, lock npm 11 da yozilgan → <code>npm ci</code> ✗. <code>24</code> bilan run 21 yashil. <code>tsc</code> va <code>build</code> qadamlari hali yo'q (19-ekrandagi to'rt savol).",
+  "hint": "Xato npm ci qadamida, lekin sababi undan oldin: qaysi satr runner'dagi Node'ni, demak npm'ni tanlaydi?",
+  "task": "1-AI yozgan <code>test.yml</code> o'zgartirilmasdan push qilindi: run 19 qizil, «Kutubxonalarni o'rnatish» qadamida <code>npm error Missing: webpack@5.112.2 from lock file</code>. Mashinangizda <code>node --version</code> → <code>v24.18.0</code>, lock shu Node'dagi npm bilan yozilgan (17-ekran). <b>Qaysi satr sabab? Bosing.</b>"
  },
  "21": {
   "type": "Practice",
@@ -4462,6 +4450,13 @@ const CSS3 = `
 .c1-cd p{margin:0;font-size:12.5px;line-height:1.4;color:${T.ink2}}
 .c1-cd .dim{opacity:.35}
 /* Bosqich kartasi (AI) */
+.c1-res{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:13.5px}
+.c1-res th{font:700 12px ${SANS};color:${T.ink2};text-align:left;padding:4px 10px}
+.c1-res td{padding:9px 12px;background:${T.paper};border-top:1px solid ${T.line};border-bottom:1px solid ${T.line};vertical-align:top;line-height:1.45;color:${T.ink}}
+.c1-res td:first-child{border-left:1px solid ${T.line};border-radius:10px 0 0 10px;font-weight:700;white-space:nowrap}
+.c1-res td:last-child{border-right:1px solid ${T.line};border-radius:0 10px 10px 0}
+.c1-res b{font-weight:600}.c1-res b.ok{color:${T.green}}.c1-res b.no{color:${T.accent}}
+.c1-res code{font:12px ${MONO};background:#EEF0F4;padding:1px 5px;border-radius:5px}
 .c1-stage{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .c1-stage>div{border:2px solid var(--c);border-radius:14px;padding:14px;background:${T.paper};transition:opacity .35s}
 .c1-stage h4{margin:0 0 4px;font:800 14px ${SANS};color:var(--c)}
@@ -4923,21 +4918,32 @@ function Screen17(p) {
 }
 
 // ============================================================
-//  18 · AI workflow yozdi — ikki to'plam (cicd1v2-ai: ai1 test.yml 22 satr · ai2 ci.yml 26 satr)
+//  18 · AI workflow yozdi — ikki to'plam (cicd1v2-ai: ai1 test.yml 24 satr · ai2 ci.yml 28 satr — wc -l; 04.11 XULOSA'dagi 22/26 xato edi)
 // ============================================================
 const NV = (k) => KOD[k].lines.find((l) => /node-version/.test(l.t)).n;
+// 26.11 (F-1125-01, M56 — Nest-1 darajasi): 2-topshiriq CI tilida (cicd1v2-ai/p2-prompt.txt aynan; natija p2/ — o'sha ikki model, git tarixsiz nusxa)
+const P2_CI = "OrderBotNest uchun GitHub Actions CI yoz (.github/workflows/ci.yml): har push'da va main'ga pull request'da ishlasin. Lenta toza mashinada to'rt bosqichni o'tsin: kutubxonalar lock fayl bo'yicha aynan o'rnatilsin, TypeScript tur tekshiruvi, testlar, build. Node versiyasi mening mashinamdagi bilan bir xil bo'lsin. Biror qadam qizil bo'lsa, keyingilari yurmasin. Boshqa fayllarga tegma. Qaysi fayl qo'shilganini va nimani qanday tekshirganingni yoz.";
+// t() chizish paytida — funksiya (modul yuklanganda til hali o'rnatilmagan)
+const RES18 = () => [
+  [t('1-AI (kuchli model)', '1-й AI (сильная модель)'), t('test.yml · 24 satr', 'test.yml · 24 строки'), t('ci.yml · 38 satr', 'ci.yml · 38 строк')],
+  [t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)'), t('ci.yml · 28 satr', 'ci.yml · 28 строк'), t('ci.yml · 34 satr', 'ci.yml · 34 строки')],
+];
 const S18 = mkS(18, [{ v: 'stage' }, { v: 'prompt' }, { v: 'cards' }, { v: 'yml' }]);
 function Screen18(p) {
   return <Lesson p={p} S={S18} scene={({ seg }) => <>
     {(seg.v === 'stage' || seg.v === 'prompt') && <div className="c1-stage">
       <div style={{ '--c': T.ink3, opacity: 0.45 }}><h4>{t("1–4-bosqich · lentani siz yozdingiz", "Этапы 1–4 · конвейер писали вы")}</h4><p>{t("ci.yml · push · yashil / qizil run · to'rt tuzoq", "ci.yml · push · зелёный / красный run · четыре ловушки")}</p></div>
-      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("Bitta oddiy prompt → ikki workflow → haqiqiy lentada sinov", "Один простой промпт → два workflow → проверка в настоящем конвейере")}</p></div>
+      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("Bitta vazifa, ikki topshiriq → to'rt workflow → lentada sinov", "Одна задача, два задания → четыре workflow → проверка на конвейере")}</p></div>
     </div>}
-    {seg.v === 'prompt' && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("ishorasiz: checkout, versiya, tsc, build yo'q", "без подсказок: checkout, версии, tsc, build нет")} />}
-    {seg.v === 'cards' && <div className="pg-two">
-      <AiReply who={t("1-AI (kuchli model)", "1-й AI (сильная модель)")} said={<><code>.github/workflows/test.yml</code>{t(" — 22 satr: checkout@v4 → setup-node@v4 (", " — 22 строки: checkout@v4 → setup-node@v4 (")}<b>node-version: 22</b>, cache npm) → <code>npm ci</code> → <code>npm test</code>{t(". Har qadamga o'zbekcha nom. YAML ✓.", ". У каждого шага узбекское имя. YAML ✓.")}</>} />
-      <AiReply who={t("2-AI (kuchsizroq model)", "2-й AI (модель слабее)")} said={<><code>.github/workflows/ci.yml</code>{t(" — 26 satr: xuddi shu qadamlar + ", " — 26 строк: те же шаги + ")}<code>permissions: contents: read</code>{t(", job nomi «Jest testlar». ", ", имя job «Jest testlar». ")}<b>node-version: 22</b>. YAML ✓.</>} />
+    {seg.v === 'prompt' && <div className="pg-two">
+      <AiReply who={t("1-topshiriq · oddiy", "1-е задание · простое")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />
+      <AiReply who={t("2-topshiriq · CI tilida", "2-е задание · на языке CI")} prompt={P2_CI} tag={t("haqiqiy yurgizish · 26.11", "настоящий запуск · 26.11")} hl />
     </div>}
+    {seg.v === 'cards' && <div className="mk-light" style={{ padding: 12 }}><table className="c1-res"><thead><tr><th />
+      <th>{t("1-topshiriq · oddiy", "1-е задание · простое")}</th><th>{t("2-topshiriq · CI tilida", "2-е задание · на языке CI")}</th></tr></thead>
+      <tbody>{RES18().map(([who, a, b]) => <tr key={who}><td>{who}</td><td>{a}<br /><b className="no"><code>node-version: 22</code>{t(" · tsc va build yo'q", " · нет tsc и build")}</b></td><td>{b}<br /><b className="ok"><code>node-version: '24.18.0'</code>{t(" · to'rt bosqich", " · четыре этапа")}</b></td></tr>)}
+        <tr><td>{t("Versiya qayerdan", "Откуда версия")}</td><td>{t("so'ramadi — odatiy raqam", "не спросил — привычное число")}</td><td><code>node -v</code>{t(" ni o'zi yurgizdi", " запустил сам")}</td></tr>
+      </tbody></table></div>}
     {seg.v === 'yml' && <div style={{ display: 'grid', gap: 8 }}>
       <div className="pg-two"><Yml k="YML_AI1" title="test.yml · 1-AI" from={NV('YML_AI1') - 3} to={NV('YML_AI1') + 1} ids={{ [NV('YML_AI1')]: 'n' }} focus={['n']} /><Yml k="YML_AI2" title="ci.yml · 2-AI" from={NV('YML_AI2') - 3} to={NV('YML_AI2') + 1} ids={{ [NV('YML_AI2')]: 'n' }} focus={['n']} /></div>
       {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — AI yozgan lenta: tsc va build yo'q, hali sinalmagan */}
@@ -4959,7 +4965,7 @@ function Screen19(p) {
   return <Lesson p={p} S={S19} scene={({ seg }) => <>
     {seg.v === 'red' && <div className="pg-two c1-small"><RunView k="19" open="Kutubxonalarni o'rnatish" lines={L19} ann={null} /><RunView k="20" open="Bog'liqliklarni o'rnatish" lines={L20} ann={null} /></div>}
     {seg.v === 'green' && <div style={{ display: 'grid', gap: 8 }} className="c1-small"><CodePanel file={t("test.yml · 1-AI, bitta raqam", "test.yml · 1-й AI, одно число")} lines={FIX19} focus={['v']} /><RunView k="21" open="Testlar" lines={L21} hlStep={["Node.js 22 o'rnatish", 'Testlar']} /></div>}
-    {seg.v === 'tsc' && <div className="pg-two c1-small"><RunView k="14" note={[t("Yolg'on yashil (15-ekran)", "Ложный зелёный (экран 15)"), t("tsc qadami yo'q — tur xatosi o'tdi", "нет шага tsc — ошибка типа прошла")]} /><Card c={T.accent} h={t("AI workflow'i bilan ham shunday", "с workflow от AI так же")}><p>{t("Bu faylda ", "В этом файле ")}<b>{t("tsc yo'q", "нет tsc")}</b>{t(": 15-ekrandagi tur xatosini push qilsangiz — run ", ": если запушить ошибку типа с 15-го экрана — run ")}<b>{t("yashil", "зелёный")}</b>{t(" qoladi.", " останется.")}</p><p><b>{t("build yo'q", "нет build")}</b>{t(": yig'ilmaydigan kod yashil o'tadi.", ": несобираемый код проходит зелёным.")}</p><p style={{ marginTop: 6, color: T.ink3 }}>{t("Prompt «testlar yursin» dedi — AI faqat shuni qildi.", "Промпт сказал «пусть запускаются тесты» — AI сделал только это.")}</p></Card></div>}
+    {seg.v === 'tsc' && <div className="pg-two c1-small"><RunView k="14" note={[t("Yolg'on yashil (15-ekran)", "Ложный зелёный (экран 15)"), t("tsc qadami yo'q — tur xatosi o'tdi", "нет шага tsc — ошибка типа прошла")]} /><Card c={T.accent} h={t("AI workflow'i bilan ham shunday", "с workflow от AI так же")}><p>{t("Bu faylda ", "В этом файле ")}<b>{t("tsc yo'q", "нет tsc")}</b>{t(": 15-ekrandagi tur xatosini push qilsangiz — run ", ": если запушить ошибку типа с 15-го экрана — run ")}<b>{t("yashil", "зелёный")}</b>{t(" qoladi.", " останется.")}</p><p><b>{t("build yo'q", "нет build")}</b>{t(": yig'ilmaydigan kod yashil o'tadi.", ": несобираемый код проходит зелёным.")}</p><p style={{ marginTop: 6 }}>{t("CI tilidagi topshiriqda ikkala workflow'da tur tekshiruvi bor: lokal lentada shu xato ", "В задании на языке CI в обоих workflow есть проверка типов: на локальном конвейере эта ошибка ")}<b>{t("qizil", "красная")}</b>.</p><p style={{ marginTop: 6, color: T.ink3 }}>{t("Prompt «testlar yursin» dedi — AI faqat shuni qildi.", "Промпт сказал «пусть запускаются тесты» — AI сделал только это.")}</p></Card></div>}
     {seg.v === 'four' && <div className="mk-light" style={{ padding: 16 }}><div className="mk-tag">{t("AI workflow'ini qabul qilish — to'rt savol", "Приём workflow от AI — четыре вопроса")}</div><div className="mk-plan">{FOUR19.map((x, i) => <div key={i} className="hl" style={{ animation: `mk-up .4s ${i * 0.1}s ease both` }}><b>0{i + 1}</b><span dangerouslySetInnerHTML={html(x.replace(/`([^`]+)`/g, '<code>$1</code>'))} /></div>)}</div></div>}
   </>} />;
 }
@@ -4967,16 +4973,19 @@ function Screen19(p) {
 // ============================================================
 //  20 · Tekshiruv 4 — AI workflow'ni qabul qilish (1-AI test.yml aynan · run 21, 14, 10a)
 // ============================================================
-const AI20 = new Set([12, 15, 16, 17, 21, 24]); // 1-AI test.yml — faqat qadam satrlari, raqami aynan (nom va bo'sh satrlarsiz: panel eski 6 satr balandligida qoladi)
-const NODE20 = jt('$ node --version\n' + KOD.VERSIONS.local.split('\n')[0]);
+// 26.11 (F-1125-01, M56; Jest-1 dagi qaror kabi): MCRetry → LineCheck. 1-AI test.yml 10–24 aynan (KOD.YML_AI1), to'g'ri satr 17 `node-version: 22`.
+// Tuzatish — run 21 (haqiqiy, cicd1v2-out/21-ai1-node24.txt): faqat 22 → 24, success. Explorer yo'q (M61-3).
+const LC20 = kod('YML_AI1', {}, 10, 24);
+const LC20_FIXED = KOD.YML_AI1.lines.filter((l) => l.n >= 10 && l.n <= 24).flatMap((l) => l.n === NV('YML_AI1') ? [{ h: yamlLine(l.t), n: '', gone: true }, { h: yamlLine(l.t.replace('22', '24')), n: l.n, neu: true }] : [{ h: yamlLine(l.t), n: l.n }]);
+const LC20_RUN = () => [
+  { n: '', h: t('run 21 · 1-AI fayli, faqat 17-satr: 22 → 24 · <span class="ok">success</span>', 'run 21 · файл 1-го AI, только строка 17: 22 → 24 · <span class="ok">success</span>') },
+  { n: '', h: '<span class="ok">✓</span> Kodni yuklab olish · <span class="ok">✓</span> Node.js 22 o\'rnatish · <span class="ok">✓</span> Kutubxonalarni o\'rnatish · <span class="ok">✓</span> Testlar' },
+];
 function Screen20(p) {
-  return MC(p, 20, {
-    above: <div style={{ display: 'grid', gap: 8 }}>
-      <CodePanel file={t("test.yml · 1-AI yozgan · qadam satrlari", "test.yml · написал 1-й AI · строки шагов")} lines={kod('YML_AI1', { [NV('YML_AI1')]: 'n' }).filter((l) => AI20.has(l.n))} focus={['n']} />
-      <Term title={t("VS Code terminali · sizning mashinangiz", "терминал VS Code · ваша машина")} lines={NODE20} />
-    </div>,
-    after: <div className="c1-small"><RunView k="21" only={/olish|rnatish|Testlar/} note={[t('node-version: 24 bilan — yashil', "с node-version: 24 — зелёный"), t("lekin tsc va build yo'q: tur xatosi yashil o'tadi (run 14)", "но нет tsc и build: ошибка типа проходит зелёной (run 14)")]} /></div>,
-  });
+  const m = MDT[20];
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file={t('.github/workflows/test.yml · 1-AI yozgan', '.github/workflows/test.yml · написал 1-й AI')} lines={LC20} target={NV('YML_AI1') - 10}
+    fixed={LC20_FIXED} fixedExtra={[{ file: t('GitHub Actions · haqiqiy run', 'GitHub Actions · настоящий run'), lines: LC20_RUN() }]}
+    ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
 
 // ============================================================
@@ -5876,23 +5885,23 @@ const RU_MDT = {
  },
  "18": {
   "kicker": "Этап 5 · AI",
-  "title": "Продолжение нового навыка: двум AI один простой промпт — оба написали правильный на вид workflow; теперь читаем их, потом проверяем в конвейере",
+  "title": "Продолжение нового навыка: двум AI одна задача двумя разными заданиями — в простом выпали версия и проверки; теперь читаем, потом проверяем на конвейере",
   "seg": {
    "a": [
-    "Снова этап AI: <b>workflow пишет AI, вы принимаете</b> — простой промпт, без подсказок",
-    "Как и на уроках по Jest, последний этап — с AI. Промпт простой: напиши GitHub Actions workflow для этого проекта NestJS, пусть тесты запускаются при каждом push. Checkout, setup node, версия, tsc, build — ни одного из этих слов в промпте нет. Каждый AI работал в отдельной копии проекта."
+    "Снова этап AI: <b>workflow пишет AI, вы принимаете</b> — одна задача, два задания",
+    "Как и на уроках по Jest, последний этап — с AI. Мы дали двум разным AI одну задачу двумя разными заданиями: GitHub Actions workflow для OrderBotNest. Каждый AI работал в отдельной копии проекта."
    ],
    "b": [
-    "Оба написали <b>правильный на вид файл</b>: checkout, setup-node, <code>npm ci</code>, <code>npm test</code>",
-    "Оба написали файл, который выглядит правильно. Первый — test yml, двадцать две строки: checkout, setup node, npm ci, npm test, у каждого шага узбекское имя. Второй — ci yml, двадцать шесть строк, те же шаги, плюс permissions contents read, право только на чтение. Ошибки YAML нет."
+    "Два задания: <b>простое</b> — «пусть запускаются тесты»; <b>на языке CI</b> — установка по lock, проверка типов, тесты, build, Node как на машине",
+    "Первое задание простое: напиши GitHub Actions workflow для этого проекта NestJS, пусть тесты запускаются при каждом push. Второе — на языке CI: библиотеки ставить точно по lock-файлу, проверка типов, тесты, build, версия Node такая же, как на моей машине. Названия команд не сказаны."
    ],
    "c": [
-    "Но в обоих <b><code>node-version: 22</code></b> — про вашу машину не спросили; и <b>нет ни <code>tsc</code>, ни <code>build</code></b>",
-    "Но есть две вещи. Оба написали node version двадцать два: не спросили, какой Node на вашей машине, поставили привычное число. И в обоих нет ни tsc, ни build: промпт сказал «пусть запускаются тесты», AI сделал ровно это и ничего сверх."
+    "Простое: <b><code>node-version: 22</code>, нет <code>tsc</code> и <code>build</code></b> · на языке CI: <b>Node 24.18 — сам запустил <code>node -v</code></b>, четыре этапа",
+    "Результат. По простому заданию оба написали файл, который выглядит правильно: checkout, setup node, npm ci, npm test. Но node version двадцать два, машину не спросили, нет ни tsc, ни build. По заданию на языке CI оба сами запустили node минус v и написали двадцать четыре точка восемнадцать, все четыре этапа на месте."
    ],
    "d": [
-    "Итог: <b>правильный на вид файл — ещё не проверка</b> — поставим его в конвейер",
-    "Итог: workflow, который выглядит правильно, — ещё не проверка. Как зелёный тест в Jest: файл красивый, но не знает вашей машины и вашего проекта. Оба мы отправили push в тестовую ветку OrderBotNest. Результат на экране."
+    "Итог: <b>файл, который выглядит правильно, — ещё не проверка</b> — ставим на конвейер",
+    "Итог: workflow, который выглядит правильно, — ещё не проверка. Оба файла простого задания мы запушили в тестовую ветку OrderBotNest, а файлы на языке CI прогнали на локальном конвейере. Результат на следующем экране."
    ]
   }
  },
@@ -5909,8 +5918,8 @@ const RU_MDT = {
     "В файле первого AI поменяли всего одно число: node version двадцать четыре. Push: run зелёный, npm ci прошёл, npm test — двадцать пять passed. Имя шага всё ещё «установка Node js двадцать два»: работает не имя, а число. Одно число — и из красного в зелёный."
    ],
    "c": [
-    "Но: <b>нет <code>tsc</code> — ошибка типа с экрана 15 в этом конвейере останется зелёной</b>; <code>build</code> тоже нет",
-    "Но зелёный ещё не полный. В этом workflow нет tsc: если сделать push ошибки типа с пятнадцатого экрана, run останется зелёным, ложный зелёный. Build тоже нет: несобираемый код пройдёт зелёным. Промпт сказал «пусть запускаются тесты», AI сделал только это."
+    "Но: <b>нет <code>tsc</code> — ошибка типа с экрана 15 в этом конвейере останется зелёной</b>; в файлах на языке CI — красная на проверке типов",
+    "Но зелёный ещё не полный. В этом workflow нет tsc: если сделать push ошибки типа с пятнадцатого экрана, run останется зелёным, ложный зелёный. Build тоже нет: несобираемый код пройдёт зелёным. В двух workflow на языке CI tsc есть: на локальном конвейере эта ошибка стала красной на проверке типов."
    ],
    "d": [
     "Итог: принимайте workflow от AI <b>по четырём вопросам</b>: checkout · <code>node-version</code> мой · <code>npm ci</code> · <code>tsc</code> и <code>build</code>",
@@ -5920,24 +5929,13 @@ const RU_MDT = {
  },
  "20": {
   "kicker": "Проверка 4",
-  "eyebrow": "Проверка · 4 / 4",
-  "title": "Workflow от 1-го AI: checkout@v4 · setup-node@v4 (node-version: 22) · npm ci · npm test. На вашей машине Node 24. Что измените перед тем, как ставить в конвейер?",
-  "q": "Вы видели workflow от AI, теперь проверим. Четвёртая проверка. Это файл первого AI: есть checkout, setup node двадцать два, npm ci и npm test. На вашей машине Node двадцать четыре. Что измените перед тем, как ставить в конвейер? Выберите вариант.",
-  "ok": "Верно. Две вещи. Node version — двадцать четыре, как на вашей машине, иначе красный с семнадцатого экрана. И шаги tsc и build: иначе ошибка типа и несобираемый код пройдут зелёными. Checkout и npm ci верные, они остаются. Значит, файл от AI — точка старта, а четыре вопроса — ваши.",
-  "okShort": "<code>node-version</code> = <code>node --version</code> · шаги <code>tsc</code> + <code>build</code>. <code>checkout</code> и <code>npm ci</code> остаются.",
-  "hint": "Задайте этому файлу четыре вопроса с экрана 19: checkout? версия? ci? tsc/build?",
-  "demak": "workflow от AI — точка старта: <code>node-version</code> мой · <code>tsc</code> и <code>build</code> добавляются · <code>checkout</code> и <code>npm ci</code> остаются.",
-  "opts": [
-   "Ничего — есть checkout и npm ci, остальное работает",
-   "Только node-version 24 — раз тесты проходят, хватит",
-   "node-version 24 и добавить шаги tsc и build",
-   "Убрать checkout — setup-node сам принесёт"
-  ],
-  "wrong": {
-   "0": "С node-version: 22 npm ci красный (экран 17); без tsc ошибка типа проходит зелёной (экран 15).",
-   "1": "Run будет зелёным, но нет tsc и build: ошибка типа и несобираемый код тоже пройдут зелёными (экран 15).",
-   "3": "setup-node только ставит Node; код приносит checkout (экран 13)."
-  }
+  "eyebrow": "Проверка · 4 / 4 — какая строка причина?",
+  "title": "Run 19 красный: npm ci — Missing: webpack… from lock file. Какая строка файла 1-го AI — причина?",
+  "q": "Вы видели workflow от AI на конвейере, теперь проверим себя. Четвёртая проверка. Это test yml, который написал первый AI, в папке workflows внутри github. Когда его запушили без изменений, run девятнадцать стал красным, на шаге npm ci: missing webpack from lock file. На вашей машине Node двадцать четыре. Какая строка — причина? Нажмите на неё.",
+  "ok": "Верно. Семнадцатая строка: node version двадцать два. На раннере Node двадцать два и npm десять, а lock записан npm одиннадцать, npm ci читает его по-другому. Мы поменяли только это число на двадцать четыре: run двадцать один зелёный. Но шагов tsc и build ещё нет, ошибка типа пройдёт зелёной. Значит, версия как на вашей машине, а дальше — остальные из четырёх вопросов.",
+  "okShort": "Строка 17: <code>node-version: 22</code> — на раннере npm 10, lock записан npm 11 → <code>npm ci</code> ✗. С <code>24</code> run 21 зелёный. Шагов <code>tsc</code> и <code>build</code> пока нет (четыре вопроса с экрана 19).",
+  "hint": "Ошибка на шаге <code>npm ci</code>, но причина раньше: какая строка выбирает Node на раннере, а значит и npm?",
+  "task": "Файл <code>test.yml</code> от 1-го AI запушили без изменений: run 19 красный, на шаге «Kutubxonalarni o'rnatish» — <code>npm error Missing: webpack@5.112.2 from lock file</code>. На вашей машине <code>node --version</code> → <code>v24.18.0</code>, lock записан npm этой версии Node (экран 17). <b>Какая строка — причина? Нажмите.</b>"
  },
  "21": {
   "kicker": "Практика 3 / 3",

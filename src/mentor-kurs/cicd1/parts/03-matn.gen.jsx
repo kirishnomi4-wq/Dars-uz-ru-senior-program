@@ -578,27 +578,27 @@ const MDT = {
  "18": {
   "type": "Lesson",
   "kicker": "5-bosqich · AI",
-  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta oddiy prompt — ikkalasi to'g'ri ko'rinadigan workflow yozdi; endi ularni o'qiymiz, keyin lentada sinaymiz",
+  "title": "Yangi ko'nikma davomi: ikki AI'ga bitta vazifa ikki xil topshiriq bilan — oddiysida versiya va tekshiruvlar tushib qoldi; endi o'qiymiz, keyin lentada sinaymiz",
   "seg": [
    [
     "a",
-    "Yana AI bosqichi: <b>workflow'ni AI yozadi, siz qabul qilasiz</b> — oddiy prompt, ishorasiz",
-    "Jest darslaridagi kabi oxirgi bosqich AI bilan. Prompt oddiy: bu NestJS loyihasi uchun GitHub Actions workflow yozib ber, har push'da testlar yursin. Checkout, setup node, versiya, tsc, build, bu so'zlarning hech biri promptda yo'q. Har AI loyihaning alohida nusxasida ishladi."
+    "Yana AI bosqichi: <b>workflow'ni AI yozadi, siz qabul qilasiz</b> — bitta vazifa, ikki topshiriq",
+    "Jest darslaridagi kabi oxirgi bosqich AI bilan. Biz ikki xil AI'ga bitta vazifani ikki xil topshiriq bilan berdik: OrderBotNest uchun GitHub Actions workflow. Har AI loyihaning alohida nusxasida ishladi."
    ],
    [
     "b",
-    "Ikkalasi <b>to'g'ri ko'rinadigan fayl</b> yozdi: checkout, setup-node, <code>npm ci</code>, <code>npm test</code>",
-    "Ikkalasi ham to'g'ri ko'rinadigan fayl yozdi. Birinchisi test yml, yigirma ikki satr: checkout, setup node, npm si ay, npm test, har qadamga o'zbekcha nom. Ikkinchisi ci yml, yigirma olti satr, xuddi shu qadamlar, qo'shimcha permissions contents read, faqat o'qish huquqi. YAML xatosi yo'q."
+    "Ikki topshiriq: <b>oddiy</b> — «testlar yursin»; <b>CI tilida</b> — lock bo'yicha o'rnatish, tur tekshiruvi, test, build, Node mashinadagidek",
+    "Birinchi topshiriq oddiy: bu NestJS loyihasi uchun GitHub Actions workflow yozib ber, har push'da testlar yursin. Ikkinchisi CI tilida: kutubxonalar lock fayl bo'yicha aynan o'rnatilsin, tur tekshiruvi, testlar, build, Node versiyasi mening mashinamdagi bilan bir xil bo'lsin. Buyruqlar nomi aytilmagan."
    ],
    [
     "c",
-    "Lekin ikkalasida <b><code>node-version: 22</code></b> — mashinangizni so'ramadi; va <b><code>tsc</code> ham, <code>build</code> ham yo'q</b>",
-    "Lekin ikki narsa. Ikkalasi ham node version yigirma ikki yozdi: sizning mashinangizda qaysi Node borligini so'ramadi, odatdagi raqamni qo'ydi. Va ikkalasida tsc ham, build ham yo'q: prompt testlar yursin dedi, AI aynan shuni qildi, ortig'ini emas."
+    "Oddiy: <b><code>node-version: 22</code>, <code>tsc</code> va <code>build</code> yo'q</b> · CI tilida: <b>Node 24.18 — <code>node -v</code> ni o'zi yurgizdi</b>, to'rt bosqich",
+    "Natija. Oddiy topshiriqda ikkalasi to'g'ri ko'rinadigan fayl yozdi: checkout, setup node, npm si ay, npm test. Lekin node version yigirma ikki, mashinani so'ramadi, tsc ham, build ham yo'q. CI tilidagi topshiriqda ikkalasi node minus v ni o'zi yurgizib, yigirma to'rt nuqta o'n sakkiz yozdi, to'rt bosqichning hammasi bor."
    ],
    [
     "d",
     "Xulosa: <b>to'g'ri ko'ringan fayl hali tekshiruv emas</b> — lentaga qo'yib ko'ramiz",
-    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Jest'dagi yashil test kabi: fayl chiroyli, lekin sizning mashinangizni va loyihangizni bilmaydi. Ikkalasini ham OrderBotNest'ning sinov tarmog'iga push qildik. Natija ekranda."
+    "Xulosa: to'g'ri ko'ringan workflow hali tekshiruv emas. Oddiy topshiriqdagi ikkala faylni OrderBotNest'ning sinov tarmog'iga push qildik, CI tilidagilarni lokal lentada yurgizdik. Natija keyingi ekranda."
    ]
   ]
  },
@@ -619,8 +619,8 @@ const MDT = {
    ],
    [
     "c",
-    "Lekin: <b><code>tsc</code> yo'q — 15-ekrandagi tur xatosi bu lentada yashil qoladi</b>; <code>build</code> ham yo'q",
-    "Lekin yashil hali to'liq emas. Bu workflow'da tsc yo'q: o'n beshinchi ekrandagi tur xatosini push qilsangiz, run yashil qoladi, yolg'on yashil. Build ham yo'q: yig'ilmaydigan kod yashil o'tadi. Prompt testlar yursin dedi, AI faqat shuni qildi."
+    "Lekin: <b><code>tsc</code> yo'q — 15-ekrandagi tur xatosi bu lentada yashil qoladi</b>; CI tilidagilarda — tur tekshiruvida qizil",
+    "Lekin yashil hali to'liq emas. Bu workflow'da tsc yo'q: o'n beshinchi ekrandagi tur xatosini push qilsangiz, run yashil qoladi, yolg'on yashil. Build ham yo'q: yig'ilmaydigan kod yashil o'tadi. CI tilidagi ikki workflow'da tsc bor: lokal lentada shu xato tur tekshiruvida qizil bo'ldi."
    ],
    [
     "d",
@@ -630,27 +630,15 @@ const MDT = {
   ]
  },
  "20": {
-  "type": "MCRetry",
+  "type": "LineCheck",
   "kicker": "Tekshiruv 4",
-  "eyebrow": "Tekshiruv · 4 / 4",
-  "title": "1-AI yozgan workflow: checkout@v4 · setup-node@v4 (node-version: 22) · npm ci · npm test. Mashinangizda Node 24. Lentaga qo'yishdan oldin nimani o'zgartirasiz?",
-  "q": "AI workflow'larini ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan fayl: checkout bor, setup node yigirma ikki, npm si ay va npm test. Mashinangizda Node yigirma to'rt. Lentaga qo'yishdan oldin nimani o'zgartirasiz? Variantni tanlang.",
-  "ok": "To'g'ri. Ikki narsa. Node version mashinangizdagi yigirma to'rt, aks holda o'n yettinchi ekrandagi qizil. Va tsc bilan build qadamlari: aks holda tur xatosi va yig'ilmaydigan kod yashil o'tadi. Checkout va npm si ay to'g'ri, ular qoladi. Demak, AI fayli boshlanish nuqtasi, to'rt savol esa sizniki.",
-  "okShort": "<code>node-version</code> = <code>node --version</code> · <code>tsc</code> + <code>build</code> qadamlari. <code>checkout</code> va <code>npm ci</code> qoladi.",
-  "hint": "19-ekrandagi to'rt savolni shu faylga bering: checkout? versiya? ci? tsc/build?",
-  "demak": "AI workflow'i — boshlanish nuqtasi: <code>node-version</code> meniki · <code>tsc</code> va <code>build</code> qo'shiladi · <code>checkout</code> va <code>npm ci</code> qoladi.",
-  "correct": 2,
-  "opts": [
-   "Hech narsa — checkout va npm ci bor, qolgani ishlaydi",
-   "Faqat node-version 24 — testlar o'tsa, yetarli",
-   "node-version 24 va tsc, build qadamlarini qo'shish",
-   "checkoutni olib tashlash — setup-node o'zi olib keladi"
-  ],
-  "wrong": {
-   "0": "node-version: 22 bilan npm ci qizil (17-ekran); tsc qadamisiz tur xatosi yashil o'tadi (15-ekran).",
-   "1": "Run yashil bo'ladi, lekin tsc va build yo'q: tur xatosi va yig'ilmaydigan kod ham yashil o'tadi (15-ekran).",
-   "3": "setup-node faqat Node o'rnatadi; kodni checkout olib keladi (13-ekran)."
-  }
+  "eyebrow": "Tekshiruv · 4 / 4 — qaysi satr sabab?",
+  "title": "Run 19 qizil: npm ci — Missing: webpack… from lock file. 1-AI faylining qaysi satri sabab?",
+  "q": "AI workflow'larini lentada ko'rdingiz, endi tekshirib olaylik. To'rtinchi tekshiruv. Bu birinchi AI yozgan test yml, github papkasidagi workflows ichida. U o'zgartirilmasdan push qilinganda run o'n to'qqiz qizil bo'ldi, npm si ay qadamida: missing webpack from lock file. Mashinangizda Node yigirma to'rt. Qaysi satr sabab? O'sha satrni bosing.",
+  "ok": "To'g'ri. O'n yettinchi satr: node version yigirma ikki. Runner'da Node yigirma ikki va npm o'n, lock esa npm o'n birda yozilgan, npm si ay uni boshqacha o'qiydi. Faqat shu raqamni yigirma to'rtga o'zgartirdik: run yigirma bir yashil. Lekin tsc va build qadamlari hali yo'q, tur xatosi yashil o'tadi. Demak, versiya mashinangizdagi bilan bir xil, keyin to'rt savolning qolgani.",
+  "okShort": "17-satr: <code>node-version: 22</code> — runner'da npm 10, lock npm 11 da yozilgan → <code>npm ci</code> ✗. <code>24</code> bilan run 21 yashil. <code>tsc</code> va <code>build</code> qadamlari hali yo'q (19-ekrandagi to'rt savol).",
+  "hint": "Xato npm ci qadamida, lekin sababi undan oldin: qaysi satr runner'dagi Node'ni, demak npm'ni tanlaydi?",
+  "task": "1-AI yozgan <code>test.yml</code> o'zgartirilmasdan push qilindi: run 19 qizil, «Kutubxonalarni o'rnatish» qadamida <code>npm error Missing: webpack@5.112.2 from lock file</code>. Mashinangizda <code>node --version</code> → <code>v24.18.0</code>, lock shu Node'dagi npm bilan yozilgan (17-ekran). <b>Qaysi satr sabab? Bosing.</b>"
  },
  "21": {
   "type": "Practice",

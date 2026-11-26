@@ -20,21 +20,32 @@ function Screen17(p) {
 }
 
 // ============================================================
-//  18 · AI workflow yozdi — ikki to'plam (cicd1v2-ai: ai1 test.yml 22 satr · ai2 ci.yml 26 satr)
+//  18 · AI workflow yozdi — ikki to'plam (cicd1v2-ai: ai1 test.yml 24 satr · ai2 ci.yml 28 satr — wc -l; 04.11 XULOSA'dagi 22/26 xato edi)
 // ============================================================
 const NV = (k) => KOD[k].lines.find((l) => /node-version/.test(l.t)).n;
+// 26.11 (F-1125-01, M56 — Nest-1 darajasi): 2-topshiriq CI tilida (cicd1v2-ai/p2-prompt.txt aynan; natija p2/ — o'sha ikki model, git tarixsiz nusxa)
+const P2_CI = "OrderBotNest uchun GitHub Actions CI yoz (.github/workflows/ci.yml): har push'da va main'ga pull request'da ishlasin. Lenta toza mashinada to'rt bosqichni o'tsin: kutubxonalar lock fayl bo'yicha aynan o'rnatilsin, TypeScript tur tekshiruvi, testlar, build. Node versiyasi mening mashinamdagi bilan bir xil bo'lsin. Biror qadam qizil bo'lsa, keyingilari yurmasin. Boshqa fayllarga tegma. Qaysi fayl qo'shilganini va nimani qanday tekshirganingni yoz.";
+// t() chizish paytida — funksiya (modul yuklanganda til hali o'rnatilmagan)
+const RES18 = () => [
+  [t('1-AI (kuchli model)', '1-й AI (сильная модель)'), t('test.yml · 24 satr', 'test.yml · 24 строки'), t('ci.yml · 38 satr', 'ci.yml · 38 строк')],
+  [t('2-AI (kuchsizroq model)', '2-й AI (модель слабее)'), t('ci.yml · 28 satr', 'ci.yml · 28 строк'), t('ci.yml · 34 satr', 'ci.yml · 34 строки')],
+];
 const S18 = mkS(18, [{ v: 'stage' }, { v: 'prompt' }, { v: 'cards' }, { v: 'yml' }]);
 function Screen18(p) {
   return <Lesson p={p} S={S18} scene={({ seg }) => <>
     {(seg.v === 'stage' || seg.v === 'prompt') && <div className="c1-stage">
       <div style={{ '--c': T.ink3, opacity: 0.45 }}><h4>{t("1–4-bosqich · lentani siz yozdingiz", "Этапы 1–4 · конвейер писали вы")}</h4><p>{t("ci.yml · push · yashil / qizil run · to'rt tuzoq", "ci.yml · push · зелёный / красный run · четыре ловушки")}</p></div>
-      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("Bitta oddiy prompt → ikki workflow → haqiqiy lentada sinov", "Один простой промпт → два workflow → проверка в настоящем конвейере")}</p></div>
+      <div style={{ '--c': C1.ai }}><h4>{t("5-bosqich · AI yozadi, siz qabul qilasiz", "Этап 5 · пишет AI, вы принимаете")}</h4><p>{t("Bitta vazifa, ikki topshiriq → to'rt workflow → lentada sinov", "Одна задача, два задания → четыре workflow → проверка на конвейере")}</p></div>
     </div>}
-    {seg.v === 'prompt' && <AiReply who={t("Prompt — ikkala AI'ga bir xil", "Промпт — одинаковый для обоих AI")} prompt={KOD.PROMPT1} tag={t("ishorasiz: checkout, versiya, tsc, build yo'q", "без подсказок: checkout, версии, tsc, build нет")} />}
-    {seg.v === 'cards' && <div className="pg-two">
-      <AiReply who={t("1-AI (kuchli model)", "1-й AI (сильная модель)")} said={<><code>.github/workflows/test.yml</code>{t(" — 22 satr: checkout@v4 → setup-node@v4 (", " — 22 строки: checkout@v4 → setup-node@v4 (")}<b>node-version: 22</b>, cache npm) → <code>npm ci</code> → <code>npm test</code>{t(". Har qadamga o'zbekcha nom. YAML ✓.", ". У каждого шага узбекское имя. YAML ✓.")}</>} />
-      <AiReply who={t("2-AI (kuchsizroq model)", "2-й AI (модель слабее)")} said={<><code>.github/workflows/ci.yml</code>{t(" — 26 satr: xuddi shu qadamlar + ", " — 26 строк: те же шаги + ")}<code>permissions: contents: read</code>{t(", job nomi «Jest testlar». ", ", имя job «Jest testlar». ")}<b>node-version: 22</b>. YAML ✓.</>} />
+    {seg.v === 'prompt' && <div className="pg-two">
+      <AiReply who={t("1-topshiriq · oddiy", "1-е задание · простое")} prompt={KOD.PROMPT1} tag={t("haqiqiy yurgizish · 04.11", "настоящий запуск · 04.11")} />
+      <AiReply who={t("2-topshiriq · CI tilida", "2-е задание · на языке CI")} prompt={P2_CI} tag={t("haqiqiy yurgizish · 26.11", "настоящий запуск · 26.11")} hl />
     </div>}
+    {seg.v === 'cards' && <div className="mk-light" style={{ padding: 12 }}><table className="c1-res"><thead><tr><th />
+      <th>{t("1-topshiriq · oddiy", "1-е задание · простое")}</th><th>{t("2-topshiriq · CI tilida", "2-е задание · на языке CI")}</th></tr></thead>
+      <tbody>{RES18().map(([who, a, b]) => <tr key={who}><td>{who}</td><td>{a}<br /><b className="no"><code>node-version: 22</code>{t(" · tsc va build yo'q", " · нет tsc и build")}</b></td><td>{b}<br /><b className="ok"><code>node-version: '24.18.0'</code>{t(" · to'rt bosqich", " · четыре этапа")}</b></td></tr>)}
+        <tr><td>{t("Versiya qayerdan", "Откуда версия")}</td><td>{t("so'ramadi — odatiy raqam", "не спросил — привычное число")}</td><td><code>node -v</code>{t(" ni o'zi yurgizdi", " запустил сам")}</td></tr>
+      </tbody></table></div>}
     {seg.v === 'yml' && <div style={{ display: 'grid', gap: 8 }}>
       <div className="pg-two"><Yml k="YML_AI1" title="test.yml · 1-AI" from={NV('YML_AI1') - 3} to={NV('YML_AI1') + 1} ids={{ [NV('YML_AI1')]: 'n' }} focus={['n']} /><Yml k="YML_AI2" title="ci.yml · 2-AI" from={NV('YML_AI2') - 3} to={NV('YML_AI2') + 1} ids={{ [NV('YML_AI2')]: 'n' }} focus={['n']} /></div>
       {/* F-1120-02 (M51): xulosada matnli qoida o'rniga darsning rasmi — AI yozgan lenta: tsc va build yo'q, hali sinalmagan */}
@@ -56,7 +67,7 @@ function Screen19(p) {
   return <Lesson p={p} S={S19} scene={({ seg }) => <>
     {seg.v === 'red' && <div className="pg-two c1-small"><RunView k="19" open="Kutubxonalarni o'rnatish" lines={L19} ann={null} /><RunView k="20" open="Bog'liqliklarni o'rnatish" lines={L20} ann={null} /></div>}
     {seg.v === 'green' && <div style={{ display: 'grid', gap: 8 }} className="c1-small"><CodePanel file={t("test.yml · 1-AI, bitta raqam", "test.yml · 1-й AI, одно число")} lines={FIX19} focus={['v']} /><RunView k="21" open="Testlar" lines={L21} hlStep={["Node.js 22 o'rnatish", 'Testlar']} /></div>}
-    {seg.v === 'tsc' && <div className="pg-two c1-small"><RunView k="14" note={[t("Yolg'on yashil (15-ekran)", "Ложный зелёный (экран 15)"), t("tsc qadami yo'q — tur xatosi o'tdi", "нет шага tsc — ошибка типа прошла")]} /><Card c={T.accent} h={t("AI workflow'i bilan ham shunday", "с workflow от AI так же")}><p>{t("Bu faylda ", "В этом файле ")}<b>{t("tsc yo'q", "нет tsc")}</b>{t(": 15-ekrandagi tur xatosini push qilsangiz — run ", ": если запушить ошибку типа с 15-го экрана — run ")}<b>{t("yashil", "зелёный")}</b>{t(" qoladi.", " останется.")}</p><p><b>{t("build yo'q", "нет build")}</b>{t(": yig'ilmaydigan kod yashil o'tadi.", ": несобираемый код проходит зелёным.")}</p><p style={{ marginTop: 6, color: T.ink3 }}>{t("Prompt «testlar yursin» dedi — AI faqat shuni qildi.", "Промпт сказал «пусть запускаются тесты» — AI сделал только это.")}</p></Card></div>}
+    {seg.v === 'tsc' && <div className="pg-two c1-small"><RunView k="14" note={[t("Yolg'on yashil (15-ekran)", "Ложный зелёный (экран 15)"), t("tsc qadami yo'q — tur xatosi o'tdi", "нет шага tsc — ошибка типа прошла")]} /><Card c={T.accent} h={t("AI workflow'i bilan ham shunday", "с workflow от AI так же")}><p>{t("Bu faylda ", "В этом файле ")}<b>{t("tsc yo'q", "нет tsc")}</b>{t(": 15-ekrandagi tur xatosini push qilsangiz — run ", ": если запушить ошибку типа с 15-го экрана — run ")}<b>{t("yashil", "зелёный")}</b>{t(" qoladi.", " останется.")}</p><p><b>{t("build yo'q", "нет build")}</b>{t(": yig'ilmaydigan kod yashil o'tadi.", ": несобираемый код проходит зелёным.")}</p><p style={{ marginTop: 6 }}>{t("CI tilidagi topshiriqda ikkala workflow'da tur tekshiruvi bor: lokal lentada shu xato ", "В задании на языке CI в обоих workflow есть проверка типов: на локальном конвейере эта ошибка ")}<b>{t("qizil", "красная")}</b>.</p><p style={{ marginTop: 6, color: T.ink3 }}>{t("Prompt «testlar yursin» dedi — AI faqat shuni qildi.", "Промпт сказал «пусть запускаются тесты» — AI сделал только это.")}</p></Card></div>}
     {seg.v === 'four' && <div className="mk-light" style={{ padding: 16 }}><div className="mk-tag">{t("AI workflow'ini qabul qilish — to'rt savol", "Приём workflow от AI — четыре вопроса")}</div><div className="mk-plan">{FOUR19.map((x, i) => <div key={i} className="hl" style={{ animation: `mk-up .4s ${i * 0.1}s ease both` }}><b>0{i + 1}</b><span dangerouslySetInnerHTML={html(x.replace(/`([^`]+)`/g, '<code>$1</code>'))} /></div>)}</div></div>}
   </>} />;
 }
@@ -64,16 +75,19 @@ function Screen19(p) {
 // ============================================================
 //  20 · Tekshiruv 4 — AI workflow'ni qabul qilish (1-AI test.yml aynan · run 21, 14, 10a)
 // ============================================================
-const AI20 = new Set([12, 15, 16, 17, 21, 24]); // 1-AI test.yml — faqat qadam satrlari, raqami aynan (nom va bo'sh satrlarsiz: panel eski 6 satr balandligida qoladi)
-const NODE20 = jt('$ node --version\n' + KOD.VERSIONS.local.split('\n')[0]);
+// 26.11 (F-1125-01, M56; Jest-1 dagi qaror kabi): MCRetry → LineCheck. 1-AI test.yml 10–24 aynan (KOD.YML_AI1), to'g'ri satr 17 `node-version: 22`.
+// Tuzatish — run 21 (haqiqiy, cicd1v2-out/21-ai1-node24.txt): faqat 22 → 24, success. Explorer yo'q (M61-3).
+const LC20 = kod('YML_AI1', {}, 10, 24);
+const LC20_FIXED = KOD.YML_AI1.lines.filter((l) => l.n >= 10 && l.n <= 24).flatMap((l) => l.n === NV('YML_AI1') ? [{ h: yamlLine(l.t), n: '', gone: true }, { h: yamlLine(l.t.replace('22', '24')), n: l.n, neu: true }] : [{ h: yamlLine(l.t), n: l.n }]);
+const LC20_RUN = () => [
+  { n: '', h: t('run 21 · 1-AI fayli, faqat 17-satr: 22 → 24 · <span class="ok">success</span>', 'run 21 · файл 1-го AI, только строка 17: 22 → 24 · <span class="ok">success</span>') },
+  { n: '', h: '<span class="ok">✓</span> Kodni yuklab olish · <span class="ok">✓</span> Node.js 22 o\'rnatish · <span class="ok">✓</span> Kutubxonalarni o\'rnatish · <span class="ok">✓</span> Testlar' },
+];
 function Screen20(p) {
-  return MC(p, 20, {
-    above: <div style={{ display: 'grid', gap: 8 }}>
-      <CodePanel file={t("test.yml · 1-AI yozgan · qadam satrlari", "test.yml · написал 1-й AI · строки шагов")} lines={kod('YML_AI1', { [NV('YML_AI1')]: 'n' }).filter((l) => AI20.has(l.n))} focus={['n']} />
-      <Term title={t("VS Code terminali · sizning mashinangiz", "терминал VS Code · ваша машина")} lines={NODE20} />
-    </div>,
-    after: <div className="c1-small"><RunView k="21" only={/olish|rnatish|Testlar/} note={[t('node-version: 24 bilan — yashil', "с node-version: 24 — зелёный"), t("lekin tsc va build yo'q: tur xatosi yashil o'tadi (run 14)", "но нет tsc и build: ошибка типа проходит зелёной (run 14)")]} /></div>,
-  });
+  const m = MDT[20];
+  return <LineCheck {...p} kicker={m.kicker} eyebrow={m.eyebrow} title={m.title} task={m.task} q={m.q} file={t('.github/workflows/test.yml · 1-AI yozgan', '.github/workflows/test.yml · написал 1-й AI')} lines={LC20} target={NV('YML_AI1') - 10}
+    fixed={LC20_FIXED} fixedExtra={[{ file: t('GitHub Actions · haqiqiy run', 'GitHub Actions · настоящий run'), lines: LC20_RUN() }]}
+    ok={m.ok} okShort={<span dangerouslySetInnerHTML={html(m.okShort)} />} hint={m.hint} />;
 }
 
 // ============================================================

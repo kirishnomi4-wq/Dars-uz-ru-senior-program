@@ -32,3 +32,5 @@ Mashina: Node 24.18 · npm 11.16 (`cicd1v2-out/00`).
 5. Mentor uchun to'rt savol (19-ekran): `checkout` bormi · `node-version` = `node --version` · `npm ci`mi · `tsc` va `build` bormi. Keyin push va run.
 
 Fayllar: `ai1/.github/workflows/test.yml`, `ai2/.github/workflows/ci.yml`, `ai*/git-status.txt`, `ai*/diff.patch` (bo'sh — yangi fayl, tracked emas), `cicd1v2-out/19-ai1.txt`, `20-ai2.txt`, `21-ai1-node24.txt`.
+
+**26.11 tuzatish (F-1125-01):** fayllar `wc -l` bo'yicha 24 satr (`test.yml`) va 28 satr (`ci.yml`; `diff-stat` — 28 insertions). Yuqoridagi «22 / 26 satr» xato edi; darsdagi 18-ekran ovozida ham shunday aytilardi — 26.11 dagi qayta yozishda olib tashlandi.

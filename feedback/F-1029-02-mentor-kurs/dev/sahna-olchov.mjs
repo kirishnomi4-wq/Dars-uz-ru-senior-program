@@ -6,7 +6,7 @@ import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwri
 const [size, list] = process.argv.slice(2);
 const [W, H] = size.split('x').map(Number);
 const DARS = process.env.DARS || 'pg-02';
-const CLICK = { 'nest-02': { 13: 12 }, 'pg-01': { 16: 2 }, 'pg-02': { 21: 3 }, 'jest-01': { 10: 4, 19: 11 }, /* 26.11 F-1125-01: 20-ekran LineCheck (45-satr) */ 'jest-02': { 13: 7, 21: 9 }, /* 26.11 F-1125-01: 22-ekran Tekshiruv 5 (13-satr) */ 'cicd-01': { 15: 7 }, 'cicd-02': { 14: 10 }, 'tgpg-01': { 21: 1, 24: 3 }, /* 26.11 F-1125-01: 25-ekran Tekshiruv 5 (28-satr) */ 'ws1-01': { 10: 8 }, 'ws2-01': { 10: 8 }, 'wh-01': { 13: 1 }, 'nest-01': { 18: 10, 26: 7 } }[DARS] || {};
+const CLICK = { 'nest-02': { 13: 12 }, 'pg-01': { 16: 2 }, 'pg-02': { 21: 3 }, 'jest-01': { 10: 4, 19: 11 }, /* 26.11 F-1125-01: 20-ekran LineCheck (45-satr) */ 'jest-02': { 13: 7, 21: 9 }, /* 26.11 F-1125-01: 22-ekran Tekshiruv 5 (13-satr) */ 'cicd-01': { 15: 7, 19: 7 }, /* 26.11 F-1125-01: 20-ekran LineCheck (17-satr) */ 'cicd-02': { 14: 10 }, 'tgpg-01': { 21: 1, 24: 3 }, /* 26.11 F-1125-01: 25-ekran Tekshiruv 5 (28-satr) */ 'ws1-01': { 10: 8 }, 'ws2-01': { 10: 8 }, 'wh-01': { 13: 1 }, 'nest-01': { 18: 10, 26: 7 } }[DARS] || {};
 const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
 const page = await browser.newPage({ viewport: { width: W, height: H } });
 await page.goto(`${process.env.BASE || "http://localhost:5333"}/mentor-kurs.html?dars=${DARS}&s=0${process.env.TIL === "ru" ? "&lang=ru" : ""}`, { waitUntil: 'load' });
